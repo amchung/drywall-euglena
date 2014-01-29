@@ -190,6 +190,7 @@ function setupD3() {
     
     function compareFrame(image) {
     	img1 = image;
+    	console.log(img1);
 		// check if there are two pictures
   		if ( img2 != null ) {
     		var res=[0,0,0,0];
@@ -204,7 +205,6 @@ function setupD3() {
 					objects[i].color = ((res[0]+res[1]+res[2]+res[3])>0)?"#FDAC0D":"#FA6600";
 					console.log(res[0]+res[1]+res[2]+res[3]);
     			}
-    		console.log("inside if");
     		}
     	catch(e) {
     			// errors
