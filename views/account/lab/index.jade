@@ -11,12 +11,13 @@ block body
 		div.col-sm-3#control
 			div.page-header
 				h1 Euglena live webcam
-			#ledArea
-			#joystickArea
-				canvas#controlCanvas
+			#ledArea(align="center", style="width:300px;height:300px;padding:4px;")
+			#joystickArea(style="width:300px;height:280px")
+				canvas#controlCanvas(style="background:#000;padding:10px;")
 		div.col-sm-9#container
 			#canvasArea(style="padding: 10px; width=640px; height: 480px;")
 			#username(style="padding:4px;")
 				h6 What's your name?
 					input(type="text", name="usernameTxt")
-					input(type="button", name="setUsername", value="Enter the Ring")
+					input(type="button", name="setUsername", value="Enter")
+			#chat(style="padding: 6px; min-width:600px; max-height:100px; overflow-y:scroll;")
