@@ -55,7 +55,7 @@ function init() {
 }
 
 function onReady() {
-////// jQuery for the sliders
+/* jQuery for the sliders
    // number of the virtual objects
     $("#n_slider").slider({
         step: 1,
@@ -120,7 +120,7 @@ function onReady() {
         $('#br_value').text("Value: " + value.toFixed(2));
         brown_const = value;
     });
-    
+    */
 ////// jQuery for the socket.io
     // username input
         $('input[name=setUsername]').click(function(){
