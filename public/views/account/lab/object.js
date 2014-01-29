@@ -179,12 +179,12 @@ function setupD3() {
         
     	function getVidFrame(path, callback) {
             var image = new Image;
+            image.src = path;
             image.onload = function() {
-                //callback(image);
 				//console.log(new Date().getTime());
                 compareFrame(image);
+                callback(image);
             };
-            image.src = path;
         }
     }
     
