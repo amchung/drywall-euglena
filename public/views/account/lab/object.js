@@ -175,6 +175,7 @@ function setupD3() {
         getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
             context.clearRect(0, 0, vid_width, vid_height);
             context.drawImage(image, 0, 0, vid_width, vid_height);
+            compareFrame(image);
         });
         
     	function getVidFrame(path, callback) {
@@ -182,12 +183,10 @@ function setupD3() {
             image.src = path;
             image.onload = function() {
 				//console.log(new Date().getTime());
-                compareFrame(image);
                 callback(image);
             };
         }
     }
-    
     
     function compareFrame(img1) {
 		// check if there are two pictures
@@ -210,7 +209,6 @@ function setupD3() {
     		}
 		}
 		img2 = img1;
-		console.log("img2 saved");
 	}
 
 }
