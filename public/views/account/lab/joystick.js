@@ -336,11 +336,11 @@ function changeLED(LEDon) {
 
 
 function resetCanvas(e) {
-    max_val = (document.getElementById("controlArea").offsetWidth-100)/2;
+    max_val = (document.getElementById("joystickArea").offsetWidth-100)/2;
     
     // resize the canvas - but remember - this clears the canvas too.
     
-    control_canvas.width = document.getElementById("controlArea").offsetWidth-20;
+    control_canvas.width = document.getElementById("joystickArea").offsetWidth-20;
     control_canvas.height = control_canvas.width-20;
 
     halfWidth = (control_canvas.width)/2;
