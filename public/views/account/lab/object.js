@@ -204,6 +204,7 @@ function setupD3() {
 					objects[i].color = ((res[0]+res[1]+res[2]+res[3])>0)?"#FDAC0D":"#FA6600";
 					console.log(res[0]+res[1]+res[2]+res[3]);
     			}
+    		console.log("inside if");
     		}
     	catch(e) {
     			// errors
