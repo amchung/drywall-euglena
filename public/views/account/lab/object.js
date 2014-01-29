@@ -189,7 +189,7 @@ function setupD3() {
     }
     
     function compareFrame(image) {
-    	imag1 = image;
+    	img1 = image;
 		// check if there are two pictures
   		if ( img2 != null ) {
     		var res=[0,0,0,0];
