@@ -190,7 +190,7 @@ function setupD3() {
     
     
     function compareFrame(img1) {
-		// just compare if there are two pictures
+		// check if there are two pictures
   		if ( img2 != null ) {
     		var res=[0,0,0,0];
     		try {
@@ -202,6 +202,7 @@ function setupD3() {
     				objects[i].path[0][0]+=(res[0]+res[2]-res[1]-res[3])*v+(Math.random()-0.5)*20*brown_const
     				objects[i].path[0][1]+=(res[0]+res[1]-res[2]-res[3])*v+(Math.random()-0.5)*20*brown_const
 					objects[i].color = ((res[0]+res[1]+res[2]+res[3])>0)?"#FDAC0D":"#FA6600";
+					console.log(res[0]+res[1]+res[2]+res[3]);
     			}
     		}
     	catch(e) {
@@ -356,7 +357,6 @@ var md_canvas = null;
 
 function setupMotionDetection() {
   md_canvas = document.getElementById('mdCanvas');
-  test_canvas = document.getElementById('testCanvas');
   md_canvas.width = vid_width;
   md_canvas.height = vid_height;
 }
