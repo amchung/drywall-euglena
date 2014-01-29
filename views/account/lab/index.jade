@@ -5,6 +5,16 @@ block head
 
 block neck
 	link(rel='stylesheet', href='/views/account/lab/index.min.css?#{cacheBreaker}')
+	link(rel='stylesheet', href='http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css')
+	script(src="http://code.jquery.com/jquery-1.11.0.min.js")
+	script(src="http://code.jquery.com/ui/1.10.3/jquery-ui.js")
+	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
+	script(src="/views/account/lab/Vector2.js")
+	script(src="/views/account/lab/functions.js")
+	script(src="/views/account/lab/socket_io.js")
+	script(src="/views/account/lab/joystick.js")
+	script(src="/views/account/lab/object.js")
+	script(src="/views/account/lab/hand.minified-1.3.4.js")
 
 block body
 	div.row
