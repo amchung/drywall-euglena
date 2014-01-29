@@ -180,7 +180,7 @@ function setupD3() {
     	function getVidFrame(path, callback) {
             var image = new Image;
             image.onload = function() {
-                callback(image);
+                //callback(image);
 				//console.log(new Date().getTime());
                 compareFrame(image);
             };
