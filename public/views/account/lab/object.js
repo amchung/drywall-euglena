@@ -383,11 +383,11 @@ function compare(image1, image2, ptX, ptY, threshold, ObjR) {
   // copy images into canvas element
   // these steps scale the images and decodes the image data
   md_ctx.drawImage(image1, 0, 0, md_width, md_height);
-  md_ctx.drawImage(image2, width, 0, md_width, md_height);
+  md_ctx.drawImage(image2, md_width, 0, md_width, md_height);
 
   // this makes r,g,b,alpha data of images available
   var pixels1 = md_ctx.getImageData(0, 0, md_width, md_height);
-  var pixels2 = md_ctx.getImageData(width, 0, md_width, md_height);
+  var pixels2 = md_ctx.getImageData(md_width, 0, md_width, md_height);
   
   // substract picture1 from picture2
   // if they differ set color value to max,
