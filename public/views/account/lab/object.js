@@ -210,6 +210,7 @@ function setupD3() {
     		}
 		}
 		img2 = img1;
+		console.log("img2 saved");
 	}
 
 }
