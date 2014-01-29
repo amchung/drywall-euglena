@@ -188,7 +188,8 @@ function setupD3() {
         }
     }
     
-    function compareFrame(img1) {
+    function compareFrame(image) {
+    	imag1 = image;
 		// check if there are two pictures
   		if ( img2 != null ) {
     		var res=[0,0,0,0];
@@ -350,14 +351,20 @@ function gameOver(){
   See the file COPYING for details.
 *******************************************************************************/
 
-var img1 = null;
-var img2 = null;
-var md_canvas = null;
+var img1;
+var img2;
+var md_canvas;
+var md_ctx;
+var md_width;
+var md_height;
 
 function setupMotionDetection() {
   md_canvas = document.getElementById('mdCanvas');
   md_canvas.width = vid_width;
   md_canvas.height = vid_height;
+  md_ctx = md_canvas.getContext("2d");
+  md_width = md_canvas.width/2;
+  md_height = md_canvas.height/2;
 }
 
 /*
@@ -372,17 +379,15 @@ function setupMotionDetection() {
 
 function compare(image1, image2, ptX, ptY, threshold, ObjR) {
   var movement = new Array(0,0,0,0);
-  var md_ctx = md_canvas.getContext("2d");
-  var width = md_canvas.width/2, height = md_canvas.height/2;
 
   // copy images into canvas element
   // these steps scale the images and decodes the image data
-  md_ctx.drawImage(image1, 0, 0, width, height);
-  md_ctx.drawImage(image2, width, 0, width, height);
+  md_ctx.drawImage(image1, 0, 0, md_width, md_height);
+  md_ctx.drawImage(image2, width, 0, md_width, md_height);
 
   // this makes r,g,b,alpha data of images available
-  var pixels1 = md_ctx.getImageData(0, 0, width, height);
-  var pixels2 = md_ctx.getImageData(width, 0, width, height);
+  var pixels1 = md_ctx.getImageData(0, 0, md_width, md_height);
+  var pixels2 = md_ctx.getImageData(width, 0, md_width, md_height);
   
   // substract picture1 from picture2
   // if they differ set color value to max,
