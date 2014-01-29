@@ -175,21 +175,21 @@ function setupD3() {
         getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
             context.clearRect(0, 0, vid_width, vid_height);
             context.drawImage(image, 0, 0, vid_width, vid_height);
-            compareFrame(image);
         });
         
     	function getVidFrame(path, callback) {
             var image = new Image;
             image.src = path;
             image.onload = function() {
-				//console.log(new Date().getTime());
+                compareFrame(image);
                 callback(image);
+				//console.log(new Date().getTime());
             };
         }
     }
     
-    function compareFrame(image) {
-    	img1 = image;
+    
+    function compareFrame(img1) {
 		// check if there are two pictures
   		if ( img2 != null ) {
     		var res=[0,0,0,0];
@@ -210,6 +210,7 @@ function setupD3() {
     	//	}
 		}
 		img2 = img1;
+		console.log(res[0]+res[1]+res[2]+res[3]);
 	}
 
 }
@@ -351,20 +352,14 @@ function gameOver(){
   See the file COPYING for details.
 *******************************************************************************/
 
-var img1;
-var img2;
-var md_canvas;
-var md_ctx;
-var md_width;
-var md_height;
+var img1 = null;
+var img2 = null;
+var md_canvas = null;
 
 function setupMotionDetection() {
   md_canvas = document.getElementById('mdCanvas');
   md_canvas.width = vid_width;
   md_canvas.height = vid_height;
-  md_ctx = md_canvas.getContext("2d");
-  md_width = md_canvas.width/2;
-  md_height = md_canvas.height/2;
 }
 
 /*
@@ -379,15 +374,17 @@ function setupMotionDetection() {
 
 function compare(image1, image2, ptX, ptY, threshold, ObjR) {
   var movement = new Array(0,0,0,0);
+  var md_ctx = md_canvas.getContext("2d");
+  var width = md_canvas.width/2, height = md_canvas.height/2;
 
   // copy images into canvas element
   // these steps scale the images and decodes the image data
-  md_ctx.drawImage(image1, 0, 0, md_width, md_height);
-  md_ctx.drawImage(image2, md_width, 0, md_width, md_height);
+  md_ctx.drawImage(image1, 0, 0, width, height);
+  md_ctx.drawImage(image2, width, 0, width, height);
 
   // this makes r,g,b,alpha data of images available
-  var pixels1 = md_ctx.getImageData(0, 0, md_width, md_height);
-  var pixels2 = md_ctx.getImageData(md_width, 0, md_width, md_height);
+  var pixels1 = md_ctx.getImageData(0, 0, width, height);
+  var pixels2 = md_ctx.getImageData(width, 0, width, height);
   
   // substract picture1 from picture2
   // if they differ set color value to max,
