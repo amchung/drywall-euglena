@@ -15,6 +15,7 @@ var control_canvas,
 c, // context 2D
 halfWidth,
 halfHeight,
+rect_joy,
 leftPointerID = -1,	// variable for mouse left button cursor interactions
 leftPointerPos = new Vector2(0, 0),
 leftPointerStartPos = new Vector2(0, 0),
@@ -218,7 +219,7 @@ function onPointerDown(e) {
 
 function onPointerMove(e) {
     if (leftPointerID == e.pointerId) {
-        leftPointerPos.reset(e.offsetX, e.offsetY);
+        leftPointerPos.reset(e.pageX-rect_joy.left, e.pageY-rect_joy.top);
         leftVector.copyFrom(leftPointerPos);
         leftVector.minusEq(leftPointerStartPos);
         joy_arrow.setArrow(leftVector, max_val);
@@ -276,12 +277,10 @@ function resetCanvas(e) {
     
     control_canvas.width = document.getElementById("joystickArea").offsetWidth-20;
     control_canvas.height = control_canvas.width;
-    console.log('canvas w: '+document.getElementById("controlCanvas").offsetWidth-20);
-    console.log('canvas h: '+document.getElementById("controlCanvas").offsetHeight-20);
-    console.log('canvas x: '+document.getElementById("controlCanvas").offsetX);
-    console.log('canvas y: '+document.getElementById("controlCanvas").offsetY);
     halfWidth = (control_canvas.width)/2;
     halfHeight = (control_canvas.height)/2;
+    
+    rect_joy = control_canvas.getBoundingClientRect();
 
     // make sure we scroll to the top left. 
     window.scrollTo(0, 0);
