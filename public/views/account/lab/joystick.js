@@ -219,7 +219,6 @@ function onPointerDown(e) {
 function onPointerMove(e) {
     if (leftPointerID == e.pointerId) {
         leftPointerPos.reset(e.offsetX, e.offsetY);
-        console.log(e.offsetX-halfWidth, e.offsetY-halfHeight);
         leftVector.copyFrom(leftPointerPos);
         leftVector.minusEq(leftPointerStartPos);
         joy_arrow.setArrow(leftVector, max_val);
@@ -272,14 +271,16 @@ function changeLED(LEDon) {
 
 function resetCanvas(e) {
     max_val = (document.getElementById("joystickArea").offsetWidth-100)/2;
-    
+    console.log('max_val :' + max_val);
     // resize the canvas - but remember - this clears the canvas too.
     
     control_canvas.width = document.getElementById("joystickArea").offsetWidth-20;
     control_canvas.height = control_canvas.width-20;
-
-    halfWidth = (control_canvas.width)/2;
-    halfHeight = (control_canvas.height)/2;
+    console.log('canvas w: '+control_canvas.width);
+    console.log('canvas h: '+control_canvas.height);
+    //halfWidth = (control_canvas.width)/2;
+    //halfHeight = (control_canvas.height)/2;
+    
 
     // make sure we scroll to the top left. 
     window.scrollTo(0, 0);
