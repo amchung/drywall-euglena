@@ -281,6 +281,8 @@ function resetCanvas(e) {
     halfHeight = (control_canvas.height)/2;
     
     rect_joy = control_canvas.getBoundingClientRect();
+    console.log(rect_joy.left);
+    console.log(rect_joy.top);
 
     // make sure we scroll to the top left. 
     window.scrollTo(0, 0);
