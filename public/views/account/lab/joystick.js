@@ -219,7 +219,7 @@ function onPointerDown(e) {
 function onPointerMove(e) {
     if (leftPointerID == e.pointerId) {
         leftPointerPos.reset(e.offsetX, e.offsetY);
-        console.log(e.offsetX, e.offsetY);
+        console.log(e.offsetX-halfWidth, e.offsetY-halfHeight);
         leftVector.copyFrom(leftPointerPos);
         leftVector.minusEq(leftPointerStartPos);
         joy_arrow.setArrow(leftVector, max_val);
