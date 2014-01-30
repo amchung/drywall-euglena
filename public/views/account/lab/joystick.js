@@ -209,7 +209,7 @@ function givePointerType(event) {
 function onPointerDown(e) {
     var newPointer = { identifier: e.pointerId, x: e.clientX, y: e.clientY, type: givePointerType(e) };
     leftPointerID = e.pointerId;
-    leftPointerStartPos.reset(-halfWidth, -halfHeight);
+    leftPointerStartPos.reset(halfWidth, halfHeight);
     leftPointerPos.copyFrom(leftPointerStartPos);
     leftVector.reset(0, 0);
     joy_arrow.reset(0, 0, 0, 0);
@@ -276,8 +276,10 @@ function resetCanvas(e) {
     
     control_canvas.width = document.getElementById("joystickArea").offsetWidth-20;
     control_canvas.height = control_canvas.width;
-    console.log('canvas w: '+control_canvas.width);
-    console.log('canvas h: '+control_canvas.height);
+    console.log('canvas w: '+document.getElementById("controlCanvas").offsetWidth-20);
+    console.log('canvas h: '+document.getElementById("controlCanvas").offsetHeight-20);
+    console.log('canvas x: '+document.getElementById("controlCanvas").offsetX);
+    console.log('canvas y: '+document.getElementById("controlCanvas").offsetY);
     halfWidth = (control_canvas.width)/2;
     halfHeight = (control_canvas.height)/2;
 
