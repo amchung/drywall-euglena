@@ -278,9 +278,8 @@ function resetCanvas(e) {
     control_canvas.height = control_canvas.width-20;
     console.log('canvas w: '+control_canvas.width);
     console.log('canvas h: '+control_canvas.height);
-    //halfWidth = (control_canvas.width)/2;
-    //halfHeight = (control_canvas.height)/2;
-    
+    halfWidth = (control_canvas.width)/2;
+    halfHeight = (control_canvas.height)/2;
 
     // make sure we scroll to the top left. 
     window.scrollTo(0, 0);
