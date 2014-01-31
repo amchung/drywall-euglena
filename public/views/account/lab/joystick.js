@@ -69,8 +69,9 @@ function onReady() {
             });
         });
         
-        $("input[name=gamestartBtn]").click(function(){
-            resetGame();
+        $("input[name=flushButton]").click(function(){
+            var = {type:'sendflush'};
+            socket.json.send(msg);
         });
     // chats and score postings        
         socket = new io.connect('http://171.65.102.132:3002');
