@@ -69,8 +69,8 @@ function onReady() {
             });
         });
         
-        $('input[name=flushButton]').click(function(){
-            var msg = {type:'sendflush'};
+        $("input[name=flushButton]").click(function(){
+            var = {type:'sendflush'};
             socket.json.send(msg);
         });
     // chats and score postings        
