@@ -41,9 +41,12 @@ var username = "noname";	// for socket.io
 var socket;					// for socket.io
 
 document.addEventListener("DOMContentLoaded", init);
-        
-window.onorientationchange = resetCanvas;	// resize when you resize the browser
-window.onresize = resetCanvas;
+window.addEventListener('resize', function(event){ // resize when you resize the browser
+  resetCanvas();
+});
+
+//window.onorientationchange = resetCanvas;	
+//window.onresize = resetCanvas;
 
 function init() {
     setupCanvas();
