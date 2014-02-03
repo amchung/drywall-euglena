@@ -84,6 +84,7 @@ function onReady() {
 
         socket.on('connect', function() {
             console.log("Connected!");
+            setupCanvas();
             socket.emit('message', {channel:'realtime'});
         });
         
@@ -98,6 +99,7 @@ function onReady() {
 			arrow.int2 = ledArray[1];
 			arrow.int3 = ledArray[2];
 			arrow.int4 = ledArray[3];
+			joystick_draw();
 		}
         });
                 
@@ -126,6 +128,12 @@ function onReady() {
                 socket.json.send(msg);
                 $("input[name=chatTxt]").val("");
         });
+
+
+
+/////////////////////////////
+// Drawing Joystick functions
+/////////////////////////////
 
 ////// EventListeners for joystick canvas
     control_canvas.addEventListener('pointerdown', onPointerDown, false);
@@ -198,6 +206,12 @@ function joystick_draw() {
     }
 }
 
+
+
+/////////////////////////////
+// Mouse event functions
+/////////////////////////////
+
 function givePointerType(event) {
     switch (event.pointerType) {
         case event.POINTER_TYPE_MOUSE:
@@ -250,16 +264,13 @@ function onPointerUp(e) {
     changeLED(0); // turn off all LEDs
 }
 
-function setupCanvas() {
-    control_canvas = document.getElementById('controlCanvas');
-    c = control_canvas.getContext('2d');
-    resetCanvas();
-    c.strokeStyle = "#ffffff";
-    c.lineWidth = 2;
-}
 
+
+/////////////////////////////
 // Arduino control functions
-function changeLED(LEDon) {
+/////////////////////////////
+
+function changeLED(LEDon) { // on joystick inputs
     if(LEDon)
     {
 	var msg = 
@@ -275,11 +286,24 @@ function changeLED(LEDon) {
 }
 
 
-function resetCanvas(e) {
+
+/////////////////////////////
+// Canvas setup functions
+/////////////////////////////
+
+function setupCanvas() { // called in init
+    control_canvas = document.getElementById('controlCanvas');
+    c = control_canvas.getContext('2d');
+    resetCanvas();
+    c.strokeStyle = "#ffffff";
+    c.lineWidth = 2;
+}
+
+function resetCanvas(e) { // on resize events
     max_val = (document.getElementById("joystickArea").offsetWidth-100)/2;
     console.log('max_val :' + max_val);
-    // resize the canvas - but remember - this clears the canvas too.
     
+    // resize the canvas - this clears the canvas
     control_canvas.width = document.getElementById("joystickArea").offsetWidth-20;
     control_canvas.height = control_canvas.width;
     halfWidth = (control_canvas.width)/2;
