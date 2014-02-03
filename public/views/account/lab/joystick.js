@@ -42,7 +42,8 @@ var socket;					// for socket.io
 
 document.addEventListener("DOMContentLoaded", init);
 window.addEventListener('resize', function(event){ // resize when you resize the browser
-  resetCanvas();
+	console.log("resized");
+	resetCanvas();
 });
 
 //window.onorientationchange = resetCanvas;	
