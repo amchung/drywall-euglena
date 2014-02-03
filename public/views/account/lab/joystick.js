@@ -42,12 +42,8 @@ var socket;					// for socket.io
 
 document.addEventListener("DOMContentLoaded", init);
 window.addEventListener('resize', function(event){ // resize when you resize the browser
-	console.log("resized");
 	resetCanvas();
 });
-
-//window.onorientationchange = resetCanvas;	
-//window.onresize = resetCanvas;
 
 function init() {
     setupCanvas();
@@ -312,8 +308,9 @@ function resetCanvas(e) { // on resize events
     halfWidth = (control_canvas.width)/2;
     halfHeight = (control_canvas.height)/2;
     
-    rect_joy = control_canvas.getBoundingClientRect();
-
+    //rect_joy = control_canvas.getBoundingClientRect();
+	rect_joy = control_canvas.getClientRects();
+	
     // make sure we scroll to the top left. 
     window.scrollTo(0, 0);
 }
