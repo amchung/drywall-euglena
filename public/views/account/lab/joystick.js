@@ -99,7 +99,6 @@ function onReady() {
 			arrow.int2 = ledArray[1];
 			arrow.int3 = ledArray[2];
 			arrow.int4 = ledArray[3];
-			joystick_draw();
 		}
         });
                 
