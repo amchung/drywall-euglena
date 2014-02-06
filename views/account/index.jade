@@ -16,7 +16,15 @@ block body
         h1 My Account
       div.row
         label.control-label Username:
-        #{user.username}
+        ul.nav.navbar-nav.navbar-right
+            if user && user.username
+              li: a(href='#{user.defaultReturnUrl}')
+                i.fa.fa-user
+                |  #{user.username}
+            else
+              li: a(href='/login/')
+                i.fa.fa-user
+                |  Sign In
       div.row
         div.col-sm-4
           div.well.stat
