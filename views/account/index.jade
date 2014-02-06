@@ -17,7 +17,7 @@ block body
       div.row
         label.control-label Username:
         ul
-          li:
+          li: a(href='#{user.defaultReturnUrl}')
             i.fa.fa-user
             |  #{user.username}
       div.row
