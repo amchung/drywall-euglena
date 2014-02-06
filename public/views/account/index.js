@@ -1,6 +1,13 @@
 (function() {
   'use strict';
 
+}());
+
+
+/*
+(function() {
+  'use strict';
+
   $('.day-of-year').text(moment().format('DDD'));
   $('.day-of-month').text(moment().format('D'));
   $('.week-of-year').text(moment().format('w'));
@@ -8,3 +15,4 @@
   $('.week-year').text(moment().format('gg'));
   $('.hour-of-day').text(moment().format('H'));
 }());
+*/
