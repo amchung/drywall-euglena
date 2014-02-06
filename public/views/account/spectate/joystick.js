@@ -101,3 +101,4 @@ function onReady() {
                 socket.json.send(msg);
                 $("input[name=chatTxt]").val("");
         });
+}
