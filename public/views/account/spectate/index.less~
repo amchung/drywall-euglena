@@ -36,7 +36,7 @@ body {
   			stroke-width: 3px;
 		}
 		polygon {
-			fill: #ffffff;
+			fill: #58595B;
 		}
 		canvas, svg {
   			position: absolute;
