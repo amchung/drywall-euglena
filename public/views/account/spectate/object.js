@@ -33,6 +33,10 @@ function setupD3() {
         .attr("viewBox", "40 40 220 220")
         .style("opacity", "0.5");
         
+    svg_led.attr("transform", function(d) {
+    		return "translate(" + [300,0] + ")";
+  		});
+        
     var shape_bg = svg_led.append("svg:rect")
     							.attr("width", 300)
     							.attr("height", 300)
