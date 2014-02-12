@@ -26,11 +26,10 @@ function setupD3() {
         .attr("height", vid_height);
     
     svg_led = d3.select("#canvasArea").append("svg:svg")
-        .attr("width", 150)
-        .attr("height", 150)
+        .attr("width", 300)
+        .attr("height", 300)
         .attr("x", 30)
         .attr("y", 0)
-        .attr("viewBox", "40 40 220 220")
         .style("opacity", "0.5");
         
     svg_led.attr("transform", function(d) {
