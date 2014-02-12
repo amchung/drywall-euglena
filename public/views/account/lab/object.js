@@ -117,7 +117,7 @@ function setupD3() {
 	var box = g.append("svg:rect");
 	
 	function drawObjects(){
-		for (var i = -1; ++i < n;) {
+		/*for (var i = -1; ++i < n;) {
     		var object = objects[i],
         		x = object.path[0][0],
         		y = object.path[0][1];
@@ -156,7 +156,7 @@ function setupD3() {
 		});
   		box.attr("transform", function(d) {
     		return "translate(" + d.path[0] + ")";
-  		});
+  		});*/
   		
   		led_U.style("opacity",arrow.int1);
   		led_L.style("opacity",arrow.int2);

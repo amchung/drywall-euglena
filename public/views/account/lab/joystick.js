@@ -89,17 +89,17 @@ function onReady() {
         });
         
         socket.on('message', function(message){
-		var str = message.split("&&");
-		if (Number(str[0]))
-		{
-			chat.append(str[1] + '<br />');
-		}else{
-			var ledArray = str[1].split("^");
-			arrow.int1 = ledArray[0];
-			arrow.int2 = ledArray[1];
-			arrow.int3 = ledArray[2];
-			arrow.int4 = ledArray[3];
-		}
+			var str = message.split("&&");
+			if (Number(str[0]))
+			{
+				chat.append(str[1] + '<br />');
+			}else{
+				var ledArray = str[1].split("^");
+				arrow.int1 = ledArray[0];
+				arrow.int2 = ledArray[1];
+				arrow.int3 = ledArray[2];
+				arrow.int4 = ledArray[3];
+			}
         });
                 
         socket.on('postscore', function(score){
