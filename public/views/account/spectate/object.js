@@ -28,7 +28,7 @@ function setupD3() {
     svg_led = d3.select("#canvasArea").append("svg:svg")
         .attr("width", 150)
         .attr("height", 150)
-        .attr("translate", "(300)")
+        .attr("transform", "translate(300)")
         .attr("viewBox", "40 40 220 220")
         .style("opacity", "0.5");
         
