@@ -25,7 +25,7 @@ function setupD3() {
         .attr("width", vid_width)
         .attr("height", vid_height);
     
-    svg_led = d3.select("#ledArea").append("svg:svg")
+    svg_led = d3.select("#canvasArea").append("svg:svg")
         .attr("width", 300)
         .attr("height", 300);
         
