@@ -38,8 +38,8 @@ function setupD3() {
     							.attr("x", 112.5)
     							.attr("y", 112.5)
     							.attr("width", 75)
-    							.attr("height", 75)
-    							.style("fill", "#111111");
+    							.attr("height", 75);
+    							//.style("fill", "#111111");
     
     var g_ledL = svg_led.append("svg:g")
     						.attr("transform", "matrix(1 0 0 -1 55 150)");
