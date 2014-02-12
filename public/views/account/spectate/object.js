@@ -30,7 +30,11 @@ function setupD3() {
         .attr("height", vid_height)
         .attr("viewBox", "40 40 vid_width vid_height");
         
-    svg_led.attr("transform", function(d) {
+    svg_led.attr("transform", function() {
+    		return "scale(" + 0.5 + ")";
+  		});
+  	
+  	svg_led.attr("transform", function() {
     		return "translate(" + [330,10] + ")";
   		});
         
@@ -45,7 +49,8 @@ function setupD3() {
     							.attr("y", 112.5)
     							.attr("width", 75)
     							.attr("height", 75)
-    							.style("fill", "#111111")
+    							.style("stroke-width", 3)
+    							.style("stroke", "#ffffff")
 								.style("opacity", "0.5");
     
     var g_ledL = svg_led.append("svg:g")
