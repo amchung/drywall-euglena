@@ -29,8 +29,7 @@ function setupD3() {
         .attr("width", 150)
         .attr("height", 150)
         .attr("viewBox", "40 40 220 220")
-        .style("opacity", "0.5")
-        .attr("transform", "translate(300)");
+        .style("opacity", "0.5");
         
     var shape_bg = svg_led.append("svg:rect")
     							.attr("width", 300)
