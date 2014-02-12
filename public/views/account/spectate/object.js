@@ -30,13 +30,9 @@ function setupD3() {
         .attr("height", vid_height)
         .attr("viewBox", "40 40 vid_width vid_height");
         
-    svg_led.attr("transform", function() {
-    		return "scale(" + 0.5 + ")";
-  		});
+    svg_led.attr("transform", "scale(.50)");
   	
-  	svg_led.attr("transform", function() {
-    		return "translate(" + [330,10] + ")";
-  		});
+  	svg_led.attr("transform", "translate(" + [330,10] + ")");
         
     var shape_bg = svg_led.append("svg:rect")
     							.attr("width", 300)
