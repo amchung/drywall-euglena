@@ -81,7 +81,7 @@ function draw(blockdata){
     	.domain([-.05, .05])
     	.range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select("#d3Area").append("svg")
 		.attr("width", width)
 		.attr("height", height)
 		.attr("class", "RdYlGn")
