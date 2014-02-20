@@ -4,9 +4,9 @@ var username='noname';
 
 var width = 600,
 	height = 560,
-	cellWidth = 48,
-	cellHeight = 30, // cell size
-	gapWidth = 40;
+	cellWidth = 56,
+	cellHeight = 36, // cell size
+	gapWidth = 60;
 	gapHeight = 10;
 
 var hour = d3.time.format("%I"),
