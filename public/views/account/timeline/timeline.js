@@ -53,7 +53,25 @@ socket.on('disconnect', function() {
 	console.log('disconnected');
 	chat.html("<b>Disconnected!</b>");
 });
+
+$('input[name=getPastHour]').click(function(){
+    //var msg = {type:'sendvalveclose'};
+    //socket.json.send(msg);
+    console.log('<<<');
+});
+
+$('input[name=getCurrentHour]').click(function(){
+    //var msg = {type:'sendvalveclose'};
+    //socket.json.send(msg);
+    console.log('back to normal');
+});
         
+$('input[name=getFutureHour]').click(function(){
+    //var msg = {type:'sendvalveclose'};
+    //socket.json.send(msg);
+    console.log('>>>');
+});      
+  
 function callBlocks(ticket){
 	console.log(month(ticket)+" "+date(ticket)+" "+hour(ticket)+":"+minute(ticket)+ampm(ticket));
 
