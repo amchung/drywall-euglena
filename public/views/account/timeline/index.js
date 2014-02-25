@@ -6,11 +6,9 @@
   app = app || {};
   
   app.Blocks = Backbone.Model.extend({
-    idAttribute: '_id',
     url: '/account/timeline/',
     defaults: {
       reqTime:'',
-      blockdata: [],
       username: '',
       timestamp: ''
     }
