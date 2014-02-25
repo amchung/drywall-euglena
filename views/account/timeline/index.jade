@@ -3,6 +3,9 @@ extends ../../../layouts/account
 block head
 	title Timeline
 
+block feet
+	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
+
 block neck
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
 	script(src="/views/account/timeline/socket_io.js")
@@ -23,8 +26,12 @@ block neck
 block body
 	div.row
 		div.col-sm-12
-			div.btn-group
-				button.btn.btn-primary(type='button',name="getPastHour") << Prev
-				button.btn.btn-default(type='button',name="getCurrentHour") current
-				button.btn.btn-primary(type='button',name="getFutureHour") Next >>
+			div#blocks_nav
 			#d3Area
+	script(type='text/template', id='tmpl-login')
+		form
+			div.form-actions
+				div.btn-group.btn-group-justified
+					button.btn.btn-primary(type='button',name="btn-prev") << Prev
+					button.btn.btn-default(type='button',name="btn-now") Now
+					button.btn.btn-primary(type='button',name="btn-next") Next >>
