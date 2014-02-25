@@ -26,7 +26,7 @@
     },
     initialize: function() {
       this.model = new app.Blocks();
-      this.listenTo(this.model, 'sync', this.render(;
+      this.listenTo(this.model, 'sync', this.render);
       this.render();
     },
     render: function() {
