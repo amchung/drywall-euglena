@@ -55,3 +55,5 @@
       // request new hour
     }
   });
+  
+}());
