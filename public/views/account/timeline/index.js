@@ -40,7 +40,7 @@
       },{
         success: function(model, response) {
           if (response.success) {
-            location.href = '/login/';
+            location.href = '/account/timeline/';
           }
           else {
             model.set(response);
@@ -57,7 +57,7 @@
       },{
         success: function(model, response) {
           if (response.success) {
-            location.href = '/login/';
+            location.href = '/account/timeline/';
           }
           else {
             model.set(response);
