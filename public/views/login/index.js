@@ -16,7 +16,7 @@
   });
 
   app.LoginView = Backbone.View.extend({
-    el: '#login',
+    el: '#blocks_nav',
     template: _.template( $('#tmpl-login').html() ),
     events: {
       'submit form': 'preventSubmit',
