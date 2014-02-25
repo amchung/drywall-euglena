@@ -34,9 +34,9 @@
     },
     reqPrev: function() {
       this.model.save({
-        reqTime:,
-        username: ,
-        timestamp:
+        reqTime: '',
+        username: '',
+        timestamp: ''
       },{
         success: function(model, response) {
           if (response.success) {
