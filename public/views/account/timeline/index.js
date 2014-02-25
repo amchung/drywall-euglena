@@ -50,9 +50,37 @@
     },
     reqNow: function() {
       // request new hour
+      this.model.save({
+        reqTime: '',
+        username: '',
+        timestamp: ''
+      },{
+        success: function(model, response) {
+          if (response.success) {
+            location.href = '/login/';
+          }
+          else {
+            model.set(response);
+          }
+        }
+      });
     },
     reqNext: function() {
       // request new hour
+      this.model.save({
+        reqTime: '',
+        username: '',
+        timestamp: ''
+      },{
+        success: function(model, response) {
+          if (response.success) {
+            location.href = '/login/';
+          }
+          else {
+            model.set(response);
+          }
+        }
+      });
     }
   });
   
