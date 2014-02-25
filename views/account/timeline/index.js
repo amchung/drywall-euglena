@@ -17,15 +17,15 @@ var getReturnUrl = function(req) {
 };
 
 exports.init = function(req, res){
-  if (req.isAuthenticated()) {
+  /*if (req.isAuthenticated()) {
     res.redirect(getReturnUrl(req));
   }
-  else {
+  else {*/
     res.render('account/timeline/index', {
       oauthMessage: '',
       oauthTwitter: !!req.app.get('twitter-oauth-key'),
       oauthGitHub: !!req.app.get('github-oauth-key'),
       oauthFacebook: !!req.app.get('facebook-oauth-key')
     });
-  }
+  //}
 };
