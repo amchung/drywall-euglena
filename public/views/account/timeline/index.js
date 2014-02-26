@@ -2,6 +2,27 @@
 
 var socket;
 
+var currenttime;
+var username='noname';
+
+var width = 600,
+	height = 560,
+	cellWidth = 56,
+	cellHeight = 36, // cell size
+	gapWidth = 60;
+	gapHeight = 10;
+
+var hour = d3.time.format("%I"),
+	minute = d3.time.format("%M"),
+	month = d3.time.format("%b"),
+	weekday = d3.time.format("%a"),
+	date = d3.time.format("%d"),
+	ampm = d3.time.format("%p"),
+	format = d3.time.format("%b/%d %H:%M%p");
+	
+var blockdata = [];
+
+
 (function() {
   'use strict';
 

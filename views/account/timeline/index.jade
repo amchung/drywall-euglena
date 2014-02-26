@@ -3,12 +3,9 @@ extends ../../../layouts/account
 block head
 	title Timeline
 
-block feet
-	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
-
 block neck
-	script(src="/views/account/timeline/d3.tips.js")
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
+	script(src="/views/account/timeline/d3.tips.js")
 	script(src="/views/account/timeline/socket_io.js")
 	style.
 		rect {fill:lightgrey;}
@@ -20,6 +17,9 @@ block neck
 		.d3-tip.e:after {content: "\25C0";margin: -4px 0 0 0;top: 50%;left: -8px;}
 		.d3-tip.s:after {content: "\25B2";margin: 0 0 1px 0;top: -8px;left: 0;text-align: center;}
 		.d3-tip.w:after {content: "\25B6";margin: -4px 0 0 -1px;top: 50%;left: 100%;}
+
+block feet
+	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
 
 block body
 	div.row
