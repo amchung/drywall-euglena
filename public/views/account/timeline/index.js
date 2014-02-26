@@ -7,7 +7,6 @@ var socket;
 
   socket = io.connect('http://171.65.102.132:3006');
   
-  
   socket.on('postblocks', function(data){
 	for (var i=0;i<=data.length/4;i++){
 		var block = new Object();
