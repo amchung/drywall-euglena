@@ -6,9 +6,25 @@ block head
 block neck
   link(rel='stylesheet', href='/views/about/index.min.css?#{cacheBreaker}')
 
+block feet
+  script(src='/socket.io/socket.io.js')
+  script(src='/views/about/index.min.js?#{cacheBreaker}')
+
 block body
   div.row
     div.col-sm-6
       div.page-header
         h1 About Us
-      
+    div.col-sm-6.special
+      div.page-header
+        h1 Prestige Worldwide
+      div#chatBox.well
+      div#chatForm
+
+  script(type='text/template', id='tmpl-chatForm')
+    form
+      div.form-group
+        div.input-group
+          input.form-control(type='text', name='message', placeholder='enter a message')
+          span.input-group-btn
+            button.btn.btn-primary.btn-chat Send

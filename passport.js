@@ -1,6 +1,6 @@
 'use strict';
 
-exports = module.exports = function(app, passport) {
+exports = module.exports = function(app, passport, express) {
   var LocalStrategy = require('passport-local').Strategy,
       TwitterStrategy = require('passport-twitter').Strategy,
       GitHubStrategy = require('passport-github').Strategy,
@@ -85,6 +85,21 @@ exports = module.exports = function(app, passport) {
       }
     ));
   }
+
+  var socketPassport = require('passport.socketio');
+
+  app.io.set('authorization', socketPassport.authorize({
+    cookieParser: express.cookieParser,
+    key: 'connect.sid',
+    secret: app.get('crypto-key'),
+    store: app.sessionStore,
+    fail: function(data, accept) {
+      accept(null, false);
+    },
+    success: function(data, accept) {
+      accept(null, true);
+    }
+  }));
 
   passport.serializeUser(function(user, done) {
     done(null, user._id);
