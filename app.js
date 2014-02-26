@@ -19,6 +19,9 @@ app.config = config;
 //setup the web server
 app.server = http.createServer(app);
 
+//setup socket.io
+app.io = require('socket.io').listen(app.server);
+
 //setup mongoose
 app.db = mongoose.createConnection(config.mongodb.uri);
 app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
@@ -106,10 +109,13 @@ app.configure('development', function(){
 });
 
 //setup passport
-require('./passport')(app, passport);
+require('./passport')(app, passport, express);
 
 //route requests
 require('./routes')(app, passport);
+
+//route sockets
+require('./sockets')(app);
 
 //setup utilities
 app.utility = {};
