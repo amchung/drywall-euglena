@@ -82,4 +82,8 @@
     }
   });
   
+  $(document).ready(function() {
+    app.blocksView = new app.BlocksView();
+  });
+  
 }());
