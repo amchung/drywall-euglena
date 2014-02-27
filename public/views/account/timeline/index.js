@@ -40,6 +40,8 @@ var hour = d3.time.format("%I"),
   }
   
   var draw = function(blockdata){
+    d3.select("svg")
+       .remove();
 	var tip = d3.tip()
 		.attr('class', 'd3-tip')
 		.direction('e')
