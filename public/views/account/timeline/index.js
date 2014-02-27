@@ -6,7 +6,7 @@ var currenttime;
 var username='noname';
 
 var width = 600,
-	height = 560,
+	height = 600,
 	cellWidth = 56,
 	cellHeight = 36, // cell size
 	gapWidth = 60;
@@ -156,37 +156,12 @@ var blockdata = [];
       this.$el.html(this.template( this.model.attributes));
     },
     reqPrev: function() {
-      this.model.save({
-        reqTime: '',
-        username: '',
-        timestamp: ''
-      },{
-        success: function(model, response) {
-          if (response.success) {
-            location.href = '/account/timeline/';
-          }
-          else {
-            model.set(response);
-          }
-        }
-      });
+      var d = new Date(); 
+      d.setHours(d.getHours() + 1);
+      callBlocks(d);
     },
     reqNow: function() {
-      // request new hour
-      this.model.save({
-        reqTime: '',
-        username: '',
-        timestamp: ''
-      },{
-        success: function(model, response) {
-          if (response.success) {
-            location.href = '/account/timeline/';
-          }
-          else {
-            model.set(response);
-          }
-        }
-      });
+      callBlocks(new Date());
     },
     reqNext: function() {
       // request new hour
