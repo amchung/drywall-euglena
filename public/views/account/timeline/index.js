@@ -6,7 +6,7 @@ var username='noname';
 
 var width = 600,
 	height = 600,
-	cellWidth = 72,
+	cellWidth = 80,
 	cellHeight = 40, // cell size
 	gapWidth = 60;
 	gapHeight = 10;
@@ -79,7 +79,7 @@ var hour = d3.time.format("%I"),
 		.style("text-anchor", "middle")
 		.text(function(d) { 
 			var h = d.time.getHours();
-			var ampm = (h>12 ? "PM":"AM");
+			var ampm = (h<12 ? "AM":"PM");
 			h=("0" + h%12).slice(-2);
 			var m = d.time.getMinutes();
 			m=("0" + m).slice(-2);
