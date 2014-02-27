@@ -2,17 +2,20 @@
 
 var socket;
 
-var currenttime;
-var username='noname';
 
-var width = 600,
+(function() {
+  'use strict';
+  var currenttime;
+  var username='noname';
+
+  var width = 600,
 	height = 600,
 	cellWidth = 56,
 	cellHeight = 36, // cell size
 	gapWidth = 60;
 	gapHeight = 10;
 
-var hour = d3.time.format("%I"),
+  var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
 	month = d3.time.format("%b"),
 	weekday = d3.time.format("%a"),
@@ -20,48 +23,9 @@ var hour = d3.time.format("%I"),
 	ampm = d3.time.format("%p"),
 	format = d3.time.format("%b/%d %H:%M%p");
 	
-var blockdata = [];
-
-
-(function() {
-  'use strict';
-
-  socket = io.connect('http://171.65.102.132:3006');
+  var blockdata = [];
   
-  socket.on('postblocks', function(data){
-	for (var i=0;i<=data.length/4;i++){
-		var block = new Object();
-		block.id = i;
-		
-		var d = new Date(0);
-		d.setTime(data[i*4]);
-		block.time = d;
-		
-		block.lock = data[i*4+1];
-		block.userid = data[i*4+2];
-		block.expid = data[i*4+3];
-		blockdata.push(block);
-	}
-	blockdata.length = blockdata.length-2; 
-	console.dir(blockdata);
-	draw(blockdata);
-  });
-
-  socket.on('message', function(msg){
-	console.log(msg);
-  });
-
-  socket.on('connect', function() {
-	console.log("Connected!");
-	callBlocks(new Date());
-  });
-
-  socket.on('disconnect', function() {
-	console.log('disconnected');
-	chat.html("<b>Disconnected!</b>");
-  });
-  
-  function callBlocks(ticket){
+  var callBlocks = function(ticket){
 	console.log(month(ticket)+" "+date(ticket)+" "+hour(ticket)+":"+minute(ticket)+ampm(ticket));
 
 	// +- 1 hour blocks range
@@ -71,11 +35,11 @@ var blockdata = [];
 
 	console.log(month(beginT)+" "+date(beginT)+" "+hour(beginT)+":"+minute(beginT)+ampm(beginT));
 	console.log(month(endT)+" "+date(endT)+" "+hour(endT)+":"+minute(endT)+ampm(endT));
-
+	
 	socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
   }
-
-  function draw(blockdata){
+  
+  var draw = function(blockdata){
 	var tip = d3.tip()
 		.attr('class', 'd3-tip')
 		.direction('e')
@@ -126,14 +90,50 @@ var blockdata = [];
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
   }
-
   
+  socket = io.connect('http://171.65.102.132:3006');
+  
+  socket.on('postblocks', function(data){
+	for (var i=0;i<=data.length/4;i++){
+		var block = new Object();
+		block.id = i;
+		
+		var d = new Date(0);
+		d.setTime(data[i*4]);
+		block.time = d;
+		
+		block.lock = data[i*4+1];
+		block.userid = data[i*4+2];
+		block.expid = data[i*4+3];
+		blockdata.push(block);
+	}
+	blockdata.length = blockdata.length-2; 
+	console.dir(blockdata);
+	draw(blockdata);
+  });
+
+  socket.on('message', function(msg){
+	console.log(msg);
+  });
+
+  socket.on('connect', function() {
+	console.log("Connected!");
+	callBlocks(new Date());
+  });
+
+  socket.on('disconnect', function() {
+	console.log('disconnected');
+	chat.html("<b>Disconnected!</b>");
+  });
+  
+
   app = app || {};
   
   app.Blocks = Backbone.Model.extend({
     url: '/account/timeline/',
     defaults: {
-      reqTime:'',
+      reqStartTime:'',
+      reqEndTime:'',
       username: '',
       timestamp: ''
     }
