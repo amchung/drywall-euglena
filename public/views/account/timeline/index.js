@@ -81,6 +81,7 @@ var hour = d3.time.format("%I"),
 			var h = d.time.getHours();
 			var ampm = (h<12 ? "AM":"PM");
 			h=("0" + h%12).slice(-2);
+			if(h=="00"){h="12";}
 			var m = d.time.getMinutes();
 			m=("0" + m).slice(-2);
 			return h+":"+m+" "+ampm;
