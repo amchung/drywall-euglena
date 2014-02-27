@@ -6,7 +6,7 @@ var username='noname';
 
 var width = 600,
 	height = 600,
-	cellWidth = 56,
+	cellWidth = 60,
 	cellHeight = 36, // cell size
 	gapWidth = 60;
 	gapHeight = 10;
@@ -26,15 +26,10 @@ var hour = d3.time.format("%I"),
   var blockdata = [];
   
   var callBlocks = function(ticket){
-	//console.log(month(ticket)+" "+date(ticket)+" "+hour(ticket)+":"+minute(ticket)+ampm(ticket));
-
 	// +- 1 hour blocks range
 	var beginT = d3.time.hour.floor(ticket);
 	beginT = d3.time.hour.offset(beginT, -1);
 	var endT = d3.time.hour.offset(beginT, 3);
-
-	//console.log(month(beginT)+" "+date(beginT)+" "+hour(beginT)+":"+minute(beginT)+ampm(beginT));
-	//console.log(month(endT)+" "+date(endT)+" "+hour(endT)+":"+minute(endT)+ampm(endT));
 	
 	socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
   }
@@ -87,7 +82,8 @@ var hour = d3.time.format("%I"),
 			h=("0" + h%12).slice(-2);
 			var m = d.time.getMinutes();
 			m=("0" + m).slice(-2);
-			return h+":"+m;
+			var ampm = (h>12 ? "PM":"AM");
+			return h+":"+m+" "+ampm;
 		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
@@ -166,21 +162,6 @@ var hour = d3.time.format("%I"),
       callBlocks(currenttime);
     },
     reqNext: function() {
-      // request new hour
-      /*this.model.save({
-        reqTime: '',
-        username: '',
-        timestamp: ''
-      },{
-        success: function(model, response) {
-          if (response.success) {
-            location.href = '/account/timeline/';
-          }
-          else {
-            model.set(response);
-          }
-        }
-      });*/
       currenttime.setHours(currenttime.getHours() + 1);
       callBlocks(currenttime);
     }
