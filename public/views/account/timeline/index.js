@@ -26,15 +26,15 @@ var hour = d3.time.format("%I"),
   var blockdata = [];
   
   var callBlocks = function(ticket){
-	console.log(month(ticket)+" "+date(ticket)+" "+hour(ticket)+":"+minute(ticket)+ampm(ticket));
+	//console.log(month(ticket)+" "+date(ticket)+" "+hour(ticket)+":"+minute(ticket)+ampm(ticket));
 
 	// +- 1 hour blocks range
 	var beginT = d3.time.hour.floor(ticket);
 	beginT = d3.time.hour.offset(beginT, -1);
 	var endT = d3.time.hour.offset(beginT, 3);
 
-	console.log(month(beginT)+" "+date(beginT)+" "+hour(beginT)+":"+minute(beginT)+ampm(beginT));
-	console.log(month(endT)+" "+date(endT)+" "+hour(endT)+":"+minute(endT)+ampm(endT));
+	//console.log(month(beginT)+" "+date(beginT)+" "+hour(beginT)+":"+minute(beginT)+ampm(beginT));
+	//console.log(month(endT)+" "+date(endT)+" "+hour(endT)+":"+minute(endT)+ampm(endT));
 	
 	socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
   }
@@ -157,7 +157,7 @@ var hour = d3.time.format("%I"),
     },
     reqPrev: function() {
       var d = new Date(); 
-      d.setHours(d.getHours() + 1);
+      d.setHours(d.getHours() - 1);
       callBlocks(d);
     },
     reqNow: function() {
@@ -165,7 +165,7 @@ var hour = d3.time.format("%I"),
     },
     reqNext: function() {
       // request new hour
-      this.model.save({
+      /*this.model.save({
         reqTime: '',
         username: '',
         timestamp: ''
@@ -178,7 +178,10 @@ var hour = d3.time.format("%I"),
             model.set(response);
           }
         }
-      });
+      });*/
+      var d = new Date(); 
+      d.setHours(d.getHours() + 1);
+      callBlocks(d);
     }
   });
   
