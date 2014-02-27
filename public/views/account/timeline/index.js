@@ -121,7 +121,8 @@ var hour = d3.time.format("%I"),
 
   socket.on('connect', function() {
 	console.log("Connected!");
-	callBlocks(new Date());
+	currenttime = new Date();
+	callBlocks(currenttime);
   });
 
   socket.on('disconnect', function() {
@@ -135,8 +136,6 @@ var hour = d3.time.format("%I"),
   app.Blocks = Backbone.Model.extend({
     url: '/account/timeline/',
     defaults: {
-      reqStartTime:'',
-      reqEndTime:'',
       username: '',
       timestamp: ''
     }
@@ -159,12 +158,12 @@ var hour = d3.time.format("%I"),
       this.$el.html(this.template( this.model.attributes));
     },
     reqPrev: function() {
-      var d = new Date(); 
-      d.setHours(d.getHours() - 1);
-      callBlocks(d);
+      currenttime.setHours(currenttime.getHours() - 1);
+      callBlocks(currenttime);
     },
     reqNow: function() {
-      callBlocks(new Date());
+      currenttime = new Date();
+      callBlocks(currenttime);
     },
     reqNext: function() {
       // request new hour
@@ -182,9 +181,8 @@ var hour = d3.time.format("%I"),
           }
         }
       });*/
-      var d = new Date(); 
-      d.setHours(d.getHours() + 1);
-      callBlocks(d);
+      currenttime.setHours(currenttime.getHours() + 1);
+      callBlocks(currenttime);
     }
   });
   
