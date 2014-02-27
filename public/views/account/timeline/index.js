@@ -5,11 +5,11 @@ var currenttime;
 var username='noname';
 
 var width = 600,
-	height = 600,
+	height = 800,
 	cellWidth = 80,
-	cellHeight = 40, // cell size
+	cellHeight = 60, // cell size
 	gapWidth = 60;
-	gapHeight = 10;
+	gapHeight = 6;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
