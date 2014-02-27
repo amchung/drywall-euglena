@@ -7,7 +7,7 @@ var username='noname';
 var width = 600,
 	height = 1200,
 	cellWidth = 80,
-	cellHeight = 80, // cell size
+	cellHeight = 76, // cell size
 	gapWidth = 60;
 	gapHeight = 6;
 
@@ -81,8 +81,8 @@ var hour = d3.time.format("%I"),
 			var h = d.time.getHours();
 			var ampm = (h<12 ? "AM":"PM");
 			//h=("0" + h%12).slice(-2);
-			h=("0" + h%12);
-			if(h=="00"){h="12";}
+			h=(h%12);
+			if(h==0){h="12";}
 			var m = d.time.getMinutes();
 			m=("0" + m).slice(-2);
 			return h+":"+m+" "+ampm;
