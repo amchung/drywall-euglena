@@ -30,6 +30,7 @@ var hour = d3.time.format("%I"),
 	}
 
   var blockdata = [];
+  var clockbar = $('#clock_bar');
   
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
@@ -121,6 +122,7 @@ var hour = d3.time.format("%I"),
   
   socket.on('server_clock', function(data){
   	console.log(data);
+  	clockbar.html("<b>data</b>");
   });
 
   socket.on('message', function(msg){
@@ -136,7 +138,6 @@ var hour = d3.time.format("%I"),
 
   socket.on('disconnect', function() {
 	console.log('disconnected');
-	chat.html("<b>Disconnected!</b>");
   });
   
 
