@@ -19,10 +19,16 @@ var hour = d3.time.format("%I"),
 	ampm = d3.time.format("%p"),
 	format = d3.time.format("%b/%d %H:%M%p");
 
+
 (function() {
   'use strict';
 
-	
+	var myClock;
+
+	function myTimer(){
+		socket.emit('server_clock');
+	}
+
   var blockdata = [];
   
   var callBlocks = function(ticket){
@@ -124,6 +130,7 @@ var hour = d3.time.format("%I"),
 	console.log("Connected!");
 	currenttime = new Date();
 	callBlocks(currenttime);
+	myClock=setInterval(function(){myTimer()},500);
   });
 
   socket.on('disconnect', function() {
