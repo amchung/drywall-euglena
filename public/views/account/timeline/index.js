@@ -26,7 +26,7 @@ var hour = d3.time.format("%I"),
 	var myClock;
 
 	function myTimer(){
-		socket.emit('server_clock');
+		socket.emit('lookclock');
 	}
 
   var blockdata = [];
@@ -118,6 +118,7 @@ var hour = d3.time.format("%I"),
 	console.dir(blockdata);
 	draw(blockdata);
   });
+  
   socket.on('server_clock', function(data){
   	console.log(data);
   });
