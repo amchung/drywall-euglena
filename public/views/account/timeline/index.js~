@@ -112,7 +112,7 @@ var hour = d3.time.format("%I"),
 	console.dir(blockdata);
 	draw(blockdata);
   });
-  socket.on('server_clock', function(data){
+  socket.on('server_clock', function(data)){
   	console.log(data);
   });
 
