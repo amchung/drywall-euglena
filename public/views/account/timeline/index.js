@@ -121,7 +121,7 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('server_clock', function(data){
-  	console.log(data);
+  	//console.log(data);
   	clockbar.html("<b>"+data+"</b>");
   });
 
