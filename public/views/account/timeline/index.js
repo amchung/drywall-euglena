@@ -70,11 +70,9 @@ var hour = d3.time.format("%I"),
 		.on('mouseout', tip.hide);
 		
 	column.append("rect")
+		.attr("class", "past-block")
 		.attr("width", cellWidth)
-		.attr("height", cellHeight)
-		.attr("stroke-width", 3)
-		.attr("stroke", lightgrey)
-		.attr("fill", white);
+		.attr("height", cellHeight);
 	
 	column.append("text")
 		.attr("class", "block-name")
