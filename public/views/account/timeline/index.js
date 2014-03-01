@@ -102,17 +102,24 @@ var hour = d3.time.format("%I"),
   
   socket.on('postblocks', function(data){
   	blockdata = [];
-	for (var i=0;i<=data.length/4;i++){
+  	var num_ele = 9;
+	for (var i=0;i<=data.length/num_data;i++){
 		var block = new Object();
 		block.id = i;
 		
 		var d = new Date(0);
-		d.setTime(data[i*4]);
+		d.setTime(data[i*num_ele]);
 		block.time = d;
 		
-		block.lock = data[i*4+1];
-		block.userid = data[i*4+2];
-		block.expid = data[i*4+3];
+		block.lock = data[i*num_ele+1];
+		block.user_id = data[i*num_ele+2];
+		block.exp_id = data[i*num_ele+3];
+		block.pattern_id = data[i*num_ele+4];
+		block.past = data[i*num_ele+5];
+		block.admin = data[i*num_ele+6];
+		block.current = data[i*num_ele+7];
+		block.image = data[i*num_ele+8];
+		
 		blockdata.push(block);
 	}
 	blockdata.length = blockdata.length-2; 
