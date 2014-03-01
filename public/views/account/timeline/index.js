@@ -52,14 +52,9 @@ var hour = d3.time.format("%I"),
 			return "time: "+d.time;
 		});
 
-	var color = d3.scale.quantize()
-    	.domain([-.05, .05])
-    	.range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
-
 	var svg = d3.select("#d3Area").append("svg")
 		.attr("width", width)
 		.attr("height", height)
-		.attr("class", "RdYlGn")
 	.append("g")
 		.attr("transform", "translate(24, 24)");
 
@@ -76,7 +71,10 @@ var hour = d3.time.format("%I"),
 		
 	column.append("rect")
 		.attr("width", cellWidth)
-		.attr("height", cellHeight);
+		.attr("height", cellHeight)
+		.attr("stroke-width", 3)
+		.attr("stroke", lightgrey)
+		.attr("fill", white);
 	
 	column.append("text")
 		.attr("class", "block-name")
