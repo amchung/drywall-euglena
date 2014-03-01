@@ -73,6 +73,7 @@ var hour = d3.time.format("%I"),
 		.attr("class", function (d)
 		{
 			var class_name="block-default";
+			console.log(d.current);
 			if (d.lock){class_name="block-locked";}
 			if (d.current){class_name="block-current";}
 			
