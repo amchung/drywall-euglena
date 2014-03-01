@@ -55,7 +55,7 @@ var hour = d3.time.format("%I"),
 	var svg = d3.select("#d3Area").append("svg")
 		.attr("width", width)
 		.attr("height", height)
-	.append("g")
+		.append("g")
 		.attr("transform", "translate(24, 24)");
 
 	svg.call(tip);
@@ -70,7 +70,14 @@ var hour = d3.time.format("%I"),
 		.on('mouseout', tip.hide);
 		
 	column.append("rect")
-		.attr("class", "past-block")
+		.attr("class", function (d)
+		{
+			var class_name="block-default";
+			if (d.lock){class_name="block-locked";}
+			if (d.current){class_name="block-current";}
+			
+			return class_name;
+		})
 		.attr("width", cellWidth)
 		.attr("height", cellHeight);
 	
