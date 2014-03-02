@@ -72,7 +72,6 @@ var hour = d3.time.format("%I"),
 	column.append("rect")
 		.attr("class", function (d)
 		{
-			console.log(d.current);
 			if (d.lock==1){
 				class_name="block-locked";
 			}else{
@@ -82,7 +81,6 @@ var hour = d3.time.format("%I"),
 					var class_name="block-default";
 				}
 			}
-			console.log(class_name);
 			return class_name;
 		})
 		.attr("width", cellWidth)
