@@ -73,7 +73,7 @@ var hour = d3.time.format("%I"),
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
 		
-	var block = block.append("rect")
+	block.append("rect")
 		.attr("class", function (d)
 		{
 			if (d.lock==1){
@@ -110,8 +110,7 @@ var hour = d3.time.format("%I"),
 			return h+":"+m+" "+ampm;
 		})
 		.on('mouseover', tip.show)
-		.on('mouseout', tip.hide)
-		.on('click', mouseclick);
+		.on('mouseout', tip.hide);
   }
   
   function mouseclick(d){
