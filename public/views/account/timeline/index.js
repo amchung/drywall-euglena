@@ -63,15 +63,17 @@ var hour = d3.time.format("%I"),
 	var block = svg.selectAll(".block")
 		.data(blockdata)
 	.enter().append("g")
-		.attr("class", function (d)
+		.attr("class", function (d,i)
 		{
-			if (d.lock==1){
+			var hour = (i-i%12)/12
+			
+			if (hour==1){
 				class_name="block-hour-current";
 			}else{
-				if (d.current==1){
-					class_name="block-hour-past";
+				if (hour>1){
+					class_name="block-hour-future";
 				}else{
-					var class_name="block-hour-future";
+					var class_name="block-hour-past";
 				}
 			}
 			return class_name;
