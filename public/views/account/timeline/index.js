@@ -10,7 +10,7 @@ var width = 720,
 	cellHeight = 72, // cell size
 	gapWidth = 12,
 	gapHeight = 6,
-	menuWidth = 500;
+	menuWidth = 480;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
