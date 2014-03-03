@@ -5,9 +5,9 @@ var currenttime;
 var username='noname';
 
 var width = 600,
-	height = 1000,
+	height = 1050,
 	cellWidth = 80,
-	cellHeight = 76, // cell size
+	cellHeight = 74, // cell size
 	gapWidth = 60;
 	gapHeight = 6;
 
@@ -83,11 +83,16 @@ var hour = d3.time.format("%I"),
 			}
 			return class_name;
 		})
-		.attr("width", cellWidth)
+		//.attr("width", cellWidth)
 		.attr("height", cellHeight)
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
 		.on('click', mouseclick);
+		.transition()
+    		.delay(function(d, i) { return i * 1000 })
+    		.duration(1000)
+    		.style('width', function(d) { return (d * cellWidth) + 'px'; })
+    		.style('opacity', 1)
 	
 	column.append("text")
 		.attr("class", "block-name")
