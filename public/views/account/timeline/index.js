@@ -103,7 +103,7 @@ var hour = d3.time.format("%I"),
 			return h+":"+m+" "+ampm;
 		})
 		.on('mouseover', tip.show)
-		.on('mouseout', tip.hide);
+		.on('mouseout', tip.hide)
 		.on('click', mouseclick);
   }
   
