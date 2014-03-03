@@ -128,47 +128,14 @@ var hour = d3.time.format("%I"),
 		.on('mouseout', tip.hide);
   }
   
-  function mouseclick(d){
+  function mouseclick(d,i){
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
   		.attr("width", cellWidth);
   		
-  	d3.selectAll(".block g").transition().duration(1000)
-  		.attr("transform", function (d,i) 
-		{ 
-			var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			var dy =  i%12 * (cellHeight+gapHeight);
-			return "translate(" + dx + ","+ dy + ")"; 
-		});
-	
-	// expand the selected row
-	switch (this.block-hour)
-	{
-		case "past":
-			d3.selectAll(".block g").transition().duration(1000)
-  			.attr("transform", function (d,i) 
-			{ 
-				var dx = (i-i%12)/12*(cellWidth+gapWidth);
-				if(((i-i%12)/12)>0){dx=dx+300;}
-				var dy =  i%12 * (cellHeight+gapHeight);
-				return "translate(" + dx + ","+ dy + ")"; 
-			});
-			break;
-		case "present":
-			d3.selectAll(".block g").transition().duration(1000)
-  			.attr("transform", function (d,i) 
-			{ 
-				var dx = (i-i%12)/12*(cellWidth+gapWidth);
-				if(((i-i%12)/12)>1){dx=dx+300;}
-				var dy =  i%12 * (cellHeight+gapHeight);
-				return "translate(" + dx + ","+ dy + ")"; 
-			});
-			break;
-	}
-
 	// expand the selected block
   	d3.select(this).transition().duration(1000)
-        .attr("width", cellWidth*2);
+        .attr("width", cellWidth*(3-(i-i%12)/12)+50);
   }
   
   socket = io.connect('http://171.65.102.132:3006');
