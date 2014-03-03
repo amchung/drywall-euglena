@@ -104,6 +104,11 @@ var hour = d3.time.format("%I"),
 		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
+		.on('click', mouseclick);
+  }
+  
+  function mouseclick(d){
+  	console.log(d.time);
   }
   
   socket = io.connect('http://171.65.102.132:3006');
