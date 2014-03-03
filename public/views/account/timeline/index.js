@@ -103,7 +103,7 @@ var hour = d3.time.format("%I"),
 		})
 		.attr("width", cellWidth)
 		.attr("height", cellHeight)
-		.attr("block-hour", function (d){
+		.attr("block-hour", function (d,i){
 			var class_name;
 			var hour = (i-i%12)/12;
 			
