@@ -111,7 +111,7 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d){
-  	console.log(d.time);
+  	console.log(this);
   	d3.select(this).transition().duration(1000)
         .attr("width", cellWidth*2);
   }
