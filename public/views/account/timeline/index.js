@@ -7,7 +7,7 @@ var username='noname';
 var width = 720,
 	height = 1050,
 	cellWidth = 80,
-	cellHeight = 74, // cell size
+	cellHeight = 50, // cell size
 	gapWidth = 12;
 	gapHeight = 6;
 
