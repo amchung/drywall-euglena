@@ -35,8 +35,8 @@ var hour = d3.time.format("%I"),
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
 	var beginT = d3.time.hour.floor(ticket);
-	beginT = d3.time.minute.offset(beginT, -30);
-	var endT = d3.time.minute.offset(beginT, 90);
+	beginT = d3.time.hour.offset(beginT, -1);
+	var endT = d3.time.hour.offset(beginT, 3);
 	
 	socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
   }
@@ -66,10 +66,10 @@ var hour = d3.time.format("%I"),
 		.attr("class", "block")
 		.attr("transform", function (d,i) 
 		{ 
-			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			var dx = 0;
-			//var dy =  i%12 * (cellHeight+gapHeight);
-			var dy = i * (cellHeight+gapHeight);
+			var dx = (i-i%12)/12*(cellWidth+gapWidth);
+			//var dx = 0;
+			var dy =  i%12 * (cellHeight+gapHeight);
+			//var dy = i * (cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		})
 		.on('mouseover', tip.show)
