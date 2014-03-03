@@ -63,7 +63,19 @@ var hour = d3.time.format("%I"),
 	var block = svg.selectAll(".block")
 		.data(blockdata)
 	.enter().append("g")
-		.attr("class", "block")
+		.attr("class", function (d)
+		{
+			if (d.lock==1){
+				class_name="block-hour-current";
+			}else{
+				if (d.current==1){
+					class_name="block-hour-past";
+				}else{
+					var class_name="block-hour-future";
+				}
+			}
+			return class_name;
+		})
 		.attr("transform", function (d,i) 
 		{ 
 			var dx = (i-i%12)/12*(cellWidth+gapWidth);
@@ -83,19 +95,6 @@ var hour = d3.time.format("%I"),
 					class_name="block-current";
 				}else{
 					var class_name="block-default";
-				}
-			}
-			return class_name;
-		})
-		.attr("class", function (d)
-		{
-			if (d.lock==1){
-				class_name="block-locked1";
-			}else{
-				if (d.current==1){
-					class_name="block-current1";
-				}else{
-					var class_name="block-default1";
 				}
 			}
 			return class_name;
