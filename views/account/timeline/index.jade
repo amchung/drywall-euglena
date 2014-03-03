@@ -27,15 +27,16 @@ block feet
 	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
 
 block body
-	div.row
-		h4 Hi, #{user.username}!
-	div.row
-		div.col-sm-2
-			div#clock_bar.clock_bar
-		div.col-sm-4
-			div#blocks_nav
-		div.col-sm-6
-			div#date_picker
+	div.navbar.navbar-default.navbar-fixed-top
+		h6 Time left for this block
+		div.row
+			div.col-sm-2
+				div#clock_bar.clock_bar
+			div.col-sm-4
+				div#blocks_nav
+			div.col-sm-6
+				div#date_picker
+					h6 Logged in as #:{user.username}
 	div.row
 			#d3Area
 
