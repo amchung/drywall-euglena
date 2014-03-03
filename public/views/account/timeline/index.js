@@ -65,7 +65,7 @@ var hour = d3.time.format("%I"),
 	.enter().append("g")
 		.attr("class", function (d,i)
 		{
-			var hour = (i-i%12)/12
+			var hour = (i-i%12)/12;
 			
 			if (hour==1){
 				class_name="block-hour-current";
@@ -104,7 +104,19 @@ var hour = d3.time.format("%I"),
 		.attr("width", cellWidth)
 		.attr("height", cellHeight)
 		.attr("block-hour", function (d){
-			return d.time.getHours();
+			var class_name;
+			var hour = (i-i%12)/12;
+			
+			if (hour==1){
+				class_name="current";
+			}else{
+				if (hour>1){
+					class_name="future";
+				}else{
+					var class_name="past";
+				}
+			}
+			return class_name;
 		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
@@ -132,21 +144,44 @@ var hour = d3.time.format("%I"),
   
   function mouseclick(d){
   	console.log(this);
+  	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
-  		.attr("width", cellWidth)
+  		.attr("width", cellWidth);
+  		
+  	d3.selectAll(".block").transition().duration(1000)
   		.attr("transform", function (d,i) 
 		{ 
 			var dx = (i-i%12)/12*(cellWidth+gapWidth);
 			var dy =  i%12 * (cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
-	d3.selectAll(".block rect").transition().duration(1000)
-  		.attr("transform", function (d,i) 
-		{ 
-			var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			var dy =  i%12 * (cellHeight+gapHeight);
-			return "translate(" + dx + ","+ dy + ")"; 
-		});
+	
+	// expand the selected row
+	switch (this.block-hour)
+	{
+		case "past":
+			d3.selectAll(".block").transition().duration(1000)
+  			.attr("transform", function (d,i) 
+			{ 
+				var dx = (i-i%12)/12*(cellWidth+gapWidth);
+				if(((i-i%12)/12)>0){dx=dx+300;}
+				var dy =  i%12 * (cellHeight+gapHeight);
+				return "translate(" + dx + ","+ dy + ")"; 
+			});
+			break;
+		case "present":
+			d3.selectAll(".block").transition().duration(1000)
+  			.attr("transform", function (d,i) 
+			{ 
+				var dx = (i-i%12)/12*(cellWidth+gapWidth);
+				if(((i-i%12)/12)>1){dx=dx+300;}
+				var dy =  i%12 * (cellHeight+gapHeight);
+				return "translate(" + dx + ","+ dy + ")"; 
+			});
+			break;
+	}
+
+	// expand the selected block
   	d3.select(this).transition().duration(1000)
         .attr("width", cellWidth*2);
   }
