@@ -36,7 +36,7 @@ var hour = d3.time.format("%I"),
 	// +- 1 hour blocks range
 	var beginT = d3.time.hour.floor(ticket);
 	beginT = d3.time.minute.offset(beginT, -30);
-	var endT = d3.time.minute.offset(beginT, 30);
+	var endT = d3.time.minute.offset(beginT, 90);
 	
 	socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
   }
