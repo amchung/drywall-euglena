@@ -65,7 +65,11 @@ var hour = d3.time.format("%I"),
 	.enter().append("g")
 		.attr("class", "block")
 		.attr("transform", function (d,i) 
-		{ return "translate("+ gapWidth+(i-i%12)/12 * (cellWidth+gapWidth)+ ","+i%12 * (cellHeight+gapHeight) + ")"; })
+		{ 
+			var dx = gapWidth+(i-i%12)/12*(cellWidth+gapWidth);
+			var dy =  i%12 * (cellHeight+gapHeight);
+			return "translate(" + dx + ","+ dy + ")"; 
+		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
 		
