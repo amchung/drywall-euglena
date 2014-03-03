@@ -65,8 +65,7 @@ var hour = d3.time.format("%I"),
 	.enter().append("g")
 		.attr("class", "column")
 		.attr("transform", function (d,i) 
-		//{ return "translate("+ (i-i%12)/12 * (cellWidth+gapWidth)+ ","+i%12 * (cellHeight+gapHeight) + ")"; })
-		{ return "translate("+ i%12 * (cellHeight+gapHeight) + ","+(i-i%12)/12 * (cellWidth+gapWidth)+ ")"; })
+		{ return "translate("+ (i-i%12)/12 * (cellWidth+gapWidth)+ ","+i%12 * (cellHeight+gapHeight) + ")"; })
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
 		
