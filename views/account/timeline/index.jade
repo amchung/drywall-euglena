@@ -8,7 +8,7 @@ block neck
 	script(src="/views/account/timeline/d3.tips.js")
 	script(src="/views/account/timeline/socket_io.js")
 	style.
-		.clock_bar {font-size:300%}
+		.clock_bar {font-size:250%}
 		.block-default {stroke-width:4;stroke:black;fill:white;}
 		.block-default:hover{fill: pink;}
 		.block-locked {stroke-width:4;stroke:lightgrey;fill:lightgrey;}
@@ -28,15 +28,16 @@ block feet
 
 block body
 	div.navbar.navbar-default.navbar-fixed-bottom
-		h6 Time left for this block
-		div.row
-			div.col-sm-2
-				div#clock_bar.clock_bar
-			div.col-sm-4
-				div#blocks_nav
-			div.col-sm-6
-				div#date_picker
-					h6 Logged in as #:{user.username}
+		div.container
+			h6 Time left for this block
+			div.row
+				div.col-sm-2
+					div#clock_bar.clock_bar
+				div.col-sm-4
+					div#blocks_nav
+				div.col-sm-6
+					div#date_picker
+						h6 Logged in as #:{user.username}
 	div.row
 			#d3Area
 
