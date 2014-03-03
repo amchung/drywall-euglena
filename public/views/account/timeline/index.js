@@ -87,12 +87,12 @@ var hour = d3.time.format("%I"),
 		.attr("height", cellHeight)
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
-		.on('click', mouseclick);
+		.on('click', mouseclick)
 		.transition()
     		.delay(function(d, i) { return i * 1000 })
     		.duration(1000)
     		.style('width', function(d) { return (d * cellWidth) + 'px'; })
-    		.style('opacity', 1)
+    		.style('opacity', 1);
 	
 	column.append("text")
 		.attr("class", "block-name")
