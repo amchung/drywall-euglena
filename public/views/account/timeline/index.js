@@ -67,7 +67,7 @@ var hour = d3.time.format("%I"),
 		.attr("transform", function (d,i) 
 		{ 
 			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			dx = 0;
+			var dx = 0;
 			//var dy =  i%12 * (cellHeight+gapHeight);
 			var dy =  i * (cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
