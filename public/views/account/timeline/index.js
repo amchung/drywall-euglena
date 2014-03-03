@@ -7,7 +7,7 @@ var username='noname';
 var width = 600,
 	height = 1050,
 	cellWidth = 60,
-	cellHeight = 54, // cell size
+	cellHeight = 56, // cell size
 	gapWidth = 60;
 	gapHeight = 6;
 
@@ -65,7 +65,8 @@ var hour = d3.time.format("%I"),
 	.enter().append("g")
 		.attr("class", "column")
 		.attr("transform", function (d,i) 
-		{ return "translate("+ (i-i%12)/12 * (cellWidth+gapWidth)+ ","+i%12 * (cellHeight+gapHeight) + ")"; })
+		//{ return "translate("+ (i-i%12)/12 * (cellWidth+gapWidth)+ ","+i%12 * (cellHeight+gapHeight) + ")"; })
+		{ return "translate("+ i%12 * (cellHeight+gapHeight) + ","+(i-i%12)/12 * (cellWidth+gapWidth)+ ")"; })
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
 		
