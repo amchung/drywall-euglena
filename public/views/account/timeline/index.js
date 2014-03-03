@@ -83,16 +83,11 @@ var hour = d3.time.format("%I"),
 			}
 			return class_name;
 		})
-		//.attr("width", cellWidth)
+		.attr("width", cellWidth)
 		.attr("height", cellHeight)
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
-		.on('click', mouseclick)
-		.transition()
-    		.delay(function(d, i) { return i * 1000 })
-    		.duration(1000)
-    		.style('width', function(d) { return (d * cellWidth) + 'px'; })
-    		.style('opacity', 1);
+		.on('click', mouseclick);
 	
 	column.append("text")
 		.attr("class", "block-name")
@@ -117,6 +112,8 @@ var hour = d3.time.format("%I"),
   
   function mouseclick(d){
   	console.log(d.time);
+  	d3.select(this).transition().duration(300)
+        .style("background-color", "#333");
   }
   
   socket = io.connect('http://171.65.102.132:3006');
