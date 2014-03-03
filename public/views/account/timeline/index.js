@@ -67,9 +67,9 @@ var hour = d3.time.format("%I"),
 		.attr("transform", function (d,i) 
 		{ 
 			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			var dx = i * (cellWidth+gapHeight);
+			var dx = 0;
 			//var dy =  i%12 * (cellHeight+gapHeight);
-			var dy =  0;
+			var dy = i * (cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		})
 		.on('mouseover', tip.show)
@@ -118,9 +118,9 @@ var hour = d3.time.format("%I"),
   function mouseclick(d){
   	console.log(this);
   	d3.selectAll(".block rect").transition().duration(1000)
-  		.attr("width", cellHeight);
+  		.attr("width", cellWidth);
   	d3.select(this).transition().duration(1000)
-        .attr("width", cellHeight*4);
+        .attr("width", cellWidth*2);
   }
   
   socket = io.connect('http://171.65.102.132:3006');
