@@ -104,7 +104,10 @@ var hour = d3.time.format("%I"),
 			var m = d.time.getMinutes();
 			m=("0" + m).slice(-2);
 			return h+":"+m+" "+ampm;
-		});
+		})
+		.on('mouseover', tip.show)
+		.on('mouseout', tip.hide)
+		.on('click', mouseclick);
   }
   
   function mouseclick(d){
