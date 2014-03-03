@@ -113,7 +113,7 @@ var hour = d3.time.format("%I"),
   function mouseclick(d){
   	console.log(d.time);
   	d3.select(this).transition().duration(1000)
-        .style("width", cellWidth*2);
+        .attr("width", cellWidth*2);
   }
   
   socket = io.connect('http://171.65.102.132:3006');
