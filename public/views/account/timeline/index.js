@@ -63,6 +63,7 @@ var hour = d3.time.format("%I"),
 	var block = svg.selectAll(".block")
 		.data(blockdata)
 	.enter().append("g")
+		.attr("class", "block")
 		.attr("transform", function (d,i) 
 		{ 
 			var dx = (i-i%12)/12*(cellWidth+gapWidth);
