@@ -135,7 +135,7 @@ var hour = d3.time.format("%I"),
   		
 	// expand the selected block
   	d3.select(this).transition().duration(1000)
-        .attr("width", cellWidth*(3-(i-i%12)/12)+50);
+        .attr("width", cellWidth*(3-(i-i%12)/12)+100);
   }
   
   socket = io.connect('http://171.65.102.132:3006');
