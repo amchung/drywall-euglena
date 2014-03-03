@@ -110,10 +110,10 @@ var hour = d3.time.format("%I"),
 	
 	block.append("text")
 		.attr("class", "block-name")
-		.attr("x",cellWidth/2)
-		.attr("y",cellHeight/2)
+		.attr("x",10)
+		.attr("y",10)
 		.attr("dy", ".3em")
-		.style("text-anchor", "middle")
+		//.style("text-anchor", "middle")
 		.text(function(d) { 
 			var h = d.time.getHours();
 			var ampm = (h<12 ? "AM":"PM");
