@@ -6,8 +6,8 @@ var username='noname';
 
 var width = 600,
 	height = 1050,
-	cellWidth = 80,
-	cellHeight = 74, // cell size
+	cellWidth = 60,
+	cellHeight = 54, // cell size
 	gapWidth = 60;
 	gapHeight = 6;
 
