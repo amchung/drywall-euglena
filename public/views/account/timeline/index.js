@@ -103,6 +103,9 @@ var hour = d3.time.format("%I"),
 		})
 		.attr("width", cellWidth)
 		.attr("height", cellHeight)
+		.attr("block-hour", function (d){
+			return d.time.getHours();
+		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
 		.on('click', mouseclick);
