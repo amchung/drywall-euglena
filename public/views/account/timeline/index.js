@@ -63,21 +63,6 @@ var hour = d3.time.format("%I"),
 	var block = svg.selectAll(".block")
 		.data(blockdata)
 	.enter().append("g")
-		.attr("class", function (d,i)
-		{
-			var hour = (i-i%12)/12;
-			
-			if (hour==1){
-				class_name="block-hour-current";
-			}else{
-				if (hour>1){
-					class_name="block-hour-future";
-				}else{
-					var class_name="block-hour-past";
-				}
-			}
-			return class_name;
-		})
 		.attr("transform", function (d,i) 
 		{ 
 			var dx = (i-i%12)/12*(cellWidth+gapWidth);
@@ -143,12 +128,11 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d){
-  	console.log(this);
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
   		.attr("width", cellWidth);
   		
-  	d3.selectAll(".block").transition().duration(1000)
+  	d3.selectAll(".block g").transition().duration(1000)
   		.attr("transform", function (d,i) 
 		{ 
 			var dx = (i-i%12)/12*(cellWidth+gapWidth);
@@ -160,7 +144,7 @@ var hour = d3.time.format("%I"),
 	switch (this.block-hour)
 	{
 		case "past":
-			d3.selectAll(".block").transition().duration(1000)
+			d3.selectAll(".block g").transition().duration(1000)
   			.attr("transform", function (d,i) 
 			{ 
 				var dx = (i-i%12)/12*(cellWidth+gapWidth);
@@ -170,7 +154,7 @@ var hour = d3.time.format("%I"),
 			});
 			break;
 		case "present":
-			d3.selectAll(".block").transition().duration(1000)
+			d3.selectAll(".block g").transition().duration(1000)
   			.attr("transform", function (d,i) 
 			{ 
 				var dx = (i-i%12)/12*(cellWidth+gapWidth);
