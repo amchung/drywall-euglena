@@ -8,7 +8,7 @@ var width = 600,
 	height = 1050,
 	cellWidth = 80,
 	cellHeight = 74, // cell size
-	gapWidth = 60;
+	gapWidth = 100;
 	gapHeight = 6;
 
 var hour = d3.time.format("%I"),
@@ -60,16 +60,16 @@ var hour = d3.time.format("%I"),
 
 	svg.call(tip);
 	
-	var column = svg.selectAll(".column")
+	var block = svg.selectAll(".block")
 		.data(blockdata)
 	.enter().append("g")
-		.attr("class", "column")
+		.attr("class", "block")
 		.attr("transform", function (d,i) 
-		{ return "translate("+ (i-i%12)/12 * (cellWidth+gapWidth)+ ","+i%12 * (cellHeight+gapHeight) + ")"; })
+		{ return "translate("+ gapWidth+(i-i%12)/12 * (cellWidth+gapWidth)+ ","+i%12 * (cellHeight+gapHeight) + ")"; })
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
 		
-	column.append("rect")
+	var block = block.append("rect")
 		.attr("class", function (d)
 		{
 			if (d.lock==1){
@@ -89,7 +89,7 @@ var hour = d3.time.format("%I"),
 		.on('mouseout', tip.hide)
 		.on('click', mouseclick);
 	
-	column.append("text")
+	block.append("text")
 		.attr("class", "block-name")
 		.attr("x",cellWidth/2)
 		.attr("y",cellHeight/2)
