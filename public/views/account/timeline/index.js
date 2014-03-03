@@ -110,8 +110,8 @@ var hour = d3.time.format("%I"),
 	
 	block.append("text")
 		.attr("class", "block-name")
-		.attr("x",10)
-		.attr("y",20)
+		.attr("x",6)
+		.attr("y",12)
 		.attr("dy", ".3em")
 		//.style("text-anchor", "middle")
 		.text(function(d) { 
