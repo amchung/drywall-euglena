@@ -6,11 +6,11 @@ var username='noname';
 
 var width = 720,
 	height = 1200,
-	cellWidth = 80,
+	cellWidth = 76,
 	cellHeight = 72, // cell size
-	gapWidth = 12,
-	gapHeight = 6,
-	menuWidth = 480;
+	gapWidth = 8,
+	gapHeight = 4,
+	menuWidth = 400;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -136,7 +136,7 @@ var hour = d3.time.format("%I"),
   		
 	// expand the selected block
   	d3.select(this).transition().duration(1000)
-        .attr("width", cellWidth*(3-(i-i%12)/12)+menuWidth);
+        .attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth);
   }
   
   socket = io.connect('http://171.65.102.132:3006');
