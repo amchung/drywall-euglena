@@ -4,10 +4,10 @@ var socket;
 var currenttime;
 var username='noname';
 
-var width = 720,
-	height = 1050,
+var width = 400,
+	height = 900,
 	cellWidth = 80,
-	cellHeight = 50, // cell size
+	cellHeight = 72, // cell size
 	gapWidth = 12;
 	gapHeight = 6;
 
