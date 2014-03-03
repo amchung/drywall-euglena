@@ -8,8 +8,8 @@ var width = 720,
 	height = 1200,
 	cellWidth = 76,
 	cellHeight = 72, // cell size
-	gapWidth = 8,
-	gapHeight = 4,
+	gapWidth = 12,
+	gapHeight = 8,
 	menuWidth = 400;
 
 var hour = d3.time.format("%I"),
@@ -132,11 +132,13 @@ var hour = d3.time.format("%I"),
   function mouseclick(d,i){
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
-  		.attr("width", cellWidth);
+  		.attr("width", cellWidth)
+  		.attr("height", cellHeight);
   		
 	// expand the selected block
   	d3.select(this).transition().duration(1000)
-        .attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth);
+        .attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
+        .attr("height", (cellHeight+gapHeight));
   }
   
   socket = io.connect('http://171.65.102.132:3006');
