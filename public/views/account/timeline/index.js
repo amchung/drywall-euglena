@@ -67,9 +67,7 @@ var hour = d3.time.format("%I"),
 		.attr("transform", function (d,i) 
 		{ 
 			var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			//var dx = 0;
 			var dy =  i%12 * (cellHeight+gapHeight);
-			//var dy = i * (cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		})
 		.on('mouseover', tip.show)
@@ -85,6 +83,19 @@ var hour = d3.time.format("%I"),
 					class_name="block-current";
 				}else{
 					var class_name="block-default";
+				}
+			}
+			return class_name;
+		})
+		.attr("class", function (d)
+		{
+			if (d.lock==1){
+				class_name="block-locked1";
+			}else{
+				if (d.current==1){
+					class_name="block-current1";
+				}else{
+					var class_name="block-default1";
 				}
 			}
 			return class_name;
@@ -118,7 +129,20 @@ var hour = d3.time.format("%I"),
   function mouseclick(d){
   	console.log(this);
   	d3.selectAll(".block rect").transition().duration(1000)
-  		.attr("width", cellWidth);
+  		.attr("width", cellWidth)
+  		.attr("transform", function (d,i) 
+		{ 
+			var dx = (i-i%12)/12*(cellWidth+gapWidth);
+			var dy =  i%12 * (cellHeight+gapHeight);
+			return "translate(" + dx + ","+ dy + ")"; 
+		});
+	d3.selectAll(".block rect").transition().duration(1000)
+  		.attr("transform", function (d,i) 
+		{ 
+			var dx = (i-i%12)/12*(cellWidth+gapWidth);
+			var dy =  i%12 * (cellHeight+gapHeight);
+			return "translate(" + dx + ","+ dy + ")"; 
+		});
   	d3.select(this).transition().duration(1000)
         .attr("width", cellWidth*2);
   }
