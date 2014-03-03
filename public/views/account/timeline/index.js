@@ -4,11 +4,11 @@ var socket;
 var currenttime;
 var username='noname';
 
-var width = 600,
+var width = 720,
 	height = 1050,
 	cellWidth = 80,
 	cellHeight = 74, // cell size
-	gapWidth = 100;
+	gapWidth = 12;
 	gapHeight = 6;
 
 var hour = d3.time.format("%I"),
@@ -66,8 +66,10 @@ var hour = d3.time.format("%I"),
 		.attr("class", "block")
 		.attr("transform", function (d,i) 
 		{ 
-			var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			var dy =  i%12 * (cellHeight+gapHeight);
+			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
+			dx = 0;
+			//var dy =  i%12 * (cellHeight+gapHeight);
+			var dy =  i * (cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		})
 		.on('mouseover', tip.show)
