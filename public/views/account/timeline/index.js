@@ -131,7 +131,7 @@ var hour = d3.time.format("%I"),
 		
 	var infobox = svg.selectAll(".infobox")
 		.enter().append("g")
-		.attr("class", "block")
+		.attr("class", "infobox")
 		.attr("transform", function (d,i) 
 		{ 
 			var dx = (cellWidth+gapWidth)*3+40;
