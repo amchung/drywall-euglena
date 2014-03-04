@@ -10,7 +10,8 @@ var width = 720,
 	cellHeight = 72, // cell size
 	gapWidth = 12,
 	gapHeight = 6,
-	menuWidth = 400;
+	menuWidth = 400,
+	menuHeight = 100;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -138,7 +139,7 @@ var hour = d3.time.format("%I"),
 	// expand the selected block
   	d3.select(this).transition().duration(1000)
         .attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
-        .attr("height", (cellHeight+gapHeight));
+        .attr("height", menuHeight);
   }
   
   socket = io.connect('http://171.65.102.132:3006');
