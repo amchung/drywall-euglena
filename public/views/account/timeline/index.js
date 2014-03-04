@@ -4,14 +4,14 @@ var socket;
 var currenttime;
 var username='noname';
 
-var width = 320,
+var width = 400,
 	height = 1200,
 	cellWidth = 76,
 	cellHeight = 72, // cell size
 	gapWidth = 12,
 	gapHeight = 6,
 	menuWidth = 40,
-	menuHeight = 72+20;
+	menuHeight = 40;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -136,8 +136,17 @@ var hour = d3.time.format("%I"),
 		.attr("transform", "translate(24, 24)");
 	
 	var infobox = svg.selectAll(".infobox")
-	.enter().append("g")
+		.enter().append("g")
 		.attr("class", "infobox");
+	
+	infobox.append("text")
+		.attr("class", "info-text")
+		.attr("x",10)
+		.attr("y",14)
+		.attr("dy", ".3em")
+		//.style("text-anchor", "middle")
+		.text("Block Info Box");
+		
   }
   
   function mouseclick(d,i){
