@@ -39,8 +39,12 @@ block body
 				div.col-sm-7
 					div#date_picker
 						h6 Logged in as #{user.username}
-	div.row
-			#d3Area
+	div.container
+		div.row
+			div.col-sm-6
+				#d3Area
+			div.col-sm-6
+				#d3InfoArea
 
 	script(type='text/template', id='tmpl-blocks_nav')
 		form

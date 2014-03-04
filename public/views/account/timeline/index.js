@@ -4,7 +4,7 @@ var socket;
 var currenttime;
 var username='noname';
 
-var width = 720,
+var width = 320,
 	height = 1200,
 	cellWidth = 76,
 	cellHeight = 72, // cell size
@@ -129,23 +129,15 @@ var hour = d3.time.format("%I"),
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
 		
-	var infobox = svg.selectAll(".infobox")
-		.enter().append("g")
-		.attr("class", "infobox")
-		.attr("transform", function (d,i) 
-		{ 
-			var dx = (cellWidth+gapWidth)*3+40;
-			var dy =  10;
-			return "translate(" + dx + ","+ dy + ")";
-		})
-		.append("text")
-		.attr("class", "block-name")
-		.attr("x",10)
-		.attr("y",14)
-		.attr("dy", ".3em")
-		//.style("text-anchor", "middle")
-		.text("block menu");
+	var svg_info = d3.select("#d3InfoArea").append("svg")
+		.attr("width", width)
+		.attr("height", height)
+		.append("g")
+		.attr("transform", "translate(24, 24)");
 	
+	var infobox = svg.selectAll(".infobox")
+	.enter().append("g")
+		.attr("class", "infobox");
   }
   
   function mouseclick(d,i){
