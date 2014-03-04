@@ -11,7 +11,7 @@ var width = 720,
 	gapWidth = 12,
 	gapHeight = 6,
 	menuWidth = 400,
-	menuHeight = cellHeight+gapHeight;
+	menuHeight = 100;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -140,6 +140,18 @@ var hour = d3.time.format("%I"),
   	d3.select(this).transition().duration(1000)
         .attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
         .attr("height", menuHeight);
+        
+    d3.select(this).append("text")
+		.attr("class", "block-info")
+		.attr("x",((cellWidth+gapWidth)*(3-(i-i%12)/12)+40))
+		.attr("y",20)
+		.attr("dy", ".3em")
+		.text(function(d) { 
+			//d.user_id
+			//d.exp_id
+			//d.id
+			return "block id: "+d.id;
+		})
   }
   
   socket = io.connect('http://171.65.102.132:3006');
