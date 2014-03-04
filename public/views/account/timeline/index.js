@@ -128,6 +128,24 @@ var hour = d3.time.format("%I"),
 		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
+		
+	var infobox = svg.selectAll(".infobox")
+		.enter().append("g")
+		.attr("class", "block")
+		.attr("transform", function (d,i) 
+		{ 
+			var dx = (cellWidth+gapWidth)*3+40;
+			var dy =  10;
+			return "translate(" + dx + ","+ dy + ")";
+		})
+		.append("text")
+		.attr("class", "block-name")
+		.attr("x",10)
+		.attr("y",14)
+		.attr("dy", ".3em")
+		//.style("text-anchor", "middle")
+		.text("block menu");
+	
   }
   
   function mouseclick(d,i){
