@@ -134,12 +134,19 @@ var hour = d3.time.format("%I"),
 		.attr("height", height)
 		.append("g")
 		.attr("transform", "translate(24, 24)");
-	
+		
 	var infobox = svg_info.selectAll(".infobox")
-		.enter().append("g")
-		.attr("class", "infobox");
+	.enter().append("g")
+		.attr("class", "infobox")
+		.attr("transform", function (d,i) 
+		{ 
+			var dx = 0;
+			var dy = 0;
+			return "translate(" + dx + ","+ dy + ")"; 
+		});
 	
-	block.append("rect")
+	infobox.append("rect")
+		.attr("class", "infobox")
 		.attr("width",300)
 		.attr("height",600);
 	
