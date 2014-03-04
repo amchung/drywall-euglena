@@ -135,7 +135,7 @@ var hour = d3.time.format("%I"),
 		.append("g")
 		.attr("transform", "translate(24, 24)");
 	
-	var infobox = svg.selectAll(".infobox")
+	var infobox = svg_info.selectAll(".infobox")
 		.enter().append("g")
 		.attr("class", "infobox");
 	
