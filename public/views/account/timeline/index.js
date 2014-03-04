@@ -139,6 +139,10 @@ var hour = d3.time.format("%I"),
 		.enter().append("g")
 		.attr("class", "infobox");
 	
+	block.append("rect")
+		.attr("width",300)
+		.attr("height",600);
+	
 	infobox.append("text")
 		.attr("class", "info-text")
 		.attr("x",10)
