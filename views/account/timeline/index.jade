@@ -29,24 +29,22 @@ block feet
 block body
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
-			h6 Time left for the current block
 			div.row
 				div.col-sm-2
+					h6 Time left for the current block
 					div#clock_bar.clock_bar
 				div.col-sm-2
 					h6 Hour Navigation
 					div#blocks_nav
 				div.col-sm-2
-					h6 ?????
+					div#info_menu
 				div.col-sm-6
 					div#date_picker
 						h6 Logged in as #{user.username}
 	div.container
 		div.row
-			div.col-sm-4
+			div.col-sm-12
 				#d3Area
-			div.col-sm-8
-				div#info_menu
 
 	script(type='text/template', id='tmpl-blocks_nav')
 		form

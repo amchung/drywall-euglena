@@ -8,10 +8,10 @@ var width = 400,
 	height = 1200,
 	cellWidth = 76,
 	cellHeight = 72, // cell size
-	gapWidth = 12,
-	gapHeight = 6,
-	menuWidth = 50,
-	menuHeight = 30;
+	gapWidth = 20,
+	gapHeight = 10,
+	//menuWidth = 60,
+	//menuHeight = 30;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -138,20 +138,11 @@ var hour = d3.time.format("%I"),
   		
 	// expand the selected block
   	d3.select(this).transition().duration(1000)
-        .attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
-        .attr("height", menuHeight);
-        
-    d3.select(this).append("text")
-		.attr("class", "block-info")
-		.attr("x",((cellWidth+gapWidth)*(3-(i-i%12)/12)+40))
-		.attr("y",20)
-		.attr("dy", ".3em")
-		.text(function(d) { 
-			//d.user_id
-			//d.exp_id
-			//d.id
-			return "block id: "+d.id;
-		});
+        //.attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
+        //.attr("height", menuHeight);
+        .attr("width", (cellWidth+gapWidth/2))
+        .attr("height", (cellHeight+gapHeight/2));
+
 	app.menuView = new app.MenuView();	
   }
   
@@ -261,8 +252,10 @@ var hour = d3.time.format("%I"),
       this.$el.html(this.template( this.model.attributes));
     },
     reqReserve: function() {
+    	console.log("Reserve block");
     },
     reqEnterFreeForm: function() {
+    	console.log("Enter");
     }
   });
   
