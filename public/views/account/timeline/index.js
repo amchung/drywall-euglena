@@ -9,7 +9,7 @@ var width = 400,
 	cellWidth = 76,
 	cellHeight = 72, // cell size
 	gapWidth = 20,
-	gapHeight = 10,
+	gapHeight = 10;
 	//menuWidth = 60,
 	//menuHeight = 30;
 
