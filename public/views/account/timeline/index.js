@@ -151,7 +151,8 @@ var hour = d3.time.format("%I"),
 			//d.exp_id
 			//d.id
 			return "block id: "+d.id;
-		})
+		});
+	app.menuView = new app.MenuView();	
   }
   
   socket = io.connect('http://171.65.102.132:3006');
@@ -240,6 +241,31 @@ var hour = d3.time.format("%I"),
     },
     reqNext: function() {
       currenttime.setHours(currenttime.getHours() + 1);
+      callBlocks(currenttime);
+    }
+  });
+  
+  app.MenuView = Backbone.View.extend({
+    el: '#info_menu',
+    template: _.template( $('#tmpl-info_menu').html() ),
+    events: {
+      'click .btn-reserve': 'reqReserve',
+      'click .enter': 'reqEnterFreeform',
+    },
+    initialize: function() {
+      this.model = new app.Blocks();
+      this.listenTo(this.model, 'sync', this.render);
+      this.render();
+    },
+    render: function() {
+      this.$el.html(this.template( this.model.attributes));
+    },
+    reqReserve: function() {
+      currenttime.setHours(currenttime.getHours() - 1);
+      callBlocks(currenttime);
+    },
+    reqEnterFreeForm: function() {
+      currenttime = new Date();
       callBlocks(currenttime);
     }
   });

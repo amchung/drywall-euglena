@@ -44,8 +44,6 @@ block body
 				#d3Area
 			div.col-sm-8
 				div#info_menu
-					button.btn.btn-default.btn-reserve(type='button') Reserve
-					button.btn.btn-default.btn-enter(type='button') Enter
 
 	script(type='text/template', id='tmpl-blocks_nav')
 		form
@@ -54,3 +52,10 @@ block body
 					button.btn.btn-default.btn-prev(type='button') Prev
 					button.btn.btn-default.btn-now(type='button') Now
 					button.btn.btn-default.btn-next(type='button') Next
+					
+	script(type='text/template', id='tmpl-blocks_nav')
+		form
+			div.form-actions
+				div.btn-group.btn-group-vertical
+					button.btn.btn-default.btn-reserve(type='button') Reserve
+					button.btn.btn-default.btn-enter(type='button') Enter
