@@ -262,5 +262,8 @@ var hour = d3.time.format("%I"),
   $(document).ready(function() {
     app.blocksView = new app.BlocksView();
   });
-  
+
+  $('#d3Area').scroll(function() { 
+    $('#blockArea').css('top', $(this).scrollTop());
+});  
 }());
