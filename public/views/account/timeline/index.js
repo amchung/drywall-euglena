@@ -10,8 +10,8 @@ var width = 400,
 	cellHeight = 72, // cell size
 	gapWidth = 12,
 	gapHeight = 6,
-	menuWidth = 40,
-	menuHeight = 40;
+	menuWidth = 50,
+	menuHeight = 30;
 
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -261,12 +261,8 @@ var hour = d3.time.format("%I"),
       this.$el.html(this.template( this.model.attributes));
     },
     reqReserve: function() {
-      currenttime.setHours(currenttime.getHours() - 1);
-      callBlocks(currenttime);
     },
     reqEnterFreeForm: function() {
-      currenttime = new Date();
-      callBlocks(currenttime);
     }
   });
   
