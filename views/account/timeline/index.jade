@@ -9,7 +9,6 @@ block neck
 	script(src="/views/account/timeline/socket_io.js")
 	style.
 		.clock_bar {font-size:250%}
-		.infobox {background:lightgrey;}
 		.block-default {stroke-width:4;stroke:black;fill:white;}
 		.block-default:hover{fill: pink;}
 		.block-locked {stroke-width:4;stroke:white;fill:lightgrey;}
@@ -41,10 +40,12 @@ block body
 						h6 Logged in as #{user.username}
 	div.container
 		div.row
-			div.col-sm-6
+			div.col-sm-4
 				#d3Area
-			div.col-sm-6
-				#d3InfoArea
+			div.col-sm-8
+				div#info_menu
+					button.btn.btn-default.btn-reserve(type='button') Reserve
+					button.btn.btn-default.btn-enter(type='button') Enter
 
 	script(type='text/template', id='tmpl-blocks_nav')
 		form
