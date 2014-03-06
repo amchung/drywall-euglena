@@ -166,10 +166,24 @@ var hour = d3.time.format("%I"),
         .attr("width", (cellWidth+gapWidth)*4)
         .attr("height", (cellHeight+gapHeight)/2);
     
-    console.log(this.getAttribute("class"));
-	//btn_enter.disabled = true;
-    //btn_access.disabled = true;
-    //btn_reserve.disabled = true;
+    switch(this.getAttribute("class")
+    {
+    	case "block-locked":
+    		document.getElementById("btn_enter").disabled = true; 
+    		document.getElementById("btn_access").disabled = false; 
+    		document.getElementById("btn_reserve").disabled = true;
+    	break;
+    	case "block-current":
+    		document.getElementById("btn_enter").disabled = false; 
+    		document.getElementById("btn_access").disabled = true; 
+    		document.getElementById("btn_reserve").disabled = true;
+    	break;
+    	case "block-default"
+    		document.getElementById("btn_enter").disabled = true; 
+    		document.getElementById("btn_access").disabled = true; 
+    		document.getElementById("btn_reserve").disabled = false;
+    	break;
+    }
   }
   
   socket = io.connect('http://171.65.102.132:3006');
@@ -270,7 +284,7 @@ var hour = d3.time.format("%I"),
     template: _.template( $('#tmpl-info_menu').html() ),
     events: {
       'click .btn-reserve': 'reqReserve',
-      'click .enter': 'reqEnterFreeform',
+      'click .btn-enter': 'reqEnterFreeform',
     },
     initialize: function() {
       this.model = new app.Blocks();
