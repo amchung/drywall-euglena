@@ -226,6 +226,7 @@ var hour = d3.time.format("%I"),
     	function getPreview(path, callback) {
     		document.getElementById("btn_close").disabled = false; 
             var image = new Image;
+            image.id = "img_preview";
             image.src = path;
             image.setAttribute("class","img-responsive img-thumbnail");
             image.setAttribute("alt","Responsive image");
@@ -402,7 +403,7 @@ var hour = d3.time.format("%I"),
   });
   
   $('#btn_close').click(function(){
-        console.log('close the img');
+    $('#img_preview').css('display','none');
   });
     
 }());
