@@ -137,6 +137,10 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d,i){
+    btn_enter.disabled = true;
+    btn_access.disabled = true;
+    btn_reserve.disabled = true;
+  
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
   		.attr("width", cellWidth)
@@ -164,8 +168,11 @@ var hour = d3.time.format("%I"),
         //.attr("height", menuHeight);
         .attr("width", (cellWidth+gapWidth)*4)
         .attr("height", (cellHeight+gapHeight)/2);
-
-	app.menuView = new app.MenuView();	
+    
+    console.log(this.getAttribute("class"));
+	//btn_enter.disabled = true;
+    //btn_access.disabled = true;
+    //btn_reserve.disabled = true;
   }
   
   socket = io.connect('http://171.65.102.132:3006');
@@ -289,6 +296,7 @@ var hour = d3.time.format("%I"),
   
   $(document).ready(function() {
     app.blocksView = new app.BlocksView();
+    app.menuView = new app.MenuView();
   });
 
   $('#d3Area').scroll(function() { 
