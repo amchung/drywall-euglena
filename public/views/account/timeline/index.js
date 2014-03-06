@@ -4,10 +4,10 @@ var socket;
 var currenttime;
 var username='noname';
 
-var width = 400,
+var width = 1000,
 	height = 1200,
-	cellWidth = 76,
-	cellHeight = 72, // cell size
+	cellWidth = 70,
+	cellHeight = 68, // cell size
 	gapWidth = 20,
 	gapHeight = 10;
 	//menuWidth = 60,
@@ -118,13 +118,13 @@ var hour = d3.time.format("%I"),
 		//.style("text-anchor", "middle")
 		.text(function(d) { 
 			var h = d.time.getHours();
-			var ampm = (h<12 ? "AM":"PM");
+			var ampm = (h<12 ? "a":"p");
 			//h=("0" + h%12).slice(-2);
 			h=(h%12);
 			if(h==0){h="12";}
 			var m = d.time.getMinutes();
 			m=("0" + m).slice(-2);
-			return h+":"+m+" "+ampm;
+			return h+":"+m+ampm;
 		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
