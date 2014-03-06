@@ -6,10 +6,10 @@ var username='noname';
 
 var width = 1000,
 	height = 1200,
-	cellWidth = 70,
-	cellHeight = 68, // cell size
-	gapWidth = 20,
-	gapHeight = 10;
+	cellWidth = 66,
+	cellHeight = 62, // cell size
+	gapWidth = 8,
+	gapHeight = 12;
 	//menuWidth = 60,
 	//menuHeight = 30;
 
@@ -68,8 +68,10 @@ var hour = d3.time.format("%I"),
 		.attr("class", "block")
 		.attr("transform", function (d,i) 
 		{ 
-			var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			var dy =  i%12 * (cellHeight+gapHeight);
+			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
+			//var dy =  i%12 * (cellHeight+gapHeight);
+			var dx = i%12 * (cellWidth+gapWidth);
+			var dy = (i-i%12)/12*(cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		})
 		.on('mouseover', tip.show)
