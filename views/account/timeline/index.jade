@@ -8,7 +8,9 @@ block neck
 	script(src="/views/account/timeline/d3.tips.js")
 	script(src="/views/account/timeline/socket_io.js")
 	style.
-		.clock_bar {font-size:240%}
+		img {max-width:100%; max-height:100%;}
+		.clock-bar {font-size:240%}
+		.preview-box{height:100px;}
 		.block-default {stroke-width:4;stroke:black;fill:white;}
 		.block-default:hover{fill: pink;}
 		.block-locked {stroke-width:4;stroke:white;fill:lightgrey;}
@@ -31,13 +33,13 @@ block body
 		div.row
 			div.col-sm-2
 				h6 Time left for the current block
-				div#clock_bar.clock_bar
+				div#clock_bar.clock-bar
 			div.col-sm-10
 				div.panel.panel-default
 					div.panel-body
 						div#info_menu
 						div#info_box
-						div#preview_box
+						div#preview_box.preview-box
 		div.row
 			#d3Area
 	div.navbar.navbar-default.navbar-fixed-bottom
