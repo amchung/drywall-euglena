@@ -197,7 +197,7 @@ var hour = d3.time.format("%I"),
   
   socket.on('server_clock', function(data){
   	var str = data.split(":");
-  	if(str[1]=='00'){
+  	if((str[0]=="2")&&(str[1]=='00')){
   		callBlocks(currenttime);
   	}
   	clockbar.html("<b>"+data+"</b>");
