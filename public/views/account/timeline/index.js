@@ -223,6 +223,8 @@ var hour = d3.time.format("%I"),
     	function getPreview(path, callback) {
             var image = new Image;
             image.src = path;
+            image.setAttribute("class","img-responsive");
+            image.setAttribute("alt","Responsive imaga");
             image.onload = function() {
                 callback(image);
             };
