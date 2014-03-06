@@ -151,7 +151,7 @@ var hour = d3.time.format("%I"),
 	d3.select(this.parentNode).transition().duration(1000)
 		.attr("transform", function (d) 
 		{ 
-			var dx = gapWidth;
+			var dx = 200;
 			var dy = 4;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
@@ -160,6 +160,7 @@ var hour = d3.time.format("%I"),
   	d3.select(this).transition().duration(1000)
         //.attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
         //.attr("height", menuHeight);
+        .attr("width", (cellWidth+gapWidth)*4)
         .attr("height", (cellHeight+gapHeight)/2);
 
 	app.menuView = new app.MenuView();	
