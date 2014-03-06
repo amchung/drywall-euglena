@@ -30,19 +30,15 @@ block body
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
 			div.row
+				div.col-sm-3
+					h6 Time left for the current block
+					div#clock_bar.clock_bar
 				div.col-sm-3.panel.panel-default
-					div.panel-body
-						div.col-sm-1
-							h6 Time left for the current block
-						div#clock_bar.col-sm-2.clock_bar
-				div.col-sm-3.panel.panel-default
-					div.panel-body
-						h6 Hour Navigation
-						div#blocks_nav
+					h6 Hour Navigation
+					div#blocks_nav
 				div.col-sm-6.panel.panel-default
-					div.panel-body
-						div#date_picker
-							h6 Logged in as #{user.username}
+					div#date_picker
+						h6 Logged in as #{user.username}
 	div.container
 		div.row
 			div.col-sm-12
