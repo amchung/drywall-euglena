@@ -34,6 +34,9 @@ var hour = d3.time.format("%I"),
 
   var blockdata = [];
   var clockbar = $('#clock_bar');
+  var btn_enter;
+  var btn_access;
+  var btn_reserve;
   
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
@@ -269,6 +272,9 @@ var hour = d3.time.format("%I"),
       this.model = new app.Blocks();
       this.listenTo(this.model, 'sync', this.render);
       this.render();
+      document.getElementById("btn_enter").disabled = true; 
+      document.getElementById("btn_access").disabled = true; 
+      document.getElementById("btn_reserve").disabled = true; 
     },
     render: function() {
       this.$el.html(this.template( this.model.attributes));
