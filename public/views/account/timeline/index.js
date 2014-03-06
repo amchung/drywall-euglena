@@ -209,6 +209,7 @@ var hour = d3.time.format("%I"),
     function preloader() 
 	{
 		if(data.image<0){
+			pewviewbox.html("[no preview]");
 			writeInfo();
 		}
 		else {
@@ -237,11 +238,6 @@ var hour = d3.time.format("%I"),
 		}else{
 			strInfo = concatNewline(strInfo,"owner: "+data.user_id);
 		}
-
-		if(data.image<0){
-			strInfo = concatNewline(strInfo,"[no preview]");
-		}
-
 		infobox.html(strInfo);
     }
   }
