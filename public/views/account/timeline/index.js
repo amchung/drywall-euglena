@@ -285,6 +285,7 @@ var hour = d3.time.format("%I"),
     events: {
       'click .btn-reserve': 'reqReserve',
       'click .btn-enter': 'reqEnterFreeform',
+      'click .btn-access': 'reqDataAccess'
     },
     initialize: function() {
       this.model = new app.Blocks();
@@ -300,7 +301,10 @@ var hour = d3.time.format("%I"),
     reqReserve: function() {
     	console.log("Reserve block");
     },
-    reqEnterFreeForm: function() {
+    reqDataAccess: function() {
+    	console.log("Data Access");
+    },
+    reqEnterFreeform: function() {
     	console.log("Enter");
     }
   });
