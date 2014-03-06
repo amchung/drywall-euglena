@@ -178,7 +178,7 @@ var hour = d3.time.format("%I"),
     		document.getElementById("btn_access").disabled = true; 
     		document.getElementById("btn_reserve").disabled = true;
     		break;
-    	case "block-default"
+    	case "block-default":
     		document.getElementById("btn_enter").disabled = true; 
     		document.getElementById("btn_access").disabled = true; 
     		document.getElementById("btn_reserve").disabled = false;
