@@ -34,6 +34,7 @@ var hour = d3.time.format("%I"),
 
   var blockdata = [];
   var clockbar = $('#clock_bar');
+  var infobox = $('#info_box');
   
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
@@ -58,8 +59,8 @@ var hour = d3.time.format("%I"),
 	var svg = d3.select("#d3Area").append("svg")
 		.attr("width", width)
 		.attr("height", height)
-		.append("g");
-		//.attr("transform", "translate(24, 24)");
+		.append("g")
+		.attr("transform", "translate(4, 4)");
 
 	svg.call(tip);
 	
@@ -159,7 +160,6 @@ var hour = d3.time.format("%I"),
   	d3.select(this).transition().duration(1000)
         //.attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
         //.attr("height", menuHeight);
-        .attr("width", (cellWidth+gapWidth)*9)
         .attr("height", (cellHeight+gapHeight)/2);
 
 	app.menuView = new app.MenuView();	

@@ -33,6 +33,7 @@ block body
 				div.panel.panel-default
 					div.panel-body
 						div#info_menu
+						div#info_box
 				#d3Area
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
@@ -40,10 +41,9 @@ block body
 				div.col-sm-3
 					h6 Time left for the current block
 					div#clock_bar.clock_bar
-				div.col-sm-3.panel.panel-default
-					div.panel-body
-						h6 Hour Navigation
-						div#blocks_nav
+				div.col-sm-3
+					h6 Hour Navigation
+					div#blocks_nav
 				div.col-sm-6.panel.panel-default
 					div.panel-body
 						div#date_picker
@@ -60,6 +60,6 @@ block body
 	script(type='text/template', id='tmpl-info_menu')
 		form
 			div.form-actions
-				div.btn-group.btn-group-vertical
-					button.btn.btn-default.btn-reserve(type='button') Reserve
 					button.btn.btn-default.btn-enter(type='button') Enter
+					button.btn.btn-default.btn-reserve(type='button') Reserve
+					button.btn.btn-default.btn-access(type='button') Access
