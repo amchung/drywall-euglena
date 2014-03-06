@@ -203,9 +203,16 @@ var hour = d3.time.format("%I"),
 	block.admin = data[i*num_ele+6];
 	block.current = data[i*num_ele+7];
 	block.image = data[i*num_ele+8];*/
-    
-    infobox.html("<b>"+data.id+"</b>");
-    infobox.html("<b>"+data.image+"</b>");
+    var strInfo;
+    strInfo = "<b>"+data.time+"</b>";
+    strInfo = concatNewline(strInfo,"block id:"+data.id);
+    infobox.html = strInfo;
+  }
+  
+  function concatNewline(str0,str1){
+	var strHTML = str0.concat("<br>");
+	strHTML = strHTML.concat(str1);
+  	return strHTML
   }
   
   socket = io.connect('http://171.65.102.132:3006');
