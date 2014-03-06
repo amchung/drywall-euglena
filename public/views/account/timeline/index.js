@@ -208,11 +208,13 @@ var hour = d3.time.format("%I"),
 	{
 		if(data.image<0){
 			writeInfo();
-		}else{
+		}
+		else {
 			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
             	previewbox.html(pastedImage);
             	writeInfo();
-        });
+            });
+        }
         
     	function getPreview(path, callback) {
             var image = new Image;
