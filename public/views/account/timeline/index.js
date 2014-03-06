@@ -166,23 +166,23 @@ var hour = d3.time.format("%I"),
         .attr("width", (cellWidth+gapWidth)*4)
         .attr("height", (cellHeight+gapHeight)/2);
     
-    switch(this.getAttribute("class")
+    switch(this.getAttribute("class"))
     {
     	case "block-locked":
     		document.getElementById("btn_enter").disabled = true; 
     		document.getElementById("btn_access").disabled = false; 
     		document.getElementById("btn_reserve").disabled = true;
-    	break;
+    		break;
     	case "block-current":
     		document.getElementById("btn_enter").disabled = false; 
     		document.getElementById("btn_access").disabled = true; 
     		document.getElementById("btn_reserve").disabled = true;
-    	break;
+    		break;
     	case "block-default"
     		document.getElementById("btn_enter").disabled = true; 
     		document.getElementById("btn_access").disabled = true; 
     		document.getElementById("btn_reserve").disabled = false;
-    	break;
+    		break;
     }
   }
   
