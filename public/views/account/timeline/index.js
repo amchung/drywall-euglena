@@ -196,7 +196,10 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('server_clock', function(data){
-  	//console.log(data);
+  	var str = data.split(":");
+  	if(str[1]=='00'){
+  		callBlocks(currenttime);
+  	}
   	clockbar.html("<b>"+data+"</b>");
   });
 
