@@ -172,16 +172,19 @@ var hour = d3.time.format("%I"),
     		document.getElementById("btn_enter").disabled = true; 
     		document.getElementById("btn_access").disabled = false; 
     		document.getElementById("btn_reserve").disabled = true;
+    		document.getElementById("btn_pattern").disabled = true; 
     		break;
     	case "block-current":
     		document.getElementById("btn_enter").disabled = false; 
     		document.getElementById("btn_access").disabled = true; 
     		document.getElementById("btn_reserve").disabled = true;
+    		document.getElementById("btn_pattern").disabled = true; 
     		break;
     	case "block-default":
     		document.getElementById("btn_enter").disabled = true; 
     		document.getElementById("btn_access").disabled = true; 
     		document.getElementById("btn_reserve").disabled = false;
+    		document.getElementById("btn_pattern").disabled = false; 
     		break;
     }
   }
@@ -291,6 +294,7 @@ var hour = d3.time.format("%I"),
     template: _.template( $('#tmpl-info_menu').html() ),
     events: {
       'click .btn-reserve': 'reqReserve',
+      'click .btn-pattern': 'reqSetPettern',
       'click .btn-enter': 'reqEnterFreeform',
       'click .btn-access': 'reqDataAccess'
     },
@@ -301,12 +305,16 @@ var hour = d3.time.format("%I"),
       document.getElementById("btn_enter").disabled = true; 
       document.getElementById("btn_access").disabled = true; 
       document.getElementById("btn_reserve").disabled = true; 
+      document.getElementById("btn_pattern").disabled = true; 
     },
     render: function() {
       this.$el.html(this.template( this.model.attributes));
     },
     reqReserve: function() {
     	console.log("Reserve block");
+    },
+    reqSetPattern: function() {
+    	console.log("Set Pattern");
     },
     reqDataAccess: function() {
     	console.log("Data Access");
