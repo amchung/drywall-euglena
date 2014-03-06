@@ -159,8 +159,8 @@ var hour = d3.time.format("%I"),
   	d3.select(this).transition().duration(1000)
         //.attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
         //.attr("height", menuHeight);
-        .attr("width", (cellWidth+gapWidth/2))
-        .attr("height", (cellHeight+gapHeight/2));
+        .attr("width", (cellWidth+gapWidth)*3)
+        .attr("height", (cellHeight+gapHeight)/2);
 
 	app.menuView = new app.MenuView();	
   }
