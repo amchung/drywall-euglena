@@ -34,7 +34,6 @@ var hour = d3.time.format("%I"),
 
   var blockdata = [];
   var clockbar = $('#clock_bar');
-  var infobox = $('#info_box');
   
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
