@@ -8,7 +8,7 @@ block neck
 	script(src="/views/account/timeline/d3.tips.js")
 	script(src="/views/account/timeline/socket_io.js")
 	style.
-		.clock_bar {font-size:250%}
+		.clock_bar {font-size:240%}
 		.block-default {stroke-width:4;stroke:black;fill:white;}
 		.block-default:hover{fill: pink;}
 		.block-locked {stroke-width:4;stroke:white;fill:lightgrey;}
@@ -30,7 +30,7 @@ block body
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
 			div.row
-				div.col-sm-2.panel.panel-default
+				div.col-sm-3.panel.panel-default
 					div.panel-body
 						h6 Time left for the current block
 						div#clock_bar.clock_bar
@@ -38,7 +38,7 @@ block body
 					div.panel-body
 						h6 Hour Navigation
 						div#blocks_nav
-				div.col-sm-7.panel.panel-default
+				div.col-sm-6.panel.panel-default
 					div.panel-body
 						div#date_picker
 							h6 Logged in as #{user.username}
