@@ -137,6 +137,14 @@ var hour = d3.time.format("%I"),
   	d3.selectAll(".block rect").transition().duration(1000)
   		.attr("width", cellWidth)
   		.attr("height", cellHeight);
+  	
+	d3.select(this.parentNode).transition().duration(1000)
+		.attr("transform", function (d,i) 
+		{ 
+			var dx = gapWidth;
+			var dy = 100;
+			return "translate(" + dx + ","+ dy + ")"; 
+		});
   		
 	// expand the selected block
   	d3.select(this).transition().duration(1000)
