@@ -27,6 +27,13 @@ block feet
 	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
 
 block body
+	div.container
+		div.row
+			div.col-sm-12
+				div.panel.panel-default
+					div.panel-body
+						div#info_menu
+				#d3Area
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
 			div.row
@@ -41,13 +48,6 @@ block body
 					div.panel-body
 						div#date_picker
 							h6 Logged in as #{user.username}
-	div.container
-		div.row
-			div.col-sm-12
-				#d3Area
-				div.panel.panel-default
-					div.panel-body
-						div#info_menu
 
 	script(type='text/template', id='tmpl-blocks_nav')
 		form
