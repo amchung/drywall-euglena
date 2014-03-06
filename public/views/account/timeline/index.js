@@ -206,7 +206,7 @@ var hour = d3.time.format("%I"),
     var strInfo;
     strInfo = "<b>"+data.time+"</b>";
     strInfo = concatNewline(strInfo,"block id:"+data.id);
-    infobox.html = strInfo;
+    infobox.html(strInfo);
   }
   
   function concatNewline(str0,str1){
