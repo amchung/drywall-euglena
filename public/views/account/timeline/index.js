@@ -380,7 +380,9 @@ var hour = d3.time.format("%I"),
       this.$el.html(this.template( this.model.attributes));
     },
     reqReserve: function() {
-    	console.log("Reserve block");
+    	console.log(user.username+": Reserve block");
+    	console.log(user.id);
+    	//socket.emit('timeline', { type: 'reserveblock', user:user.username, begintime: beginT, endtime: endT});
     },
     reqSetPattern: function() {
     	console.log("Set Pattern");
