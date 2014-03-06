@@ -161,19 +161,7 @@ var hour = d3.time.format("%I"),
 			var dy = 4;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
-  		
-  	console.log(data.id);
-  	console.log(data.user_id);
-  	console.log(data.image);
-  	/*block.time = d;
-	block.lock = data[i*num_ele+1];
-	block.user_id = data[i*num_ele+2];
-	block.exp_id = data[i*num_ele+3];
-	block.pattern_id = data[i*num_ele+4];
-	block.past = data[i*num_ele+5];
-	block.admin = data[i*num_ele+6];
-	block.current = data[i*num_ele+7];
-	block.image = data[i*num_ele+8];
+
 	// expand the selected block*/
   	d3.select(this).transition().duration(1000)
         //.attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
@@ -202,7 +190,22 @@ var hour = d3.time.format("%I"),
     		document.getElementById("btn_pattern").disabled = false; 
     		break;
     }
-    infobox.html("<b>"+this.getAttribute+"</b>");
+    
+    console.log(data.id);
+  	console.log(data.user_id);
+  	console.log(data.image);
+  	/*block.time = d;
+	block.lock = data[i*num_ele+1];
+	block.user_id = data[i*num_ele+2];
+	block.exp_id = data[i*num_ele+3];
+	block.pattern_id = data[i*num_ele+4];
+	block.past = data[i*num_ele+5];
+	block.admin = data[i*num_ele+6];
+	block.current = data[i*num_ele+7];
+	block.image = data[i*num_ele+8];*/
+    
+    infobox.html("<b>"+data.id+"</b>");
+    infobox.html("<b>"+data.image+"</b>");
   }
   
   socket = io.connect('http://171.65.102.132:3006');
