@@ -213,7 +213,7 @@ var hour = d3.time.format("%I"),
 		}
 		else {
 			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
-            	previewbox.html(pastedImage);
+            	previewbox.html(image);
             	writeInfo();
             });
         }
