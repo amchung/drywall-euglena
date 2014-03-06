@@ -47,6 +47,7 @@ var hour = d3.time.format("%I"),
   }
   
   var draw = function(blockdata){
+    document.getElementById("btn_close").disabled = true; 
     d3.select("svg")
        .remove();
 	var tip = d3.tip()
@@ -209,13 +210,12 @@ var hour = d3.time.format("%I"),
     function preloader() 
 	{
 		if(data.image<0){
-			document.getElementById('preview_box').style.height="120px";
+			document.getElementById("btn_close").disabled = true; 
 			previewbox.html("[no preview]");
 			writeInfo();
 		}
 		else 
 		{
-			document.getElementById('preview_box').style.height="120px";
 			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
             	previewbox.html(image);
             	//width="50%" height="50%"
@@ -224,6 +224,7 @@ var hour = d3.time.format("%I"),
         }
         
     	function getPreview(path, callback) {
+    		document.getElementById("btn_close").disabled = false; 
             var image = new Image;
             image.src = path;
             image.setAttribute("class","img-responsive img-thumbnail");
@@ -398,5 +399,10 @@ var hour = d3.time.format("%I"),
 
   $('#d3Area').scroll(function() { 
     $('#blockArea').css('top', $(this).scrollTop());
-});  
+  });
+  
+  $('#btn_close').click(function(){
+        console.log('close the img');
+  });
+    
 }());
