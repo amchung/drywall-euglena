@@ -35,6 +35,7 @@ var hour = d3.time.format("%I"),
   var blockdata = [];
   var clockbar = $('#clock_bar');
   var infobox;
+  var previewbox;
   
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
@@ -190,10 +191,8 @@ var hour = d3.time.format("%I"),
     		document.getElementById("btn_pattern").disabled = false; 
     		break;
     }
-    
-    console.log(data.id);
-  	console.log(data.user_id);
-  	console.log(data.image);
+
+	// Display block information
   	/*block.time = d;
 	block.lock = data[i*num_ele+1];
 	block.user_id = data[i*num_ele+2];
@@ -203,10 +202,44 @@ var hour = d3.time.format("%I"),
 	block.admin = data[i*num_ele+6];
 	block.current = data[i*num_ele+7];
 	block.image = data[i*num_ele+8];*/
-    var strInfo;
-    strInfo = "<b>"+data.time+"</b>";
-    strInfo = concatNewline(strInfo,"block id:"+data.id);
-    infobox.html(strInfo);
+
+    // preloading for block preview
+    function preloader() 
+	{
+		if(data.image<0){
+			writeInfo();
+		}else{
+			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
+            	previewbox.html(pastedImage);
+            	writeInfo();
+        });
+        
+    	function getPreview(path, callback) {
+            var image = new Image;
+            image.src = path;
+            image.onload = function() {
+                callback(image);
+            };
+        }
+	}
+	
+	// write block info to infobox
+    function writeInfo(){
+		var strInfo;
+		strInfo = "<b>"+data.time+"</b>";
+		strInfo = concatNewline(strInfo,"block id:"+data.id);
+		if(data.user_id<0){
+			strInfo = concatNewline(strInfo,"[not claimed]");
+		}else{
+			strInfo = concatNewline(strInfo,"owner: "+data.user_id);
+		}
+
+		if(data.image<0){
+			strInfo = concatNewline(strInfo,"[no preview]");
+		}
+
+		infobox.html(strInfo);
+    }
   }
   
   function concatNewline(str0,str1){
@@ -333,6 +366,7 @@ var hour = d3.time.format("%I"),
       document.getElementById("btn_reserve").disabled = true; 
       document.getElementById("btn_pattern").disabled = true; 
       infobox = $('#info_box');
+      previewbox = $('#preview_box');
     },
     render: function() {
       this.$el.html(this.template( this.model.attributes));
