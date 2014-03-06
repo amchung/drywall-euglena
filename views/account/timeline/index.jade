@@ -34,11 +34,11 @@ block body
 					div.panel-body
 						h6 Time left for the current block
 						div#clock_bar.clock_bar
-				div.col-sm-3.panel.panel-default
+				div.col-sm-2.panel.panel-default
 					div.panel-body
 						h6 Hour Navigation
 						div#blocks_nav
-				div.col-sm-7.panel.panel-default
+				div.col-sm-8.panel.panel-default
 					div.panel-body
 						div#date_picker
 							h6 Logged in as #{user.username}
@@ -53,7 +53,7 @@ block body
 	script(type='text/template', id='tmpl-blocks_nav')
 		form
 			div.form-actions
-				div.btn-group.btn-group
+				div.btn-group.btn-group-sm
 					button.btn.btn-default.btn-prev(type='button') Prev
 					button.btn.btn-default.btn-now(type='button') Now
 					button.btn.btn-default.btn-next(type='button') Next

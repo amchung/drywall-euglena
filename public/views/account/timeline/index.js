@@ -5,7 +5,7 @@ var currenttime;
 var username='noname';
 
 var width = 920,
-	height = 400,
+	height = 320,
 	cellWidth = 60,
 	cellHeight = 58, // cell size
 	gapWidth = 12,
