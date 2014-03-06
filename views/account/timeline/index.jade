@@ -9,7 +9,6 @@ block neck
 	script(src="/views/account/timeline/socket_io.js")
 	style.
 		.clock-bar {font-size:240%}
-		.preview-box{max-height:200px;}
 		.block-default {stroke-width:4;stroke:black;fill:white;}
 		.block-default:hover{fill: pink;}
 		.block-locked {stroke-width:4;stroke:white;fill:lightgrey;}
@@ -39,6 +38,8 @@ block body
 						div#info_menu
 						div#info_box
 			div.col-sm-6
+					button.btn.btn-default.btn-xs(type='button')
+						span.glyphicon.glyphicon-remove
 					div#preview_box.preview-box
 		div.row
 			#d3Area
