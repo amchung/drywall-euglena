@@ -34,9 +34,6 @@ var hour = d3.time.format("%I"),
 
   var blockdata = [];
   var clockbar = $('#clock_bar');
-  var btn_enter;
-  var btn_access;
-  var btn_reserve;
   
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
@@ -137,9 +134,9 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d,i){
-    btn_enter.disabled = true;
-    btn_access.disabled = true;
-    btn_reserve.disabled = true;
+	document.getElementById("btn_enter").disabled = true; 
+    document.getElementById("btn_access").disabled = true; 
+    document.getElementById("btn_reserve").disabled = true; 
   
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
