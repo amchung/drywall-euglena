@@ -47,7 +47,7 @@ var hour = d3.time.format("%I"),
   }
   
   var draw = function(blockdata){
-    document.getElementById("btn_close").disabled = true; 
+    document.getElementById("btn_close").style.display="none" 
     d3.select("svg")
        .remove();
 	var tip = d3.tip()
@@ -210,7 +210,7 @@ var hour = d3.time.format("%I"),
     function preloader() 
 	{
 		if(data.image<0){
-			document.getElementById("btn_close").disabled = true; 
+			document.getElementById("btn_close").style.display="none";
 			previewbox.html("[no preview]");
 			writeInfo();
 		}
@@ -224,7 +224,7 @@ var hour = d3.time.format("%I"),
         }
         
     	function getPreview(path, callback) {
-    		document.getElementById("btn_close").disabled = false; 
+    		document.getElementById("btn_close").style.display="block"; 
             var image = new Image;
             image.id = "img_preview";
             image.src = path;
@@ -404,6 +404,7 @@ var hour = d3.time.format("%I"),
   
   $('#btn_close').click(function(){
     $('#img_preview').css('display','none');
+    document.getElementById("btn_close").style.display="none";
   });
     
 }());
