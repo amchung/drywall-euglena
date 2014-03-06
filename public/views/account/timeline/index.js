@@ -209,10 +209,13 @@ var hour = d3.time.format("%I"),
     function preloader() 
 	{
 		if(data.image<0){
+			previewbox.setAttribute("height:120px");
 			previewbox.html("[no preview]");
 			writeInfo();
 		}
-		else {
+		else 
+		{
+			previewbox.setAttribute("height:120px");
 			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
             	previewbox.html(image);
             	//width="50%" height="50%"
