@@ -34,6 +34,7 @@ var hour = d3.time.format("%I"),
 
   var blockdata = [];
   var clockbar = $('#clock_bar');
+  var infobox;
   
   var callBlocks = function(ticket){
 	// +- 1 hour blocks range
@@ -151,15 +152,29 @@ var hour = d3.time.format("%I"),
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
   	
+  	var data;
 	d3.select(this.parentNode).transition().duration(1000)
 		.attr("transform", function (d) 
 		{ 
+			data = d;
 			var dx = 200;
 			var dy = 4;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
   		
-	// expand the selected block
+  	console.log(data.id);
+  	console.log(data.user_id);
+  	console.log(data.image);
+  	/*block.time = d;
+	block.lock = data[i*num_ele+1];
+	block.user_id = data[i*num_ele+2];
+	block.exp_id = data[i*num_ele+3];
+	block.pattern_id = data[i*num_ele+4];
+	block.past = data[i*num_ele+5];
+	block.admin = data[i*num_ele+6];
+	block.current = data[i*num_ele+7];
+	block.image = data[i*num_ele+8];
+	// expand the selected block*/
   	d3.select(this).transition().duration(1000)
         //.attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
         //.attr("height", menuHeight);
@@ -187,6 +202,7 @@ var hour = d3.time.format("%I"),
     		document.getElementById("btn_pattern").disabled = false; 
     		break;
     }
+    infobox.html("<b>"+this.getAttribute+"</b>");
   }
   
   socket = io.connect('http://171.65.102.132:3006');
@@ -294,7 +310,7 @@ var hour = d3.time.format("%I"),
     template: _.template( $('#tmpl-info_menu').html() ),
     events: {
       'click .btn-reserve': 'reqReserve',
-      'click .btn-pattern': 'reqSetPettern',
+      'click .btn-pattern': 'reqSetPattern',
       'click .btn-enter': 'reqEnterFreeform',
       'click .btn-access': 'reqDataAccess'
     },
@@ -306,6 +322,7 @@ var hour = d3.time.format("%I"),
       document.getElementById("btn_access").disabled = true; 
       document.getElementById("btn_reserve").disabled = true; 
       document.getElementById("btn_pattern").disabled = true; 
+      infobox = $('#info_box');
     },
     render: function() {
       this.$el.html(this.template( this.model.attributes));
