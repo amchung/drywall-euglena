@@ -202,6 +202,8 @@ var hour = d3.time.format("%I"),
 	block.admin = data[i*num_ele+6];
 	block.current = data[i*num_ele+7];
 	block.image = data[i*num_ele+8];*/
+	
+	preloader();
 
     // preloading for block preview
     function preloader() 
