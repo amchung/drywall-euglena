@@ -261,7 +261,7 @@ var hour = d3.time.format("%I"),
   socket.on('connect', function(){
   	socket.emit('/timeline/#join');
   	currenttime = new Date();
-  	callBlocks(currenttime);
+  	//callBlocks(currenttime);
   	myClock=setInterval(function(){myTimer()},500);
   	console.log('connected');
   });
