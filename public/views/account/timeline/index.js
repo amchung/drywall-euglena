@@ -1,5 +1,6 @@
 /* global app:true, io:false */
 
+var socket;
 var read_socket;
 var currenttime;
 var username='noname';
