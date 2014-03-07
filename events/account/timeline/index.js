@@ -49,4 +49,4 @@ socket.emit('lookclock');
 socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
 
 //reserve block
-socket.emit('timeline', { type: 'reserveblock', user:user.username, begintime: beginT, endtime: endT});
+socket.emit('timeline', { type: 'reserveblock', user:user.username, begintime: beginT, endtime: endT});*/
