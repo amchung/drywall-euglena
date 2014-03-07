@@ -1,4 +1,4 @@
-/* global app:true */
+/* global app:true, io:false */
 
 var socket;
 var currenttime;
@@ -11,9 +11,7 @@ var width = 900,
 	gapWidth = 12,
 	gapHeight = 16
 	Dy = 64;
-	//menuWidth = 60,
-	//menuHeight = 30;
-
+	
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
 	month = d3.time.format("%b"),
@@ -26,14 +24,14 @@ var hour = d3.time.format("%I"),
 (function() {
   'use strict';
 
-	var myClock;
-
-	function myTimer(){
-		socket.emit('lookclock');
-	}
+  var clockbar = $('#clock_bar');
+  var myClock;
+  function myTimer(){
+		// >>>>>> socket: look clock
+		socket.emit('/timeline/#clock');
+  }
 
   var blockdata = [];
-  var clockbar = $('#clock_bar');
   var infobox;
   var previewbox;
   
@@ -43,8 +41,9 @@ var hour = d3.time.format("%I"),
 	beginT = d3.time.hour.offset(beginT, -1);
 	var endT = d3.time.hour.offset(beginT, 3);
 	
-	socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
-  }
+	// >>>>>> socket: call blocks
+	socket.emit('/timeline/#callblock');
+	}
   
   var draw = function(blockdata){
     document.getElementById("btn_close").style.display="none" 
@@ -121,7 +120,6 @@ var hour = d3.time.format("%I"),
 		.attr("x",10)
 		.attr("y",14)
 		.attr("dy", ".3em")
-		//.style("text-anchor", "middle")
 		.text(function(d) { 
 			var h = d.time.getHours();
 			var ampm = (h<12 ? "a":"p");
@@ -166,8 +164,6 @@ var hour = d3.time.format("%I"),
 
 	// expand the selected block*/
   	d3.select(this).transition().duration(1000)
-        //.attr("width", (cellWidth+gapWidth)*(3-(i-i%12)/12)+menuWidth)
-        //.attr("height", menuHeight);
         .attr("width", (cellWidth+gapWidth)*4)
         .attr("height", (cellHeight+gapHeight)/2);
     
@@ -218,7 +214,7 @@ var hour = d3.time.format("%I"),
 		{
 			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
             	previewbox.html(image);
-            	//width="50%" height="50%"
+            	// width="50%" height="50%"
             	writeInfo();
             });
         }
@@ -256,9 +252,21 @@ var hour = d3.time.format("%I"),
   	return strHTML
   }
   
-  socket = io.connect('http://171.65.102.132:3006');
+  var addChatMessage = function(data) {
+    $('<div/>', { text: data }).appendTo('#date_picker');
+    $("#date_picker").animate({ scrollTop: $('#date_picker')[0].scrollHeight}, 500);
+  };
   
-  socket.on('postblocks', function(data){
+  socket = io.connect();
+  socket.on('connect', function(){
+  	socket.emit('/timeline/#join');
+  	currenttime = new Date();
+  	callBlocks(currenttime);
+  	myClock=setInterval(function(){myTimer()},500);
+  	console.log('connected');
+  });
+  
+  socket.on('/timeline/#blocks-delivery', function(data){
   	blockdata = [];
   	var num_ele = 9;
 	for (var i=0;i<=data.length/num_ele;i++){
@@ -285,7 +293,11 @@ var hour = d3.time.format("%I"),
 	draw(blockdata);
   });
   
-  socket.on('server_clock', function(data){
+  socket.on('/about/#newVisitor', function(visitor) {
+    addChatMessage(visitor +': joined');
+  });
+  
+  socket.on('/timeline/#show-clock', function(data){
   	var str = data.split(":");
   	if(str[1]=='00'){
   		if((str[0]=="2")||(str[0]=="5")) {
@@ -299,23 +311,12 @@ var hour = d3.time.format("%I"),
   		clockbar.html("<b>"+data+"</b>");
   	}
   });
-
-  socket.on('message', function(msg){
-	console.log(msg);
-  });
-
-  socket.on('connect', function() {
-	console.log("Connected!");
-	currenttime = new Date();
-	callBlocks(currenttime);
-	myClock=setInterval(function(){myTimer()},500);
-  });
-
+  
   socket.on('disconnect', function() {
 	console.log('disconnected');
   });
   
-
+  
   app = app || {};
   
   app.Blocks = Backbone.Model.extend({
@@ -382,7 +383,7 @@ var hour = d3.time.format("%I"),
     reqReserve: function() {
     	console.log(user.username+": Reserve block");
     	console.log(user.id);
-    	//socket.emit('timeline', { type: 'reserveblock', user:user.username, begintime: beginT, endtime: endT});
+    	// >>>>>> socket: reserve block
     },
     reqSetPattern: function() {
     	console.log("Set Pattern");
