@@ -22,10 +22,10 @@ exports.clock = function(app, socket){
   		return function(data) {
     		socket.broadcast.to('/account/timeline').emit('/about/timeline/#show-clock', data);
   	  };
-  });
+  	});
 };
 
-exports.blocks-delivery = function(app, socket){
+/*exports.blocks-delivery = function(app, socket){
   return function(message) {
     socket.broadcast.to('/account/timeline').emit('/about/timeline/#incoming', socket.visitor, message);
   };
@@ -36,7 +36,7 @@ exports.reserve = function(app, socket){
     socket.broadcast.to('/account/timeline').emit('/about/timeline/#incoming', socket.visitor, message);
   };
 };
-
+*/
 
 
 
