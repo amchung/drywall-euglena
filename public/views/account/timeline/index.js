@@ -1,6 +1,6 @@
 /* global app:true, io:false */
 
-var socket;
+var clock_socket;
 var currenttime;
 var username='noname';
 
@@ -28,9 +28,63 @@ var hour = d3.time.format("%I"),
   var myClock;
   function myTimer(){
 		// >>>>>> socket: look clock
-		socket.emit('/timeline/#clock');
+		read_socket.emit('lookclock');
   }
+  read_socket = io.connect('http://171.65.102.132:3006');
+  
+  read_socket.on('server_clock', function(data){
+  	var str = data.split(":");
+  	if(str[1]=='00'){
+  		if((str[0]=="2")||(str[0]=="5")) {
+  			callBlocks(currenttime);
+  		}
+  	}
+  	if(str[0]=="0"){
+  		clockbar.html("<b><font color='red'>"+data+"</font><b>");
+  	}
+  	else{
+  		clockbar.html("<b>"+data+"</b>");
+  	}
+  });
 
+  read_socket.on('connect', function() {
+	console.log("Connected!");
+	currenttime = new Date();
+	//callBlocks(currenttime);
+	myClock=setInterval(function(){myTimer()},500);
+  });
+
+  read_socket.on('disconnect', function() {
+	console.log('clock lost');
+  }
+  
+  read_socket.on('postblocks', function(data){
+  	blockdata = [];
+  	var num_ele = 9;
+	for (var i=0;i<=data.length/num_ele;i++){
+		var block = new Object();
+		block.id = i;
+		
+		var d = new Date(0);
+		d.setTime(data[i*num_ele]);
+		block.time = d;
+		
+		block.lock = data[i*num_ele+1];
+		block.user_id = data[i*num_ele+2];
+		block.exp_id = data[i*num_ele+3];
+		block.pattern_id = data[i*num_ele+4];
+		block.past = data[i*num_ele+5];
+		block.admin = data[i*num_ele+6];
+		block.current = data[i*num_ele+7];
+		block.image = data[i*num_ele+8];
+		
+		blockdata.push(block);
+	}
+	blockdata.length = blockdata.length-2; 
+	console.dir(blockdata);
+	draw(blockdata);
+  });
+  
   var blockdata = [];
   var infobox;
   var previewbox;
