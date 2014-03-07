@@ -56,7 +56,7 @@ var hour = d3.time.format("%I"),
 
   read_socket.on('disconnect', function() {
 	console.log('clock lost');
-  }
+  });
   
   read_socket.on('postblocks', function(data){
   	blockdata = [];
