@@ -12,19 +12,6 @@ exports.join = function(app, socket){
   };
 };
 
-exports.clock = function(app, socket){
-	var io = require('socket.io-client');
-	var ex_socket = new io.connect("http://171.65.102.132:3006");
-	ex_socket.on('connect', function() {
-		ex_socket.emit('lookclock');
-	});
-	ex_socket.on('server_clock', function(data){
-  		return function(data) {
-    		socket.broadcast.to('/account/timeline').emit('/about/timeline/#show-clock', data);
-  	  };
-  	});
-};
-
 /*exports.blocks-delivery = function(app, socket){
   return function(message) {
     socket.broadcast.to('/account/timeline').emit('/about/timeline/#incoming', socket.visitor, message);
