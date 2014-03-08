@@ -321,7 +321,7 @@ var hour = d3.time.format("%I"),
 	draw(blockdata);
   });
   
-  socket.on('/about/#newUser', function(user) {
+  socket.on('/timeline/#newUser', function(user) {
     console.log(user.username);
     console.log(user.id);
   });
