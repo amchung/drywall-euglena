@@ -29,7 +29,7 @@ block feet
 block body
 	div.container
 		div.row
-			div.col-sm-3
+			div.col-sm-2
 				div
 					h6 Hour Navigation
 					div#blocks_nav
@@ -37,7 +37,7 @@ block body
 					div.panel-body
 						div#date_picker
 							h6 Logged in as #{user.username}
-			div.col-sm-9
+			div.col-sm-10
 				#d3Area
 			
 
@@ -52,9 +52,11 @@ block body
 							div#info_menu
 							div#info_box
 				div.col-sm-4
-					button#btn_close.btn.btn-default.btn-xs(type='button')
-						i.fa.fa-times
-					div#preview_box.preview-box
+					div.row
+						div
+							button#btn_close.btn.btn-default.btn-xs(type='button')
+								i.fa.fa-times
+						div#preview_box.preview-box
 
 	script(type='text/template', id='tmpl-blocks_nav')
 		form
