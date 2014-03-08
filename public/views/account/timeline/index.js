@@ -49,8 +49,6 @@ var hour = d3.time.format("%I"),
 
   clock_socket.on('connect', function() {
 	console.log("Clock connected!");
-	currenttime = new Date();
-	callBlocks(currenttime);
 	myClock=setInterval(function(){myTimer()},500);
   });
 
@@ -319,13 +317,12 @@ var hour = d3.time.format("%I"),
   socket.on('/timeline/#newUser', function(user) {
     console.log(user);
     currenttime = new Date();
-  	//callBlocks(currenttime);
-  	myClock=setInterval(function(){myTimer()},500);
-  	console.log('connected');
+  	callBlocks(currenttime);
+  	console.log('>>> connected');
   });
   
   socket.on('disconnect', function() {
-	console.log('disconnected');
+	console.log('>>> disconnected');
   });
   
   

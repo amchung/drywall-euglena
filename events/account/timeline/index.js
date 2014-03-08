@@ -40,6 +40,7 @@ exports.callblocks = function(app, socket){
 	var endT = message.endtime;
 	console.log(beginT);
 	console.log(endT);
+	socket.visitor = socket.handshake.user;
 	console.log(socket.visitor.id);
 	//ex_socket.emit('timeline', { type: 'callblocks', userid: socket.visitor.id, begintime: beginT, endtime: endT});
   };
