@@ -49,7 +49,7 @@ var hour = d3.time.format("%I"),
 
   clock_socket.on('connect', function() {
 	console.log("Clock connected!");
-	//myClock=setInterval(function(){myTimer()},500);
+	myClock=setInterval(function(){myTimer()},500);
   });
 
   clock_socket.on('disconnect', function() {

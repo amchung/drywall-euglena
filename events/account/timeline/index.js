@@ -26,7 +26,7 @@ exports.join = function(app, socket){
       //socket.visitor = socket.handshake.user.username;
       socket.visitor = socket.handshake.user;
     }
-
+	socket.room='timeline';
     socket.join('timeline');
     socket.broadcast.to('timeline').send('helloooo');
     socket.broadcast.to('timeline').emit('/timeline/#newUser', socket.visitor);
