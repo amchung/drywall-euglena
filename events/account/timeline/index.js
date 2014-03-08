@@ -2,6 +2,7 @@
 var io = require('socket.io-client');
 var ex_socket = new io.connect("http://171.65.102.132:3006");
 var myClock;
+var currenttime;
 
 ex_socket.on('connect', function() {
 	console.log("Connected!");
