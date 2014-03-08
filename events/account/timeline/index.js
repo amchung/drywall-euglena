@@ -35,8 +35,8 @@ exports.join = function(app, socket){
 };
 
 exports.callblocks = function(app, socket){
-	var beginT = message.begintime;
-	var endT = message.endtime;
+	var beginT = socket.message.begintime;
+	var endT = socket.message.endtime;
 	console.log(beginT);
 	console.log(endT);
 	console.log(socket.visitor.id);
