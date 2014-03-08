@@ -108,27 +108,47 @@ exports.reserveblock = function(app, socket){
     //var targetT = new Date(message.targettime);
     //var targettime = targetT.getTime();
     console.log(message.targettime);
-    var targetid;
+    var target_id;
     
     client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
 		if (err){
 			console.log("error: "+err);
 		}
-		targetid = res;
-		console.log('>>>>'+ targetid);
+		target_id = res;
+		console.log('>>>> '+ socket.visitor +' : '+target_id);
+		
+		//INCR global:next_exp_id
+		//SET tb_id:1000:user_id [userid]
+		//SET tb_id:1000:locked 1
+		//SET tb_id:1000:exp_id global:next_exp_id
+		//if freeform
+			//SET tb_id:1000:pattern_id 0
+		
+		//client.set("tb_id:"+target_id+":locked", 1);
+		//var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
+		//socket.emit('/timeline/#doneRequest', output1);
+    	//client.set("tb_id:"+target_id+":user_id", msg.user);
+		//var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked");
+		//socket.emit('/timeline/#doneRequest', output2);
 	});
-    	
-	//INCR global:next_exp_id
-	//SET tb_id:1000:user_id [userid]
-	//SET tb_id:1000:locked 1
-	//SET tb_id:1000:exp_id global:next_exp_id
-	//if freeform
-		//SET tb_id:1000:pattern_id 0
-    
-    console.log(targetid);
-    //client.set("tb_id:"+target_id+":locked", 1);
-    //client.set("tb_id:"+target_id+":user_id", msg.user);
-    socket.emit('/timeline/#doneRequest');
+	
+	function redis_set(key,value,output){
+		client.set(key,value, function(err) {
+			if (err) {
+			   console.error("error");
+			} else {
+				client.get(key, function(err, value) {
+					 if (err) {
+						 console.error("error");
+						 return "error"
+					 } else {
+						 console.log(">>>> >>"+key+" : "+ value);
+						 return output
+					 }
+				});
+			  }
+		});
+	}
   };
 };
 
