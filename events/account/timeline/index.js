@@ -124,12 +124,12 @@ exports.reserveblock = function(app, socket){
 		//if freeform
 			//SET tb_id:1000:pattern_id 0
 		
-		//client.set("tb_id:"+target_id+":locked", 1);
-		//var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
-		//socket.emit('/timeline/#doneRequest', output1);
-    	//client.set("tb_id:"+target_id+":user_id", msg.user);
-		//var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked");
-		//socket.emit('/timeline/#doneRequest', output2);
+		// lock the block
+		var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
+		socket.emit('/timeline/#doneRequest', output1);
+    	// write down owner user id
+		var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked");
+		socket.emit('/timeline/#doneRequest', output2);
 	});
 	
 	function redis_set(key,value,output){
