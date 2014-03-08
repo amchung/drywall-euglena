@@ -70,7 +70,7 @@ var hour = d3.time.format("%I"),
 	var endT = d3.time.hour.offset(beginT, 3);
 	console.log(beginT);
 	console.log(endT);
-	read_socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
+	//read_socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
 	}
   
   var draw = function(blockdata){
@@ -318,8 +318,7 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('/timeline/#newUser', function(user) {
-    console.log(user.username);
-    console.log(user.id);
+    console.log(user);
     currenttime = new Date();
   	//callBlocks(currenttime);
   	myClock=setInterval(function(){myTimer()},500);

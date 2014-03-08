@@ -1,7 +1,9 @@
 'use strict';
+var test='test string';
 
 exports.join = function(app, socket){
 	console.log("////////////join//////////////");
+	console.log(test);
   return function() {
     socket.visitor = 'guest';
     if (socket.handshake.user) {
