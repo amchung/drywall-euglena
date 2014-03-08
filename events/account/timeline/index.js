@@ -29,8 +29,8 @@ exports.join = function(app, socket){
       console.log(socket.visitor.id);
     }
 
-    socket.join('/account/timeline/');
-    socket.broadcast.to('/account/timeline/').emit('/timeline/#newUser', socket.visitor);
+    socket.join('timeline');
+    socket.broadcast.to('timeline').emit('/timeline/#newUser', socket.visitor);
   };
 };
 
