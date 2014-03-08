@@ -321,6 +321,10 @@ var hour = d3.time.format("%I"),
   	console.log('>>> connected');
   });
   
+  socket.on('message', function (message) {
+  	console.log(message);
+  });
+  
   socket.on('disconnect', function() {
 	console.log('>>> disconnected');
   });

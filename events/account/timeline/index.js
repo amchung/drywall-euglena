@@ -25,11 +25,10 @@ exports.join = function(app, socket){
     if (socket.handshake.user) {
       //socket.visitor = socket.handshake.user.username;
       socket.visitor = socket.handshake.user;
-      console.log(socket.visitor.username);
-      console.log(socket.visitor.id);
     }
 
     socket.join('timeline');
+    socket.broadcast.to('timeline').send('helloooo');
     socket.broadcast.to('timeline').emit('/timeline/#newUser', socket.visitor);
   };
 };
