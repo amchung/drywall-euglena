@@ -69,7 +69,7 @@ var hour = d3.time.format("%I"),
 	var endT = d3.time.hour.offset(beginT, 3);
 	console.log(beginT);
 	console.log(endT);
-	socket.emit('/timeline/#callblocks', { type: 'callblocks', begintime: beginT, endtime: endT});
+	socket.emit('/timeline/#callblocks', { begintime: beginT, endtime: endT});
 	}
   
   var draw = function(blockdata){
@@ -393,7 +393,7 @@ var hour = d3.time.format("%I"),
     reqReserve: function() {
     	console.log("Sent request: Reserve a Block "+selected_block_time);
     	// >>>>>> socket: reserve block
-    	//socket.emit('/timeline/#reserveblock', { type: 'callblocks', targetid: selected_block_id});
+    	socket.emit('/timeline/#reserveblock', { targetid: selected_block_time});
     	
     },
     reqSetPattern: function() {

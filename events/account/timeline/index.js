@@ -105,9 +105,9 @@ exports.reserveblock = function(app, socket){
 	var _ = require('underscore');
 	
   	// convert dates and get block ids
-    var targetT = new Date(message.targettime);
-    var targettime = targetT.getTime();
-    var targetid = client.get("tb_time:"+targettime+":tb_id");
+    //var targetT = new Date(message.targettime);
+    //var targettime = targetT.getTime();
+    var targetid = client.get("tb_time:"+message.targettime+":tb_id");
         			
 	//INCR global:next_exp_id
 	//SET tb_id:1000:user_id [userid]
