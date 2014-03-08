@@ -388,18 +388,17 @@ var hour = d3.time.format("%I"),
       this.$el.html(this.template( this.model.attributes));
     },
     reqReserve: function() {
-    	console.log(user.username+": Reserve block");
-    	console.log(user.id);
+    	console.log("Sent request: Reserve a Block");
     	// >>>>>> socket: reserve block
     },
     reqSetPattern: function() {
-    	console.log("Set Pattern");
+    	console.log("Sent request: Set Pattern");
     },
     reqDataAccess: function() {
-    	console.log("Data Access");
+    	console.log("Sent request: Data Access");
     },
     reqEnterFreeform: function() {
-    	console.log("Enter");
+    	console.log("Sent request: Enter");
     }
   });
   
