@@ -27,6 +27,7 @@ exports.join = function(app, socket){
     if (socket.handshake.user) {
       //socket.visitor = socket.handshake.user.username;
       socket.visitor = socket.handshake.user;
+      console.log(socket.visitor.username);
     }
 
     socket.join('/account/timeline/');
