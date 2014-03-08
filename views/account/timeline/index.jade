@@ -29,25 +29,25 @@ block feet
 block body
 	div.container
 		div.row
-			div.col-sm-2
-				div
-					h6 Hour Navigation
-					div#blocks_nav
-				div.panel.panel-default
-					div.panel-body
-						div#date_picker
-							h6 Logged in as #{user.username}
-			div.col-sm-10
-				#d3Area
+			div.col-sm-4
+				h6 Hour Navigation
+				div#blocks_nav
+			div.col-sm-8.panel.panel-default
+				div.panel-body
+					div#date_picker
+						h6 Logged in as #{user.username}
+		div.row
+			#d3Area
 			
 
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
 			div.row
-				div.col-sm-4
-					h6 Time left for the current block
-					div#clock_bar.clock-bar
-				div.col-sm-4.panel.panel-default
+				div.col-sm-2.panel.panel-default
+					div.panel-body
+						h6 Time left for the current block
+						div#clock_bar.clock-bar
+				div.col-sm-6.panel.panel-default
 						div.panel-body
 							div#info_menu
 							div#info_box
