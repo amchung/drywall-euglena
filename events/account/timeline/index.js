@@ -34,6 +34,7 @@ exports.callblocks = function(app, socket){
   return function(message) {
 	var redis = require("redis"),
 	 client = redis.createClient();
+	var _ = require('underscore');
 	 
 	// get max limit
 	var timeline_end;
