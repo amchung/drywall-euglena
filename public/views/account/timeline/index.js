@@ -197,9 +197,9 @@ var hour = d3.time.format("%I"),
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
 	// expand the selected block*/
-  	d3.select(this).transition().duration(1000)
-        .attr("width", (cellWidth+gapWidth)*4)
-        .attr("height", (cellHeight+gapHeight)/2);
+  	//d3.select(this).transition().duration(1000)
+    //    .attr("width", (cellWidth+gapWidth)*4)
+    //    .attr("height", (cellHeight+gapHeight)/2);
     
     switch(this.getAttribute("class"))
     {
