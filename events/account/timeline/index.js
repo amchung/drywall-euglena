@@ -108,8 +108,15 @@ exports.reserveblock = function(app, socket){
     //var targetT = new Date(message.targettime);
     //var targettime = targetT.getTime();
     console.log(message.targettime);
-    var targetid = client.get("tb_time:"+message.targettime+":tb_id");
-        			
+    var targetid;
+    
+    client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
+		if (err){
+			console.log("error: "+err);
+		}
+		targetid = res;
+	});
+    	
 	//INCR global:next_exp_id
 	//SET tb_id:1000:user_id [userid]
 	//SET tb_id:1000:locked 1
