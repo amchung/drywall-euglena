@@ -259,7 +259,7 @@ var hour = d3.time.format("%I"),
 		}
 		infobox.html(strInfo);
     }
-    selected_block_time = data.time;
+    selected_block_time = data.blocktime;
   }
   
   function concatNewline(str0,str1){
@@ -297,6 +297,7 @@ var hour = d3.time.format("%I"),
 		block.admin = data[i*num_ele+6];
 		block.current = data[i*num_ele+7];
 		block.image = data[i*num_ele+8];
+		block.blocktime = data[i*num_ele];
 		
 		blockdata.push(block);
 	}
