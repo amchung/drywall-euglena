@@ -1,5 +1,6 @@
 'use strict';
-var ex_socket = require('socket.io-client')('http://171.65.102.132:3006');
+var io = require('socket.io-client');
+var ex_socket = new io.connect("http://171.65.102.132:3006");
 var myClock;
 
 ex_socket.on('connect', function() {
