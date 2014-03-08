@@ -12,7 +12,7 @@ var width = 500,
 	cellHeight = 58, // cell size
 	gapWidth = 16,
 	gapHeight = 12
-	Dx = 70;
+	Dx = 90;
 	
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
