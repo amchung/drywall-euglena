@@ -11,8 +11,8 @@ var width = 900,
 	cellWidth = 60,
 	cellHeight = 58, // cell size
 	gapWidth = 12,
-	gapHeight = 16
-	Dy = 64;
+	gapHeight = 16,
+	Dy = 70;
 	
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -101,7 +101,7 @@ var hour = d3.time.format("%I"),
 			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
 			//var dy =  i%12 * (cellHeight+gapHeight);
 			var dx = i%12 * (cellWidth+gapWidth);
-			var dy = Dy+(i-i%12)/12*(cellHeight+gapHeight);
+			var dy = (i-i%12)/12*(cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		})
 		.on('mouseover', tip.show)
@@ -184,11 +184,18 @@ var hour = d3.time.format("%I"),
 		.attr("transform", function (d) 
 		{ 
 			data = d;
-			var dx = 200;
-			var dy = 4;
+			var dx = i%12 * (cellWidth+gapWidth);
+			var dy = 0;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
-
+	d3.select(this.parentNode).transition().duration(1000)
+		.attr("transform", function (d) 
+		{ 
+			data = d;
+			var dx = i%12 * (cellWidth+gapWidth);
+			var dy = 8;
+			return "translate(" + dx + ","+ dy + ")"; 
+		});
 	// expand the selected block*/
   	d3.select(this).transition().duration(1000)
         .attr("width", (cellWidth+gapWidth)*4)
