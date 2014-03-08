@@ -288,7 +288,7 @@ var hour = d3.time.format("%I"),
   	socket.emit('/timeline/#join');
   });
   
-  socket.on('/timeline/#blocks-delivery', function(data){
+  socket.on('postblocks', function(data){
   	blockdata = [];
   	var num_ele = 9;
 	for (var i=0;i<=data.length/num_ele;i++){
