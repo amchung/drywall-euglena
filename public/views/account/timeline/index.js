@@ -310,7 +310,7 @@ var hour = d3.time.format("%I"),
   	console.log('>>> timeline connected');
   });
   
-  socket.on('/timeline/#doneRequest', function{
+  socket.on('/timeline/#doneRequest', function() {
   	console.log('>>> block reserved');
   	callBlocks(currenttime);
   });
