@@ -1,6 +1,7 @@
 /* global app:true, io:false */
 
 var socket;
+var userid;
 var clock_socket;
 var currenttime;
 
@@ -315,10 +316,10 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('/timeline/#newUser', function(user) {
-    console.log(user);
+    userid=user;
     currenttime = new Date();
   	callBlocks(currenttime);
-  	console.log('>>> connected');
+  	console.log('>>> timeline connected');
   });
   
   socket.on('message', function (message) {
@@ -326,7 +327,7 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('disconnect', function() {
-	console.log('>>> disconnected');
+	console.log('>>> timeline disconnected');
   });
   
   

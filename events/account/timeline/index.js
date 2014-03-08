@@ -15,7 +15,7 @@ ex_socket.on('disconnect', function() {
 });
 
 ex_socket.on('postblocks', function(data){
-  	socket.broadcast.to('/account/timeline/').emit('/timeline/#postBlocks', data);
+  	socket.emit('/timeline/#postBlocks', data);
 });
 
 exports.join = function(app, socket){
@@ -24,8 +24,7 @@ exports.join = function(app, socket){
     socket.visitor = 'guest';
     if (socket.handshake.user) {
       //socket.visitor = socket.handshake.user.username;
-      socket.visitor.id = socket.handshake.user.id;
-      socket.visitor.username = socket.handshake.user.username;
+      socket.visitor = socket.handshake.user.id;
     }
     socket.emit('/timeline/#newUser', socket.visitor);
   };
@@ -38,8 +37,8 @@ exports.callblocks = function(app, socket){
 	console.log(beginT);
 	console.log(endT);
 	socket.visitor = socket.handshake.user;
-	console.log(socket.visitor.id);
-	//ex_socket.emit('timeline', { type: 'callblocks', userid: socket.visitor.id, begintime: beginT, endtime: endT});
+	// need to add user log on the timeline server-side
+	ex_socket.emit('timeline', { type: 'callblocks', userid: socket.visitor.id, begintime: beginT, endtime: endT});
   };
 };
 
