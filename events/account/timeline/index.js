@@ -26,10 +26,7 @@ exports.join = function(app, socket){
       //socket.visitor = socket.handshake.user.username;
       socket.visitor = socket.handshake.user;
     }
-    socket.join('/account/timeline/');
-    console.log('/account/timeline/');
-    socket.send('helloooo');
-    socket.broadcast.to('/account/timeline/').emit('/timeline/#newUser', socket.visitor);
+    socket.emit('/timeline/#newUser', socket.visitor);
   };
 };
 
