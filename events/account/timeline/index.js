@@ -14,6 +14,10 @@ ex_socket.on('disconnect', function() {
 	console.log('>>> Clock lost');
 });
 
+ex_socket.on('postblocks', function(data){
+  	socket.broadcast.to('/account/timeline/').emit('/timeline/#postBlocks', data);
+});
+
 exports.join = function(app, socket){
 	console.log("////////////join//////////////");
   return function() {
@@ -31,6 +35,12 @@ exports.join = function(app, socket){
 };
 
 exports.callblocks = function(app, socket){
+	var beginT = message.begintime;
+	var endT = message.endtime;
+	console.log(beginT);
+	console.log(endT);
+	console.log(socket.visitor.id);
+	//ex_socket.emit('timeline', { type: 'callblocks', userid: socket.visitor.id, begintime: beginT, endtime: endT});
   return function(message) {
     socket.broadcast.to('/account/timeline/').emit('/timeline/#postBlock', socket.visitor, message);
   };

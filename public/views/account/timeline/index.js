@@ -1,9 +1,8 @@
 /* global app:true, io:false */
 
 var socket;
-var read_socket;
+var clock_socket;
 var currenttime;
-var userid='noname';
 
 var width = 900,
 	height = 500,
@@ -31,9 +30,9 @@ var hour = d3.time.format("%I"),
 		// >>>>>> socket: look clock
 		read_socket.emit('lookclock');
   }
-  read_socket = io.connect('http://171.65.102.132:3006');
+  clock_socket = io.connect('http://171.65.102.132:3006');
   
-  read_socket.on('server_clock', function(data){
+  clock_socket.on('server_clock', function(data){
   	var str = data.split(":");
   	if(str[1]=='00'){
   		if((str[0]=="2")||(str[0]=="5")) {
@@ -48,14 +47,14 @@ var hour = d3.time.format("%I"),
   	}
   });
 
-  read_socket.on('connect', function() {
-	console.log("Connected!");
+  clock_socket.on('connect', function() {
+	console.log("Clock connected!");
 	currenttime = new Date();
-	//callBlocks(currenttime);
+	callBlocks(currenttime);
 	myClock=setInterval(function(){myTimer()},500);
   });
 
-  read_socket.on('disconnect', function() {
+  clock_socket.on('disconnect', function() {
 	console.log('clock lost');
   });
   
@@ -70,7 +69,7 @@ var hour = d3.time.format("%I"),
 	var endT = d3.time.hour.offset(beginT, 3);
 	console.log(beginT);
 	console.log(endT);
-	//read_socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
+	socket.emit('/timeline/#callblocks', { type: 'callblocks', begintime: beginT, endtime: endT});
 	}
   
   var draw = function(blockdata){
