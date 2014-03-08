@@ -10,13 +10,13 @@ exports.join = function(app, socket){
     }
 
     socket.join('/account/timeline/');
-    socket.broadcast.to('/account/timeline').emit('/timeline/#newUser', socket.visitor);
+    socket.broadcast.to('/account/timeline/').emit('/timeline/#newUser', socket.visitor);
   };
 };
 
 exports.callblocks = function(app, socket){
   return function(message) {
-    socket.broadcast.to('/account/timeline').emit('/timeline/#postBlock', socket.visitor, message);
+    socket.broadcast.to('/account/timeline/').emit('/timeline/#postBlock', socket.visitor, message);
   };
 };
 
