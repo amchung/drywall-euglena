@@ -4,27 +4,27 @@ exports.join = function(app, socket){
   return function() {
     socket.visitor = 'guest';
     if (socket.handshake.user) {
-      socket.visitor = socket.handshake.user.username;
+      //socket.visitor = socket.handshake.user.username;
+      socket.visitor = socket.handshake.user;
     }
 
     socket.join('/account/timeline/');
-    socket.broadcast.to('/account/timeline').emit('/account/timeline/#newVisitor', socket.visitor);
+    socket.broadcast.to('/account/timeline').emit('/account/timeline/#newUser', socket.visitor);
   };
 };
 
-/*exports.blocks-delivery = function(app, socket){
+exports.blocks-delivery = function(app, socket){
   return function(message) {
-    socket.broadcast.to('/account/timeline').emit('/about/timeline/#incoming', socket.visitor, message);
+    socket.broadcast.to('/account/timeline').emit('/about/timeline/#postBlock', socket.visitor, message);
   };
 };
 
-exports.reserve = function(app, socket){
+/*exports.reserve = function(app, socket){
   return function(message) {
     socket.broadcast.to('/account/timeline').emit('/about/timeline/#incoming', socket.visitor, message);
   };
 };
 */
-
 
 
 /*

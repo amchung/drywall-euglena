@@ -3,7 +3,7 @@
 var socket;
 var read_socket;
 var currenttime;
-var username='noname';
+var userid='noname';
 
 var width = 900,
 	height = 500,
@@ -59,33 +59,6 @@ var hour = d3.time.format("%I"),
 	console.log('clock lost');
   });
   
-  read_socket.on('postblocks', function(data){
-  	blockdata = [];
-  	var num_ele = 9;
-	for (var i=0;i<=data.length/num_ele;i++){
-		var block = new Object();
-		block.id = i;
-		
-		var d = new Date(0);
-		d.setTime(data[i*num_ele]);
-		block.time = d;
-		
-		block.lock = data[i*num_ele+1];
-		block.user_id = data[i*num_ele+2];
-		block.exp_id = data[i*num_ele+3];
-		block.pattern_id = data[i*num_ele+4];
-		block.past = data[i*num_ele+5];
-		block.admin = data[i*num_ele+6];
-		block.current = data[i*num_ele+7];
-		block.image = data[i*num_ele+8];
-		
-		blockdata.push(block);
-	}
-	blockdata.length = blockdata.length-2; 
-	console.dir(blockdata);
-	draw(blockdata);
-  });
-  
   var blockdata = [];
   var infobox;
   var previewbox;
@@ -95,9 +68,9 @@ var hour = d3.time.format("%I"),
 	var beginT = d3.time.hour.floor(ticket);
 	beginT = d3.time.hour.offset(beginT, -1);
 	var endT = d3.time.hour.offset(beginT, 3);
-	
-	// >>>>>> socket: call blocks
-	socket.emit('/timeline/#callblock');
+	console.log(beginT);
+	console.log(endT);
+	read_socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
 	}
   
   var draw = function(blockdata){
@@ -348,23 +321,9 @@ var hour = d3.time.format("%I"),
 	draw(blockdata);
   });
   
-  socket.on('/about/#newVisitor', function(visitor) {
-    addChatMessage(visitor +': joined');
-  });
-  
-  socket.on('/timeline/#show-clock', function(data){
-  	var str = data.split(":");
-  	if(str[1]=='00'){
-  		if((str[0]=="2")||(str[0]=="5")) {
-  			callBlocks(currenttime);
-  		}
-  	}
-  	if(str[0]=="0"){
-  		clockbar.html("<b><font color='red'>"+data+"</font><b>");
-  	}
-  	else{
-  		clockbar.html("<b>"+data+"</b>");
-  	}
+  socket.on('/about/#newUser', function(user) {
+    console.log(user.username);
+    console.log(user.id);
   });
   
   socket.on('disconnect', function() {
@@ -377,7 +336,7 @@ var hour = d3.time.format("%I"),
   app.Blocks = Backbone.Model.extend({
     url: '/account/timeline/',
     defaults: {
-      username: '',
+      userid: '',
       timestamp: ''
     }
   });
