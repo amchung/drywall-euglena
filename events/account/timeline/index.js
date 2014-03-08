@@ -46,11 +46,8 @@ exports.callblocks = function(app, socket){
 	});
 	
 	// convert dates and get block ids
-	var beginT = message.begintime;
-	var endT = message.endtime;
-	console.log(beginT);
-	console.log(endT);
-	
+	var beginT = new Date(message.begintime);
+    var endT = new Date(message.endtime);
 	var begintime = beginT.getTime();
 	var endtime = endT.getTime();
 	
