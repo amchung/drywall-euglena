@@ -251,7 +251,7 @@ var hour = d3.time.format("%I"),
     function writeInfo(){
 		var strInfo;
 		strInfo = "<b>"+data.time+"</b>";
-		strInfo = concatNewline(strInfo,"block id:"+data.id);
+		strInfo = concatNewline(strInfo,"block time:"+data.blocktime);
 		if(data.user_id<0){
 			strInfo = concatNewline(strInfo,"[not claimed]");
 		}else{
