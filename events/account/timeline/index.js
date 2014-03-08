@@ -115,6 +115,7 @@ exports.reserveblock = function(app, socket){
 			console.log("error: "+err);
 		}
 		targetid = res;
+		console.log('>>>>'+ targetid);
 	});
     	
 	//INCR global:next_exp_id
