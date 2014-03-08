@@ -1,5 +1,22 @@
 'use strict';
-var test='test string';
+var ex_socket=io.connect('http://171.65.102.132:3006');
+var myClock;
+
+ex_socket.on('connect', function() {
+	console.log("Connected!");
+	currenttime = new Date();
+	//callBlocks(currenttime);
+	myClock=setInterval(function(){myTimer()},500);
+});
+
+ex_socket.on('disconnect', function() {
+	console.log('clock lost');
+});
+
+function myTimer(){
+	// >>>>>> socket: look clock
+	ex_socket.emit('lookclock');
+}
 
 exports.join = function(app, socket){
 	console.log("////////////join//////////////");
