@@ -5,20 +5,14 @@ var myClock;
 var currenttime;
 
 ex_socket.on('connect', function() {
-	console.log("Connected!");
+	console.log(">>>> Connected!");
 	currenttime = new Date();
 	//callBlocks(currenttime);
-	myClock=setInterval(function(){myTimer()},500);
 });
 
 ex_socket.on('disconnect', function() {
-	console.log('clock lost');
+	console.log('>>> Clock lost');
 });
-
-function myTimer(){
-	// >>>>>> socket: look clock
-	ex_socket.emit('lookclock');
-}
 
 exports.join = function(app, socket){
 	console.log("////////////join//////////////");
@@ -28,6 +22,7 @@ exports.join = function(app, socket){
       //socket.visitor = socket.handshake.user.username;
       socket.visitor = socket.handshake.user;
       console.log(socket.visitor.username);
+      console.log(socket.visitor.id);
     }
 
     socket.join('/account/timeline/');
