@@ -393,7 +393,7 @@ var hour = d3.time.format("%I"),
     reqReserve: function() {
     	console.log("Sent request: Reserve a Block "+selected_block_time);
     	// >>>>>> socket: reserve block
-    	socket.emit('/timeline/#reserveblock', { targetid: selected_block_time});
+    	socket.emit('/timeline/#reserveblock', { targettime: selected_block_time});
     	
     },
     reqSetPattern: function() {
