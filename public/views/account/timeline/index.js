@@ -6,13 +6,13 @@ var clock_socket;
 var currenttime;
 var selected_block_time;
 
-var width = 500,
-	height = 900,
+var width = 900,
+	height = 500,
 	cellWidth = 60,
 	cellHeight = 58, // cell size
-	gapWidth = 16,
-	gapHeight = 12
-	Dx = 90;
+	gapWidth = 12,
+	gapHeight = 16
+	Dy = 64;
 	
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
@@ -98,10 +98,10 @@ var hour = d3.time.format("%I"),
 		.attr("class", "block")
 		.attr("transform", function (d,i) 
 		{ 
-			var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			var dy =  i%12 * (cellHeight+gapHeight);
-			//var dx = i%12 * (cellWidth+gapWidth);
-			//var dy = Dy+(i-i%12)/12*(cellHeight+gapHeight);
+			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
+			//var dy =  i%12 * (cellHeight+gapHeight);
+			var dx = i%12 * (cellWidth+gapWidth);
+			var dy = Dy+(i-i%12)/12*(cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		})
 		.on('mouseover', tip.show)
@@ -174,10 +174,8 @@ var hour = d3.time.format("%I"),
   	d3.selectAll(".block").transition().duration(1000)
   		.attr("transform", function (d,i) 
 		{ 
-			//var dx = i%12 * (cellWidth+gapWidth);
-			//var dy = Dy+(i-i%12)/12*(cellHeight+gapHeight);
-			var dx = Dx+(i-i%12)/12*(cellWidth+gapWidth);
-			var dy =  i%12 * (cellHeight+gapHeight);
+			var dx = i%12 * (cellWidth+gapWidth);
+			var dy = Dy+(i-i%12)/12*(cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
   	
@@ -186,15 +184,15 @@ var hour = d3.time.format("%I"),
 		.attr("transform", function (d) 
 		{ 
 			data = d;
-			var dx = 4;
+			var dx = 200;
 			var dy = 4;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
 
 	// expand the selected block*/
   	d3.select(this).transition().duration(1000)
-        .attr("width", (cellWidth+gapWidth))
-        .attr("height", (cellHeight+gapHeight)*2);
+        .attr("width", (cellWidth+gapWidth)*4)
+        .attr("height", (cellHeight+gapHeight)/2);
     
     switch(this.getAttribute("class"))
     {

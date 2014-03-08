@@ -29,31 +29,32 @@ block feet
 block body
 	div.container
 		div.row
-			div.col-sm-4
+			div.col-sm-3
 				div
-					h6 Time left for the current block
-					div#clock_bar.clock-bar
-				div
-					div.panel.panel-default
-						div.panel-body
-							div#info_menu
-							div#info_box
-				div
-					button#btn_close.btn.btn-default.btn-xs(type='button')
-						i.fa.fa-times
-					div#preview_box.preview-box
-			div.col-sm-4
+					h6 Hour Navigation
+					div#blocks_nav
+				div.panel.panel-default
+					div.panel-body
+						div#date_picker
+							h6 Logged in as #{user.username}
+			div.col-sm-9
 				#d3Area
+			
+
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
 			div.row
 				div.col-sm-4
-					h6 Hour Navigation
-					div#blocks_nav
-				div.col-sm-8.panel.panel-default
-					div.panel-body
-						div#date_picker
-							h6 Logged in as #{user.username}
+					h6 Time left for the current block
+					div#clock_bar.clock-bar
+				div.col-sm-4.panel.panel-default
+						div.panel-body
+							div#info_menu
+							div#info_box
+				div.col-sm-4
+					button#btn_close.btn.btn-default.btn-xs(type='button')
+						i.fa.fa-times
+					div#preview_box.preview-box
 
 	script(type='text/template', id='tmpl-blocks_nav')
 		form
