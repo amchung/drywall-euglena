@@ -13,7 +13,7 @@ exports.join = function(app, socket){
   };
 };
 
-exports.blocks-delivery = function(app, socket){
+exports.callblocks = function(app, socket){
   return function(message) {
     socket.broadcast.to('/account/timeline').emit('/about/timeline/#postBlock', socket.visitor, message);
   };
