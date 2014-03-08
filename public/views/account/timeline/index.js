@@ -4,6 +4,7 @@ var socket;
 var userid;
 var clock_socket;
 var currenttime;
+var selected_block_id;
 
 var width = 900,
 	height = 500,
@@ -258,6 +259,7 @@ var hour = d3.time.format("%I"),
 		}
 		infobox.html(strInfo);
     }
+    selected_block_id = data.id;
   }
   
   function concatNewline(str0,str1){
@@ -388,8 +390,10 @@ var hour = d3.time.format("%I"),
       this.$el.html(this.template( this.model.attributes));
     },
     reqReserve: function() {
-    	console.log("Sent request: Reserve a Block");
+    	console.log("Sent request: Reserve a Block "+selected_block_id);
     	// >>>>>> socket: reserve block
+    	//socket.emit('/timeline/#reserveblock', { type: 'callblocks', targetid: selected_block_id});
+    	
     },
     reqSetPattern: function() {
     	console.log("Sent request: Set Pattern");

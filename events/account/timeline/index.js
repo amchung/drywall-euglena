@@ -98,7 +98,7 @@ exports.callblocks = function(app, socket){
   };
 };
 
-exports.reserve = function(app, socket){
+exports.reserveblock = function(app, socket){
   return function(message) {
   	var redis = require("redis"),
 	 client = redis.createClient();
