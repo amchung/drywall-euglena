@@ -214,17 +214,6 @@ var hour = d3.time.format("%I"),
     		document.getElementById("btn_pattern").disabled = false; 
     		break;
     }
-
-	// Display block information
-  	/*block.time = d;
-	block.lock = data[i*num_ele+1];
-	block.user_id = data[i*num_ele+2];
-	block.exp_id = data[i*num_ele+3];
-	block.pattern_id = data[i*num_ele+4];
-	block.past = data[i*num_ele+5];
-	block.admin = data[i*num_ele+6];
-	block.current = data[i*num_ele+7];
-	block.image = data[i*num_ele+8];*/
 	
 	preloader();
 
@@ -240,7 +229,6 @@ var hour = d3.time.format("%I"),
 		{
 			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
             	previewbox.html(image);
-            	// width="50%" height="50%"
             	writeInfo();
             });
         }
@@ -288,7 +276,7 @@ var hour = d3.time.format("%I"),
   	socket.emit('/timeline/#join');
   });
   
-  socket.on('postblocks', function(data){
+  socket.on('/timeline/#postblocks', function(data){
   	blockdata = [];
   	var num_ele = 9;
 	for (var i=0;i<=data.length/num_ele;i++){
@@ -320,6 +308,11 @@ var hour = d3.time.format("%I"),
     currenttime = new Date();
   	callBlocks(currenttime);
   	console.log('>>> timeline connected');
+  });
+  
+  socket.on('/timeline/#doneRequest', function{
+  	console.log('>>> block reserved');
+  	callBlocks(currenttime);
   });
   
   socket.on('message', function (message) {

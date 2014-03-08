@@ -1,22 +1,4 @@
 'use strict';
-/*var io = require('socket.io-client');
-var ex_socket = new io.connect("http://171.65.102.132:3006");
-var myClock;
-var currenttime;
-
-ex_socket.on('connect', function() {
-	console.log(">>>> Connected!");
-	currenttime = new Date();
-	//callBlocks(currenttime);
-});
-
-ex_socket.on('disconnect', function() {
-	console.log('>>> Clock lost');
-});
-
-ex_socket.on('postblocks', function(data){
-  	socket.emit('/timeline/#postBlocks', data);
-});*/
 
 exports.join = function(app, socket){
 	console.log("////////////join//////////////");
@@ -107,7 +89,7 @@ exports.callblocks = function(app, socket){
 			if(err){
 				console.log("error: "+err);
 			}else{
-				socket.emit('postblocks',  _.toArray(res) );
+				socket.emit('/timeline/#postblocks',  _.toArray(res) );
 			}
 		});
 	}
@@ -116,12 +98,30 @@ exports.callblocks = function(app, socket){
   };
 };
 
-/*exports.reserve = function(app, socket){
+exports.reserve = function(app, socket){
   return function(message) {
-    socket.broadcast.to('/account/timeline').emit('/timeline/#incoming', socket.visitor, message);
+  	var redis = require("redis"),
+	 client = redis.createClient();
+	var _ = require('underscore');
+	
+  	// convert dates and get block ids
+    var targetT = new Date(message.targettime);
+    var targettime = targetT.getTime();
+    var targetid = client.get("tb_time:"+targettime+":tb_id");
+        			
+	//INCR global:next_exp_id
+	//SET tb_id:1000:user_id [userid]
+	//SET tb_id:1000:locked 1
+	//SET tb_id:1000:exp_id global:next_exp_id
+	//if freeform
+		//SET tb_id:1000:pattern_id 0
+    
+    console.log(targetid);
+    //client.set("tb_id:"+target_id+":locked", 1);
+    //client.set("tb_id:"+target_id+":user_id", msg.user);
+    socket.emit('/timeline/#doneRequest');
   };
 };
-*/
 
 
 /*
