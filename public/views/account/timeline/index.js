@@ -28,7 +28,7 @@ var hour = d3.time.format("%I"),
   var myClock;
   function myTimer(){
 		// >>>>>> socket: look clock
-		read_socket.emit('lookclock');
+		clock_socket.emit('lookclock');
   }
   clock_socket = io.connect('http://171.65.102.132:3006');
   

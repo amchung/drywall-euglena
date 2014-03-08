@@ -35,14 +35,13 @@ exports.join = function(app, socket){
 };
 
 exports.callblocks = function(app, socket){
-	var beginT = socket.message.begintime;
-	var endT = socket.message.endtime;
+  return function(message) {
+  	var beginT = message.begintime;
+	var endT = message.endtime;
 	console.log(beginT);
 	console.log(endT);
 	console.log(socket.visitor.id);
 	//ex_socket.emit('timeline', { type: 'callblocks', userid: socket.visitor.id, begintime: beginT, endtime: endT});
-  return function(message) {
-    socket.broadcast.to('/account/timeline/').emit('/timeline/#postBlock', socket.visitor, message);
   };
 };
 
