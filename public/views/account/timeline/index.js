@@ -202,8 +202,8 @@ var hour = d3.time.format("%I"),
 			return class_name;
 		})
     	.attr('font-family', 'FontAwesome')
-    	.attr('font-size', '150%' )
-    	.attr("x",24)
+    	.style('font-size', '150%' )
+    	.attr("x",26)
 		.attr("y",34)
     	.text(function(d) { return '\uf023' })
 		.style("display", function(d) {
