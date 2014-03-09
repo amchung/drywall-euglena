@@ -6,10 +6,10 @@ exports.join = function(app, socket){
     socket.visitor = 'guest';
     if (socket.handshake.user) {
       //socket.visitor = socket.handshake.user.username;
-      socket.visitor = socket.handshake.user.id;
+      //socket.visitor = socket.handshake.user.id;
       socket.username = socket.handshake.user.username;
     }
-    socket.emit('/timeline/#newUser', socket.visitor);
+    socket.emit('/timeline/#newUser', socket.username);
   };
 };
 

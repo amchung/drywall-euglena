@@ -1,7 +1,7 @@
 /* global app:true, io:false */
 
 var socket;
-var userid;
+var myname;
 var clock_socket;
 var currenttime;
 var selected_block_time;
@@ -111,7 +111,7 @@ var hour = d3.time.format("%I"),
 		.attr("class", function (d)
 		{
 			var class_name;
-			if (d.id==userid){
+			if (d.username==myname){
 				class_name="my-block";
 			}else{
 				class_name="not-my-block";
@@ -131,20 +131,33 @@ var hour = d3.time.format("%I"),
 		})
 		.attr("width", cellWidth)
 		.attr("height", cellHeight)
-		.attr("block-hour", function (d,i){
-			var class_name;
-			var hour = (i-i%12)/12;
-			
-			if (hour==1){
-				class_name="current";
+		.attr("locked", function (d){
+			if (d.lock=="1"){
+				return true;
 			}else{
-				if (hour>1){
-					class_name="future";
-				}else{
-					var class_name="past";
-				}
+				return false
 			}
-			return class_name;
+		})
+		.attr("mine", function (d){
+			if (d.username==myname){
+				return true;
+			}else{
+				return false
+			}
+		})
+		.attr("past", function (d){
+			if (d.past=="1"){
+				return true;
+			}else{
+				return false
+			}
+		})
+		.attr("current", function (d){
+			if (d.current=="1"){
+				return true;
+			}else{
+				return false
+			}
 		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
@@ -154,7 +167,7 @@ var hour = d3.time.format("%I"),
 		.attr("class", function (d)
 		{
 			var class_name;
-			if (d.id==userid){
+			if (d.username==myname){
 				class_name="my-block-name";
 			}else{
 				class_name="not-my-block-name";
@@ -182,6 +195,7 @@ var hour = d3.time.format("%I"),
 	document.getElementById("btn_enter").disabled = true; 
     document.getElementById("btn_access").disabled = true; 
     document.getElementById("btn_reserve").disabled = true; 
+    document.getElementById("btn_pattern").disabled = true; 
   
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
@@ -218,27 +232,45 @@ var hour = d3.time.format("%I"),
     //    .attr("width", (cellWidth+gapWidth)*4)
     //    .attr("height", (cellHeight+gapHeight)/2);
     
-    switch(this.getAttribute("class"))
-    {
-    	case "block-locked":
-    		document.getElementById("btn_enter").disabled = true; 
-    		document.getElementById("btn_access").disabled = false; 
-    		document.getElementById("btn_reserve").disabled = true;
-    		document.getElementById("btn_pattern").disabled = true; 
-    		break;
-    	case "block-current":
-    		document.getElementById("btn_enter").disabled = false; 
-    		document.getElementById("btn_access").disabled = true; 
-    		document.getElementById("btn_reserve").disabled = true;
-    		document.getElementById("btn_pattern").disabled = true; 
-    		break;
-    	case "block-default":
-    		document.getElementById("btn_enter").disabled = true; 
-    		document.getElementById("btn_access").disabled = true; 
-    		document.getElementById("btn_reserve").disabled = false;
-    		document.getElementById("btn_pattern").disabled = false; 
-    		break;
-    }
+    // switch(this.getAttribute("class"))
+//     {
+//     	case "block-locked":
+//     		document.getElementById("btn_enter").disabled = true; 
+//     		document.getElementById("btn_access").disabled = false; 
+//     		document.getElementById("btn_reserve").disabled = true;
+//     		document.getElementById("btn_pattern").disabled = true; 
+//     		break;
+//     	case "block-current":
+//     		document.getElementById("btn_enter").disabled = false; 
+//     		document.getElementById("btn_access").disabled = true; 
+//     		document.getElementById("btn_reserve").disabled = true;
+//     		document.getElementById("btn_pattern").disabled = true; 
+//     		break;
+//     	case "block-default":
+//     		document.getElementById("btn_enter").disabled = true; 
+//     		document.getElementById("btn_access").disabled = true; 
+//     		document.getElementById("btn_reserve").disabled = false;
+//     		document.getElementById("btn_pattern").disabled = false; 
+//     		break;
+//     }
+	
+	if(this.getAttribute("mine")){
+		if(this.getAttribute("past")){
+			document.getElementById("btn_access").disabled = false; 
+		}else{
+			if(this.getAttribute("current")){
+				document.getElementById("btn_enter").disabled = false;
+			}else{
+				document.getElementById("btn_pattern").disabled = false; 
+			}
+		}
+	}else{
+		if(this.getAttribute("lock")){
+			console.log("this is locked block");
+		}else{
+			document.getElementById("btn_reserve").disabled = false;
+		}
+	}
 	
 	preloader();
 
@@ -331,7 +363,7 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('/timeline/#newUser', function(user) {
-    userid=user;
+    myname=user;
     currenttime = new Date();
   	callBlocks(currenttime);
   	console.log('>>> timeline connected');
