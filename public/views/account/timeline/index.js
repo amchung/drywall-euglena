@@ -67,8 +67,8 @@ var hour = d3.time.format("%I"),
 	var beginT = d3.time.hour.floor(ticket);
 	beginT = d3.time.hour.offset(beginT, -1);
 	var endT = d3.time.hour.offset(beginT, 3);
-	console.log(beginT);
-	console.log(endT);
+	//console.log(beginT);
+	//console.log(endT);
 	socket.emit('/timeline/#callblocks', { begintime: beginT, endtime: endT});
 	}
   
@@ -191,7 +191,7 @@ var hour = d3.time.format("%I"),
 		.on('mouseout', tip.hide);
 		
 	block.append("i")
-		.attr("class", "fa.fa-lock")
+		.attr("class", "fa fa-lock")
 		.style("display", function(d) {
 			return d.lock == true ? null : "none"; 
 		});
@@ -235,16 +235,16 @@ var hour = d3.time.format("%I"),
 		});
 	
 	if(this.getAttribute("mine")=="true"){
-		console.log("MINE!!!");
+		//console.log("MINE!!!");
 		if(this.getAttribute("past")=="true"){
-			console.log("from the past");
+			//console.log("from the past");
 			document.getElementById("btn_access").disabled = false; 
 		}else{
 			if(this.getAttribute("current")=="true"){
-				console.log("current block");
+				//console.log("current block");
 				document.getElementById("btn_enter").disabled = false;
 			}else{
-				console.log("into the future");
+				//console.log("into the future");
 				document.getElementById("btn_pattern").disabled = false; 
 			}
 		}
