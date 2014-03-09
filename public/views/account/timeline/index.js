@@ -227,24 +227,14 @@ var hour = d3.time.format("%I"),
 			var dy = 8;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
-
-	var isit_mine = this.getAttribute("mine");
-	var isit_past = this.getAttribute("past");
-	var isit_current = this.getAttribute("current");
-	var isit_locked = this.getAttribute("locked");
 	
-	console.log(isit_mine);
-	console.log(isit_past);
-	console.log(isit_current);
-	console.log(isit_locked);
-	
-	if(isit_mine){
+	if(this.getAttribute("mine")=="true"){
 		console.log("MINE!!!");
-		if(isit_past){
+		if(this.getAttribute("past")=="true"){
 			console.log("from the past");
 			document.getElementById("btn_access").disabled = false; 
 		}else{
-			if(isit_current){
+			if(this.getAttribute("current")=="true"){
 				console.log("current block");
 				document.getElementById("btn_enter").disabled = false;
 			}else{
@@ -253,7 +243,7 @@ var hour = d3.time.format("%I"),
 			}
 		}
 	}else{
-		if(isit_locked){
+		if(this.getAttribute("locked")=="true"){
 			console.log("this is locked block");
 		}else{
 			document.getElementById("btn_reserve").disabled = false;
