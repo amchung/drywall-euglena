@@ -9,13 +9,15 @@ block neck
 	script(src="/views/account/timeline/socket_io.js")
 	style.
 		.clock-bar {font-size:240%}
-		.block-default {stroke-width:4;stroke:black;fill:white;}
-		.block-default:hover{fill: pink;}
-		.block-locked {stroke-width:4;stroke:white;fill:lightgrey;}
-		.block-locked:hover{fill: pink;}
-		.block-current {stroke-width:4;stroke: tomato;fill:white;}
-		.block-current:hover{fill: pink;}
-		.block-name{fill: rgb(33,33,33);font-size:85%}
+		.not-my-block{fill:white;}
+		.not-my-block:hover{fill: #F41C54;}
+		.my-block{fill:#19C2DE;}
+		.my-block:hover{fill: #F41C54;}
+		.block-past{stroke-width:4;stroke: #DCDDD8;}
+		.block-current{stroke-width:4;stroke: #F41C54;}
+		.block-future{stroke-width:4;stroke: #1E2125;}
+		.my-block-name{fill:#1E2125;font-size:85%}
+		.not-my-block-name{fill:white;font-size:85%}
 		.d3-tip{line-height: 1;font-weight: bold;padding: 12px;background: rgba(0, 0, 0, 0.8);color: #fff;border-radius: 2px;pointer-events: none;}
 		.d3-tip:after{box-sizing: border-box;display: inline;font-size: 10px;width: 100%;line-height: 1;color: rgba(0, 0, 0, 0.8);position: absolute;pointer-events: none;}
 		.d3-tip.n:after{content: "\25BC";margin: -1px 0 0 0;top: 100%;left: 0;text-align: center;}

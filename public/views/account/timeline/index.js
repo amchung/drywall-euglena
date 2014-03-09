@@ -110,15 +110,22 @@ var hour = d3.time.format("%I"),
 	block.append("rect")
 		.attr("class", function (d)
 		{
-			if (d.lock==1){
-				class_name="block-locked";
+			if (d.id==userid){
+				class_name="my-block";
 			}else{
-				if (d.current==1){
-					class_name="block-current";
+				class_name="not-my-block";
+			}
+			
+			if (d.past){
+				class_name=class_name+" block-past";
+			}else{
+				if (d.current){
+					class_name=class_name+" block-past";
 				}else{
-					var class_name="block-default";
+					class_name=class_name+" block-future"
 				}
 			}
+			
 			return class_name;
 		})
 		.attr("width", cellWidth)
@@ -143,7 +150,15 @@ var hour = d3.time.format("%I"),
 		.on('click', mouseclick);
 	
 	block.append("text")
-		.attr("class", "block-name")
+		.attr("class", function (d)
+		{
+			if (d.id==userid){
+				class_name="my-block-name";
+			}else{
+				class_name="not-my-block-name";
+			}
+			return class_name;
+		})
 		.attr("x",10)
 		.attr("y",14)
 		.attr("dy", ".3em")
@@ -320,8 +335,8 @@ var hour = d3.time.format("%I"),
   	console.log('>>> timeline connected');
   });
   
-  socket.on('/timeline/#doneRequest', function() {
-  	console.log('>>> block reserved');
+  socket.on('/timeline/#doneRequest', function(msg) {
+  	console.log(msg);
   	callBlocks(currenttime);
   });
   
