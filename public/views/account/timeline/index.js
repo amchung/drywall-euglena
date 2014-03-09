@@ -253,7 +253,7 @@ var hour = d3.time.format("%I"),
 //     		document.getElementById("btn_pattern").disabled = false; 
 //     		break;
 //     }
-	
+	console.log(this.getAttribute("class"));
 	if(this.getAttribute("mine")){
 		if(this.getAttribute("past")){
 			document.getElementById("btn_access").disabled = false; 
