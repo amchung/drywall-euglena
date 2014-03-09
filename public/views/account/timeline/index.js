@@ -117,11 +117,11 @@ var hour = d3.time.format("%I"),
 				class_name="not-my-block";
 			}
 			
-			if (d.past){
+			if (d.past=="1"){
 				class_name=class_name+" block-past";
 			}else{
-				if (d.current){
-					class_name=class_name+" block-past";
+				if (d.current=="1"){
+					class_name=class_name+" block-current";
 				}else{
 					class_name=class_name+" block-future"
 				}
