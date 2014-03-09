@@ -268,7 +268,7 @@ var hour = d3.time.format("%I"),
 			}
 		}
 	}else{
-		if(this.getAttribute("lock")){
+		if(this.getAttribute("locked")){
 			console.log("this is locked block");
 		}else{
 			document.getElementById("btn_reserve").disabled = false;
