@@ -120,11 +120,14 @@ exports.reserveblock = function(app, socket){
 		console.log(socket.visitor);
 		
 		// lock the block
-		//var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
-		//socket.emit('/timeline/#doneRequest', output1);
+		var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
+		socket.emit('/timeline/#doneRequest', output1);
     	// write down owner user id
-		//var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked");
-		//socket.emit('/timeline/#doneRequest', output2);
+		var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked: id");
+		socket.emit('/timeline/#doneRequest', output2);
+		
+		var output3 = redis_set("tb_id:"+target_id+":username",socket.username,"block locked: user"+socket.username);
+		socket.emit('/timeline/#doneRequest', output3);
 		
 		//INCR global:next_exp_id
 		//SET tb_id:1000:exp_id global:next_exp_id
