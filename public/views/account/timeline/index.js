@@ -191,7 +191,19 @@ var hour = d3.time.format("%I"),
 		.on('mouseout', tip.hide);
 		
 	block.append('text')
+		.attr("class", function (d)
+		{
+			var class_name;
+			if (d.username==myname){
+				class_name="my-block-name";
+			}else{
+				class_name="not-my-block-name";
+			}
+			return class_name;
+		})
     	.attr('font-family', 'FontAwesome')
+    	.attr("x",24)
+		.attr("y",24)
     	.text(function(d) { return '\uf023' })
 		.style("display", function(d) {
 			return d.lock == true ? null : "none"; 
