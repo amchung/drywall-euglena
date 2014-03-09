@@ -190,8 +190,9 @@ var hour = d3.time.format("%I"),
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
 		
-	block.append("i")
-		.attr("class", "fa fa-lock")
+	block.append('text')
+    	.attr('font-family', 'FontAwesome')
+    	.text(function(d) { return '\uf023' })
 		.style("display", function(d) {
 			return d.lock == true ? null : "none"; 
 		});
