@@ -309,7 +309,11 @@ var hour = d3.time.format("%I"),
 		if(data.user_id<0){
 			strInfo = concatNewline(strInfo,"[not claimed]");
 		}else{
-			strInfo = concatNewline(strInfo,"owner: "+data.username);
+			if(data.username=="-1"){
+				strInfo = concatNewline(strInfo,"no one claimed this block");
+			}else{
+				strInfo = concatNewline(strInfo,"owner: "+data.username);
+			}
 		}
 		infobox.html(strInfo);
     }
