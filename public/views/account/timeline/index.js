@@ -203,8 +203,8 @@ var hour = d3.time.format("%I"),
 		})
     	.attr('font-family', 'FontAwesome')
     	.style('font-size', '150%' )
-    	.attr("x",24)
-		.attr("y",42)
+    	.attr("x",22)
+		.attr("y",44)
     	.text(function(d) { return '\uf023' })
 		.style("display", function(d) {
 			return d.lock == true ? null : "none"; 
