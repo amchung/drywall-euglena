@@ -110,6 +110,7 @@ var hour = d3.time.format("%I"),
 	block.append("rect")
 		.attr("class", function (d)
 		{
+			var class_name;
 			if (d.id==userid){
 				class_name="my-block";
 			}else{
@@ -152,6 +153,7 @@ var hour = d3.time.format("%I"),
 	block.append("text")
 		.attr("class", function (d)
 		{
+			var class_name;
 			if (d.id==userid){
 				class_name="my-block-name";
 			}else{
