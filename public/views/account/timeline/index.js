@@ -257,21 +257,33 @@ var hour = d3.time.format("%I"),
 	console.log(this.getAttribute("mine"));
 	console.log(this.getAttribute("past"));
 	console.log(this.getAttribute("locked"));
-	if(this.getAttribute("mine")==true){
-		if(this.getAttribute("past")==true){
-			document.getElementById("btn_access").disabled = false; 
+	if(this.getAttribute("mine")==true) {
+		if(this.getAttribute("past")==true) {
+			document.getElementById("btn_enter").disabled = true; 
+    		document.getElementById("btn_access").disabled = false; 
+    		document.getElementById("btn_reserve").disabled = true;
+    		document.getElementById("btn_pattern").disabled = true;
 		}else{
-			if(this.getAttribute("current")){
-				document.getElementById("btn_enter").disabled = false;
+			if(this.getAttribute("current")) {
+				document.getElementById("btn_enter").disabled = false; 
+    			document.getElementById("btn_access").disabled = true; 
+    			document.getElementById("btn_reserve").disabled = true;
+    			document.getElementById("btn_pattern").disabled = true;
 			}else{
-				document.getElementById("btn_pattern").disabled = false; 
+				document.getElementById("btn_enter").disabled = true; 
+    			document.getElementById("btn_access").disabled = true; 
+    			document.getElementById("btn_reserve").disabled = true;
+    			document.getElementById("btn_pattern").disabled = false;
 			}
 		}
 	}else{
-		if(this.getAttribute("locked")==true){
+		if(this.getAttribute("locked")==true) {
 			console.log("this is locked block");
 		}else{
-			document.getElementById("btn_reserve").disabled = false;
+			document.getElementById("btn_enter").disabled = true; 
+    		document.getElementById("btn_access").disabled = true; 
+    		document.getElementById("btn_reserve").disabled = false;
+    		document.getElementById("btn_pattern").disabled = true;
 		}
 	}
 	
