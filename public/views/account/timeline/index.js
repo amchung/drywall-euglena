@@ -189,6 +189,12 @@ var hour = d3.time.format("%I"),
 		})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide);
+		
+	block.append("i")
+		.attr("class", "fa.fa-lock")
+		.style("display", function(d) {
+			return d.lock == true ? null : "none"; 
+		});
   }
   
   function mouseclick(d,i){
