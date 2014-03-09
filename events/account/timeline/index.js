@@ -7,6 +7,7 @@ exports.join = function(app, socket){
     if (socket.handshake.user) {
       //socket.visitor = socket.handshake.user.username;
       socket.visitor = socket.handshake.user.id;
+      socket.username = socket.handshake.user.username;
     }
     socket.emit('/timeline/#newUser', socket.visitor);
   };
@@ -77,7 +78,7 @@ exports.callblocks = function(app, socket){
 		for (var i=first;i<=last;i++){
 			commands.push(["get","tb_id:"+i+":time"]);
 			commands.push(["get","tb_id:"+i+":locked"]);
-			commands.push(["get","tb_id:"+i+":user_id"]);
+			commands.push(["get","tb_id:"+i+":username"]);
 			commands.push(["get","tb_id:"+i+":exp_id"]);
 			commands.push(["get","tb_id:"+i+":pattern_id"]);
 			commands.push(["get","tb_id:"+i+":past"]);
@@ -115,14 +116,15 @@ exports.reserveblock = function(app, socket){
 			console.log("error: "+err);
 		}
 		target_id = res;
-		console.log('>>>> '+ socket.visitor +' : '+target_id);
+		console.log('>>>> '+ socket.username +' : '+target_id);
+		console.log(socket.visitor);
 		
 		// lock the block
-		var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
-		socket.emit('/timeline/#doneRequest', output1);
+		//var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
+		//socket.emit('/timeline/#doneRequest', output1);
     	// write down owner user id
-		var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked");
-		socket.emit('/timeline/#doneRequest', output2);
+		//var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked");
+		//socket.emit('/timeline/#doneRequest', output2);
 		
 		//INCR global:next_exp_id
 		//SET tb_id:1000:exp_id global:next_exp_id

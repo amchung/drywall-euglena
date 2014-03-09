@@ -262,7 +262,7 @@ var hour = d3.time.format("%I"),
 		if(data.user_id<0){
 			strInfo = concatNewline(strInfo,"[not claimed]");
 		}else{
-			strInfo = concatNewline(strInfo,"owner: "+data.user_id);
+			strInfo = concatNewline(strInfo,"owner: "+data.username);
 		}
 		infobox.html(strInfo);
     }
@@ -297,7 +297,7 @@ var hour = d3.time.format("%I"),
 		block.time = d;
 		
 		block.lock = data[i*num_ele+1];
-		block.user_id = data[i*num_ele+2];
+		block.username = data[i*num_ele+2];
 		block.exp_id = data[i*num_ele+3];
 		block.pattern_id = data[i*num_ele+4];
 		block.past = data[i*num_ele+5];
