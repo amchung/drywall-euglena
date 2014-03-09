@@ -256,7 +256,7 @@ var hour = d3.time.format("%I"),
 	console.log(this.getAttribute("class"));
 	console.log(this.getAttribute("mine"));
 	console.log(this.getAttribute("past"));
-	console.log(this.getAttribute("lock"));
+	console.log(this.getAttribute("locked"));
 	if(this.getAttribute("mine")){
 		if(this.getAttribute("past")){
 			document.getElementById("btn_access").disabled = false; 
