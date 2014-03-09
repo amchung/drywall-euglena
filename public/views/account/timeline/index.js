@@ -159,6 +159,7 @@ var hour = d3.time.format("%I"),
 				return false
 			}
 		})
+		.style('text-align','center')
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
 		.on('click', mouseclick);
@@ -174,7 +175,7 @@ var hour = d3.time.format("%I"),
 			}
 			return class_name;
 		})
-		.attr("x",10)
+		//.attr("x",10)
 		.attr("y",14)
 		.attr("dy", ".3em")
 		.text(function(d) { 
@@ -203,7 +204,6 @@ var hour = d3.time.format("%I"),
 		})
     	.attr('font-family', 'FontAwesome')
     	.style('font-size', '150%' )
-    	.style('text-align','center')
     	//.attr("x",26)
 		.attr("y",42)
     	.text(function(d) { return '\uf023' })
