@@ -228,18 +228,23 @@ var hour = d3.time.format("%I"),
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
 
-	console.log(this.getAttribute("class"));
-	console.log(this.getAttribute("mine"));
-	console.log(this.getAttribute("past"));
-	console.log(this.getAttribute("locked"));
+	var isit_mine = this.getAttribute("mine");
+	var isit_past = this.getAttribute("past");
+	var isit_current = this.getAttribute("current");
+	var isit_locked = this.getAttribute("locked");
 	
-	if(this.getAttribute("mine")){
+	console.log(isit_mine);
+	console.log(isit_past);
+	console.log(isit_current);
+	console.log(isit_locked);
+	
+	if(isit_mine){
 		console.log("MINE!!!");
-		if(this.getAttribute("past")){
+		if(isit_past){
 			console.log("from the past");
 			document.getElementById("btn_access").disabled = false; 
 		}else{
-			if(this.getAttribute("current")){
+			if(isit_current){
 				console.log("current block");
 				document.getElementById("btn_enter").disabled = false;
 			}else{
@@ -248,7 +253,7 @@ var hour = d3.time.format("%I"),
 			}
 		}
 	}else{
-		if(this.getAttribute("locked")){
+		if(isit_locked){
 			console.log("this is locked block");
 		}else{
 			document.getElementById("btn_reserve").disabled = false;
