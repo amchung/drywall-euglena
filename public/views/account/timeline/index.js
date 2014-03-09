@@ -7,12 +7,12 @@ var currenttime;
 var selected_block_time;
 
 var width = 900,
-	height = 500,
+	height = 300,
 	cellWidth = 60,
 	cellHeight = 58, // cell size
 	gapWidth = 12,
 	gapHeight = 16,
-	Dy = 70;
+	Dy = 80;
 	
 var hour = d3.time.format("%I"),
 	minute = d3.time.format("%M"),
