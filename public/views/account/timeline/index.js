@@ -74,6 +74,7 @@ var hour = d3.time.format("%I"),
   
   var draw = function(blockdata){
     document.getElementById("btn_close").style.display="none" 
+    document.getElementById("sub-buttons").style.display="none";
     d3.select("svg")
        .remove();
 	var tip = d3.tip()
@@ -212,6 +213,7 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d,i){
+  	document.getElementById("sub-buttons").style.display="block";
 	document.getElementById("btn_enter").disabled = true; 
     document.getElementById("btn_access").disabled = true; 
     document.getElementById("btn_reserve").disabled = true; 
@@ -250,17 +252,13 @@ var hour = d3.time.format("%I"),
 		});
 	
 	if(this.getAttribute("mine")=="true"){
-		//console.log("MINE!!!");
 		if(this.getAttribute("past")=="true"){
-			//console.log("from the past");
 			document.getElementById("btn_access").disabled = false; 
 		}else{
 			if(this.getAttribute("current")=="true"){
-				//console.log("current block");
 				document.getElementById("btn_enter").disabled = false;
 				document.getElementById("btn_cancel").disabled = false; 
 			}else{
-				//console.log("into the future");
 				document.getElementById("btn_pattern").disabled = false; 
 				document.getElementById("btn_cancel").disabled = false; 
 			}
