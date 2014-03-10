@@ -118,14 +118,11 @@ exports.reserveblock = function(app, socket){
 		console.log(socket.visitor);
 		
 		// lock the block
-		var output1 = redis_set("tb_id:"+target_id+":locked",1,"block locked");
-		socket.emit('/timeline/#doneRequest', output1);
-    	// write down owner user id
-		var output2 = redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked: id");
-		socket.emit('/timeline/#doneRequest', output2);
+		redis_set("tb_id:"+target_id+":locked",1,"block locked");
 		
-		var output3 = redis_set("tb_id:"+target_id+":username",socket.username,"block locked: user"+socket.username);
-		socket.emit('/timeline/#doneRequest', output3);
+    	// write down owner user id
+		redis_set("tb_id:"+target_id+":user_id",socket.visitor,"block locked: id");
+		redis_set("tb_id:"+target_id+":username",socket.username,"block locked: user "+socket.username);
 		
 		//INCR global:next_exp_id
 		//SET tb_id:1000:exp_id global:next_exp_id
@@ -141,10 +138,10 @@ exports.reserveblock = function(app, socket){
 				client.get(key, function(err, value) {
 					 if (err) {
 						 console.error("error");
-						 return "error"
+						 socket.emit('/timeline/#doneRequest', "error");
 					 } else {
 						 console.log(">>>> >>"+key+" : "+ value);
-						 return output
+						 socket.emit('/timeline/#doneRequest', output);
 					 }
 				});
 			  }
@@ -178,14 +175,11 @@ exports.cancelblock = function(app, socket){
 			block_owner = res;
 			if (block_owner==socket.visitor){
 				// lock the block
-				var output1 = redis_set("tb_id:"+target_id+":locked",0,"block un-locked");
-				socket.emit('/timeline/#doneRequest', output1);
+				redis_set("tb_id:"+target_id+":locked",0,"block un-locked");
+				
 				// write down owner user id
-				var output2 = redis_set("tb_id:"+target_id+":user_id",-1,"block un-locked: id");
-				socket.emit('/timeline/#doneRequest', output2);
-		
-				var output3 = redis_set("tb_id:"+target_id+":username",-1,"block un-locked: user"+socket.username);
-				socket.emit('/timeline/#doneRequest', output3);
+				redis_set("tb_id:"+target_id+":user_id",-1,"block un-locked: id");
+				redis_set("tb_id:"+target_id+":username",-1,"block un-locked: user"+socket.username);
 					
 				//INCR global:next_exp_id
 				//SET tb_id:1000:exp_id global:next_exp_id
@@ -203,10 +197,10 @@ exports.cancelblock = function(app, socket){
 				client.get(key, function(err, value) {
 					 if (err) {
 						 console.error("error");
-						 return "error"
+						 socket.emit('/timeline/#doneRequest', "error");
 					 } else {
 						 console.log(">>>> >>"+key+" : "+ value);
-						 return output
+						 socket.emit('/timeline/#doneRequest', output);
 					 }
 				});
 			  }
