@@ -55,7 +55,7 @@ var hour = d3.time.format("%I"),
   });
 
   clock_socket.on('disconnect', function() {
-	console.log('clock lost');
+	console.log('Clock lost');
   });
   
   var blockdata = [];
@@ -360,7 +360,7 @@ var hour = d3.time.format("%I"),
 		blockdata.push(block);
 	}
 	blockdata.length = blockdata.length-2; 
-	console.dir(blockdata);
+	//console.dir(blockdata);
 	draw(blockdata);
   });
   
