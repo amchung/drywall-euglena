@@ -74,7 +74,7 @@ var hour = d3.time.format("%I"),
   
   var draw = function(blockdata){
     document.getElementById("btn_close").style.display="none" 
-    document.getElementById("sub-buttons").style.display="none";
+    
     d3.select("svg")
        .remove();
 	var tip = d3.tip()
@@ -213,12 +213,17 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d,i){
-  	document.getElementById("sub-buttons").style.display="block";
 	document.getElementById("btn_enter").disabled = true; 
     document.getElementById("btn_access").disabled = true; 
     document.getElementById("btn_reserve").disabled = true; 
     document.getElementById("btn_pattern").disabled = true; 
     document.getElementById("btn_cancel").disabled = true; 
+    
+    document.getElementById("btn_enter").style.display="none";
+    document.getElementById("btn_access/").style.display="none";
+    document.getElementById("btn_pattern").style.display="none";
+    document.getElementById("btn_cancel").style.display="none";
+      
   
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
@@ -254,13 +259,18 @@ var hour = d3.time.format("%I"),
 	if(this.getAttribute("mine")=="true"){
 		if(this.getAttribute("past")=="true"){
 			document.getElementById("btn_access").disabled = false; 
+			document.getElementById("btn_access").style.display="block";
 		}else{
 			if(this.getAttribute("current")=="true"){
 				document.getElementById("btn_enter").disabled = false;
 				document.getElementById("btn_cancel").disabled = false; 
+				document.getElementById("btn_enter").style.display="block";
+				document.getElementById("btn_cancel").style.display="block";
 			}else{
 				document.getElementById("btn_pattern").disabled = false; 
 				document.getElementById("btn_cancel").disabled = false; 
+				document.getElementById("btn_pattern").style.display="block";
+				document.getElementById("btn_cancel").style.display="block";
 			}
 		}
 	}else{
@@ -440,6 +450,11 @@ var hour = d3.time.format("%I"),
       this.model = new app.Blocks();
       this.listenTo(this.model, 'sync', this.render);
       this.render();
+      document.getElementById("btn_enter").style.display="none";
+      document.getElementById("btn_access/").style.display="none";
+      document.getElementById("btn_pattern").style.display="none";
+      document.getElementById("btn_cancel").style.display="none";
+      
       document.getElementById("btn_enter").disabled = true; 
       document.getElementById("btn_access").disabled = true; 
       document.getElementById("btn_reserve").disabled = true; 
