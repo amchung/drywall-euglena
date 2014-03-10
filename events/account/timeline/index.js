@@ -106,8 +106,6 @@ exports.reserveblock = function(app, socket){
 	var _ = require('underscore');
 	
   	// convert dates and get block ids
-    //var targetT = new Date(message.targettime);
-    //var targettime = targetT.getTime();
     console.log(message.targettime);
     var target_id;
     
@@ -156,6 +154,65 @@ exports.reserveblock = function(app, socket){
 };
 
 
+exports.cancelblock = function(app, socket){
+  return function(message) {
+  	var redis = require("redis"),
+	 client = redis.createClient();
+	var _ = require('underscore');
+	
+    console.log(message.targettime);
+    var target_id;
+    
+    client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
+		if (err){
+			console.log("error: "+err);
+		}
+		target_id = res;
+		console.log('>>>> '+ socket.username +' : '+target_id);
+		console.log(socket.visitor);
+		client.get("tb_id:"+target_id+":user_id", function(err,res){
+			if (err){
+				console.log("error: "+err);
+			}
+			blockowner = res;
+			if (blockowner==socket.visitor){
+				// lock the block
+				var output1 = redis_set("tb_id:"+target_id+":locked",0,"block un-locked");
+				socket.emit('/timeline/#doneRequest', output1);
+				// write down owner user id
+				var output2 = redis_set("tb_id:"+target_id+":user_id",-1,"block un-locked: id");
+				socket.emit('/timeline/#doneRequest', output2);
+		
+				var output3 = redis_set("tb_id:"+target_id+":username",-1,"block un-locked: user"+socket.username);
+				socket.emit('/timeline/#doneRequest', output3);
+					
+				//INCR global:next_exp_id
+				//SET tb_id:1000:exp_id global:next_exp_id
+				//if freeform
+					//SET tb_id:1000:pattern_id 0
+			}
+		});
+	});
+	
+	function redis_set(key,value,output){
+		client.set(key,value, function(err) {
+			if (err) {
+			   console.error("error");
+			} else {
+				client.get(key, function(err, value) {
+					 if (err) {
+						 console.error("error");
+						 return "error"
+					 } else {
+						 console.log(">>>> >>"+key+" : "+ value);
+						 return output
+					 }
+				});
+			  }
+		});
+	}
+  };
+};
 /*
 
 // look clock

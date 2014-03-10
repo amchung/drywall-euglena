@@ -432,7 +432,8 @@ var hour = d3.time.format("%I"),
       'click .btn-reserve': 'reqReserve',
       'click .btn-pattern': 'reqSetPattern',
       'click .btn-enter': 'reqEnterFreeform',
-      'click .btn-access': 'reqDataAccess'
+      'click .btn-access': 'reqDataAccess',
+      'click .btn-cancel': 'reqCancel'
     },
     initialize: function() {
       this.model = new app.Blocks();
@@ -442,6 +443,7 @@ var hour = d3.time.format("%I"),
       document.getElementById("btn_access").disabled = true; 
       document.getElementById("btn_reserve").disabled = true; 
       document.getElementById("btn_pattern").disabled = true; 
+      document.getElementById("btn_cancel").disabled = true; 
       infobox = $('#info_box');
       previewbox = $('#preview_box');
     },
@@ -452,7 +454,6 @@ var hour = d3.time.format("%I"),
     	console.log("Sent request: Reserve a Block "+selected_block_time);
     	// >>>>>> socket: reserve block
     	socket.emit('/timeline/#reserveblock', { targettime: selected_block_time});
-    	
     },
     reqSetPattern: function() {
     	console.log("Sent request: Set Pattern");
@@ -462,6 +463,11 @@ var hour = d3.time.format("%I"),
     },
     reqEnterFreeform: function() {
     	console.log("Sent request: Enter");
+    },
+    reqCancel: function() {
+    	console.log("Sent request: Cancel Block Reservation");
+    	// >>>>>> socket: cancel reserve block
+    	socket.emit('/timeline/#cancelblock', { targettime: selected_block_time});
     }
   });
   
