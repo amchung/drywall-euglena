@@ -139,11 +139,11 @@ exports.reserveblock = function(app, socket){
 					 if (err) {
 						 console.error("error");
 						 //socket.emit('/timeline/#doneRequest', "error");
-						 io.sockets.emit('/timeline/#doneRequest', "error")
+						 app.io.sockets.emit('/timeline/#doneRequest', "error")
 					 } else {
 						 console.log(">>>> >>"+key+" : "+ value);
 						 //socket.emit('/timeline/#doneRequest', output);
-						 io.sockets.emit('/timeline/#doneRequest', "output")
+						 app.io.sockets.emit('/timeline/#doneRequest', "output")
 					 }
 				});
 			  }
@@ -200,11 +200,11 @@ exports.cancelblock = function(app, socket){
 					 if (err) {
 						 console.error("error");
 						 //socket.emit('/timeline/#doneRequest', "error");
-						 io.sockets.emit('/timeline/#doneRequest', "error")
+						 app.io.sockets.emit('/timeline/#doneRequest', "error")
 					 } else {
 						 console.log(">>>> >>"+key+" : "+ value);
 						 //socket.emit('/timeline/#doneRequest', output);
-						 io.sockets.emit('/timeline/#doneRequest', "output")
+						 app.io.sockets.emit('/timeline/#doneRequest', "output")
 					 }
 				});
 			  }
