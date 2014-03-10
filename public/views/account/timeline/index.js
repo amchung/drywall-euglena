@@ -220,7 +220,7 @@ var hour = d3.time.format("%I"),
     document.getElementById("btn_cancel").disabled = true; 
     
     document.getElementById("btn_enter").style.display="none";
-    document.getElementById("btn_access/").style.display="none";
+    document.getElementById("btn_access").style.display="none";
     document.getElementById("btn_pattern").style.display="none";
     document.getElementById("btn_cancel").style.display="none";
       
