@@ -450,16 +450,18 @@ var hour = d3.time.format("%I"),
       this.model = new app.Blocks();
       this.listenTo(this.model, 'sync', this.render);
       this.render();
-      document.getElementById("btn_enter").style.display="none";
-      document.getElementById("btn_access/").style.display="none";
-      document.getElementById("btn_pattern").style.display="none";
-      document.getElementById("btn_cancel").style.display="none";
       
       document.getElementById("btn_enter").disabled = true; 
       document.getElementById("btn_access").disabled = true; 
       document.getElementById("btn_reserve").disabled = true; 
       document.getElementById("btn_pattern").disabled = true; 
       document.getElementById("btn_cancel").disabled = true; 
+      
+      document.getElementById("btn_enter").style.display="none";
+      document.getElementById("btn_access").style.display="none";
+      document.getElementById("btn_pattern").style.display="none";
+      document.getElementById("btn_cancel").style.display="none";
+      
       infobox = $('#info_box');
       previewbox = $('#preview_box');
     },
