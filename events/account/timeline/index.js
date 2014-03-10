@@ -6,7 +6,7 @@ exports.join = function(app, socket){
     socket.visitor = 'guest';
     if (socket.handshake.user) {
       //socket.visitor = socket.handshake.user.username;
-      //socket.visitor = socket.handshake.user.id;
+      socket.visitor = socket.handshake.user.id;
       socket.username = socket.handshake.user.username;
     }
     socket.emit('/timeline/#newUser', socket.username);
@@ -162,6 +162,7 @@ exports.cancelblock = function(app, socket){
 	
     console.log(message.targettime);
     var target_id;
+    var block_owner;
     
     client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
 		if (err){
@@ -174,8 +175,8 @@ exports.cancelblock = function(app, socket){
 			if (err){
 				console.log("error: "+err);
 			}
-			blockowner = res;
-			if (blockowner==socket.visitor){
+			block_owner = res;
+			if (block_owner==socket.visitor){
 				// lock the block
 				var output1 = redis_set("tb_id:"+target_id+":locked",0,"block un-locked");
 				socket.emit('/timeline/#doneRequest', output1);
