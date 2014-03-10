@@ -138,10 +138,12 @@ exports.reserveblock = function(app, socket){
 				client.get(key, function(err, value) {
 					 if (err) {
 						 console.error("error");
-						 socket.emit('/timeline/#doneRequest', "error");
+						 //socket.emit('/timeline/#doneRequest', "error");
+						 io.sockets.emit('/timeline/#doneRequest', "error")
 					 } else {
 						 console.log(">>>> >>"+key+" : "+ value);
-						 socket.emit('/timeline/#doneRequest', output);
+						 //socket.emit('/timeline/#doneRequest', output);
+						 io.sockets.emit('/timeline/#doneRequest', "output")
 					 }
 				});
 			  }
@@ -197,10 +199,12 @@ exports.cancelblock = function(app, socket){
 				client.get(key, function(err, value) {
 					 if (err) {
 						 console.error("error");
-						 socket.emit('/timeline/#doneRequest', "error");
+						 //socket.emit('/timeline/#doneRequest', "error");
+						 io.sockets.emit('/timeline/#doneRequest', "error")
 					 } else {
 						 console.log(">>>> >>"+key+" : "+ value);
-						 socket.emit('/timeline/#doneRequest', output);
+						 //socket.emit('/timeline/#doneRequest', output);
+						 io.sockets.emit('/timeline/#doneRequest', "output")
 					 }
 				});
 			  }
