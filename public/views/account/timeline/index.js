@@ -216,6 +216,7 @@ var hour = d3.time.format("%I"),
     document.getElementById("btn_access").disabled = true; 
     document.getElementById("btn_reserve").disabled = true; 
     document.getElementById("btn_pattern").disabled = true; 
+    document.getElementById("btn_cancel").disabled = true; 
   
   	// reset to default layout
   	d3.selectAll(".block rect").transition().duration(1000)
@@ -257,9 +258,11 @@ var hour = d3.time.format("%I"),
 			if(this.getAttribute("current")=="true"){
 				//console.log("current block");
 				document.getElementById("btn_enter").disabled = false;
+				document.getElementById("btn_cancel").disabled = false; 
 			}else{
 				//console.log("into the future");
 				document.getElementById("btn_pattern").disabled = false; 
+				document.getElementById("btn_cancel").disabled = false; 
 			}
 		}
 	}else{
