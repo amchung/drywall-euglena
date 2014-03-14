@@ -34,6 +34,8 @@ exports.callblocks = function(app, socket){
     var endT = new Date(message.endtime);
 	var begintime = beginT.getTime();
 	var endtime = endT.getTime();
+	console.log(begintime);
+	console.log(endtime);
 	
 	var firstid;
 	var lastid;
