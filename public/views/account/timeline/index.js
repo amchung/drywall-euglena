@@ -67,8 +67,8 @@ var hour = d3.time.format("%I"),
 	var beginT = d3.time.hour.floor(ticket);
 	beginT = d3.time.hour.offset(beginT, -1);
 	var endT = d3.time.hour.offset(beginT, 3);
-	//console.log(beginT);
-	//console.log(endT);
+	console.log(beginT);
+	console.log(endT);
 	socket.emit('/timeline/#callblocks', { begintime: beginT, endtime: endT});
 	}
   
