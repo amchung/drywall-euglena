@@ -10,6 +10,9 @@
     };
 })();
 
+(function() {
+  'use strict';
+  
 //// for drawing the joystick
 var control_canvas,
 c, // context 2D
@@ -71,14 +74,14 @@ function onReady() {
         
         $('input[name=openButton]').click(function(){
             var msg = {type:'sendvalveopen'};
-            //socket.json.send(msg);
+            socket.json.send(msg);
         });
         $('input[name=closeButton]').click(function(){
             var msg = {type:'sendvalveclose'};
-            //socket.json.send(msg);
+            socket.json.send(msg);
         });
     // chats and score postings        
-        socket = new io.connect('http://171.65.102.132:3006');
+        socket = io.connect('http://171.65.102.132:3006');
         var chat = $('#chat');
         var board = $('#board');
 
@@ -273,13 +276,13 @@ function changeLED(LEDon) { // on joystick inputs
     if(LEDon)
     {
 	var msg = 
-	{type:'/arduino/#sendLEDarrow', user:username, led1:joy_arrow.int1, led2:joy_arrow.int2, led3:joy_arrow.int3, led4:joy_arrow.int4};
+	{type:'sendarrow', user:username, led1:joy_arrow.int1, led2:joy_arrow.int2, led3:joy_arrow.int3, led4:joy_arrow.int4};
     	socket.json.send(msg);
     }
     else
     {
 	var msg = 
-	{type:'/arduino/#sendvalvetrigger', user:username, led1:0, led2:0, led3:0, led4:0};
+	{type:'sendarrow', user:username, led1:0, led2:0, led3:0, led4:0};
     	socket.json.send(msg);
     }
 }
@@ -313,3 +316,5 @@ function resetCanvas(e) { // on resize events
     // make sure we scroll to the top left. 
     window.scrollTo(0, 0);
 }
+
+}());
