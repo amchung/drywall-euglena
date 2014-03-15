@@ -280,7 +280,7 @@ function changeLED(LEDon) { // on joystick inputs
     else
     {
 	var msg = 
-	{type:'/arduino/#sendvalvetrigger', user:username, led1:0, led2:0, led3:0, led4:0};
+	{type:'/arduino/#sendLEDarrow', user:username, led1:0, led2:0, led3:0, led4:0};
     	arduino_socket.json.send(msg);
     }
 }
