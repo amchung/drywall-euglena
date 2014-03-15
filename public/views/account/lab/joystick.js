@@ -87,7 +87,7 @@ function onReady() {
             setupCanvas();
         });
         
-        arduino_socket.on('message', function(message){
+        arduino_socket.on('client-msg', function(message){
         console.log(message);
 			var str = message.split("&&");
 			if (Number(str[0]))
