@@ -38,7 +38,7 @@ var LEDloopON = false;
 ///////////////////////////// ARDUINO SETUP END
 
 var username = "noname";	// for socket.io
-var socket;					// for socket.io
+var arduino_socket;					// for socket.io
 
 document.addEventListener("DOMContentLoaded", init);
 window.addEventListener('resize', function(event){ // resize when you resize the browser
@@ -78,21 +78,22 @@ function onReady() {
             //socket.json.send(msg);
         });
     // chats and score postings        
-        socket = new io.connect('http://171.65.102.132:3006');
+        arduino_socket = new io.connect('http://171.65.102.132:3006');
         var chat = $('#chat');
         var board = $('#board');
 
-        socket.on('connect', function() {
+        arduino_socket.on('connect', function() {
             console.log("Connected!");
             setupCanvas();
             socket.emit('message', {channel:'realtime'});
         });
         
-        socket.on('message', function(message){
+        arduino_socket.on('arduino-commands', function(message){
 			var str = message.split("&&");
 			if (Number(str[0]))
 			{
 				chat.append(str[1] + '<br />');
+				console.log(str[1]);
 			}else{
 				var ledArray = str[1].split("^");
 				arrow.int1 = ledArray[0];
@@ -102,7 +103,7 @@ function onReady() {
 			}
         });
                 
-        socket.on('postscore', function(score){
+        arduino_socket.on('postscore', function(score){
                 board.empty();
                 for (var i=0;i<score.length;i++){
                         if(i==0){
@@ -117,7 +118,7 @@ function onReady() {
                 board.fadeIn('fast');
         });
 
-        socket.on('disconnect', function() {
+        arduino_socket.on('disconnect', function() {
                 console.log('disconnected');
                 chat.html("<b>Disconnected!</b>");
         });
@@ -274,13 +275,13 @@ function changeLED(LEDon) { // on joystick inputs
     {
 	var msg = 
 	{type:'/arduino/#sendLEDarrow', user:username, led1:joy_arrow.int1, led2:joy_arrow.int2, led3:joy_arrow.int3, led4:joy_arrow.int4};
-    	socket.json.send(msg);
+    	arduino_socket.json.send(msg);
     }
     else
     {
 	var msg = 
 	{type:'/arduino/#sendvalvetrigger', user:username, led1:0, led2:0, led3:0, led4:0};
-    	socket.json.send(msg);
+    	arduino_socket.json.send(msg);
     }
 }
 
