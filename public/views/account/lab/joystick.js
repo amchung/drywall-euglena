@@ -85,10 +85,10 @@ function onReady() {
         arduino_socket.on('connect', function() {
             console.log("Connected!");
             setupCanvas();
-            socket.emit('message', {channel:'realtime'});
         });
         
         arduino_socket.on('message', function(message){
+        console.log(message);
 			var str = message.split("&&");
 			if (Number(str[0]))
 			{
@@ -125,7 +125,7 @@ function onReady() {
 
         $("input[name=sendBtn]").click(function(){
                 var msg = {type:'chat',message:username + " : " + $("input[name=chatTxt]").val()}
-                socket.json.send(msg);
+                arduino_socket.json.send(msg);
                 $("input[name=chatTxt]").val("");
         });
 
