@@ -88,7 +88,7 @@ function onReady() {
             socket.emit('message', {channel:'realtime'});
         });
         
-        arduino_socket.on('arduino-commands', function(message){
+        arduino_socket.on('message', function(message){
 			var str = message.split("&&");
 			if (Number(str[0]))
 			{
