@@ -36,7 +36,7 @@ var currenttime;
   
   socket = io.connect();
   socket.on('connect', function(){
-  	socket.emit('/timeline/#join');
+  	socket.emit('/lab/#access');
   });
     
 }());
