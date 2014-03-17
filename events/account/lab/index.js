@@ -28,6 +28,7 @@ exports.labaccess = function(app, socket){
 					console.log("you are " + socket.username);
 					if(res == socket.username){
 						console.log("Welcome master!");	
+						socket.emit('/lab/#welcome');
 					}else{
 						console.log(":( kick out the bystander");
 						socket.emit('/lab/#kickout');
