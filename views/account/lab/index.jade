@@ -30,15 +30,17 @@ block body
 					canvas#controlCanvas(style="background:#000;padding:10px;")
 	div.row
 		div.col-sm-4
-			#username(style="padding:4px;")
-				h6 What's your name?
-					input(type="text", name="usernameTxt")
-					input(type="button", name="setUsername", value="Enter")
-			#flushChamber
-				h6 Valve control
-					input(type="button", name="openButton", value="Open")
-					input(type="button", name="closeButton", value="Close")
-			h5 TOP 5 SCORES
+			#valve_control_area
+			h5 Experiment Board
 			#board
 		div.col-sm-8
 			#chat(style="padding: 6px; min-width:600px; max-height:300px; overflow-y:scroll;")
+			
+	script(type='text/template', id='tmpl-valve_control')
+		form
+			div.form-actions
+				h6 Valve control
+				button.btn.btn-default.btn-trigger(type='button') Trigger Valve
+				div.btn-group.btn-group-sm
+					button#btn_open.btn.btn-default.btn-open(type='button') Open Valve
+					button#btn_close.btn.btn-default.btn-close(type='button') Close Valve

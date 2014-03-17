@@ -56,27 +56,6 @@ function init() {
 }
 
 function onReady() {
-////// jQuery for the socket.io
-    // username input
-        $('input[name=setUsername]').click(function(){
-        	if($('input[name=usernameTxt]').val() != ""){
-                username = $('input[name=usernameTxt]').val();
-                    var msg = {type:'setUsername', user:username};
-                    socket.json.send(msg);
-                }
-            $('#username').slideUp("slow",function(){
-                $('#entergame').slideDown("slow");
-            });
-        });
-        
-        $('input[name=openButton]').click(function(){
-            var msg = {type:'sendvalveopen'};
-            //socket.json.send(msg);
-        });
-        $('input[name=closeButton]').click(function(){
-            var msg = {type:'sendvalveclose'};
-            //socket.json.send(msg);
-        });
     // chats and score postings        
         arduino_socket = new io.connect('http://171.65.102.132:3006');
         var chat = $('#chat');
@@ -121,12 +100,6 @@ function onReady() {
         arduino_socket.on('disconnect', function() {
                 console.log('disconnected');
                 chat.html("<b>Disconnected!</b>");
-        });
-
-        $("input[name=sendBtn]").click(function(){
-                var msg = {type:'chat',message:username + " : " + $("input[name=chatTxt]").val()}
-                arduino_socket.json.send(msg);
-                $("input[name=chatTxt]").val("");
         });
 
 
