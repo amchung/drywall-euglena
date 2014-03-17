@@ -56,6 +56,18 @@ function init() {
 }
 
 function onReady() {
+        $('input[name=triggerButton]').click(function(){
+            var msg = {type:'sendvalvetrigger'};
+            //socket.json.send(msg);
+        });
+        $('input[name=openButton]').click(function(){
+            var msg = {type:'sendvalveopen'};
+            //socket.json.send(msg);
+        });
+        $('input[name=closeButton]').click(function(){
+            var msg = {type:'sendvalveclose'};
+            //socket.json.send(msg);
+        });
     // chats and score postings        
         arduino_socket = new io.connect('http://171.65.102.132:3006');
         var chat = $('#chat');

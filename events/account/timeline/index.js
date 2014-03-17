@@ -214,13 +214,3 @@ exports.cancelblock = function(app, socket){
 	}
   };
 };
-/*
-
-// look clock
-socket.emit('lookclock');
-
-//call blocks
-socket.emit('timeline', { type: 'callblocks', user:username, begintime: beginT, endtime: endT});
-
-//reserve block
-socket.emit('timeline', { type: 'reserveblock', user:user.username, begintime: beginT, endtime: endT});*/
