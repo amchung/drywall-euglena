@@ -27,5 +27,5 @@ exports.init = function(req, res){
       oauthGitHub: !!req.app.get('github-oauth-key'),
       oauthFacebook: !!req.app.get('facebook-oauth-key')
     });
-  //}
+  }
 };
