@@ -481,6 +481,7 @@ var hour = d3.time.format("%I"),
     },
     reqEnterFreeform: function() {
     	console.log("Sent request: Enter");
+    	window.location.replace("/account/lab/");
     },
     reqCancel: function() {
     	console.log("Sent request: Cancel Block Reservation");
