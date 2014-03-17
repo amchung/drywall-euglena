@@ -1,13 +1,9 @@
 'use strict';
 
-exports.join = function(app, socket){
+exports.labaccess = function(app, socket){
 	console.log("////////////enter lab//////////////");
   return function() {
-    socket.visitor = 'guest';
-    if (socket.handshake.user) {
-      socket.visitor = socket.handshake.user.id;
-      socket.username = socket.handshake.user.username;
-    }
+    console.log(socket.username);
     
     var redis = require("redis"),
 	 client = redis.createClient();
