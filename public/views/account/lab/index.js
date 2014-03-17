@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  socket = io.connect();
+  /*socket = io.connect();
   socket.on('connect', function(){
   	socket.emit('/timeline/#join');
   });
@@ -52,7 +52,7 @@
   
   socket.on('disconnect', function() {
 	console.log('>>> timeline disconnected');
-  });
+  });*/
   
   
   app = app || {};
@@ -74,7 +74,7 @@
       'click .btn-close': 'reqClose'
     },
     initialize: function() {
-      this.model = new app.Blocks();
+      this.model = new app.Lab();
       this.listenTo(this.model, 'sync', this.render);
       this.render();
       
