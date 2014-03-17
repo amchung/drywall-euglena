@@ -39,9 +39,8 @@ var currenttime;
   	socket.emit('/lab/#access');
   });
   
-  socket.on('/lab/#kickout',function(){
-  	var Thug = Backbone.Router();
-	Thug.navigate('/account/timeline/', {trigger: true}); 
+  socket.on('/lab/#kickout', function(){
+  	window.location.replace("/account/timeline/");
   });
   
   /*app = app || {};
