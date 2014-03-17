@@ -38,5 +38,10 @@ var currenttime;
   clock_socket.on('disconnect', function() {
 	console.log('Clock lost');
   });
+  
+  socket = io.connect();
+  socket.on('connect', function(){
+  	socket.emit('/timeline/#join');
+  });
     
 }());
