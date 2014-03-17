@@ -17,7 +17,7 @@ exports.join = function(app, socket){
 		if (err){
 			console.log("error: "+err);
 		}else{
-		console.log("current block:" res);
+		console.log("current block:" +res);
 		}
 	});
   };
