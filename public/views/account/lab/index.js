@@ -17,11 +17,6 @@ var currenttime;
   
   clock_socket.on('server_clock', function(data){
   	var str = data.split(":");
-  	if(str[1]=='00'){
-  		if((str[0]=="2")||(str[0]=="5")) {
-  			callBlocks(currenttime);
-  		}
-  	}
   	if(str[0]=="0"){
   		clockbar.html("<b><font color='red'>"+data+"</font><b>");
   	}
