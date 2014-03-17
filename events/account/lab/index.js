@@ -1,10 +1,15 @@
 'use strict';
 
 exports.labaccess = function(app, socket){
-	console.log("////////////enter lab//////////////");
   return function() {
-    console.log(socket.username);
-    
+   	console.log("////////////enter lab//////////////");
+   	socket.visitor = 'guest';
+    if (socket.handshake.user) {
+      //socket.visitor = socket.handshake.user.username;
+      socket.visitor = socket.handshake.user.id;
+      socket.username = socket.handshake.user.username;
+    	console.log(socket.username);
+    }
     var redis = require("redis"),
 	 client = redis.createClient();
 	var _ = require('underscore');
