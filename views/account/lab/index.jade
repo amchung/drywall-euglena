@@ -28,20 +28,20 @@ block body
 	div.row
 		h4 Euglena live webcam
 		div.row
-			div.col-sm-6
+			div.col-sm-4
 				#ledArea(align="center", style="width:300px;height:300px;padding:4px;")
-			div.col-sm-6
+			div.col-sm-4
 				#joystickArea(style="width:300px;height:300px;")
 					canvas#controlCanvas(style="background:#000;padding:10px;")
+							div.col-sm-4
+			div.col-sm-4
+				div.panel-body
+					h6 Time left for the current block
+					div#clock_bar.clock-bar
+				#flushChamber
+					h6 Valve control
+						input(type="button", name="triggerButton", value="Trigger")
+						input(type="button", name="openButton", value="Open")
+						input(type="button", name="closeButton", value="Close")
 	div.row
-		div.col-sm-4
-			div.panel-body
-				h6 Time left for the current block
-				div#clock_bar.clock-bar
-			#flushChamber
-				h6 Valve control
-					input(type="button", name="triggerButton", value="Trigger")
-					input(type="button", name="openButton", value="Open")
-					input(type="button", name="closeButton", value="Close")
-		div.col-sm-8
-			#chat(style="padding: 6px; min-width:600px; max-height:300px; overflow-y:scroll;")
+		#chat(style="padding: 6px; min-width:600px; max-height:300px; overflow-y:scroll;")
