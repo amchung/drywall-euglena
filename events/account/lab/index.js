@@ -25,11 +25,13 @@ exports.labaccess = function(app, socket){
 					console.log("error: "+err);
 				}else{
 					console.log("current block owner:" + res);
-					console.log("you are" + socket.username);
+					console.log("you are " + socket.username);
 					if(res == socket.username){
 						console.log("Welcome master!");	
 					}else{
-						console.log(":( get out bystander");
+						console.log(":( kick out the bystander");
+						var Thug = new Backbone.Router();
+						Thug.navigate('/account/timeline/', {trigger: true}); 
 					}
 				}
 			});
