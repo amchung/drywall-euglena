@@ -1,6 +1,6 @@
 'use strict';
 
-exports.join = function(app, socket){
+/*exports.join = function(app, socket){
 	console.log("////////////enter lab//////////////");
   return function() {
     socket.visitor = 'guest';
@@ -31,5 +31,5 @@ exports.join = function(app, socket){
     
     socket.emit('/timeline/#newUser', socket.username);
   };
-};
+};*/
 
