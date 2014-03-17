@@ -30,8 +30,6 @@ exports.labaccess = function(app, socket){
 						console.log("Welcome master!");	
 					}else{
 						console.log(":( kick out the bystander");
-						var Thug = new Backbone.Router();
-						Thug.navigate('/account/timeline/', {trigger: true}); 
 					}
 				}
 			});

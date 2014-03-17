@@ -17,11 +17,11 @@ var getReturnUrl = function(req) {
 };
 
 exports.init = function(req, res){
-  /*if (req.isAuthenticated()) {
+  if (req.isAuthenticated()) {
     res.redirect(getReturnUrl(req));
   }
-  else {*/
-    res.render('account/timeline/index', {
+  else {
+    res.render('/login/', {
       oauthMessage: '',
       oauthTwitter: !!req.app.get('twitter-oauth-key'),
       oauthGitHub: !!req.app.get('github-oauth-key'),

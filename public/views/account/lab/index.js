@@ -38,5 +38,51 @@ var currenttime;
   socket.on('connect', function(){
   	socket.emit('/lab/#access');
   });
+  
+  
+  /*app = app || {};
+  
+  app.Blocks = Backbone.Model.extend({
+    url: '/account/timeline/',
+    defaults: {
+      userid: '',
+      timestamp: ''
+    }
+  });
+
+  app.BlocksView = Backbone.View.extend({
+    el: '#blocks_nav',
+    template: _.template( $('#tmpl-blocks_nav').html() ),
+    events: {
+      'click .btn-prev': 'reqPrev',
+      'click .btn-now': 'reqNow',
+      'click .btn-next': 'reqNext'
+    },
+    initialize: function() {
+      this.model = new app.Blocks();
+      this.listenTo(this.model, 'sync', this.render);
+      this.render();
+    },
+    render: function() {
+      this.$el.html(this.template( this.model.attributes));
+    },
+    reqPrev: function() {
+      currenttime.setHours(currenttime.getHours() - 1);
+      callBlocks(currenttime);
+    },
+    reqNow: function() {
+      currenttime = new Date();
+      callBlocks(currenttime);
+    },
+    reqNext: function() {
+      currenttime.setHours(currenttime.getHours() + 1);
+      callBlocks(currenttime);
+    }
+  });
+  
+  
+  $(document).ready(function() {
+    app.blocksView = new app.BlocksView();
+  });*/
     
 }());
