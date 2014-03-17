@@ -30,6 +30,7 @@ exports.labaccess = function(app, socket){
 						console.log("Welcome master!");	
 					}else{
 						console.log(":( kick out the bystander");
+						socket.emit('/lab/#kickout');
 					}
 				}
 			});
