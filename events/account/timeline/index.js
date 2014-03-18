@@ -239,6 +239,7 @@ exports.setexp = function(app, socket){
 			}else{
 				console.log("current next_exp_id: "+res);
 				redis_set("tb_id:"+target_id+":exp_id",res,"pattern:" +res);
+				client.incr("global:next_exp_id");
 				if(message.freeform==1){
 					// pattern_id == 0 for freeform exps 
 					redis_set("tb_id:"+target_id+":pattern_id",0,"pattern: freeform exp");
@@ -251,10 +252,10 @@ exports.setexp = function(app, socket){
 							console.log("current next_pattern_id: "+res);
 							redis_set("tb_id:"+target_id+":pattern_id",res,"pattern:" +res);
 							client.incr("global:next_pattern_id");
+							socket.emit('/timeline/#mayenter');
 						}
 					});
 				}
-				client.incr("global:next_exp_id");
 			}
 		});
 	});

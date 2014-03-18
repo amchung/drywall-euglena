@@ -395,6 +395,10 @@ var hour = d3.time.format("%I"),
 	console.log('>>> timeline disconnected');
   });
   
+  socket.on('/timeline/#mayenter', function(){
+  	window.location.replace("/account/lab/");
+  });
+  
   
   app = app || {};
   
@@ -483,7 +487,6 @@ var hour = d3.time.format("%I"),
     reqEnterFreeform: function() {
     	console.log("Sent request: Enter " + selected_block_time);
     	socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time, freeform:1});
-    	window.location.replace("/account/lab/");
     },
     reqCancel: function() {
     	console.log("Sent request: Cancel Block Reservation");
