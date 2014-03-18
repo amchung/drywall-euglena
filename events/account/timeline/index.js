@@ -117,7 +117,7 @@ exports.reserveblock = function(app, socket){
 		}
 		target_id = res;
 		console.log('>>>> '+ socket.username +' : '+target_id);
-		console.log(socket.visitor);
+		//console.log(socket.visitor);
 		
 		// lock the block
 		redis_set("tb_id:"+target_id+":locked",1,"block locked");
@@ -171,7 +171,7 @@ exports.cancelblock = function(app, socket){
 		}
 		target_id = res;
 		console.log('>>>> '+ socket.username +' : '+target_id);
-		console.log(socket.visitor);
+		//console.log(socket.visitor);
 		client.get("tb_id:"+target_id+":user_id", function(err,res){
 			if (err){
 				console.log("error: "+err);
@@ -214,3 +214,70 @@ exports.cancelblock = function(app, socket){
 	}
   };
 };
+
+
+exports.setexp = function(app, socket){
+  return function(message) {
+  	var redis = require("redis"),
+	 client = redis.createClient();
+	var _ = require('underscore');
+	
+  	// convert dates and get block ids
+    console.log(message.targettime + " : " + socket.username+" : is it freeform? --- "+message.freeform);
+    var target_id;
+    
+    client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
+		if (err){
+			console.log("error: "+err);
+		}
+		target_id = res;
+		console.log('>>>> '+ socket.username +' : '+target_id);
+		
+		client.get("global:next_exp_id", function(err,res){
+			if (err){
+				console.log("error: "+err);
+			}else{
+				console.log("current next_exp_id: "+res);
+				redis_set("tb_id:"+target_id+":exp_id",res,"pattern:" +res);
+				if(message.freeform==1){
+					// pattern_id == 0 for freeform exps 
+					redis_set("tb_id:"+target_id+":pattern_id",0,"pattern: freeform exp");
+				}else{
+					// get new pattern_id, set the block with it
+					client.get("global:next_pattern_id", function(err,res){
+						if (err){
+							console.log("error: "+err);
+						}else{
+							console.log("current next_pattern_id: "+res);
+							redis_set("tb_id:"+target_id+":pattern_id",res,"pattern:" +res);
+							client.incr("global:next_pattern_id");
+						}
+					});
+				}
+				client.incr("global:next_exp_id");
+			}
+		});
+	});
+	
+	function redis_set(key,value,output){
+		client.set(key,value, function(err) {
+			if (err) {
+			   console.error("error");
+			} else {
+				client.get(key, function(err, value) {
+					 if (err) {
+						 console.error("error");
+						 //socket.emit('/timeline/#doneRequest', "error");
+						 app.io.sockets.emit('/timeline/#doneRequest', "error")
+					 } else {
+						 console.log(">>>> >>"+key+" : "+ value);
+						 //socket.emit('/timeline/#doneRequest', output);
+						 app.io.sockets.emit('/timeline/#doneRequest', "output")
+					 }
+				});
+			  }
+		});
+	}
+  };
+};
+

@@ -37,7 +37,7 @@ var hour = d3.time.format("%I"),
   clock_socket.on('server_clock', function(data){
   	var str = data.split(":");
   	if(str[1]=='00'){
-  		if((str[0]=="2")||(str[0]=="5")) {
+  		if((str[0]=="1")||(str[0]=="5")) {
   			callBlocks(currenttime);
   		}
   	}
@@ -474,19 +474,21 @@ var hour = d3.time.format("%I"),
     	socket.emit('/timeline/#reserveblock', { targettime: selected_block_time});
     },
     reqSetPattern: function() {
-    	console.log("Sent request: Set Pattern");
+    	console.log("Sent request: Set Pattern for " + selected_block_time);
+    	socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time,  freeform:0});
     },
     reqDataAccess: function() {
     	console.log("Sent request: Data Access");
     },
     reqEnterFreeform: function() {
-    	console.log("Sent request: Enter");
+    	console.log("Sent request: Enter " + selected_block_time);
+    	socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time, freeform:1});
     	window.location.replace("/account/lab/");
     },
     reqCancel: function() {
     	console.log("Sent request: Cancel Block Reservation");
     	// >>>>>> socket: cancel reserve block
-    	socket.emit('/timeline/#cancelblock', { targettime: selected_block_time});
+    	socket.emit('/timeline/#cancelblock', {targettime:selected_block_time});
     }
   });
   
