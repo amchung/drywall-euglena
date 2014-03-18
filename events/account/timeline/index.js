@@ -243,7 +243,7 @@ exports.setexp = function(app, socket){
 				if(message.freeform==1){
 					// pattern_id == 0 for freeform exps 
 					redis_set("tb_id:"+target_id+":pattern_id",0,"pattern: freeform exp");
-					socket.emit('/timeline/#mayenter');
+					//socket.emit('/timeline/#mayenter');
 				}else{
 					// get new pattern_id, set the block with it
 					client.get("global:next_pattern_id", function(err,res){
