@@ -237,7 +237,7 @@ exports.setexp = function(app, socket){
 				console.log("current next_exp_id: "+res);
 				client.set("tb_id:"+target_id+":exp_id",res, function(err){
 					if (err){
-						console.error("error at setting exp_id");
+						console.log("error: "+err);
 					}else{
 						client.incr("global:next_exp_id");
 						if(message.freeform==1){
@@ -246,11 +246,11 @@ exports.setexp = function(app, socket){
 								if (err) {
 								   console.error("error");
 								} else {
-									client.get(key, function(err, value) {
+									client.get("tb_id:"+target_id+":pattern_id", function(err, value) {
 										 if (err) {
 											 console.error("error");
 										 } else {
-											 console.log(">>>> >>"+key+" : "+ value);
+											 console.log(">>>> >> block "+target_id+" pattern_id : "+ value);
 											 socket.emit('/timeline/#mayenter');
 										 }
 									});
@@ -263,37 +263,29 @@ exports.setexp = function(app, socket){
 									console.log("error: "+err);
 								}else{
 									console.log("current next_pattern_id: "+res);
-									redis_set("tb_id:"+target_id+":pattern_id",res,"pattern:" +res);
 									client.incr("global:next_pattern_id");
+									client.set("tb_id:"+target_id+":pattern_id",res, function(err) {
+										if (err) {
+										   console.error("error");
+										} else {
+											client.get("tb_id:"+target_id+":pattern_id", function(err, value) {
+												 if (err) {
+													 console.error("error");
+												 } else {
+													 console.log(">>>> >> block "+target_id+" pattern_id : "+ value);
+													 app.io.sockets.emit('/timeline/#doneRequest', ">>>> >> block "+target_id+" pattern_id : "+ value);
+												 }
+											});
+										}
+									});
 								}
 							});
 						}
 					}
 				});
-				//redis_set("tb_id:"+target_id+":exp_id",res,"pattern:" +res);
 			}
 		});
 	});
-	
-	function redis_set(key,value,output){
-		client.set(key,value, function(err) {
-			if (err) {
-			   console.error("error");
-			} else {
-				client.get(key, function(err, value) {
-					 if (err) {
-						 console.error("error");
-						 //socket.emit('/timeline/#doneRequest', "error");
-						 socket.emit('/timeline/#doneRequest', "error")
-					 } else {
-						 console.log(">>>> >>"+key+" : "+ value);
-						 //socket.emit('/timeline/#doneRequest', output);
-						 app.io.sockets.emit('/timeline/#doneRequest', "output")
-					 }
-				});
-			  }
-		});
-	}
   };
 };
 
