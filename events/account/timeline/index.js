@@ -184,11 +184,8 @@ exports.cancelblock = function(app, socket){
 				// write down owner user id
 				redis_set("tb_id:"+target_id+":user_id",-1,"block un-locked: id");
 				redis_set("tb_id:"+target_id+":username",-1,"block un-locked: user"+socket.username);
-					
-				//INCR global:next_exp_id
-				//SET tb_id:1000:exp_id global:next_exp_id
-				//if freeform
-					//SET tb_id:1000:pattern_id 0
+				redis_set("tb_id:"+target_id+":exp_id",-1,"block un-locked: exp_id");
+				redis_set("tb_id:"+target_id+":pattern_id",-1,"block un-locked: pattern_id");
 			}
 		});
 	});
@@ -242,8 +239,20 @@ exports.setexp = function(app, socket){
 				client.incr("global:next_exp_id");
 				if(message.freeform==1){
 					// pattern_id == 0 for freeform exps 
-					redis_set("tb_id:"+target_id+":pattern_id",0,"pattern: freeform exp");
-					//socket.emit('/timeline/#mayenter');
+					client.set("tb_id:"+target_id+":pattern_id",0, function(err) {
+						if (err) {
+						   console.error("error");
+						} else {
+							client.get(key, function(err, value) {
+								 if (err) {
+									 console.error("error");
+								 } else {
+									 console.log(">>>> >>"+key+" : "+ value);
+									 socket.emit('/timeline/#mayenter');
+								 }
+							});
+						}
+					});
 				}else{
 					// get new pattern_id, set the block with it
 					client.get("global:next_pattern_id", function(err,res){
