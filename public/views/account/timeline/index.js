@@ -479,14 +479,14 @@ var hour = d3.time.format("%I"),
     },
     reqSetPattern: function() {
     	console.log("Sent request: Set Pattern for " + selected_block_time);
-    	socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time,  freeform:0});
+    	//socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time,  freeform:0});
     },
     reqDataAccess: function() {
     	console.log("Sent request: Data Access");
     },
     reqEnterFreeform: function() {
     	console.log("Sent request: Enter " + selected_block_time);
-    	socket.emit('/timeline/#setfreeformexp', {username:myname, targettime: selected_block_time, freeform:1});
+    	socket.emit('/timeline/#setfreeform', {username:myname, targettime: selected_block_time, freeform:1});
     },
     reqCancel: function() {
     	console.log("Sent request: Cancel Block Reservation");

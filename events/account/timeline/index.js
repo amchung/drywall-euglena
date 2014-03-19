@@ -221,7 +221,7 @@ exports.cancelblock = function(app, socket){
   };
 };
 
-exports.setfreeformexp = function(app, socket){
+exports.setfreeform = function(app, socket){
   return function(message) {
   	var redis = require("redis"),
 	 client = redis.createClient();
