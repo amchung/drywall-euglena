@@ -235,36 +235,42 @@ exports.setexp = function(app, socket){
 				console.log("error: "+err);
 			}else{
 				console.log("current next_exp_id: "+res);
-				redis_set("tb_id:"+target_id+":exp_id",res,"pattern:" +res);
-				client.incr("global:next_exp_id");
-				if(message.freeform==1){
-					// pattern_id == 0 for freeform exps 
-					client.set("tb_id:"+target_id+":pattern_id",0, function(err) {
-						if (err) {
-						   console.error("error");
-						} else {
-							client.get(key, function(err, value) {
-								 if (err) {
-									 console.error("error");
-								 } else {
-									 console.log(">>>> >>"+key+" : "+ value);
-									 socket.emit('/timeline/#mayenter');
-								 }
+				client.set("tb_id:"+target_id+":exp_id",res, function(err){
+					if (err){
+						console.error("error at setting exp_id");
+					}else{
+						client.incr("global:next_exp_id");
+						if(message.freeform==1){
+							// pattern_id == 0 for freeform exps 
+							client.set("tb_id:"+target_id+":pattern_id",0, function(err) {
+								if (err) {
+								   console.error("error");
+								} else {
+									client.get(key, function(err, value) {
+										 if (err) {
+											 console.error("error");
+										 } else {
+											 console.log(">>>> >>"+key+" : "+ value);
+											 socket.emit('/timeline/#mayenter');
+										 }
+									});
+								}
+							});
+						}else{
+							// get new pattern_id, set the block with it
+							client.get("global:next_pattern_id", function(err,res){
+								if (err){
+									console.log("error: "+err);
+								}else{
+									console.log("current next_pattern_id: "+res);
+									redis_set("tb_id:"+target_id+":pattern_id",res,"pattern:" +res);
+									client.incr("global:next_pattern_id");
+								}
 							});
 						}
-					});
-				}else{
-					// get new pattern_id, set the block with it
-					client.get("global:next_pattern_id", function(err,res){
-						if (err){
-							console.log("error: "+err);
-						}else{
-							console.log("current next_pattern_id: "+res);
-							redis_set("tb_id:"+target_id+":pattern_id",res,"pattern:" +res);
-							client.incr("global:next_pattern_id");
-						}
-					});
-				}
+					}
+				});
+				//redis_set("tb_id:"+target_id+":exp_id",res,"pattern:" +res);
 			}
 		});
 	});
@@ -278,7 +284,7 @@ exports.setexp = function(app, socket){
 					 if (err) {
 						 console.error("error");
 						 //socket.emit('/timeline/#doneRequest', "error");
-						 app.io.sockets.emit('/timeline/#doneRequest', "error")
+						 socket.emit('/timeline/#doneRequest', "error")
 					 } else {
 						 console.log(">>>> >>"+key+" : "+ value);
 						 //socket.emit('/timeline/#doneRequest', output);
