@@ -8,7 +8,7 @@ exports = module.exports = function(app) {
     socket.on('/timeline/#callblocks', require('./events/account/timeline/index').callblocks(app, socket));
     socket.on('/timeline/#reserveblock', require('./events/account/timeline/index').reserveblock(app, socket));
     socket.on('/timeline/#cancelblock', require('./events/account/timeline/index').cancelblock(app, socket));
-    socket.on('/timeline/#setexp', require('./events/account/timeline/index').setexp(app, socket));
+    socket.on('/timeline/#setfreeformexp', require('./events/account/timeline/index').setfreeformexp(app, socket));
     socket.on('/lab/#access', require('./events/account/lab/index').labaccess(app,socket));
     //socket.on('/lab/#valvetrigger', require('./events/account/lab/index').valvetrigger(app,socket));
   });

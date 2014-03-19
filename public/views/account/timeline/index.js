@@ -486,7 +486,7 @@ var hour = d3.time.format("%I"),
     },
     reqEnterFreeform: function() {
     	console.log("Sent request: Enter " + selected_block_time);
-    	socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time, freeform:1});
+    	socket.emit('/timeline/#setfreeformexp', {username:myname, targettime: selected_block_time, freeform:1});
     },
     reqCancel: function() {
     	console.log("Sent request: Cancel Block Reservation");
