@@ -116,7 +116,7 @@ exports.reserveblock = function(app, socket){
 			console.log("error: "+err);
 		}
 		target_id = res;
-		console.log('>>>> '+ socket.username +' : '+target_id);
+		console.log('>>>> '+ socket.visitor +' : '+target_id);
 		//console.log(socket.visitor);
 		
 		client.zadd("user_id:"+socket.visitor+":exp_id",target_id,target_id, function(err) {
