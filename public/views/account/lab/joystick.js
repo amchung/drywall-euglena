@@ -37,7 +37,7 @@ var LEDloopON = false;
 
 ///////////////////////////// ARDUINO SETUP END
 
-var username = "noname";	// for socket.io
+var username = "noname";			// for socket.io
 var arduino_socket;					// for socket.io
 
 document.addEventListener("DOMContentLoaded", init);

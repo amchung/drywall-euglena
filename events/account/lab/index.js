@@ -30,8 +30,8 @@ exports.labaccess = function(app, socket){
 						console.log("Welcome master!");	
 						socket.emit('/lab/#welcome');
 					}else{
-						console.log(":( kick out the bystander");
-						socket.emit('/lab/#kickout');
+						console.log("Welcome guest!");
+						socket.emit('/lab/#enterAsSpectator');
 					}
 				}
 			});

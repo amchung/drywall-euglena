@@ -43,7 +43,7 @@ var currenttime;
   });
   
   socket.on('/lab/#kickout', function(){
-  	window.location.replace("/account/timeline/");
+  	window.location.replace("/account/spectate/");
   });
   
   socket.on('/lab/#welcome', function(){

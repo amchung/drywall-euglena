@@ -22,10 +22,12 @@ var n_max = 20;
 
 function setupD3() {
     canvas = d3.select("#canvasArea").append("canvas")
+    	.attr("class", "display-canvas")
         .attr("width", vid_width)
         .attr("height", vid_height);
     
     svg_led = d3.select("#ledArea").append("svg:svg")
+    	.attr("class", "display-svg")
         .attr("width", 300)
         .attr("height", 300);
         
@@ -107,6 +109,7 @@ function setupD3() {
 	});
 
 	var svg = d3.select("#canvasArea").append("svg:svg")
+		.attr("class", "display-svg")
     	.attr("width", vid_width)
     	.attr("height", vid_height);
     		
@@ -167,6 +170,7 @@ function setupD3() {
 
 	d3.timer(function() {
   		drawObjects();
+  		// return true to terminate the timer
 	});
 
 	window.setInterval(getVideo, 1000/20);
