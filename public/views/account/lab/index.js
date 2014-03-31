@@ -42,7 +42,7 @@ var currenttime;
   	socket.emit('/lab/#access');
   });
   
-  socket.on('/lab/#kickout', function(){
+  socket.on('/lab/#enterAsSpectator', function(){
   	window.location.replace("/account/spectate/");
   });
   

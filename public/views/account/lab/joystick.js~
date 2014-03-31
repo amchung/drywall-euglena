@@ -37,13 +37,13 @@ var LEDloopON = false;
 
 ///////////////////////////// ARDUINO SETUP END
 
-var username = "noname";	// for socket.io
-var socket;					// for socket.io
+var username = "noname";			// for socket.io
+var arduino_socket;					// for socket.io
 
 document.addEventListener("DOMContentLoaded", init);
-        
-window.onorientationchange = resetCanvas;	// resize when you resize the browser
-window.onresize = resetCanvas;
+window.addEventListener('resize', function(event){ // resize when you resize the browser
+	resetCanvas();
+});
 
 function init() {
     setupCanvas();
@@ -56,48 +56,45 @@ function init() {
 }
 
 function onReady() {
-////// jQuery for the socket.io
-    // username input
-        $('input[name=setUsername]').click(function(){
-        	if($('input[name=usernameTxt]').val() != ""){
-                username = $('input[name=usernameTxt]').val();
-                    var msg = {type:'setUsername', user:username};
-                    socket.json.send(msg);
-                }
-            $('#username').slideUp("slow",function(){
-                $('#entergame').slideDown("slow");
-            });
+        $('input[name=triggerButton]').click(function(){
+            var msg = {type:'sendvalvetrigger'};
+            //socket.json.send(msg);
         });
-        
-        $("input[name=flushButton]").click(function(){
-            var = {type:'sendflush'};
-            socket.json.send(msg);
+        $('input[name=openButton]').click(function(){
+            var msg = {type:'sendvalveopen'};
+            //socket.json.send(msg);
+        });
+        $('input[name=closeButton]').click(function(){
+            var msg = {type:'sendvalveclose'};
+            //socket.json.send(msg);
         });
     // chats and score postings        
-        socket = new io.connect('http://171.65.102.132:3002');
+        arduino_socket = new io.connect('http://171.65.102.132:3006');
         var chat = $('#chat');
         var board = $('#board');
 
-        socket.on('connect', function() {
+        arduino_socket.on('connect', function() {
             console.log("Connected!");
-            socket.emit('message', {channel:'realtime'});
+            setupCanvas();
         });
         
-        socket.on('message', function(message){
-		var str = message.split("&&");
-		if (Number(str[0]))
-		{
-			chat.append(str[1] + '<br />');
-		}else{
-			var ledArray = str[1].split("^");
-			arrow.int1 = ledArray[0];
-			arrow.int2 = ledArray[1];
-			arrow.int3 = ledArray[2];
-			arrow.int4 = ledArray[3];
-		}
+        arduino_socket.on('client-msg', function(message){
+        console.log(message);
+			var str = message.split("&&");
+			if (Number(str[0]))
+			{
+				chat.append(str[1] + '<br />');
+				console.log(str[1]);
+			}else{
+				var ledArray = str[1].split("^");
+				arrow.int1 = ledArray[0];
+				arrow.int2 = ledArray[1];
+				arrow.int3 = ledArray[2];
+				arrow.int4 = ledArray[3];
+			}
         });
                 
-        socket.on('postscore', function(score){
+        arduino_socket.on('postscore', function(score){
                 board.empty();
                 for (var i=0;i<score.length;i++){
                         if(i==0){
@@ -112,16 +109,16 @@ function onReady() {
                 board.fadeIn('fast');
         });
 
-        socket.on('disconnect', function() {
+        arduino_socket.on('disconnect', function() {
                 console.log('disconnected');
                 chat.html("<b>Disconnected!</b>");
         });
 
-        $("input[name=sendBtn]").click(function(){
-                var msg = {type:'chat',message:username + " : " + $("input[name=chatTxt]").val()}
-                socket.json.send(msg);
-                $("input[name=chatTxt]").val("");
-        });
+
+
+/////////////////////////////
+// Drawing Joystick functions
+/////////////////////////////
 
 ////// EventListeners for joystick canvas
     control_canvas.addEventListener('pointerdown', onPointerDown, false);
@@ -194,6 +191,12 @@ function joystick_draw() {
     }
 }
 
+
+
+/////////////////////////////
+// Mouse event functions
+/////////////////////////////
+
 function givePointerType(event) {
     switch (event.pointerType) {
         case event.POINTER_TYPE_MOUSE:
@@ -246,7 +249,34 @@ function onPointerUp(e) {
     changeLED(0); // turn off all LEDs
 }
 
-function setupCanvas() {
+
+
+/////////////////////////////
+// Arduino control functions
+/////////////////////////////
+
+function changeLED(LEDon) { // on joystick inputs
+    if(LEDon)
+    {
+	var msg = 
+	{type:'/arduino/#sendLEDarrow', user:username, led1:joy_arrow.int1, led2:joy_arrow.int2, led3:joy_arrow.int3, led4:joy_arrow.int4};
+    	arduino_socket.json.send(msg);
+    }
+    else
+    {
+	var msg = 
+	{type:'/arduino/#sendLEDarrow', user:username, led1:0, led2:0, led3:0, led4:0};
+    	arduino_socket.json.send(msg);
+    }
+}
+
+
+
+/////////////////////////////
+// Canvas setup functions
+/////////////////////////////
+
+function setupCanvas() { // called in init
     control_canvas = document.getElementById('controlCanvas');
     c = control_canvas.getContext('2d');
     resetCanvas();
@@ -254,28 +284,11 @@ function setupCanvas() {
     c.lineWidth = 2;
 }
 
-// Arduino control functions
-function changeLED(LEDon) {
-    if(LEDon)
-    {
-	var msg = 
-	{type:'sendarrow', user:username, led1:joy_arrow.int1, led2:joy_arrow.int2, led3:joy_arrow.int3, led4:joy_arrow.int4};
-    	socket.json.send(msg);
-    }
-    else
-    {
-	var msg = 
-	{type:'sendarrow', user:username, led1:0, led2:0, led3:0, led4:0};
-    	socket.json.send(msg);
-    }
-}
-
-
-function resetCanvas(e) {
+function resetCanvas(e) { // on resize events
     max_val = (document.getElementById("joystickArea").offsetWidth-100)/2;
     console.log('max_val :' + max_val);
-    // resize the canvas - but remember - this clears the canvas too.
     
+    // resize the canvas - this clears the canvas
     control_canvas.width = document.getElementById("joystickArea").offsetWidth-20;
     control_canvas.height = control_canvas.width;
     halfWidth = (control_canvas.width)/2;
