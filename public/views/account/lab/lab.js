@@ -292,7 +292,7 @@ function setupCanvas() { // called in init
 	
 	resetCanvas();
 	
-	video_canvas = document.getElementById('display-canvas');
+	vid_canvas = document.getElementById('display-canvas');
 	
 	/*canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
