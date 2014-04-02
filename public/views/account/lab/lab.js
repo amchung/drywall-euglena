@@ -110,12 +110,6 @@ function init() {
 		getVideo();
 		
 	});*/
-	
-	d3.timer(function(){
-		joystick_draw();
-		drawObjects();
-		getVideo();
-	});
 }
 
 function joystick_draw() {
@@ -379,6 +373,12 @@ function setupCanvas() { // called in init
 		.enter().append("svg:g");
 
 	var box = g.append("svg:rect");
+	
+	d3.timer(function(){
+		joystick_draw();
+		drawObjects();
+		getVideo();
+	});
 }
 
 function resetCanvas(e) { // on resize events
