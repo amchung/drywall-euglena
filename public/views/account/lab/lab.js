@@ -294,17 +294,17 @@ function setupCanvas() { // called in init
 	
 	resetCanvas();
 	
-	canvas = d3.select("#canvasArea").append("canvas")
+	canvas = document.getElementById('display-canvas');
+	
+	/*canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width)
-		.attr("height", vid_height);
+		.attr("height", vid_height);*/
 	
-	/*svg_led = d3.select("#ledArea").append("svg:svg")
+	svg_led = d3.select("#ledArea").append("svg:svg")
 		.attr("class", "display-svg")
 		.attr("width", 300)
-		.attr("height", 300);*/
-	
-	svg_led = document.getElementById("svg_led");
+		.attr("height", 300);
 	
 	context = canvas.node().getContext("2d"); 
 	
