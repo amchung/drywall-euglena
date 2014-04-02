@@ -19,6 +19,28 @@ var touches; // collections of pointers
 var username = "noname";			// for socket.io
 var arduino_socket;					// for socket.io
 
+var obj_canvas,
+obj_c,
+cp_canvas = null;
+
+var canvas
+var video_canvas,
+vid_c;
+
+var brown_const=0;
+
+var vid_width = 640;
+var vid_height = 480;
+
+var svg_led;
+var context;
+
+var l = 80,
+	n = 4,
+	v = 1/4;
+	
+var n_max = 20;
+
 document.addEventListener("DOMContentLoaded", init);
 
 window.addEventListener('resize', function(event){ // resize when you resize the browser
@@ -256,6 +278,19 @@ function changeLED(LEDon) { // on joystick inputs
 function setupCanvas() { // called in init
     control_canvas = document.getElementById('controlCanvas');
     c = control_canvas.getContext('2d');
+    
+    canvas = d3.select("#canvasArea").append("canvas")
+	.attr("class", "display-canvas")
+	.attr("width", vid_width)
+	.attr("height", vid_height);
+    
+    svg_led = d3.select("#ledArea").append("svg:svg")
+	.attr("class", "display-svg")
+	.attr("width", 300)
+	.attr("height", 300);
+    
+    context = canvas.node().getContext("2d"); 
+    
     resetCanvas();
     c.strokeStyle = "#ffffff";
     c.lineWidth = 2;
@@ -278,39 +313,7 @@ function resetCanvas(e) { // on resize events
 }
 
 
-var obj_canvas,
-obj_c,
-cp_canvas = null;
 
-var canvas
-var video_canvas,
-vid_c;
-
-var brown_const=0;
-
-var vid_width = 640;
-var vid_height = 480;
-
-var svg_led;
-var context;
-
-var l = 80,
-	n = 4,
-	v = 1/4;
-	
-var n_max = 20;
-
-
-canvas = d3.select("#canvasArea").append("canvas")
-    .attr("class", "display-canvas")
-    .attr("width", vid_width)
-    .attr("height", vid_height);
-
-svg_led = d3.select("#ledArea").append("svg:svg")
-    .attr("class", "display-svg")
-    .attr("width", 300)
-    .attr("height", 300);
-    
 var shape_bg =
 	svg_led.append("svg:rect")
 		.attr("width", 300)
@@ -367,16 +370,14 @@ var led_U =
 					    
 var g_ledD = svg_led.append("svg:g")
 		.attr("transform", "matrix(0 -1 -1 0 150 245)");
-    g_ledD.append("svg:polygon")
+	g_ledD.append("svg:polygon")
 		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    g_ledD.append("svg:polygon")
+	g_ledD.append("svg:polygon")
 		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");	
 var led_D = g_ledD.append("svg:path")
 		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
-	
-context = canvas.node().getContext("2d");  
 
 var w = 640,
 h = 480,
@@ -433,10 +434,10 @@ function drawObjects(){
 	}	
 	object.size = l;
 	object.active = (i<n)?1:0;
-}
-box.attr("opacity", function(d,i){
-	return d.active;
-});
+	}
+	box.attr("opacity", function(d,i){
+		return d.active;
+	});
 	box.attr("width", function(d,i){
 		return d.size;
 	});
@@ -456,15 +457,6 @@ box.attr("opacity", function(d,i){
 	led_R.style("opacity",arrow.int4);
 }
 
-
-/*d3.timer(function() {
-	drawObjects();
-	// return true to terminate the timer
-});
-
-window.setInterval(getVideo, 1000/20);
-*/
-
 function getVideo(){
 	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
 		context.clearRect(0, 0, vid_width, vid_height);
@@ -473,10 +465,10 @@ function getVideo(){
 }
 
 function getVidFrame(path, callback) {
-    var image = new Image;
-    image.src = path;
-    image.onload = function() {
-	callback(image);
-	//console.log(new Date().getTime());
-    };
+	var image = new Image;
+	image.src = path;
+	image.onload = function() {
+	    callback(image);
+	    //console.log(new Date().getTime());
+	};
 }
