@@ -84,22 +84,21 @@ function onReady() {
 		//socket.json.send(msg);
 	});
 
-////// EventListeners for joystick canvas
-    control_canvas.addEventListener('pointerdown', onPointerDown, false);
-    control_canvas.addEventListener('pointermove', onPointerMove, false);
-    control_canvas.addEventListener('pointerup', onPointerUp, false);
-    control_canvas.addEventListener('pointerout', onPointerUp, false);
-    
-    // start drawing joystick loop
-    
-    d3.timer(function(elapsed) {
-	t = (t + (elapsed - last) / 5000) % 1;
-	last = elapsed;
-	joystick_draw();
-	drawObjects();
-	getVideo();
-
-    //d3.timer(joystick_draw);
+	////// EventListeners for joystick canvas
+	control_canvas.addEventListener('pointerdown', onPointerDown, false);
+	control_canvas.addEventListener('pointermove', onPointerMove, false);
+	control_canvas.addEventListener('pointerup', onPointerUp, false);
+	control_canvas.addEventListener('pointerout', onPointerUp, false);
+	
+	// start drawing joystick loop
+	d3.timer(function(elapsed) {
+		t = (t + (elapsed - last) / 5000) % 1;
+		last = elapsed;
+		joystick_draw();
+		drawObjects();
+		getVideo();
+		//d3.timer(joystick_draw);
+	});
 }
 
 function joystick_draw() {
