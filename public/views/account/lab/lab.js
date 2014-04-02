@@ -85,7 +85,6 @@ function onReady() {
     control_canvas.addEventListener('pointerout', onPointerUp, false);
     
     // start drawing joystick loop
-    //requestAnimFrame(joystick_draw);
     /*
      d3.timer(function(elapsed) {
     t = (t + (elapsed - last) / 5000) % 1;
@@ -147,8 +146,7 @@ function joystick_draw() {
             c.fillText(theta.toFixed(0),leftPointerPos.x+10, leftPointerPos.y-20);
         }
     });
-
-    //requestAnimFrame(joystick_draw);
+    
     if(LEDloopON) { changeLED(1); }
 }
 
@@ -173,6 +171,7 @@ function givePointerType(event) {
 }
 
 function onPointerDown(e) {
+    console.log('pointer down');
     var newPointer = { identifier: e.pointerId, x: e.clientX, y: e.clientY, type: givePointerType(e) };
     leftPointerID = e.pointerId;
     leftPointerStartPos.reset(halfWidth, halfHeight);
@@ -307,60 +306,60 @@ function setupD3() {
         .attr("height", 300);
         
     var shape_bg = svg_led.append("svg:rect")
-    							.attr("width", 300)
-    							.attr("height", 300)
-    							.style("fill", "#000000");
+				.attr("width", 300)
+    				.attr("height", 300)
+    				.style("fill", "#000000");
         
     var shape_stage = svg_led.append("svg:rect")
-    							.attr("x", 112.5)
-    							.attr("y", 112.5)
-    							.attr("width", 75)
-    							.attr("height", 75)
-    							.style("fill", "#111111");
+    				.attr("x", 112.5)
+    				.attr("y", 112.5)
+    				.attr("width", 75)
+    				.attr("height", 75)
+    				.style("fill", "#111111");
     
     var g_ledL = svg_led.append("svg:g")
-    						.attr("transform", "matrix(1 0 0 -1 55 150)");
-    			g_ledL.append("svg:polygon")
-    						.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    			g_ledL.append("svg:polygon")
-    						.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");				
+    			.attr("transform", "matrix(1 0 0 -1 55 150)");
+    	g_ledL.append("svg:polygon")
+    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+    	g_ledL.append("svg:polygon")
+    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");				
     var led_L = g_ledL.append("svg:path")
-    						.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    						.style("fill", "#ffffff")
-    						.style("opacity", "0");
+    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+    		.style("fill", "#ffffff")
+    		.style("opacity", "0");
     						
     var g_ledR = svg_led.append("svg:g")
-    						.attr("transform", "matrix(-1 0 0 1 245 150)");
-    			g_ledR.append("svg:polygon")
-    						.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    			g_ledR.append("svg:polygon")
-    						.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");					
+			.attr("transform", "matrix(-1 0 0 1 245 150)");
+    	g_ledR.append("svg:polygon")
+    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+	g_ledR.append("svg:polygon")
+    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");					
     var led_R = g_ledR.append("svg:path")
-    						.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    						.style("fill", "#ffffff")
-    						.style("opacity", "0");
+    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+    		.style("fill", "#ffffff")
+    		.style("opacity", "0");
     						
     var g_ledU = svg_led.append("svg:g")
-    						.attr("transform", "matrix(0 1 1 0 150 55)");
-    			g_ledU.append("svg:polygon")
-    						.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    			g_ledU.append("svg:polygon")
-    						.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");									
+    		.attr("transform", "matrix(0 1 1 0 150 55)");
+    	g_ledU.append("svg:polygon")
+    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+    	g_ledU.append("svg:polygon")
+    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");									
     var led_U = g_ledU.append("svg:path")
-    						.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    						.style("fill", "#ffffff")
-    						.style("opacity", "0");
+    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+    		.style("fill", "#ffffff")
+    		.style("opacity", "0");
     						
     var g_ledD = svg_led.append("svg:g")
-    						.attr("transform", "matrix(0 -1 -1 0 150 245)");
-    			g_ledD.append("svg:polygon")
-    						.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    			g_ledD.append("svg:polygon")
-    						.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");	
+    		.attr("transform", "matrix(0 -1 -1 0 150 245)");
+    	g_ledD.append("svg:polygon")
+    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+    	g_ledD.append("svg:polygon")
+    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");	
     var led_D = g_ledD.append("svg:path")
-    						.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    						.style("fill", "#ffffff")
-    						.style("opacity", "0");
+    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+    		.style("fill", "#ffffff")
+    		.style("opacity", "0");
             
     context = canvas.node().getContext("2d");  
 
@@ -461,7 +460,7 @@ function setupD3() {
             image.src = path;
             image.onload = function() {
                 callback(image);
-				//console.log(new Date().getTime());
+		//console.log(new Date().getTime());
             };
         }
     }
