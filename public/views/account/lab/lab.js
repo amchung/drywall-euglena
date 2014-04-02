@@ -33,7 +33,8 @@ function init() {
     onReady();
 }
 
-var last = 0;
+var 	last = 0,
+	t = .5;
 
 function onReady() {
     // chats and score postings        
