@@ -109,13 +109,19 @@ function onReady() {
 	control_canvas.addEventListener('pointerout', onPointerUp, false);
 	
 	// start drawing joystick loop
-	d3.timer(function(elapsed) {
+	/*d3.timer(function(elapsed) {
 		t = (t + (elapsed - last) / 5000) % 1;
 		last = elapsed;
 		joystick_draw();
 		drawObjects();
 		getVideo();
-		//d3.timer(joystick_draw);
+		
+	});*/
+	
+	d3.timer(function(){
+		joystick_draw();
+		drawObjects();
+		getVideo();
 	});
 }
 
