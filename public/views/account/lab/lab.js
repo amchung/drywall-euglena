@@ -49,20 +49,6 @@ window.addEventListener('resize', function(event){ // resize when you resize the
 
 function init() {
 	touches = new Collection();
-	
-	var something = (function() {
-		var executed = false;
-		return function () {
-		    if (!executed) {
-			executed = true;
-			setupCanvas();
-		    }
-		};
-	})();
-}
-
-
-function onReady() {
     // chats and score postings        
 	arduino_socket = new io.connect('http://171.65.102.132:3006');
 	var chat = $('#chat');
@@ -393,8 +379,6 @@ function setupCanvas() { // called in init
 		.enter().append("svg:g");
 
 	var box = g.append("svg:rect");
-	
-	onReady();
 }
 
 function resetCanvas(e) { // on resize events
