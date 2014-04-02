@@ -148,7 +148,7 @@ function joystick_draw() {
         }
     });
 
-    requestAnimFrame(joystick_draw);
+    //requestAnimFrame(joystick_draw);
     if(LEDloopON) { changeLED(1); }
 }
 
