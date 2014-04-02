@@ -33,6 +33,8 @@ function init() {
     onReady();
 }
 
+var last = 0;
+
 function onReady() {
     // chats and score postings        
 	arduino_socket = new io.connect('http://171.65.102.132:3006');
@@ -85,13 +87,13 @@ function onReady() {
     control_canvas.addEventListener('pointerout', onPointerUp, false);
     
     // start drawing joystick loop
-    /*
-     d3.timer(function(elapsed) {
-    t = (t + (elapsed - last) / 5000) % 1;
-    last = elapsed;
-    update();
-    });*/
-    d3.timer(joystick_draw);
+    
+    d3.timer(function(elapsed) {
+	t = (t + (elapsed - last) / 5000) % 1;
+	last = elapsed;
+	joystick_draw();
+    });
+    //d3.timer(joystick_draw);
 }
 
 function joystick_draw() {
