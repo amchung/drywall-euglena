@@ -23,9 +23,8 @@ var obj_canvas,
 obj_c,
 cp_canvas = null;
 
-var canvas
-var video_canvas,
-vid_c;
+var vid_canvas,
+vid_context;
 
 var brown_const=0;
 
@@ -33,7 +32,6 @@ var vid_width = 640;
 var vid_height = 480;
 
 var svg_led;
-var context;
 
 var l = 80,
 	n = 4,
@@ -294,7 +292,7 @@ function setupCanvas() { // called in init
 	
 	resetCanvas();
 	
-	canvas = document.getElementById('display-canvas');
+	video_canvas = document.getElementById('display-canvas');
 	
 	/*canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
@@ -306,7 +304,7 @@ function setupCanvas() { // called in init
 		.attr("width", 300)
 		.attr("height", 300);
 	
-	context = canvas.getContext("2d"); 
+	vid_context = vid_canvas.getContext("2d"); 
 	
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
@@ -435,8 +433,8 @@ function drawObjects(){
 
 function getVideo(){
 	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
-		context.clearRect(0, 0, vid_width, vid_height);
-		context.drawImage(image, 0, 0, vid_width, vid_height);
+		vid_context.clearRect(0, 0, vid_width, vid_height);
+		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
 	});
 }
 
