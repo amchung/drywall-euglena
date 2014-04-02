@@ -299,10 +299,12 @@ function setupCanvas() { // called in init
 		.attr("width", vid_width)
 		.attr("height", vid_height);
 	
-	svg_led = d3.select("#ledArea").append("svg:svg")
+	/*svg_led = d3.select("#ledArea").append("svg:svg")
 		.attr("class", "display-svg")
 		.attr("width", 300)
-		.attr("height", 300);
+		.attr("height", 300);*/
+	
+	svg_led = document.getElementById("svg_led");
 	
 	context = canvas.node().getContext("2d"); 
 	
