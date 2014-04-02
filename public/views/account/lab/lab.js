@@ -10,6 +10,9 @@ var control_canvas,
 	leftVector = new Vector2(0, 0);
 	arrow = new VectorLED(0, 0, 0, 0);	// vector for LED direction
 	joy_arrow = new VectorLED(0, 0, 0, 0);	// vector used for direction calculations
+	
+var last = 0,
+	t = .5;
 
 var touches; // collections of pointers
 
@@ -26,15 +29,13 @@ window.addEventListener('resize', function(event){ // resize when you resize the
 
 function init() {
     setupCanvas();
-    setupD3();
+    //setupD3();
     
     touches = new Collection();
     
     onReady();
 }
 
-var 	last = 0,
-	t = .5;
 
 function onReady() {
     // chats and score postings        
@@ -72,10 +73,12 @@ function onReady() {
 		var msg = {type:'sendvalvetrigger'};
 		//socket.json.send(msg);
 	});
+	
 	$('input[name=openButton]').click(function(){
 		var msg = {type:'sendvalveopen'};
 		//socket.json.send(msg);
 	});
+	
 	$('input[name=closeButton]').click(function(){
 		var msg = {type:'sendvalveclose'};
 		//socket.json.send(msg);
@@ -93,7 +96,9 @@ function onReady() {
 	t = (t + (elapsed - last) / 5000) % 1;
 	last = elapsed;
 	joystick_draw();
-    });
+	drawObjects();
+	getVideo();
+
     //d3.timer(joystick_draw);
 }
 
@@ -174,7 +179,6 @@ function givePointerType(event) {
 }
 
 function onPointerDown(e) {
-    console.log('pointer down');
     var newPointer = { identifier: e.pointerId, x: e.clientX, y: e.clientY, type: givePointerType(e) };
     leftPointerID = e.pointerId;
     leftPointerStartPos.reset(halfWidth, halfHeight);
@@ -297,174 +301,183 @@ var l = 80,
 	
 var n_max = 20;
 
-function setupD3() {
-    canvas = d3.select("#canvasArea").append("canvas")
-    	.attr("class", "display-canvas")
-        .attr("width", vid_width)
-        .attr("height", vid_height);
+
+canvas = d3.select("#canvasArea").append("canvas")
+    .attr("class", "display-canvas")
+    .attr("width", vid_width)
+    .attr("height", vid_height);
+
+svg_led = d3.select("#ledArea").append("svg:svg")
+    .attr("class", "display-svg")
+    .attr("width", 300)
+    .attr("height", 300);
     
-    svg_led = d3.select("#ledArea").append("svg:svg")
-    	.attr("class", "display-svg")
-        .attr("width", 300)
-        .attr("height", 300);
-        
-    var shape_bg = svg_led.append("svg:rect")
-				.attr("width", 300)
-    				.attr("height", 300)
-    				.style("fill", "#000000");
-        
-    var shape_stage = svg_led.append("svg:rect")
-    				.attr("x", 112.5)
-    				.attr("y", 112.5)
-    				.attr("width", 75)
-    				.attr("height", 75)
-    				.style("fill", "#111111");
+var shape_bg =
+	svg_led.append("svg:rect")
+		.attr("width", 300)
+		.attr("height", 300)
+		.style("fill", "#000000");
     
-    var g_ledL = svg_led.append("svg:g")
-    			.attr("transform", "matrix(1 0 0 -1 55 150)");
-    	g_ledL.append("svg:polygon")
-    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    	g_ledL.append("svg:polygon")
-    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");				
-    var led_L = g_ledL.append("svg:path")
-    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    		.style("fill", "#ffffff")
-    		.style("opacity", "0");
-    						
-    var g_ledR = svg_led.append("svg:g")
-			.attr("transform", "matrix(-1 0 0 1 245 150)");
-    	g_ledR.append("svg:polygon")
-    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-	g_ledR.append("svg:polygon")
-    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");					
-    var led_R = g_ledR.append("svg:path")
-    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    		.style("fill", "#ffffff")
-    		.style("opacity", "0");
-    						
-    var g_ledU = svg_led.append("svg:g")
-    		.attr("transform", "matrix(0 1 1 0 150 55)");
-    	g_ledU.append("svg:polygon")
-    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    	g_ledU.append("svg:polygon")
-    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");									
-    var led_U = g_ledU.append("svg:path")
-    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    		.style("fill", "#ffffff")
-    		.style("opacity", "0");
-    						
-    var g_ledD = svg_led.append("svg:g")
-    		.attr("transform", "matrix(0 -1 -1 0 150 245)");
-    	g_ledD.append("svg:polygon")
-    		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
-    	g_ledD.append("svg:polygon")
-    		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");	
-    var led_D = g_ledD.append("svg:path")
-    		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-    		.style("fill", "#ffffff")
-    		.style("opacity", "0");
-            
-    context = canvas.node().getContext("2d");  
+var shape_stage =
+	svg_led.append("svg:rect")
+		.attr("x", 112.5)
+		.attr("y", 112.5)
+		.attr("width", 75)
+		.attr("height", 75)
+		.style("fill", "#111111");
 
-	var w = 640,
-    	h = 480,
-    	m = 20,
-    	radius = l/2+10,
-    	degrees = 180 / Math.PI;
-    
-	var objects = d3.range(n_max).map(function() {
-  		var x = 40 + Math.random() * (w-40), y = 40 + Math.random() * (h-40);
-  		return {
-    		vx: 0,
-    		vy: 0,
-    		path: d3.range(m).map(function() { return [x, y]; }),
-    		count: 0,
-    		active: 0,
-    		size: l,
-    		color: "#FA6600"
-  		};
-	});
-
-	var svg = d3.select("#canvasArea").append("svg:svg")
-		.attr("class", "display-svg")
-    	.attr("width", vid_width)
-    	.attr("height", vid_height);
-    		
-	var g = svg.selectAll("g")
-    	.data(objects)
-		.enter().append("svg:g");
-
-	var box = g.append("svg:rect");
-	
-	function drawObjects(){
-		/*for (var i = -1; ++i < n;) {
-    		var object = objects[i],
-        		x = object.path[0][0],
-        		y = object.path[0][1];
-
-    		// stuck at the walls.
-    		if (x < 0)
-    		{
-    			object.path[0][0] = l;
-    		}
-    		if(x > w-l) 
-    		{
-    			object.path[0][0] = w-l;
-    		}
-    		if (y < 0)
-    		{
-    			object.path[0][1] = l;
-    		}
-    		if (y > h-l)
-    		{
-    			object.path[0][1] = h-l;
-    		}	
-    		object.size = l;
-    		object.active = (i<n)?1:0;
-    	}
-    	box.attr("opacity", function(d,i){
-    		return d.active;
-    	});
-		box.attr("width", function(d,i){
-			return d.size;
-		});
-		box.attr("height", function(d,i){
-			return d.size;
-		});
-		box.attr("stroke", function(d,i){
-			return d.color;
-		});
-  		box.attr("transform", function(d) {
-    		return "translate(" + d.path[0] + ")";
-  		});*/
-  		
-  		led_U.style("opacity",arrow.int1);
-  		led_L.style("opacity",arrow.int2);
-  		led_D.style("opacity",arrow.int3);
-  		led_R.style("opacity",arrow.int4);
-  	}
-
-
-	d3.timer(function() {
-  		drawObjects();
-  		// return true to terminate the timer
-	});
-
-	window.setInterval(getVideo, 1000/20);
+var g_ledL =
+	svg_led.append("svg:g")
+		.attr("transform", "matrix(1 0 0 -1 55 150)");
 		
-	function getVideo(){
-        getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
-            context.clearRect(0, 0, vid_width, vid_height);
-            context.drawImage(image, 0, 0, vid_width, vid_height);
-        });
-        
-    	function getVidFrame(path, callback) {
-            var image = new Image;
-            image.src = path;
-            image.onload = function() {
-                callback(image);
-		//console.log(new Date().getTime());
-            };
-        }
-    }
+	g_ledL.append("svg:polygon")
+		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+	g_ledL.append("svg:polygon")
+		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");				
+var led_L =
+	g_ledL.append("svg:path")
+		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+					    
+var g_ledR =
+	svg_led.append("svg:g")
+		.attr("transform", "matrix(-1 0 0 1 245 150)");
+	g_ledR.append("svg:polygon")
+		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+	g_ledR.append("svg:polygon")
+		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");					
+var led_R =
+	g_ledR.append("svg:path")
+		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+					    
+var g_ledU =
+	svg_led.append("svg:g")
+		.attr("transform", "matrix(0 1 1 0 150 55)");
+	g_ledU.append("svg:polygon")
+		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+	g_ledU.append("svg:polygon")
+		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");									
+var led_U =
+	g_ledU.append("svg:path")
+		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+					    
+var g_ledD = svg_led.append("svg:g")
+		.attr("transform", "matrix(0 -1 -1 0 150 245)");
+    g_ledD.append("svg:polygon")
+		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+    g_ledD.append("svg:polygon")
+		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");	
+var led_D = g_ledD.append("svg:path")
+		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+	
+context = canvas.node().getContext("2d");  
+
+var w = 640,
+h = 480,
+m = 20,
+radius = l/2+10,
+degrees = 180 / Math.PI;
+
+var objects = d3.range(n_max).map(function() {
+	var x = 40 + Math.random() * (w-40), y = 40 + Math.random() * (h-40);
+	return {
+	vx: 0,
+	vy: 0,
+	path: d3.range(m).map(function() { return [x, y]; }),
+	count: 0,
+	active: 0,
+	size: l,
+	color: "#FA6600"
+	};
+});
+
+var svg = d3.select("#canvasArea").append("svg:svg")
+	.attr("class", "display-svg")
+	.attr("width", vid_width)
+	.attr("height", vid_height);
+	
+var g = svg.selectAll("g")
+	.data(objects)
+	.enter().append("svg:g");
+
+var box = g.append("svg:rect");
+
+function drawObjects(){
+	/*for (var i = -1; ++i < n;) {
+	var object = objects[i],
+		x = object.path[0][0],
+		y = object.path[0][1];
+
+	// stuck at the walls.
+	if (x < 0)
+	{
+		object.path[0][0] = l;
+	}
+	if(x > w-l) 
+	{
+		object.path[0][0] = w-l;
+	}
+	if (y < 0)
+	{
+		object.path[0][1] = l;
+	}
+	if (y > h-l)
+	{
+		object.path[0][1] = h-l;
+	}	
+	object.size = l;
+	object.active = (i<n)?1:0;
+}
+box.attr("opacity", function(d,i){
+	return d.active;
+});
+	box.attr("width", function(d,i){
+		return d.size;
+	});
+	box.attr("height", function(d,i){
+		return d.size;
+	});
+	box.attr("stroke", function(d,i){
+		return d.color;
+	});
+	box.attr("transform", function(d) {
+	return "translate(" + d.path[0] + ")";
+	});*/
+	
+	led_U.style("opacity",arrow.int1);
+	led_L.style("opacity",arrow.int2);
+	led_D.style("opacity",arrow.int3);
+	led_R.style("opacity",arrow.int4);
+}
+
+
+/*d3.timer(function() {
+	drawObjects();
+	// return true to terminate the timer
+});
+
+window.setInterval(getVideo, 1000/20);
+*/
+
+function getVideo(){
+	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
+		context.clearRect(0, 0, vid_width, vid_height);
+		context.drawImage(image, 0, 0, vid_width, vid_height);
+	});
+}
+
+function getVidFrame(path, callback) {
+    var image = new Image;
+    image.src = path;
+    image.onload = function() {
+	callback(image);
+	//console.log(new Date().getTime());
+    };
 }
