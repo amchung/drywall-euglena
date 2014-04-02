@@ -50,11 +50,8 @@ window.addEventListener('resize', function(event){ // resize when you resize the
 //////////////////////////////
 
 function init() {
-    setupCanvas();
-    
-    touches = new Collection();
-    
-    onReady();
+	touches = new Collection();
+	setupCanvas();
 }
 
 
@@ -289,6 +286,8 @@ function setupCanvas() { // called in init
 	control_canvas = document.getElementById('controlCanvas');
 	c = control_canvas.getContext('2d');
 	
+	resetCanvas();
+	
 	canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width)
@@ -301,7 +300,6 @@ function setupCanvas() { // called in init
 	
 	context = canvas.node().getContext("2d"); 
 	
-	resetCanvas();
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
 	
@@ -380,6 +378,8 @@ function setupCanvas() { // called in init
 		.enter().append("svg:g");
 
 	var box = g.append("svg:rect");
+	
+	onReady();
 }
 
 function resetCanvas(e) { // on resize events
