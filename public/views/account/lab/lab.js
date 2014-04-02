@@ -306,7 +306,7 @@ function setupCanvas() { // called in init
 		.attr("width", 300)
 		.attr("height", 300);
 	
-	context = canvas.node().getContext("2d"); 
+	context = canvas.getContext("2d"); 
 	
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
