@@ -27,7 +27,6 @@ window.addEventListener('resize', function(event){ // resize when you resize the
 function init() {
     setupCanvas();
     setupD3();
-    //setupMotionDetection();
     
     touches = new Collection();
     
@@ -60,21 +59,6 @@ function onReady() {
 			arrow.int4 = ledArray[3];
 		}
 	});
-			
-	/*arduino_socket.on('postscore', function(score){
-			board.empty();
-			for (var i=0;i<score.length;i++){
-					if(i==0){
-							board.append('<span style="color: #FA6600">'+ score[i][0]+'  :  '+score[i][1]+'</span> <br />');
-					}else{
-							board.append(score[i][0]+'  :  '+score[i][1]+ '<br />');
-					}
-			}
-			board.fadeOut('fast');
-			board.fadeIn('fast');
-			board.fadeOut('fast');
-			board.fadeIn('fast');
-	});*/
 
 	arduino_socket.on('disconnect', function() {
 			console.log('disconnected');
@@ -101,7 +85,14 @@ function onReady() {
     control_canvas.addEventListener('pointerout', onPointerUp, false);
     
     // start drawing joystick loop
-    requestAnimFrame(joystick_draw);
+    //requestAnimFrame(joystick_draw);
+    /*
+     d3.timer(function(elapsed) {
+    t = (t + (elapsed - last) / 5000) % 1;
+    last = elapsed;
+    update();
+    });*/
+    d3.timer(joystick_draw);
 }
 
 function joystick_draw() {
