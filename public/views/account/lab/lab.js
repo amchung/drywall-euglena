@@ -51,7 +51,6 @@ window.addEventListener('resize', function(event){ // resize when you resize the
 
 function init() {
     setupCanvas();
-    //setupD3();
     
     touches = new Collection();
     
@@ -124,59 +123,59 @@ function onReady() {
 }
 
 function joystick_draw() {
-    c.clearRect(0, 0, control_canvas.width, control_canvas.height);
-        
-    c.beginPath();
-    c.moveTo(halfWidth, halfHeight-4);
-    c.strokeStyle = "rgba(250, 102, 0, 1)";
-    c.lineWidth = 2;
-    c.lineTo(halfWidth, halfHeight+4);
-    c.stroke();
-            
-    c.beginPath();
-    c.moveTo(halfWidth+4, halfHeight);
-    c.strokeStyle = "rgba(250, 102, 0, 1)";
-    c.lineWidth = 2;
-    c.lineTo(halfWidth-4, halfHeight);
-    c.stroke();
-    
-    drawCircles(halfWidth, halfHeight);
-    
-    //// mouse event loop
-    touches.forEach(function (touch) {
-        if (touch.identifier == leftPointerID) {
-			// draw the joystick in the control canvas
-            var alpha = arrow.trimArrow(leftVector, max_val);
-            
-            c.beginPath();
-            c.fillStyle = "rgba(250, 102, 0, 1)";
-            c.arc(leftPointerPos.x, leftPointerPos.y, 16, 0, Math.PI * 2, true);
-            c.fill();
-            
-            c.beginPath();
-            c.moveTo(leftPointerStartPos.x,leftPointerStartPos.y);
-            c.strokeStyle = "rgba(250, 102, 0, 1)";
-            c.lineTo(leftPointerStartPos.x+max_val*(arrow.int2-arrow.int4),leftPointerStartPos.y+max_val*(arrow.int1-arrow.int3));
-            c.lineWidth = 3;
-            c.stroke();
-                        
-            c.beginPath();
-            c.fillStyle = "rgba(255, 255, 255, "+alpha+")";
-            c.arc(halfWidth, halfHeight, 16, 0, Math.PI * 2, true);
-            c.fill();
-                        
-            c.beginPath();
-            c.fillStyle = "#fff"; 
-            c.fillText(alpha,halfWidth-10, halfHeight-25);
-                
-            c.beginPath();
-            c.fillStyle = "#dd6600";
-            var theta = leftVector.angle();
-            c.fillText(theta.toFixed(0),leftPointerPos.x+10, leftPointerPos.y-20);
-        }
-    });
-    
-    if(LEDloopON) { changeLED(1); }
+	c.clearRect(0, 0, control_canvas.width, control_canvas.height);
+	    
+	c.beginPath();
+	c.moveTo(halfWidth, halfHeight-4);
+	c.strokeStyle = "rgba(250, 102, 0, 1)";
+	c.lineWidth = 2;
+	c.lineTo(halfWidth, halfHeight+4);
+	c.stroke();
+		
+	c.beginPath();
+	c.moveTo(halfWidth+4, halfHeight);
+	c.strokeStyle = "rgba(250, 102, 0, 1)";
+	c.lineWidth = 2;
+	c.lineTo(halfWidth-4, halfHeight);
+	c.stroke();
+	
+	drawCircles(halfWidth, halfHeight);
+	
+	//// mouse event loop
+	touches.forEach(function (touch) {
+	    if (touch.identifier == leftPointerID) {
+			    // draw the joystick in the control canvas
+		var alpha = arrow.trimArrow(leftVector, max_val);
+		
+		c.beginPath();
+		c.fillStyle = "rgba(250, 102, 0, 1)";
+		c.arc(leftPointerPos.x, leftPointerPos.y, 16, 0, Math.PI * 2, true);
+		c.fill();
+		
+		c.beginPath();
+		c.moveTo(leftPointerStartPos.x,leftPointerStartPos.y);
+		c.strokeStyle = "rgba(250, 102, 0, 1)";
+		c.lineTo(leftPointerStartPos.x+max_val*(arrow.int2-arrow.int4),leftPointerStartPos.y+max_val*(arrow.int1-arrow.int3));
+		c.lineWidth = 3;
+		c.stroke();
+			    
+		c.beginPath();
+		c.fillStyle = "rgba(255, 255, 255, "+alpha+")";
+		c.arc(halfWidth, halfHeight, 16, 0, Math.PI * 2, true);
+		c.fill();
+			    
+		c.beginPath();
+		c.fillStyle = "#fff"; 
+		c.fillText(alpha,halfWidth-10, halfHeight-25);
+		    
+		c.beginPath();
+		c.fillStyle = "#dd6600";
+		var theta = leftVector.angle();
+		c.fillText(theta.toFixed(0),leftPointerPos.x+10, leftPointerPos.y-20);
+	    }
+	});
+	
+	if(LEDloopON) { changeLED(1); }
 }
 
 
@@ -275,7 +274,7 @@ function changeLED(LEDon) { // on joystick inputs
 // Canvas setup functions
 /////////////////////////////
 
-var shape_bg,
+var 	shape_bg,
 	shape_stage,
 	g_ledL,
 	g_ledR,
@@ -287,89 +286,100 @@ var shape_bg,
 	led_D;
 	
 function setupCanvas() { // called in init
-    control_canvas = document.getElementById('controlCanvas');
-    c = control_canvas.getContext('2d');
-    
-    canvas = d3.select("#canvasArea").append("canvas")
-	.attr("class", "display-canvas")
-	.attr("width", vid_width)
-	.attr("height", vid_height);
-    
-    svg_led = d3.select("#ledArea").append("svg:svg")
-	.attr("class", "display-svg")
-	.attr("width", 300)
-	.attr("height", 300);
-    
-    context = canvas.node().getContext("2d"); 
-    
-    resetCanvas();
-    c.strokeStyle = "#ffffff";
-    c.lineWidth = 2;
+	control_canvas = document.getElementById('controlCanvas');
+	c = control_canvas.getContext('2d');
 	
-    shape_bg =
-	    svg_led.append("svg:rect")
-		    .attr("width", 300)
-		    .attr("height", 300)
-		    .style("fill", "#000000");
+	canvas = d3.select("#canvasArea").append("canvas")
+		.attr("class", "display-canvas")
+		.attr("width", vid_width)
+		.attr("height", vid_height);
 	
-    shape_stage =
+	svg_led = d3.select("#ledArea").append("svg:svg")
+		.attr("class", "display-svg")
+		.attr("width", 300)
+		.attr("height", 300);
+	
+	context = canvas.node().getContext("2d"); 
+	
+	resetCanvas();
+	c.strokeStyle = "#ffffff";
+	c.lineWidth = 2;
+	
+	shape_bg =
 	    svg_led.append("svg:rect")
-		    .attr("x", 112.5)
-		    .attr("y", 112.5)
-		    .attr("width", 75)
-		    .attr("height", 75)
-		    .style("fill", "#111111");
+		.attr("width", 300)
+		.attr("height", 300)
+		.style("fill", "#000000");
+	
+	shape_stage =
+	    svg_led.append("svg:rect")
+		.attr("x", 112.5)
+		.attr("y", 112.5)
+		.attr("width", 75)
+		.attr("height", 75)
+		.style("fill", "#111111");
     
-    g_ledL =
+	g_ledL =
 	    svg_led.append("svg:g")
-		    .attr("transform", "matrix(1 0 0 -1 55 150)");
+		.attr("transform", "matrix(1 0 0 -1 55 150)");
 		    
 	    g_ledL.append("svg:polygon")
-		    .attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
 	    g_ledL.append("svg:polygon")
-		    .attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");				
-    led_L =
+		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");				
+	led_L =
 	    g_ledL.append("svg:path")
-		    .attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-		    .style("fill", "#ffffff")
-		    .style("opacity", "0");
+		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
 						
-    g_ledR =
+	g_ledR =
 	    svg_led.append("svg:g")
-		    .attr("transform", "matrix(-1 0 0 1 245 150)");
+		.attr("transform", "matrix(-1 0 0 1 245 150)");
 	    g_ledR.append("svg:polygon")
-		    .attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
 	    g_ledR.append("svg:polygon")
-		    .attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");					
-    led_R =
+		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");					
+	led_R =
 	    g_ledR.append("svg:path")
-		    .attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-		    .style("fill", "#ffffff")
-		    .style("opacity", "0");
+		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
 						
-    g_ledU =
+	g_ledU =
 	    svg_led.append("svg:g")
-		    .attr("transform", "matrix(0 1 1 0 150 55)");
+		.attr("transform", "matrix(0 1 1 0 150 55)");
 	    g_ledU.append("svg:polygon")
-		    .attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
+		.attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
 	    g_ledU.append("svg:polygon")
-		    .attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");									
-    led_U =
+		.attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");									
+	led_U =
 	    g_ledU.append("svg:path")
-		    .attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-		    .style("fill", "#ffffff")
-		    .style("opacity", "0");
+		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
 						
-    g_ledD = svg_led.append("svg:g")
+	g_ledD = svg_led.append("svg:g")
 		    .attr("transform", "matrix(0 -1 -1 0 150 245)");
 	    g_ledD.append("svg:polygon")
 		    .attr("points", "-39.042,8.417 24.708,8.417 24.7,6.191 20.958,5.667 6.708,1.417 6.708,6.167 -39.042,6.167 	");
 	    g_ledD.append("svg:polygon")
 		    .attr("points", "-38.792,-8.333 21.458,-8.333 24.208,-6.333 24.208,3.667 6.708,-2.333 6.708,-5.833 -38.792,-5.833 	");	
-    led_D = g_ledD.append("svg:path")
+	led_D = g_ledD.append("svg:path")
 		    .attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
 		    .style("fill", "#ffffff")
 		    .style("opacity", "0");
+		    
+	svg = d3.select("#canvasArea").append("svg:svg")
+		.attr("class", "display-svg")
+		.attr("width", vid_width)
+		.attr("height", vid_height);
+	
+	g = svg.selectAll("g")
+		.data(objects)
+		.enter().append("svg:g");
+
+	var box = g.append("svg:rect");
 }
 
 function resetCanvas(e) { // on resize events
@@ -407,59 +417,8 @@ var objects = d3.range(n_max).map(function() {
 	};
 });
 
-var svg = d3.select("#canvasArea").append("svg:svg")
-	.attr("class", "display-svg")
-	.attr("width", vid_width)
-	.attr("height", vid_height);
-	
-var g = svg.selectAll("g")
-	.data(objects)
-	.enter().append("svg:g");
-
-var box = g.append("svg:rect");
 
 function drawObjects(){
-	/*for (var i = -1; ++i < n;) {
-	var object = objects[i],
-		x = object.path[0][0],
-		y = object.path[0][1];
-
-	// stuck at the walls.
-	if (x < 0)
-	{
-		object.path[0][0] = l;
-	}
-	if(x > w-l) 
-	{
-		object.path[0][0] = w-l;
-	}
-	if (y < 0)
-	{
-		object.path[0][1] = l;
-	}
-	if (y > h-l)
-	{
-		object.path[0][1] = h-l;
-	}	
-	object.size = l;
-	object.active = (i<n)?1:0;
-	}
-	box.attr("opacity", function(d,i){
-		return d.active;
-	});
-	box.attr("width", function(d,i){
-		return d.size;
-	});
-	box.attr("height", function(d,i){
-		return d.size;
-	});
-	box.attr("stroke", function(d,i){
-		return d.color;
-	});
-	box.attr("transform", function(d) {
-	return "translate(" + d.path[0] + ")";
-	});*/
-	
 	led_U.style("opacity",arrow.int1);
 	led_L.style("opacity",arrow.int2);
 	led_D.style("opacity",arrow.int3);
