@@ -286,25 +286,26 @@ var 	shape_bg,
 	led_U,
 	led_D;
 	
+control_canvas = document.getElementById('controlCanvas');
+c = control_canvas.getContext('2d');
+
+resetCanvas();
+
+//vid_canvas = document.getElementById('display-canvas');
+
+vid_canvas = d3.select("#canvasArea").append("canvas")
+	.attr("class", "display-canvas")
+	.attr("width", vid_width)
+	.attr("height", vid_height);
+
+svg_led = d3.select("#ledArea").append("svg:svg")
+	.attr("class", "display-svg")
+	.attr("width", 300)
+	.attr("height", 300);
+
+vid_context = vid_canvas.node().getContext("2d");
+	
 function setupCanvas() { // called in init
-	control_canvas = document.getElementById('controlCanvas');
-	c = control_canvas.getContext('2d');
-	
-	resetCanvas();
-	
-	//vid_canvas = document.getElementById('display-canvas');
-	
-	vid_canvas = d3.select("#canvasArea").append("canvas")
-		.attr("class", "display-canvas")
-		.attr("width", vid_width)
-		.attr("height", vid_height);
-	
-	svg_led = d3.select("#ledArea").append("svg:svg")
-		.attr("class", "display-svg")
-		.attr("width", 300)
-		.attr("height", 300);
-	
-	vid_context = vid_canvas.node().getContext("2d");; 
 	
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
@@ -404,11 +405,11 @@ function resetCanvas(e) { // on resize events
     window.scrollTo(0, 0);
 }
 
-var w = 640,
-h = 480,
-m = 20,
-radius = l/2+10,
-degrees = 180 / Math.PI;
+var 	w = 640,
+	h = 480,
+	m = 20,
+	radius = l/2+10,
+	degrees = 180 / Math.PI;
 
 var objects = d3.range(n_max).map(function() {
 	var x = 40 + Math.random() * (w-40), y = 40 + Math.random() * (h-40);
