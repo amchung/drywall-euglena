@@ -426,6 +426,8 @@ function getVideo(){
 		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
 	});*/
 	vid_canvas.append("image")
+		.attr("width", vid_width)
+		.attr("height", vid_height)
 		.attr('xlink:href',"http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime());
 }
 
