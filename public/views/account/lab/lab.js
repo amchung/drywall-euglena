@@ -375,12 +375,11 @@ function setupCanvas() { // called in init
 
 	var box = g.append("svg:rect");
 	
-	//window.setInterval(getVideo, 1000/10);
+	window.setInterval(getVideo, 1000/6);
 	
 	d3.timer(function(){
 		joystick_draw();
 		drawObjects();
-		getVideo();
 	});
 }
 
