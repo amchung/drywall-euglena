@@ -281,10 +281,6 @@ function setupCanvas() { // called in init
 		.style("top", 0)
 		.style("left", 0);
 	
-	/*svg_led = d3.select("#ledArea").append("svg:svg")
-		.attr("class", "display-svg")
-		.attr("width", 300)
-		.attr("height", 300);*/
 	svg_led = d3.select("#canvasArea").append("svg:svg")
 		.attr("width", vid_width)
 		.attr("height", vid_height)
@@ -426,8 +422,8 @@ function drawObjects(){
 
 function getVideo(){
 	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
-		vid_context.clearRect(0, 0, vid_width, vid_height);
-		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
+		vid_context.clearRect(0, 0, vid_width+20, vid_height+20);
+		vid_context.drawImage(image, 10, 10, vid_width, vid_height);
 	});
 }
 
