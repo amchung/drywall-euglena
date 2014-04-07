@@ -295,28 +295,28 @@ function setupCanvas() { // called in init
 	
     
 	g_ledL = svg_led.append("svg:g")
-		.attr("transform", "matrix(0 1 1 0 55 150)");
+		.attr("transform", "matrix(0 -1 -1 0 640 240)");
 	led_L = g_ledL.append("svg:polygon")
 		.attr("points", "0,20 15,0 30,20")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
 	g_ledR = svg_led.append("svg:g")
-		.attr("transform", "matrix(0 -1 -1 0 245 150)");
+		.attr("transform", "matrix(0 1 1 0 0 240)");
 	led_R = g_ledR.append("svg:polygon")
 		.attr("points", "0,20 15,0 30,20")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
 	g_ledU = svg_led.append("svg:g")
-		.attr("transform", "matrix(-1 0 0 1 150 55)");
+		.attr("transform", "matrix(1 0 0 -1 320 0)");
 	led_U = g_ledU.append("svg:polygon")
 		.attr("points", "0,20 15,0 30,20")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
 	g_ledD = svg_led.append("svg:g")
-		.attr("transform", "matrix(1 0 0 -1 150 245)");
+		.attr("transform", "matrix(-1 0 0 1 320 480)");
 	led_D = g_ledD.append("svg:polygon")
 		.attr("points", "0,20 15,0 30,20")
 		.style("fill", "#ffffff")
