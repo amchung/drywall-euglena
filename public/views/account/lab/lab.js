@@ -375,7 +375,7 @@ function setupCanvas() { // called in init
 
 	var box = g.append("svg:rect");
 	
-	window.setInterval(getVideo, 1000/6);
+	window.setInterval(getVideo, 1000/8);
 	
 	d3.timer(function(){
 		joystick_draw();
@@ -431,8 +431,8 @@ function getVideo(){
 		vid_context.clearRect(0, 0, vid_width, vid_height);
 		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
 	});*/
-	var old = document.getElementById("img_snapshot");
-	old.parentNode.removeChild(old);
+	//var old = document.getElementById("img_snapshot");
+	//old.parentNode.removeChild(old);
 	
 	vid_canvas.append("image")
 		.attr("width", vid_width)
