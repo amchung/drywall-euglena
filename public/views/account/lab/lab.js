@@ -440,7 +440,7 @@ function getVideo(){
 		.attr("height", vid_height)
 		.attr("id", "img_snapshot")
 		.attr('xlink:href',image);
-	}
+	});
 }
 
 function getVidFrame(path, callback) {
