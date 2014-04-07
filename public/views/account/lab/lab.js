@@ -288,7 +288,7 @@ function setupCanvas() { // called in init
 		.attr("height", vid_height)
 		.style("position", "inherit");
 	
-	vid_context = vid_canvas.node().getContext("2d");
+	//vid_context = vid_canvas.node().getContext("2d");
 	
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
