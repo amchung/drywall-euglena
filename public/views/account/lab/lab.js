@@ -279,7 +279,7 @@ function setupCanvas() { // called in init
 		.attr("height", vid_height)
 		.style("position", "inherit");
 		
-	vid_canvas.append("image")
+	vid_canvas.append("svg:image")
 		.attr("width", vid_width)
 		.attr("height", vid_height)
 		.attr("id", "img_snapshot")
@@ -375,7 +375,7 @@ function setupCanvas() { // called in init
 
 	var box = g.append("svg:rect");
 	
-	window.setInterval(getVideo, 1000/8);
+	window.setInterval(getVideo, 1000/10);
 	
 	d3.timer(function(){
 		joystick_draw();
@@ -431,22 +431,24 @@ function getVideo(){
 		vid_context.clearRect(0, 0, vid_width, vid_height);
 		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
 	});*/
-	var old = document.getElementById("img_snapshot");
-	//old.parentNode.removeChild(old);
-	old.attr('xlink:href',"http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime());
+	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
+		var old = document.getElementById("img_snapshot");
+		old.parentNode.removeChild(old);
 	
-	/*vid_canvas.append("image")
+		vid_canvas.append("image")
 		.attr("width", vid_width)
 		.attr("height", vid_height)
 		.attr("id", "img_snapshot")
-		.attr('xlink:href',"http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime());*/
+		.attr('xlink:href',image);
+	}
 }
 
 function getVidFrame(path, callback) {
 	var image = new Image;
 	image.src = path;
 	image.onload = function() {
-	    callback(image);
+	    //callback(image);
+	    callback(path);
 	    //console.log(new Date().getTime());
 	};
 }
