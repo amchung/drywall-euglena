@@ -277,7 +277,7 @@ function setupCanvas() { // called in init
 		.attr("class", "display-canvas")
 		.attr("width", vid_width)
 		.attr("height", vid_height)
-		.style("position", inherit);
+		.style("position", "inherit");
 	
 	/*svg_led = d3.select("#ledArea").append("svg:svg")
 		.attr("class", "display-svg")
@@ -286,7 +286,7 @@ function setupCanvas() { // called in init
 	svg_led = d3.select("#canvasArea").append("svg:svg")
 		.attr("width", vid_width)
 		.attr("height", vid_height)
-		.style("position", inherit);
+		.style("position", "inherit");
 	
 	vid_context = vid_canvas.node().getContext("2d");
 	
