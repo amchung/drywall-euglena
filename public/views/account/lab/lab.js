@@ -295,7 +295,7 @@ function setupCanvas() { // called in init
 	
     
 	g_ledL = svg_led.append("svg:g")
-		.attr("transform", "matrix(0 1 1 0 660 240)");
+		.attr("transform", "matrix(0 1 1 0 620 240)");
 	led_L = g_ledL.append("svg:polygon")
 		.attr("points", "0,20 15,0 30,20")
 		.style("fill", "#ffffff")
