@@ -278,6 +278,12 @@ function setupCanvas() { // called in init
 		.attr("width", vid_width)
 		.attr("height", vid_height)
 		.style("position", "inherit");
+		
+	vid_canvas.append("image")
+		.attr("width", vid_width)
+		.attr("height", vid_height)
+		.attr("id", "img_snapshot")
+		.attr('xlink:href',"http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime());
 	
 	/*svg_led = d3.select("#ledArea").append("svg:svg")
 		.attr("class", "display-svg")
@@ -425,9 +431,13 @@ function getVideo(){
 		vid_context.clearRect(0, 0, vid_width, vid_height);
 		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
 	});*/
+	var old = document.getElementById("img_snapshot");
+	old.parentNode.removeChild(old);
+	
 	vid_canvas.append("image")
 		.attr("width", vid_width)
 		.attr("height", vid_height)
+		.attr("id", "img_snapshot")
 		.attr('xlink:href',"http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime());
 }
 
