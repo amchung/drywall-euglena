@@ -273,7 +273,7 @@ function setupCanvas() { // called in init
 	
 	//vid_canvas = document.getElementById('display-canvas');
 	
-	vid_canvas = d3.select("#canvasArea").append("canvas")
+	vid_canvas = d3.select("#canvasArea").append("svg:svg")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width)
 		.attr("height", vid_height)
@@ -421,10 +421,12 @@ function drawObjects(){
 }
 
 function getVideo(){
-	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
+	/*getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
 		vid_context.clearRect(0, 0, vid_width, vid_height);
 		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
-	});
+	});*/
+	vid_canvas.append("image")
+		.attr('xlink:href',"http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime());
 }
 
 function getVidFrame(path, callback) {
