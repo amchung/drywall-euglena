@@ -30,10 +30,10 @@ function setupD3() {
         .attr("height", vid_height);
         
     var shape_bg = svg_led.append("svg:rect")
-    							.attr("width", 300)
-    							.attr("height", 300)
-    							.style("fill","#000000")
-								.style("opacity", "0.2");
+			    .attr("width", 300)
+			    .attr("height", 300)
+			    .style("fill","#000000")
+				    .style("opacity", "0.2");
         
     var shape_stage = svg_led.append("svg:rect")
     							.attr("x", 112.5)
