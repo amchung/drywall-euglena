@@ -293,53 +293,34 @@ function setupCanvas() { // called in init
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
 	
-	shape_bg =
-	    svg_led.append("svg:rect")
-		.attr("width", 300)
-		.attr("height", 300)
-		.style("fill", "#000000");
-	
-	shape_stage =
-	    svg_led.append("svg:rect")
-		.attr("x", 112.5)
-		.attr("y", 112.5)
-		.attr("width", 75)
-		.attr("height", 75)
-		.style("fill", "#111111");
     
-	g_ledL =
-	    svg_led.append("svg:g")
+	g_ledL = svg_led.append("svg:g")
 		.attr("transform", "matrix(1 0 0 -1 55 150)");
-	led_L =
-	    g_ledL.append("svg:path")
-		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+	led_L = g_ledL.append("svg:polygon")
+		.attr("points", "0,40 30,0 60,40")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
-	g_ledR =
-	    svg_led.append("svg:g")
+	g_ledR = svg_led.append("svg:g")
 		.attr("transform", "matrix(-1 0 0 1 245 150)");
-	led_R =
-	    g_ledR.append("svg:path")
-		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+	led_R = g_ledR.append("svg:polygon")
+		.attr("points", "0,40 30,0 60,40")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
-	g_ledU =
-	    svg_led.append("svg:g")
+	g_ledU = svg_led.append("svg:g")
 		.attr("transform", "matrix(0 1 1 0 150 55)");
-	led_U =
-	    g_ledU.append("svg:path")
-		.attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
+	led_U = g_ledU.append("svg:polygon")
+		.attr("points", "0,40 30,0 60,40")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
 	g_ledD = svg_led.append("svg:g")
-		    .attr("transform", "matrix(0 -1 -1 0 150 245)");
-	led_D = g_ledD.append("svg:path")
-		    .attr("d", "M39.042,0.834c0-3.697-0.483-7.667-4.069-10.966c-8.452-7.775-36.53-7.701-38.847-7.701c-3.728,0-4.75,7.909-4.75,17.667c0,9.757,1.022,17.667,4.75,17.667c2.282,0,32.307,0.417,38.792-6.494C38.095,7.62,39.042,4.622,39.042,0.834z")
-		    .style("fill", "#ffffff")
-		    .style("opacity", "0");
+		.attr("transform", "matrix(0 -1 -1 0 150 245)");
+	led_D = g_ledD.append("svg:polygon")
+		.attr("points", "0,40 30,0 60,40")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
 		    
 	svg = d3.select("#canvasArea").append("svg:svg")
 		.attr("class", "display-svg")
