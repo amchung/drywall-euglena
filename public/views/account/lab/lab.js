@@ -273,17 +273,10 @@ function setupCanvas() { // called in init
 	
 	//vid_canvas = document.getElementById('display-canvas');
 	
-	vid_canvas = d3.select("#canvasArea").append("svg:svg")
+	vid_canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width)
-		.attr("height", vid_height)
-		.style("position", "inherit");
-		
-	vid_canvas.append("svg:image")
-		.attr("width", vid_width)
-		.attr("height", vid_height)
-		.attr("id", "img_snapshot")
-		.attr('xlink:href',"http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime());
+		.attr("height", vid_height);
 	
 	/*svg_led = d3.select("#ledArea").append("svg:svg")
 		.attr("class", "display-svg")
@@ -291,10 +284,9 @@ function setupCanvas() { // called in init
 		.attr("height", 300);*/
 	svg_led = d3.select("#canvasArea").append("svg:svg")
 		.attr("width", vid_width)
-		.attr("height", vid_height)
-		.style("position", "inherit");
+		.attr("height", vid_height);
 	
-	//vid_context = vid_canvas.node().getContext("2d");
+	vid_context = vid_canvas.node().getContext("2d");
 	
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
@@ -427,19 +419,9 @@ function drawObjects(){
 }
 
 function getVideo(){
-	/*getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
+	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
 		vid_context.clearRect(0, 0, vid_width, vid_height);
 		vid_context.drawImage(image, 0, 0, vid_width, vid_height);
-	});*/
-	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
-		var old = document.getElementById("img_snapshot");
-		old.parentNode.removeChild(old);
-	
-		vid_canvas.append("image")
-		.attr("width", vid_width)
-		.attr("height", vid_height)
-		.attr("id", "img_snapshot")
-		.attr('xlink:href',image);
 	});
 }
 
@@ -447,8 +429,7 @@ function getVidFrame(path, callback) {
 	var image = new Image;
 	image.src = path;
 	image.onload = function() {
-	    //callback(image);
-	    callback(path);
+		callback(image);
 	    //console.log(new Date().getTime());
 	};
 }

@@ -23,11 +23,17 @@ var n_max = 20;
 function setupD3() {
     canvas = d3.select("#canvasArea").append("canvas")
         .attr("width", vid_width)
-        .attr("height", vid_height);
+        .attr("height", vid_height)
+	.style("position", "absolute")
+	.style("top", 0)
+	.style("left", 0);
     
     svg_led = d3.select("#canvasArea").append("svg:svg")
         .attr("width", vid_width)
-        .attr("height", vid_height);
+        .attr("height", vid_height)
+	.style("position", "absolute")
+	.style("top", 0)
+	.style("left", 0);
         
     var shape_bg = svg_led.append("svg:rect")
 			    .attr("width", 300)
