@@ -276,7 +276,8 @@ function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width)
-		.attr("height", vid_height);
+		.attr("height", vid_height)
+		.style("position", inherit);
 	
 	/*svg_led = d3.select("#ledArea").append("svg:svg")
 		.attr("class", "display-svg")
@@ -284,7 +285,8 @@ function setupCanvas() { // called in init
 		.attr("height", 300);*/
 	svg_led = d3.select("#canvasArea").append("svg:svg")
 		.attr("width", vid_width)
-		.attr("height", vid_height);
+		.attr("height", vid_height)
+		.style("position", inherit);
 	
 	vid_context = vid_canvas.node().getContext("2d");
 	
