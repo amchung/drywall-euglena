@@ -39,7 +39,11 @@ var l = 80,
 	
 var n_max = 20;
 
-document.addEventListener("DOMContentLoaded", init);
+//document.addEventListener("DOMContentLoaded", init);
+
+$(document).ready(function() {
+    init();
+});
 
 window.addEventListener('resize', function(event){ // resize when you resize the browser
 	resetCanvas();
@@ -276,17 +280,17 @@ function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width+40)
-		.attr("height", vid_height+40);
-		//.style("position", "absolute")
-		//.style("top", 0)
-		//.style("left", 0);
+		.attr("height", vid_height+40)
+		.style("position", "absolute")
+		.style("top", 0)
+		.style("left", 0);
 	
 	svg_led = d3.select("#canvasArea").append("svg:svg")
 		.attr("width", vid_width+40)
-		.attr("height", vid_height+40);
-		//.style("position", "absolute")
-		//.style("top", 0)
-		//.style("left", 0);
+		.attr("height", vid_height+40)
+		.style("position", "absolute")
+		.style("top", 0)
+		.style("left", 0);
 	
 	vid_context = vid_canvas.node().getContext("2d");
 	
