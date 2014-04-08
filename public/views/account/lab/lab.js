@@ -302,19 +302,19 @@ function setupCanvas() { // called in init
 	
 	led_R = svg_led.append("svg:g")
 		.append("svg:polygon")
-		.attr("points", "310,26 370,26 340,66")
+		.attr("points", "654,230 654,290 614,260")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
 	led_U = svg_led.append("svg:g")
 		.append("svg:polygon")
-		.attr("points", "654,230 654,290 614,260")
+		.attr("points", "310,26 370,26 340,66")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
 	led_D = svg_led.append("svg:g")
 		.append("svg:polygon")
-		.attr("points", "310,474 340,454 370,474")
+		.attr("points", "310,494 340,454 370,494")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 		    
