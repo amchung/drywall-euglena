@@ -276,17 +276,17 @@ function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width+40)
-		.attr("height", vid_height+40)
-		.style("position", "absolute")
-		.style("top", 0)
-		.style("left", 0);
+		.attr("height", vid_height+40);
+		//.style("position", "absolute")
+		//.style("top", 0)
+		//.style("left", 0);
 	
 	svg_led = d3.select("#canvasArea").append("svg:svg")
 		.attr("width", vid_width+40)
-		.attr("height", vid_height+40)
-		.style("position", "absolute")
-		.style("top", 0)
-		.style("left", 0);
+		.attr("height", vid_height+40);
+		//.style("position", "absolute")
+		//.style("top", 0)
+		//.style("left", 0);
 	
 	vid_context = vid_canvas.node().getContext("2d");
 	
