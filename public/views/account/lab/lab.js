@@ -250,10 +250,6 @@ function changeLED(LEDon) { // on joystick inputs
 
 var 	shape_bg,
 	shape_stage,
-	g_ledL,
-	g_ledR,
-	g_ledU,
-	g_ledD,
 	led_L,
 	led_R,
 	led_U,
@@ -293,31 +289,26 @@ function setupCanvas() { // called in init
 	c.strokeStyle = "#ffffff";
 	c.lineWidth = 2;
 	
-    
-	g_ledL = svg_led.append("svg:g")
-		.attr("transform", "matrix(0 -1 -1 0 50 240)");
-	led_L = g_ledL.append("svg:polygon")
+	led_L = svg_led.append("svg:g")
+		.append("svg:polygon")
+		.attr("points", "0,30 20,0 40,30")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+					
+	led_R = svg_led.append("svg:g")
+		.append("svg:polygon")
 		.attr("points", "0,30 20,0 40,30")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
-	g_ledR = svg_led.append("svg:g")
-		.attr("transform", "matrix(0 1 1 0 620 240)");
-	led_R = g_ledR.append("svg:polygon")
+	led_U = svg_led.append("svg:g")
+		.append("svg:polygon")
 		.attr("points", "0,30 20,0 40,30")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 						
-	g_ledU = svg_led.append("svg:g")
-		.attr("transform", "matrix(1 0 0 -1 340 50)");
-	led_U = g_ledU.append("svg:polygon")
-		.attr("points", "0,30 20,0 40,30")
-		.style("fill", "#ffffff")
-		.style("opacity", "0");
-						
-	g_ledD = svg_led.append("svg:g")
-		.attr("transform", "matrix(-1 0 0 1 340 500)");
-	led_D = g_ledD.append("svg:polygon")
+	led_D = svg_led.append("svg:g")
+		.append("svg:polygon")
 		.attr("points", "0,30 20,0 40,30")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
