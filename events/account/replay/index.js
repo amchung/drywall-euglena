@@ -29,11 +29,10 @@ exports.callblock = function(app, socket){
 		console.log("access block "+block);
 		
 		commands.push(["get","tb_id:"+block+":time"]);
-		commands.push(["get","tb_id:"+block+":locked"]);
 		commands.push(["get","tb_id:"+block+":username"]);
 		commands.push(["get","tb_id:"+block+":exp_id"]);
 		commands.push(["get","tb_id:"+block+":pattern_id"]);
-		commands.push(["get","tb_id:"+block+":image"]);
+		
 		commands.push(["zrange", "tb_id:"+block+":arduino-log", 0, -1, "withscores"]);
 		//zrange tb_id:12367:arduino-log 0 -1 withscores
 

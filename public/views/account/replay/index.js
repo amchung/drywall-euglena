@@ -3,7 +3,8 @@
 var socket;
 var myname;
 var block_id;
-var blockdata;
+var blockData;
+var ledData;
 
 (function() {
   'use strict';
@@ -18,31 +19,18 @@ var blockdata;
   });
   
   socket.on('/replay/#postdata', function(data){
-  	blockdata = [];
-  	/*var num_ele = 9;
-	for (var i=0;i<=data.length/num_ele;i++){
-		var block = new Object();
-		block.id = i;
-		
-		var d = new Date(0);
-		d.setTime(data[i*num_ele]);
-		block.time = d;
-		
-		block.lock = data[i*num_ele+1];
-		block.username = data[i*num_ele+2];
-		block.exp_id = data[i*num_ele+3];
-		block.pattern_id = data[i*num_ele+4];
-		block.past = data[i*num_ele+5];
-		block.admin = data[i*num_ele+6];
-		block.current = data[i*num_ele+7];
-		block.image = data[i*num_ele+8];
-		block.blocktime = data[i*num_ele];
-		
-		blockdata.push(block);
-	}
-	blockdata.length = blockdata.length-2; */
-	console.log(data);
-	console.dir(data);
+  	blockData = [];
+	blockData.push(data[0]); // time
+	blockData.push(data[1]); // owner
+	blockData.push(data[2]); // experiment id
+	blockData.push(data[3]); // pattern id
+	
+	// image dir = 171.65.102.132:3001/blockid/
+	
+	ledData = data[4];
+	
+	console.log(blockData);
+	console.log(ledData);
   });
   
   socket.on('/replay/#newUser', function(user) {
