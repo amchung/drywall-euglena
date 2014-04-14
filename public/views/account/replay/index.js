@@ -37,8 +37,9 @@ var imageData;
   socket.on('/replay/#postimglist', function(data){
 	imageData = [];
 	data.forEach(function(filename){
-	    var convertDate = new Date(filename);
-	    imageData.push(convertDate.getTime());
+	    //var convertDate = new Date(filename);
+	    //imageData.push(convertDate.getTime());
+	    imageData.push(filename);
 	});
 	console.log(imageData);
   });
