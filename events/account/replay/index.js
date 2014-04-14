@@ -18,9 +18,21 @@ exports.callblock = function(app, socket){
 	var redis = require("redis"),
 	 client = redis.createClient();
 	var _ = require('underscore');
+	var fs = require('fs');
 	
 	var targetBlock = message.targetBlock;
 	var commands = [];
+	
+	var path = '../../Dropbox/live-gallery/'+targetBlock;
+	
+	fs.readdir(path, function (err, files) {
+	  var imagelist = [];
+	  if(err) throw err;
+	  files.forEach(function(file) {
+	    imagelist.push(file);
+	  });
+	  socket.emit('/replay/#postimglist',  imagelist );
+	});
 	
 	runCommands(targetBlock);
 	

@@ -33,6 +33,10 @@ var ledData;
 	console.log(ledData);
   });
   
+  socket.on('/replay/#postimglist', function(data){
+	console.log(data);
+  });
+  
   socket.on('/replay/#newUser', function(user) {
       myname = user;
       console.log('>>> DB connected' + block_id);
