@@ -121,6 +121,7 @@ var block_id;
   $(document).ready(function() {
     //app.blocksView = new app.BlocksView();
     app.router = new app.Router();
+    Backbone.history.start({ pushState: true });
   });
     
 }());
