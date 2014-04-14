@@ -401,8 +401,8 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('/timeline/#viewdata', function(myBlock){
-	console.log("going to access block" + myBlock);
-    	//window.location.replace("/account/replay/?myBlock="+myBlock);
+	console.log("going to access block " + myBlock);
+    	window.location.replace("/account/replay/?myBlock="+myBlock);
   });
   
   
