@@ -10,7 +10,7 @@ var myname;
   //var qs = new Querystring();
   //var block_id = qs.get("myBlock");
   
-  //socket = io.connect();
+  socket = io.connect();
   socket.on('connect', function(){
   	socket.emit('/replay/#join');
   });
@@ -106,13 +106,16 @@ var myname;
   
   app.Router = Backbone.Router.extend({
     routes: {
-      'account/replay/': 'start',
-      'account/replay/:token/': 'start'
+      '': 'default',
+      'load/:block': 'load'
     },
-    start: function(token) {
-      console.log("block "+token);
-      var callBlock = function(ticket){
-	socket.emit('/replay/#callblock', { targetBlock: token});
+    default: function(){
+      console.log(" >>default view, nothing loaded");
+    },
+    load: function(block) {
+      console.log(">> loading block "+block);
+      var callBlock = function(block){
+	socket.emit('/replay/#callblock', { targetBlock: block});
       }
     }
   });
