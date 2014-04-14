@@ -140,7 +140,7 @@ exports = module.exports = function(app, passport) {
   app.get('/account/spectate/', require('./views/account/spectate/index').init);
   app.get('/account/timeline/', require('./views/account/timeline/index').init);
   app.get('/account/replay/', require('./views/account/replay/index').init);
-  app.get('/account/replay/load/:block', require('./views/account/replay/index').init);
+  app.get('/account/replay/load/:block/', require('./views/account/replay/index').init);
  // app.put('/account/replay/:token/', require('./views/account/replay/index').set);
 
   //account > verification

@@ -105,8 +105,8 @@ var block_id;
   
   app.Router = Backbone.Router.extend({
     routes: {
-      '': 'default',
-      'load/:block': 'load'
+      'account/replay/': 'default',
+      'account/replay/load/:block/': 'load'
     },
     default: function(){
       console.log(" >>default view, nothing loaded");
