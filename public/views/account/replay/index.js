@@ -6,9 +6,9 @@ var myname;
 (function() {
   'use strict';
   
-  var blockdata = [];
-  var qs = new Querystring();
-  var block_id = qs.get("myBlock");
+  //var blockdata = [];
+  //var qs = new Querystring();
+  //var block_id = qs.get("myBlock");
   
   socket = io.connect();
   socket.on('connect', function(){
@@ -43,32 +43,34 @@ var myname;
   });
   
   socket.on('replay/#newUser', function(user) {
-    myname=user;
+    myname = user;
     currenttime = new Date();
   	callBlock(currenttime);
   	console.log('>>> DB connected');
   });
-  
-  var callBlock = function(ticket){
-    socket.emit('/timeline/#callblock', { targetBlock: block_id});
-  }
   
   socket.on('message', function (message) {
   	console.log(message);
   });
   
   socket.on('disconnect', function() {
-	console.log('>>> timeline disconnected');
+	console.log('>>> DB disconnected');
   });
   
   
   
   app = app || {};
   
-  app.Blocks = Backbone.Model.extend({
-    url: '/account/replay/',
+  app.Reset = Backbone.Model.extend({
     defaults: {
-      blockid: block_id
+      success: false,
+      errors: [],
+      errfor: {},
+      blockid: undefined,
+      confitm: ''
+    },
+    url: function(){
+      return '/account/replay/' + this.get('block_id') +'/';
     }
   });
 
@@ -102,9 +104,22 @@ var myname;
     }
   });*/
   
+  app.Router = Backbone.Router.extend({
+    routes: {
+      'account/replay/': 'start',
+      'account/replay/:token/': 'start'
+    },
+    start: function(token) {
+      console.log("block "+token);
+      var callBlock = function(ticket){
+	socket.emit('/replay/#callblock', { targetBlock: token});
+      }
+    }
+  });
   
   $(document).ready(function() {
     //app.blocksView = new app.BlocksView();
+    app.router = new app.Router();
   });
     
 }());
