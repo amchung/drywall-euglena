@@ -9,7 +9,7 @@ var myname;
   //var blockdata = [];
   //var qs = new Querystring();
   //var block_id = qs.get("myBlock");
-  
+
   socket = io.connect();
   socket.on('connect', function(){
   	socket.emit('/replay/#join');
