@@ -5,6 +5,7 @@ var myname;
 var block_id;
 var blockData;
 var ledData;
+var imageData;
 
 (function() {
   'use strict';
@@ -34,7 +35,12 @@ var ledData;
   });
   
   socket.on('/replay/#postimglist', function(data){
-	console.log(data);
+	imageData = [];
+	data.forEach(function(filename){
+	    var convertDate = new Date(filename);
+	    imageData.push(convertDate.getTime());
+	});
+	console.log(imageData);
   });
   
   socket.on('/replay/#newUser', function(user) {
