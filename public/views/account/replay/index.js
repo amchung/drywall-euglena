@@ -3,6 +3,7 @@
 var socket;
 var myname;
 var block_id;
+var blockdata;
 
 (function() {
   'use strict';
@@ -40,7 +41,8 @@ var block_id;
 		blockdata.push(block);
 	}
 	blockdata.length = blockdata.length-2; */
-	console.dir(blockdata);
+	console.log(data);
+	console.dir(data);
   });
   
   socket.on('/replay/#newUser', function(user) {
