@@ -5,6 +5,7 @@ var myname;
 var clock_socket;
 var currenttime;
 var selected_block_time;
+var myBlock; // for data access
 
 var width = 900,
 	height = 300,
@@ -213,7 +214,7 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d,i){
-	document.getElementById("btn_enter").disabled = true; 
+    document.getElementById("btn_enter").disabled = true; 
     document.getElementById("btn_access").disabled = true; 
     document.getElementById("btn_reserve").disabled = true; 
     document.getElementById("btn_pattern").disabled = true; 
@@ -399,6 +400,11 @@ var hour = d3.time.format("%I"),
   	window.location.replace("/account/lab/");
   });
   
+  socket.on('/timeline/#viewdata', function(myBlock){
+	console.log("going to access block" + myBlock);
+    	//window.location.replace("/account/replay/?myBlock="+myBlock);
+  });
+  
   
   app = app || {};
   
@@ -483,6 +489,8 @@ var hour = d3.time.format("%I"),
     },
     reqDataAccess: function() {
     	console.log("Sent request: Data Access");
+	// >>>>>> socket: access block data
+    	socket.emit('/timeline/#accessblock', { targettime: selected_block_time});
     },
     reqEnterFreeform: function() {
     	console.log("Sent request: Enter " + selected_block_time);
