@@ -139,6 +139,7 @@ exports = module.exports = function(app, passport) {
   app.get('/account/lab/', require('./views/account/lab/index').init);
   app.get('/account/spectate/', require('./views/account/spectate/index').init);
   app.get('/account/timeline/', require('./views/account/timeline/index').init);
+  app.get('/account/replay/', require('./views/account/replay/index').init);
 
   //account > verification
   app.get('/account/verification/', require('./views/account/verification/index').init);
