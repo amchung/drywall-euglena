@@ -2,6 +2,7 @@
 
 var socket;
 var myname;
+var block_id;
 
 (function() {
   'use strict';
@@ -42,11 +43,9 @@ var myname;
 	console.dir(blockdata);
   });
   
-  socket.on('replay/#newUser', function(user) {
-    myname = user;
-    currenttime = new Date();
-  	callBlock(currenttime);
-  	console.log('>>> DB connected');
+  socket.on('/replay/#newUser', function(user) {
+      myname = user;
+      console.log('>>> DB connected' + block_id);
   });
   
   socket.on('message', function (message) {
@@ -114,9 +113,8 @@ var myname;
     },
     load: function(block) {
       console.log(">> loading block "+block);
-      var callBlock = function(block){
-	socket.emit('/replay/#callblock', { targetBlock: block});
-      }
+      block_id = block;
+      socket.emit('/replay/#callblock', { targetBlock: block});
     }
   });
   
