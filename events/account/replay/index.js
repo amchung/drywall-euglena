@@ -56,6 +56,7 @@ exports.callimglist = function(app, socket){
 	var fs = require('fs');
 	
 	var targetBlock = message.targetBlock;
+	 console.log("image list for block "+block);
 	var path = '../../Dropbox/live-gallery/'+targetBlock;
 	
 	fs.readdir(path, function (err, files) {

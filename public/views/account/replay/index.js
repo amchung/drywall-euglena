@@ -38,6 +38,9 @@ var timeline;
 	  ledData.push(data[4][i*2]);
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
+	
+	console.log(ledData.length);
+	console.log(ledTime.length);
 
 	socket.emit('/replay/#callblock', { targetBlock: block_id});
   });
