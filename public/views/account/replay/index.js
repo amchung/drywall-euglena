@@ -42,7 +42,7 @@ var timeline;
 	console.log(ledData.length);
 	console.log(ledTime.length);
 
-	socket.emit('/replay/#callblock', { targetBlock: block_id});
+	socket.emit('/replay/#callimglist', { targetBlock: block_id});
   });
   
   socket.on('/replay/#postimglist', function(data){
