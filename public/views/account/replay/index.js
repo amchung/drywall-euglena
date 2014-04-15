@@ -31,6 +31,7 @@ var imageData;
 	
 	console.log(blockData);
 	console.log(ledData);
+	console.log(ledData.length);
   });
   
   socket.on('/replay/#postimglist', function(data){
@@ -42,6 +43,7 @@ var imageData;
 	    imageData.push(filename);
 	});
 	console.log(imageData);
+	console.log(imageData.length);
   });
   
   socket.on('/replay/#newUser', function(user) {
