@@ -39,7 +39,9 @@ var timeline;
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
 	
+	console.log(ledData);
 	console.log(ledData.length);
+	console.log(ledTime);
 	console.log(ledTime.length);
 
 	socket.emit('/replay/#callimglist', { targetBlock: block_id});
@@ -51,7 +53,7 @@ var timeline;
 	timeline = [];
 	data.forEach(function(filename){
 	    var res = filename.split(".");
-	    imageTime.push(parseInt(res[0]));
+	    imageTime.push(Math.round(parseInt(res[0])/100)*100);
 	    imageData.push(filename);
 	});
 	
