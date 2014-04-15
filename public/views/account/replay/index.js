@@ -5,7 +5,9 @@ var myname;
 var block_id;
 var blockData;
 var ledData;
+var ledTime;
 var imageData;
+var imageTime;
 
 (function() {
   'use strict';
@@ -29,21 +31,28 @@ var imageData;
 	// image dir = 171.65.102.132:3001/blockid/
 	ledData = data[4];
 	
+	for (var i=0;i<ledData.length/2;i++)
+	{
+	  ledData.push(data[4][i*2]);
+	  ledTime.push(parseInt(data[4][i*2+1]));
+	}
+	
 	console.log(blockData);
 	console.log(ledData);
 	console.log(ledData.length);
+	console.log(ledTime);
+	console.log(ledTime.length);
   });
   
   socket.on('/replay/#postimglist', function(data){
 	imageData = [];
+	imageTime = [];
 	data.forEach(function(filename){
 	    var res = filename.split(".");
 	    var convertDate = new Date(res[0]);
-	    imageData.push(convertDate.getTime());
+	    imageTime.push(convertDate.getTime());
 	    imageData.push(filename);
 	});
-	console.log(imageData);
-	console.log(imageData.length);
   });
   
   socket.on('/replay/#newUser', function(user) {
