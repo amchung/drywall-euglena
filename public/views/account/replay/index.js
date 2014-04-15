@@ -53,7 +53,7 @@ var timeline;
 	data.forEach(function(filename){
 	    var res = filename.split(".");
 	    var convertDate = new Date(res[0]);
-	    imageTime.push(convertDate.getTime());
+	    imageTime.push(convertDate.getTime()+convertDate.getMilliseconds());
 	    imageData.push(filename);
 	});
 	
