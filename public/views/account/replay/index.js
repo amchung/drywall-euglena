@@ -31,7 +31,7 @@ var imageTime;
 	
 	// image dir = 171.65.102.132:3001/blockid/
 	
-	for (var i=0;i<ledData.length/2;i++)
+	for (var i=0;i<data[4].length/2;i++)
 	{
 	  ledData.push(data[4][i*2]);
 	  ledTime.push(parseInt(data[4][i*2+1]));
