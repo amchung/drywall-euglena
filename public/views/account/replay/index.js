@@ -23,6 +23,7 @@ var imageTime;
   
   socket.on('/replay/#postdata', function(data){
   	blockData = [];
+	ledTime = [];
 	blockData.push(data[0]); // time
 	blockData.push(data[1]); // owner
 	blockData.push(data[2]); // experiment id
