@@ -39,7 +39,7 @@ var timeline;
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
 
-	socket.emit('/replay/#callblock', { targetBlock: block});
+	socket.emit('/replay/#callblock', { targetBlock: block_id});
   });
   
   socket.on('/replay/#postimglist', function(data){
