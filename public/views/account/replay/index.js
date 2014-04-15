@@ -8,6 +8,7 @@ var ledData;
 var ledTime;
 var imageData;
 var imageTime;
+var timeline;
 
 (function() {
   'use strict';
@@ -35,7 +36,7 @@ var imageTime;
 	for (var i=0;i<data[4].length/2;i++)
 	{
 	  ledData.push(data[4][i*2]);
-	  ledTime.push(parseInt(data[4][i*2+1]));
+	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
 	
 	console.log(blockData);
@@ -48,6 +49,7 @@ var imageTime;
   socket.on('/replay/#postimglist', function(data){
 	imageData = [];
 	imageTime = [];
+	timeline = [];
 	data.forEach(function(filename){
 	    var res = filename.split(".");
 	    var convertDate = new Date(res[0]);
