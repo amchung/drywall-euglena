@@ -66,7 +66,6 @@ exports.callimglist = function(app, socket){
 	    imagelist.push(file);
 	  });
 	  socket.emit('/replay/#postimglist',  imagelist );
-	  runCommands(targetBlock);
 	});
   };
 };
