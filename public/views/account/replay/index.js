@@ -30,7 +30,6 @@ var imageTime;
 	blockData.push(data[3]); // pattern id
 	
 	// image dir = 171.65.102.132:3001/blockid/
-	ledData = data[4];
 	
 	for (var i=0;i<ledData.length/2;i++)
 	{
@@ -54,6 +53,11 @@ var imageTime;
 	    imageTime.push(convertDate.getTime());
 	    imageData.push(filename);
 	});
+	
+	console.log(imageData);
+	console.log(imageData.length);
+	console.log(imageTime);
+	console.log(imageTime.length);
   });
   
   socket.on('/replay/#newUser', function(user) {
