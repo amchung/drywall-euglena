@@ -38,12 +38,8 @@ var timeline;
 	  ledData.push(data[4][i*2]);
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
-	
-	console.log(blockData);
-	console.log(ledData);
-	console.log(ledData.length);
-	console.log(ledTime);
-	console.log(ledTime.length);
+
+	socket.emit('/replay/#callblock', { targetBlock: block});
   });
   
   socket.on('/replay/#postimglist', function(data){
@@ -60,6 +56,8 @@ var timeline;
 	console.log(imageData.length);
 	console.log(imageTime);
 	console.log(imageTime.length);
+	
+	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
   socket.on('/replay/#newUser', function(user) {

@@ -14,5 +14,6 @@ exports = module.exports = function(app) {
     //socket.on('/lab/#valvetrigger', require('./events/account/lab/index').valvetrigger(app,socket));
     socket.on('/replay/#join', require('./events/account/replay/index').join(app, socket));
     socket.on('/replay/#callblock', require('./events/account/replay/index').callblock(app, socket));
+    socket.on('/replay/#callimglist', require('./events/account/replay/index').callimglist(app, socket));
   });
 };
