@@ -27,7 +27,6 @@ var imageData;
 	blockData.push(data[3]); // pattern id
 	
 	// image dir = 171.65.102.132:3001/blockid/
-	ledData = _.partition(data[4], isOdd);
 	ledData = data[4];
 	
 	console.log(blockData);
