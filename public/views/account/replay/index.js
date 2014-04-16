@@ -321,8 +321,8 @@ var draw = function(d3data){
 	    .attr("class", "block")
 	    .attr("transform", function (d,i) 
 	    { 
-		    var dx = i;
-		    var dy = 50;
+		    var dx = i*5;
+		    var dy = 20;
 		    return "translate(" + dx + ","+ dy + ")"; 
 	    });
 	    //.on('mouseover', tip.show)
@@ -334,8 +334,8 @@ var draw = function(d3data){
 		    var class_name="d3-frame";
 		    return class_name;
 	    })
-	    .attr("width", 0.5)
-	    .attr("height", 2)
+	    .attr("width", 2)
+	    .attr("height", 5)
 	    .attr("led", function (d){
 		    if (d.ledarray.length>0){
 			    return true;
