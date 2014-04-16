@@ -14,19 +14,6 @@ var 	shape_bg,
 	led_D;
 
 function setupCanvas() { // called in init
-	control_canvas = document.getElementById('controlCanvas');
-	c = control_canvas.getContext('2d');
-	
-	////// EventListeners for joystick canvas
-	control_canvas.addEventListener('pointerdown', onPointerDown, false);
-	control_canvas.addEventListener('pointermove', onPointerMove, false);
-	control_canvas.addEventListener('pointerup', onPointerUp, false);
-	control_canvas.addEventListener('pointerout', onPointerUp, false);
-	
-	resetCanvas();
-	
-	//vid_canvas = document.getElementById('display-canvas');
-	
 	vid_canvas = d3.select("#canvasArea").append("canvas")
 		.attr("class", "display-canvas")
 		.attr("width", vid_width+40)
