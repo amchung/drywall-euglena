@@ -238,7 +238,7 @@ var 	vid_width = 640,
 	degrees = 180 / Math.PI,
 	datavis_width = 1600,
 	datavis_height = 100,
-	datavis_gap = 10;
+	datavis_gap = 5;
 
 function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
