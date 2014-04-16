@@ -110,7 +110,6 @@ function resetCanvas(e) { // on resize events
 var 	w = 640,
 	h = 480,
 	m = 20,
-	radius = l/2+10,
 	degrees = 180 / Math.PI;
 
 var objects = d3.range(n_max).map(function() {
