@@ -8,7 +8,8 @@ var ledData;
 var ledTime;
 var imageData;
 var imageTime;
-var timeline;
+var current_frame=0;
+
 
 (function() {
   'use strict';
@@ -25,7 +26,6 @@ var timeline;
   socket.on('/replay/#postdata', function(data){
   	blockData = [];
 	ledData = [];
-	ledTime = [];
 	blockData.push(data[0]); // time
 	blockData.push(data[1]); // owner
 	blockData.push(data[2]); // experiment id
@@ -35,9 +35,17 @@ var timeline;
 	
 	for (var i=0;i<data[4].length/2;i++)
 	{
-	  ledData.push(data[4][i*2]);
-	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
+	  //ledData.push(data[4][i*2]);
+	  //ledTime.push(Math.round(parseInt(data[4][i*2+1])));
+	  
+	  var led = new Object();
+	  led.id = i;
+	  led.time = parseInt(data[4][i*2+1]);
+	  led.arrow = data[4][i*2];
+	  
+	  ledData.push(led);
 	}
+	console.dir(ledData);
 	
 	var info_p = document.createElement("p");
 	var info_node_0 = document.createTextNode("Block ID: "+block_id);
@@ -58,10 +66,10 @@ var timeline;
 	var info_box_div = document.getElementById('info_box');
 	info_box_div.appendChild(info_p);		
 	
-	console.log(ledData);
-	console.log(ledData.length);
-	console.log(ledTime);
-	console.log(ledTime.length);
+	//console.log(ledData);
+	//console.log(ledData.length);
+	//console.log(ledTime);
+	//console.log(ledTime.length);
 
 	socket.emit('/replay/#callimglist', { targetBlock: block_id});
   });
@@ -69,20 +77,38 @@ var timeline;
   socket.on('/replay/#postimglist', function(data){
 	imageData = [];
 	imageTime = [];
-	timeline = [];
 	data.forEach(function(filename){
 	    var res = filename.split(".");
 	    imageTime.push(Math.round(parseInt(res[0])/100)*100);
 	    imageData.push(filename);
 	});
 	
-	console.log(imageData);
-	console.log(imageData.length);
-	console.log(imageTime);
-	console.log(imageTime.length);
+	//console.log(imageData);
+	//console.log(imageData.length);
+	//console.log(imageTime);
+	//console.log(imageTime.length);
 	
 	setupCanvas();
-	getVideo(imageData[0]);
+	getVideo(imageData[current_frame]);
+	
+	framedata = [];
+	for (var i=0;i<=imageData.length;i++){
+		var frame = new Object();
+		frame.id = i;
+		frame.msec = imageTime[i];
+		
+		var d = new Date(0);
+		d.setTime(imageTime[i]);
+		frame.time = d;
+		
+		frame.ledarray = [];
+		
+		frame.ledarray.push();
+		
+		framedata.push(frame);
+	}
+	//console.dir(blockdata);
+	//draw(framedata);
 	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
@@ -92,11 +118,11 @@ var timeline;
   });
   
   socket.on('message', function (message) {
-  	console.log(message);
+      console.log(message);
   });
   
   socket.on('disconnect', function() {
-	console.log('>>> DB disconnected');
+      console.log('>>> DB disconnected');
   });
   
   
@@ -139,7 +165,8 @@ var timeline;
       console.log("STOP");
     },
     reqFirstFrame: function() {
-      console.log("1st frame");
+      current_frame = 0;
+      getVideo(imageData[current_frame]);
     }
   });
   
