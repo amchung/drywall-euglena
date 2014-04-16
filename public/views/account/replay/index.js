@@ -111,7 +111,7 @@ var current_frame=0;
 		frameData.push(frame);
 	}
 	console.dir(frameData);
-	draw(framedata);
+	draw(frameData);
 	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
