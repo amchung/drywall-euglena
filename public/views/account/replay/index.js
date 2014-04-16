@@ -96,7 +96,7 @@ var timeline;
   });
 
   app.MovieView = Backbone.View.extend({
-    el: '#play_nav',
+    el: '#playback_nav',
     template: _.template( $('#tmpl-movie_nav').html() ),
     events: {
       'click .btn-play': 'reqPlay',
