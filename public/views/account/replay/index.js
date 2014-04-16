@@ -111,7 +111,7 @@ var current_frame=0;
 		frameData.push(frame);
 	}
 	console.dir(frameData);
-	//draw(framedata);
+	draw(framedata);
 	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
@@ -213,6 +213,13 @@ var 	shape_bg,
 	svg_led,
 	vid_context,
 	svg_data_vis;
+	
+var 	vid_width = 640,
+	vid_height = 480,
+	m = 20,
+	degrees = 180 / Math.PI,
+	datavis_width = 1600,
+	datavis_height = 100;
 
 function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
@@ -257,7 +264,7 @@ function setupCanvas() { // called in init
 		.style("opacity", "0");
 		
 	svg_data_vis = d3.select("#data_vis_box").append("svg:svg")
-		.attr("width", 900)
+		.attr("width", 1600)
 		.attr("height", 100);
 	
 	//window.setInterval(getVideo, 1000/10);
@@ -284,11 +291,6 @@ function resetCanvas(e) { // on resize events
     window.scrollTo(0, 0);
 }
 
-var 	vid_width = 640,
-	vid_height = 480,
-	m = 20,
-	degrees = 180 / Math.PI;
-
 
 function drawObjects(){
 	led_U.style("opacity",arrow.int1);
@@ -297,96 +299,59 @@ function drawObjects(){
 	led_R.style("opacity",arrow.int4);
 }
 
-var draw = function(data){ 
+var draw = function(d3data){ 
     d3.select("svg")
 	.remove();
     
-    var tip = d3.tip()
+    /*var tip = d3.tip()
 	.attr('class', 'd3-tip')
 	.direction('e')
 	.offset([0,10])
 	.html(function(d) {
 		return "time: "+d.time;
-	});
+	});*/
 
     var svg = d3.select("#d3Area").append("svg")
-	    .attr("width", width)
-	    .attr("height", height)
-	    .append("g")
-	    .attr("transform", "translate(4, 4)");
+	    .attr("width", datavis_width)
+	    .attr("height", datavis_height)
+	    .append("g");
+	    //.attr("transform", "translate(4, 4)");
 
     svg.call(tip);
 	
     var block = svg.selectAll(".block")
-	    .data(data)
+	    .data(d3data)
     .enter().append("g")
 	    .attr("class", "block")
 	    .attr("transform", function (d,i) 
 	    { 
-		    var dx = i%12 * (cellWidth+gapWidth);
-		    var dy = (i-i%12)/12*(cellHeight+gapHeight);
+		    var dx = i;
+		    var dy = 50;
 		    return "translate(" + dx + ","+ dy + ")"; 
-	    })
-	    .on('mouseover', tip.show)
-	    .on('mouseout', tip.hide);
+	    });
+	    //.on('mouseover', tip.show)
+	    //.on('mouseout', tip.hide);
 	    
     block.append("rect")
 	    .attr("class", function (d)
 	    {
-		    var class_name;
-		    if (d.username==myname){
-			    class_name="my-block";
-		    }else{
-			    class_name="not-my-block";
-		    }
-		    
-		    if (d.past=="1"){
-			    class_name=class_name+" block-past";
-		    }else{
-			    if (d.current=="1"){
-				    class_name=class_name+" block-current";
-			    }else{
-				    class_name=class_name+" block-future"
-			    }
-		    }
-		    
+		    var class_name="d3-frame";
 		    return class_name;
 	    })
-	    .attr("width", cellWidth)
-	    .attr("height", cellHeight)
-	    .attr("locked", function (d){
-		    if (d.lock=="1"){
+	    .attr("width", 0.6)
+	    .attr("height", 0.6)
+	    .attr("led", function (d){
+		    if (d.ledarray.length>0){
 			    return true;
 		    }else{
 			    return false
 		    }
-	    })
-	    .attr("mine", function (d){
-		    if (d.username==myname){
-			    return true;
-		    }else{
-			    return false
-		    }
-	    })
-	    .attr("past", function (d){
-		    if (d.past=="1"){
-			    return true;
-		    }else{
-			    return false
-		    }
-	    })
-	    .attr("current", function (d){
-		    if (d.current=="1"){
-			    return true;
-		    }else{
-			    return false
-		    }
-	    })
-	    .on('mouseover', tip.show)
-	    .on('mouseout', tip.hide)
-	    .on('click', mouseclick);
+	    });
+	    //.on('mouseover', tip.show)
+	    //.on('mouseout', tip.hide)
+	    //.on('click', mouseclick);
     
-    block.append("text")
+    /*block.append("text")
 	    .attr("class", function (d)
 	    {
 		    var class_name;
@@ -411,27 +376,25 @@ var draw = function(data){
 		    return h+":"+m+ampm;
 	    })
 	    .on('mouseover', tip.show)
-	    .on('mouseout', tip.hide);
+	    .on('mouseout', tip.hide);*/
 	    
-    block.append('text')
-	    .attr("class", function (d)
-	    {
+    /*block.append('text')
+	    .attr("class", function (d){
 		    var class_name;
 		    if (d.username==myname){
 			    class_name="my-block-name";
 		    }else{
 			    class_name="not-my-block-name";
 		    }
-		    return class_name;
-	    })
-    .attr('font-family', 'FontAwesome')
-    .style('font-size', '150%' )
-    .attr("x",22)
+		    return class_name;})
+	    .attr('font-family', 'FontAwesome')
+	    .style('font-size', '150%' )
+	    .attr("x",22)
 	    .attr("y",44)
-    .text(function(d) { return '\uf023' })
+	    .text(function(d) { return '\uf023' })
 	    .style("display", function(d) {
 		    return d.lock == true ? null : "none"; 
-	    });
+	    });*/
   }
 
 function getVideo(frame_img_name){
