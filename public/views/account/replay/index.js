@@ -17,6 +17,7 @@ function frameTimerFunc()
   if (current_frame < imageData.length) {
     current_frame = current_frame + 1;
     getVideo(imageData[current_frame]);
+    draw(frameData);
   }else{
     frameTimerStop();
   }
@@ -185,6 +186,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       frameTimerStop();
       current_frame = 0;
       getVideo(imageData[current_frame]);
+      draw(frameData);
     }
   });
   
