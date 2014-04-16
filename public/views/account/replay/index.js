@@ -262,10 +262,6 @@ function setupCanvas() { // called in init
 		.attr("points", "310,494 340,454 370,494")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
-		
-	svg_data_vis = d3.select("#data_vis_box").append("svg:svg")
-		.attr("width", 1600)
-		.attr("height", 100);
 	
 	//window.setInterval(getVideo, 1000/10);
 	
@@ -311,7 +307,7 @@ var draw = function(d3data){
 		return "time: "+d.time;
 	});*/
 
-    var svg = d3.select("#d3Area").append("svg")
+    svg_data_vis = d3.select("#data_vis_box").append("svg")
 	    .attr("width", datavis_width)
 	    .attr("height", datavis_height)
 	    .append("g");
@@ -319,7 +315,7 @@ var draw = function(d3data){
 
     //svg.call(tip);
 	
-    var block = svg.selectAll(".block")
+    var frame = svg_data_vis.selectAll(".frame")
 	    .data(d3data)
     .enter().append("g")
 	    .attr("class", "block")
@@ -332,7 +328,7 @@ var draw = function(d3data){
 	    //.on('mouseover', tip.show)
 	    //.on('mouseout', tip.hide);
 	    
-    block.append("rect")
+    frame.append("rect")
 	    .attr("class", function (d)
 	    {
 		    var class_name="d3-frame";
