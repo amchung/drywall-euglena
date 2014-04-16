@@ -22,10 +22,7 @@ function frameTimerFunc()
   }
 }
 
-function frameTimerStop()
-{
-  clearInterval(frameTimer);
-}
+function frameTimerStop() {  clearInterval(frameTimer);  }
 
 (function() {
   'use strict';
@@ -179,7 +176,7 @@ function frameTimerStop()
       this.$el.html(this.template);
     },
     reqPlay: function() {
-      frameTimer=setInterval(function(){frameTimer()},200);
+      frameTimer=setInterval(function(){frameTimerFunc()},200);
     },
     reqStop: function() {
       frameTimerStop();
