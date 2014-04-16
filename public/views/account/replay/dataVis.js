@@ -61,8 +61,8 @@ function setupCanvas() { // called in init
 		    
 	svg = d3.select("#canvasArea").append("svg:svg")
 		.attr("class", "display-svg")
-		.attr("width", vid_width)
-		.attr("height", vid_height);
+		.attr("width", w)
+		.attr("height", h);
 	
 	//window.setInterval(getVideo, 1000/10);
 	
