@@ -90,7 +90,7 @@ var current_frame=0;
 	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
-	datavis_width = imageData.length * 8;
+	datavis_width = imageData.length * 5+20;
 	
 	frameData = [];
 	for (var i=0;i<=imageData.length;i++){
