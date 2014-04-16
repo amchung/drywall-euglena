@@ -39,7 +39,7 @@ var timeline;
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
 	
-	var info_p_0 = document.createElement("p");
+	var info_p = document.createElement("p");
 	var info_node_0 = document.createTextNode("Block ID: "+block_id);
 	var info_node_1 = document.createTextNode("Block Start Time: "+data[0]);
 	var info_node_2 = document.createTextNode("Owner : "+data[1]);
