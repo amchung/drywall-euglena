@@ -244,7 +244,7 @@ function drawObjects(){
 }
 
 function getVideo(frame_img_name){
-	getVidFrame("http://171.65.102.132:3001/" + block_id + image_name, function(image) {
+	getVidFrame("http://171.65.102.132:3001/" + block_id + frame_image_name, function(image) {
 		vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
 		vid_context.drawImage(image, 20, 20, vid_width, vid_height);
 	});
