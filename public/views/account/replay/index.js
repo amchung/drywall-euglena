@@ -329,9 +329,15 @@ var draw = function(d3data){
 	    //.on('mouseout', tip.hide);
 	    
     frame.append("rect")
-	    .attr("class", function (d)
+	    .attr("class", function (d,i)
 	    {
-		    var class_name="d3-frame";
+		    var class_name;
+		    if(i==current_frame){
+		      class_name="d3-frame-current";
+		    }
+		    else{
+		      class_name="d3-frame";
+		    }
 		    return class_name;
 	    })
 	    .attr("width", 2)
