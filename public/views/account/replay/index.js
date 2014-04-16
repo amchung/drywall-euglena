@@ -45,7 +45,7 @@ var current_frame=0;
 	  
 	  ledData.push(led);
 	}
-	console.dir(ledData);
+	//console.dir(ledData);
 	
 	var info_p = document.createElement("p");
 	var info_node_0 = document.createTextNode("Block ID: "+block_id);
@@ -102,14 +102,12 @@ var current_frame=0;
 		frame.time = d;
 		
 		frame.ledarray = [];
-		var filteredLED = [];
 		if (i<imageData.length) {
-		    filteredLED = ledData.filter(function (el) {
+		    frame.ledaray = ledData.filter(function (el) {
 			  return el.time >= imageTime[i] &&
 			  el.time < imageTime[i+1];
 		    });
 		}
-		frame.ledarray.push(filteredLED);
 		frameData.push(frame);
 	}
 	console.dir(frameData);
