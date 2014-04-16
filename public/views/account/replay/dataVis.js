@@ -77,12 +77,6 @@ function setupCanvas() { // called in init
 		.attr("width", vid_width)
 		.attr("height", vid_height);
 	
-	g = svg.selectAll("g")
-		.data(objects)
-		.enter().append("svg:g");
-
-	var box = g.append("svg:rect");
-	
 	//window.setInterval(getVideo, 1000/10);
 	
 	/*d3.timer(function(){
@@ -111,19 +105,6 @@ var 	w = 640,
 	h = 480,
 	m = 20,
 	degrees = 180 / Math.PI;
-
-var objects = d3.range(n_max).map(function() {
-	var x = 40 + Math.random() * (w-40), y = 40 + Math.random() * (h-40);
-	return {
-	vx: 0,
-	vy: 0,
-	path: d3.range(m).map(function() { return [x, y]; }),
-	count: 0,
-	active: 0,
-	size: l,
-	color: "#FA6600"
-	};
-});
 
 
 function drawObjects(){
