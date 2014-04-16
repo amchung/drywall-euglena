@@ -45,11 +45,11 @@ var timeline;
 	var info_node_2=document.createTextNode("Owner : "+data[1]);
 	var info_node_3=document.createTextNode("Experiment : "+(data[2] == 0 ? "freeform" : "experiment id "+data[2]));
 	var info_node_4=document.createTextNode("Pattern : "+ (data[3] == 0 ? "not assigned" : "pattern id "+data[3]));
-	info_p.appendChild(infor_node_0);
-	info_p.appendChild(infor_node_1);
-	info_p.appendChild(infor_node_2);
-	info_p.appendChild(infor_node_3);
-	info_p.appendChild(infor_node_4);
+	info_p.appendChild(info_node_0);
+	info_p.appendChild(info_node_1);
+	info_p.appendChild(info_node_2);
+	info_p.appendChild(info_node_3);
+	info_p.appendChild(info_node_4);
 
 	var info_box_div = document.getElementById('info_box');
 	info_box_div.appendChild(info_p);		
