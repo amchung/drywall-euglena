@@ -182,6 +182,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       frameTimerStop();
     },
     reqFirstFrame: function() {
+      frameTimerStop();
       current_frame = 0;
       getVideo(imageData[current_frame]);
     }
