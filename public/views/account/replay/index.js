@@ -334,8 +334,8 @@ var draw = function(d3data){
 		    var class_name="d3-frame";
 		    return class_name;
 	    })
-	    .attr("width", 0.6)
-	    .attr("height", 0.6)
+	    .attr("width", 0.5)
+	    .attr("height", 2)
 	    .attr("led", function (d){
 		    if (d.ledarray.length>0){
 			    return true;
