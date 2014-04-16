@@ -420,7 +420,7 @@ var draw = function(d3data){
 	    .style("display", function(d) {
 		    return d.lock == true ? null : "none"; 
 	    });*/
-    var currentframe_g = document.document.getElementsByClassName("current-frame");
+    var currentframe_g = document.getElementsByClassName("current-frame");
     currentframe_g.scrollIntoView(true);
   }
 
