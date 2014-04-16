@@ -420,6 +420,8 @@ var draw = function(d3data){
 	    .style("display", function(d) {
 		    return d.lock == true ? null : "none"; 
 	    });*/
+    var currentframe_g = document.getElementByClass("current-frame");
+    currentframe_g.scrollIntoView(true);
   }
 
 function getVideo(frame_img_name){
