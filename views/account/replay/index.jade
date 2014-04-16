@@ -7,8 +7,8 @@ block neck
 	link(rel='stylesheet', href='/views/account/replay/index.min.css?#{cacheBreaker}')
 	style.
 		.clock-bar {font-size:240%}
-		.frame-no-led {fill:darkgrey}
 		.current-frame {stroke: #F41C54;}
+		.frame-no-led {fill:darkgrey}
 		.frame-with-led {fill:white}
 
 block feet
@@ -25,13 +25,12 @@ block body
 			#canvasArea
 		div.col-sm-5
 			div
+				#playback_nav
+			div
 				h4 Block Info
 				#info_box
 	div.row
-		div
-			#playback_nav
-		div
-			h6 frames visualized
+		h6 frames visualized (red = current frame, white = with light stimuli, grey = no stimulus)
 			#data_vis_box
 		
 	script(type='text/template', id='tmpl-movie_nav')
