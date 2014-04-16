@@ -104,7 +104,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
-	datavis_width = imageData.length * 5+20;
+	datavis_width = imageData.length * datavis_gap+50;
 	
 	frameData = [];
 	for (var i=0;i<=imageData.length;i++){
@@ -237,7 +237,8 @@ var 	vid_width = 640,
 	m = 20,
 	degrees = 180 / Math.PI,
 	datavis_width = 1600,
-	datavis_height = 100;
+	datavis_height = 100,
+	datavis_gap = 10;
 
 function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
@@ -339,7 +340,7 @@ var draw = function(d3data){
 	    .attr("class", "block")
 	    .attr("transform", function (d,i) 
 	    { 
-		    var dx = i*5;
+		    var dx = i*datavis_gap;
 		    var dy = 20;
 		    return "translate(" + dx + ","+ dy + ")"; 
 	    });
