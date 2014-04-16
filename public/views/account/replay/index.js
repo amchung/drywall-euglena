@@ -333,10 +333,10 @@ var draw = function(d3data){
 	    {
 		    var class_name;
 		    if(i==current_frame){
-		      class_name="d3-frame-current";
+		      class_name="d3-current-frame";
 		    }
 		    else{
-		      class_name="d3-frame";
+		      class_name="d3-one-frame";
 		    }
 		    return class_name;
 	    })
