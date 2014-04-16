@@ -181,7 +181,7 @@ var 	shape_bg,
 	led_D,
 	vid_canvas,
 	svg_led,
-	vid_context
+	vid_context,
 	svg_data_vis;
 
 function setupCanvas() { // called in init
@@ -267,9 +267,142 @@ function drawObjects(){
 	led_R.style("opacity",arrow.int4);
 }
 
-function drawDataVis(arrow){
-  
-}
+var draw = function(data){ 
+    d3.select("svg")
+	.remove();
+    
+    var tip = d3.tip()
+	.attr('class', 'd3-tip')
+	.direction('e')
+	.offset([0,10])
+	.html(function(d) {
+		return "time: "+d.time;
+	});
+
+    var svg = d3.select("#d3Area").append("svg")
+	    .attr("width", width)
+	    .attr("height", height)
+	    .append("g")
+	    .attr("transform", "translate(4, 4)");
+
+    svg.call(tip);
+	
+    var block = svg.selectAll(".block")
+	    .data(data)
+    .enter().append("g")
+	    .attr("class", "block")
+	    .attr("transform", function (d,i) 
+	    { 
+		    var dx = i%12 * (cellWidth+gapWidth);
+		    var dy = (i-i%12)/12*(cellHeight+gapHeight);
+		    return "translate(" + dx + ","+ dy + ")"; 
+	    })
+	    .on('mouseover', tip.show)
+	    .on('mouseout', tip.hide);
+	    
+    block.append("rect")
+	    .attr("class", function (d)
+	    {
+		    var class_name;
+		    if (d.username==myname){
+			    class_name="my-block";
+		    }else{
+			    class_name="not-my-block";
+		    }
+		    
+		    if (d.past=="1"){
+			    class_name=class_name+" block-past";
+		    }else{
+			    if (d.current=="1"){
+				    class_name=class_name+" block-current";
+			    }else{
+				    class_name=class_name+" block-future"
+			    }
+		    }
+		    
+		    return class_name;
+	    })
+	    .attr("width", cellWidth)
+	    .attr("height", cellHeight)
+	    .attr("locked", function (d){
+		    if (d.lock=="1"){
+			    return true;
+		    }else{
+			    return false
+		    }
+	    })
+	    .attr("mine", function (d){
+		    if (d.username==myname){
+			    return true;
+		    }else{
+			    return false
+		    }
+	    })
+	    .attr("past", function (d){
+		    if (d.past=="1"){
+			    return true;
+		    }else{
+			    return false
+		    }
+	    })
+	    .attr("current", function (d){
+		    if (d.current=="1"){
+			    return true;
+		    }else{
+			    return false
+		    }
+	    })
+	    .on('mouseover', tip.show)
+	    .on('mouseout', tip.hide)
+	    .on('click', mouseclick);
+    
+    block.append("text")
+	    .attr("class", function (d)
+	    {
+		    var class_name;
+		    if (d.username==myname){
+			    class_name="my-block-name";
+		    }else{
+			    class_name="not-my-block-name";
+		    }
+		    return class_name;
+	    })
+	    .attr("x",10)
+	    .attr("y",14)
+	    .attr("dy", ".3em")
+	    .text(function(d) { 
+		    var h = d.time.getHours();
+		    var ampm = (h<12 ? "a":"p");
+		    //h=("0" + h%12).slice(-2);
+		    h=(h%12);
+		    if(h==0){h="12";}
+		    var m = d.time.getMinutes();
+		    m=("0" + m).slice(-2);
+		    return h+":"+m+ampm;
+	    })
+	    .on('mouseover', tip.show)
+	    .on('mouseout', tip.hide);
+	    
+    block.append('text')
+	    .attr("class", function (d)
+	    {
+		    var class_name;
+		    if (d.username==myname){
+			    class_name="my-block-name";
+		    }else{
+			    class_name="not-my-block-name";
+		    }
+		    return class_name;
+	    })
+    .attr('font-family', 'FontAwesome')
+    .style('font-size', '150%' )
+    .attr("x",22)
+	    .attr("y",44)
+    .text(function(d) { return '\uf023' })
+	    .style("display", function(d) {
+		    return d.lock == true ? null : "none"; 
+	    });
+  }
 
 function getVideo(frame_img_name){
 	getVidFrame("http://171.65.102.132:3001/" + block_id +"/"+ frame_img_name, function(image) {

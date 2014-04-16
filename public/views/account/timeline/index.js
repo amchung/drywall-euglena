@@ -100,8 +100,6 @@ var hour = d3.time.format("%I"),
 		.attr("class", "block")
 		.attr("transform", function (d,i) 
 		{ 
-			//var dx = (i-i%12)/12*(cellWidth+gapWidth);
-			//var dy =  i%12 * (cellHeight+gapHeight);
 			var dx = i%12 * (cellWidth+gapWidth);
 			var dy = (i-i%12)/12*(cellHeight+gapHeight);
 			return "translate(" + dx + ","+ dy + ")"; 
