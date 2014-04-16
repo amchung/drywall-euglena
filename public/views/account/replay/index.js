@@ -159,7 +159,10 @@ var 	shape_bg,
 	led_L,
 	led_R,
 	led_U,
-	led_D;
+	led_D,
+	vid_canvas,
+	svg_led,
+	vid_context;
 
 function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
