@@ -182,7 +182,7 @@ var 	shape_bg,
 	vid_canvas,
 	svg_led,
 	vid_context
-	svg_timeline;
+	svg_data_vis;
 
 function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
@@ -226,7 +226,7 @@ function setupCanvas() { // called in init
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 		
-	svg_timeline = d3.select("#data_vis_box").append("svg:svg")
+	svg_data_vis = d3.select("#data_vis_box").append("svg:svg")
 		.attr("width", 900)
 		.attr("height", 100);
 	
