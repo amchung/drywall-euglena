@@ -207,8 +207,9 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
     app.router = new app.Router();
     Backbone.history.start({ pushState: true });
   });
-    
-  
+}());
+
+
 /////////////////////////////
 // Canvas setup functions
 /////////////////////////////
@@ -433,5 +434,3 @@ function getVidFrame(path, callback) {
 	    //console.log(new Date().getTime());
 	};
 }
-
-}());
