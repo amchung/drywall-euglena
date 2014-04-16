@@ -8,6 +8,7 @@ var ledData;
 var ledTime;
 var imageData;
 var imageTime;
+var frameData;
 var current_frame=0;
 
 
@@ -91,7 +92,7 @@ var current_frame=0;
 	setupCanvas();
 	getVideo(imageData[current_frame]);
 	
-	framedata = [];
+	frameData = [];
 	for (var i=0;i<=imageData.length;i++){
 		var frame = new Object();
 		frame.id = i;
@@ -105,7 +106,7 @@ var current_frame=0;
 		
 		frame.ledarray.push();
 		
-		framedata.push(frame);
+		frameData.push(frame);
 	}
 	//console.dir(blockdata);
 	//draw(framedata);
