@@ -61,8 +61,8 @@ function setupCanvas() { // called in init
 		    
 	svg = d3.select("#canvasArea").append("svg:svg")
 		.attr("class", "display-svg")
-		.attr("width", w)
-		.attr("height", h);
+		.attr("width", vid_width)
+		.attr("height", vid_height);
 	
 	//window.setInterval(getVideo, 1000/10);
 	
@@ -88,8 +88,8 @@ function resetCanvas(e) { // on resize events
     window.scrollTo(0, 0);
 }
 
-var 	w = 640,
-	h = 480,
+var 	vid_width = 640,
+	vid_height = 480,
 	m = 20,
 	degrees = 180 / Math.PI;
 
