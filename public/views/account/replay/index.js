@@ -5,7 +5,6 @@ var myname;
 var block_id;
 var blockData;
 var ledData;
-var ledTime;
 var imageData;
 var imageTime;
 var frameData;
@@ -103,7 +102,14 @@ var current_frame=0;
 		frame.time = d;
 		
 		frame.ledarray = [];
-		
+		if (test) {
+		    var res = ledData.filter(function (el) {
+			  return el.time >= imageTime[i] &&
+			  el.time < imageTime[i+1];
+		    });
+		  console.dir(res);
+		  
+		}
 		frame.ledarray.push();
 		
 		frameData.push(frame);
