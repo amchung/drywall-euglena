@@ -317,7 +317,7 @@ var draw = function(d3data){
 	    .append("g");
 	    //.attr("transform", "translate(4, 4)");
 
-    svg.call(tip);
+    //svg.call(tip);
 	
     var block = svg.selectAll(".block")
 	    .data(d3data)
