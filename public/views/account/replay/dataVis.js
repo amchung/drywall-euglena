@@ -97,8 +97,8 @@ function drawObjects(){
 	led_R.style("opacity",arrow.int4);
 }
 
-function getVideo(){
-	getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
+function getVideo(frame_number){
+	getVidFrame("http://171.65.102.132:3001/" + new Date().getTime(), function(image) {
 		vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
 		vid_context.drawImage(image, 20, 20, vid_width, vid_height);
 	});
