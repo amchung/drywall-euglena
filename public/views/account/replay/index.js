@@ -39,6 +39,7 @@ var timeline;
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
 	
+	var br = document.createElement("br");
 	var info_p=document.createElement("p");
 	var info_node_0=document.createTextNode("Block ID: "+block_id+"<br>");
 	var info_node_1=document.createTextNode("Block Start Time: "+data[0]+"<br>");
@@ -46,9 +47,13 @@ var timeline;
 	var info_node_3=document.createTextNode("Experiment : experiment id "+data[2]+"<br>");
 	var info_node_4=document.createTextNode("Pattern : "+ (data[3] == 0 ? "Freeform Experiment" : "pattern id "+data[3])+"<br>");
 	info_p.appendChild(info_node_0);
+	info_p.appendChild(br);
 	info_p.appendChild(info_node_1);
+	info_p.appendChild(br);
 	info_p.appendChild(info_node_2);
+	info_p.appendChild(br);
 	info_p.appendChild(info_node_3);
+	info_p.appendChild(br);
 	info_p.appendChild(info_node_4);
 
 	var info_box_div = document.getElementById('info_box');
