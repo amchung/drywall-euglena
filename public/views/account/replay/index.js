@@ -181,7 +181,8 @@ var 	shape_bg,
 	led_D,
 	vid_canvas,
 	svg_led,
-	vid_context;
+	vid_context
+	svg_timeline;
 
 function setupCanvas() { // called in init
 	vid_canvas = d3.select("#canvasArea").append("canvas")
@@ -224,6 +225,10 @@ function setupCanvas() { // called in init
 		.attr("points", "310,494 340,454 370,494")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
+		
+	svg_timeline = d3.select("#data_vis_box").append("svg:svg")
+		.attr("width", 900)
+		.attr("height", 100);
 	
 	//window.setInterval(getVideo, 1000/10);
 	
@@ -262,7 +267,7 @@ function drawObjects(){
 	led_R.style("opacity",arrow.int4);
 }
 
-function drawLEDArrow(arrow){
+function drawDataVis(arrow){
   
 }
 
