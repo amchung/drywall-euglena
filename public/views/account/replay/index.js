@@ -62,6 +62,7 @@ var timeline;
 	console.log(imageTime);
 	console.log(imageTime.length);
 	
+	setupCanvas();
 	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
