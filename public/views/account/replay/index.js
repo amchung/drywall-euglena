@@ -333,22 +333,27 @@ var draw = function(d3data){
 	    {
 		    var class_name;
 		    if(i==current_frame){
-		      class_name="d3-current-frame";
+		      class_name="current-frame";
 		    }
 		    else{
-		      class_name="d3-one-frame";
+		      if (d.ledarray.length>0){
+			    class_name="frame-with-led";
+		      }else{
+			    class_name="frame-no-led";
+		      }
+		      
 		    }
 		    return class_name;
 	    })
 	    .attr("width", 2)
-	    .attr("height", 5)
-	    .attr("led", function (d){
+	    .attr("height", 5);
+	    /*.attr("led", function (d){
 		    if (d.ledarray.length>0){
 			    return true;
 		    }else{
 			    return false
 		    }
-	    });
+	    });*/
 	    //.on('mouseover', tip.show)
 	    //.on('mouseout', tip.hide)
 	    //.on('click', mouseclick);

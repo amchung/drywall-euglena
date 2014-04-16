@@ -7,8 +7,9 @@ block neck
 	link(rel='stylesheet', href='/views/account/replay/index.min.css?#{cacheBreaker}')
 	style.
 		.clock-bar {font-size:240%}
-		.d3-one-frame {fill:white}
-		.d3-currnet-frame {fill: #F41C54;}
+		.frame-no-led {fill:darkgrey}
+		.current-frame {stroke: #F41C54;}
+		.frame-with-led {fill:white}
 
 block feet
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
