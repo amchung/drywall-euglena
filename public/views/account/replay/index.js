@@ -103,7 +103,7 @@ var current_frame=0;
 		
 		frame.ledarray = [];
 		if (i<imageData.length) {
-		    frame.ledaray = ledData.filter(function (el) {
+		    frame.ledarray = ledData.filter(function (el) {
 			  return el.time >= imageTime[i] &&
 			  el.time < imageTime[i+1];
 		    });
