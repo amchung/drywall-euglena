@@ -14,22 +14,17 @@ block feet
 
 block body
 	div.row
-		div.col-sm-7
-			#canvasArea
-		div.col-sm-5
-			h4 Euglena live webcam
-			#joystickArea(style="width:300px;height:300px;")
-				canvas#controlCanvas(style="background:#000;padding:10px;")
+		#canvasArea
 	div.row
-		div.col-sm-12
-			div.panel-body
-				h6 Time left for the current block
-				div#clock_bar.clock-bar
-			#flushChamber
-				h6 Valve control
-					input(type="button", name="triggerButton", value="Trigger")
-					input(type="button", name="openButton", value="Open")
-					input(type="button", name="closeButton", value="Close")
-
-	div.row
-		#chat(style="padding: 6px; min-width:600px; max-height:300px; overflow-y:scroll;")
+		#playback_nav
+		
+	script(type='text/template', id='tmpl-movie_nav')
+		form
+			div.form-actions
+				div.btn-group.btn-group-sm
+					button.btn.btn-default.btn-first(type='button')
+						i.fa.fa-fast-backward
+					button.btn.btn-default.btn-play(type='button')
+						i.fa.fa-play
+					button.btn.btn-default.btn-stop(type='button')
+						i.fa.fa-stop

@@ -95,35 +95,32 @@ var timeline;
     }
   });
 
-  /*app.BlocksView = Backbone.View.extend({
-    el: '#blocks_nav',
-    template: _.template( $('#tmpl-blocks_nav').html() ),
+  app.MovieView = Backbone.View.extend({
+    el: '#play_nav',
+    template: _.template( $('#tmpl-movie_nav').html() ),
     events: {
-      'click .btn-prev': 'reqPrev',
-      'click .btn-now': 'reqNow',
-      'click .btn-next': 'reqNext'
+      'click .btn-play': 'reqPlay',
+      'click .btn-stop': 'reqStop',
+      'click .btn-first': 'reqFirstFrame'
     },
     initialize: function() {
-      this.model = new app.Blocks();
-      this.listenTo(this.model, 'sync', this.render);
+      //this.model = new app.Blocks();
+      //this.listenTo(this.model, 'sync', this.render);
       this.render();
     },
     render: function() {
-      this.$el.html(this.template( this.model.attributes));
+      this.$el.html(this.template);
     },
-    reqPrev: function() {
-      currenttime.setHours(currenttime.getHours() - 1);
-      callBlocks(currenttime);
+    reqPlay: function() {
+      console.log("PLAY");
     },
-    reqNow: function() {
-      currenttime = new Date();
-      callBlocks(currenttime);
+    reqStop: function() {
+      console.log("STOP");
     },
-    reqNext: function() {
-      currenttime.setHours(currenttime.getHours() + 1);
-      callBlocks(currenttime);
+    reqFirstFrame: function() {
+      console.log("1st frame");
     }
-  });*/
+  });
   
   app.Router = Backbone.Router.extend({
     routes: {
@@ -141,7 +138,7 @@ var timeline;
   });
   
   $(document).ready(function() {
-    //app.blocksView = new app.BlocksView();
+    app.movieView = new app.MovieView();
     app.router = new app.Router();
     Backbone.history.start({ pushState: true });
   });
