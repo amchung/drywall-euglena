@@ -39,29 +39,24 @@ var timeline;
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
 	
-	var br = document.createElement("br");
 	var info_p_0 = document.createElement("p");
 	var info_node_0 = document.createTextNode("Block ID: "+block_id);
-	var info_p_1 = document.createElement("p");
 	var info_node_1 = document.createTextNode("Block Start Time: "+data[0]);
-	var info_p_2 = document.createElement("p");
 	var info_node_2 = document.createTextNode("Owner : "+data[1]);
-	var info_p_3 = document.createElement("p");
 	var info_node_3 = document.createTextNode("Experiment : experiment id "+data[2]);
-	var info_p_4 = document.createElement("p");
 	var info_node_4 = document.createTextNode("Pattern : "+ (data[3] == 0 ? "Freeform Experiment" : "pattern id "+data[3]));
-	info_p_0.appendChild(info_node_0);
-	info_p_1.appendChild(info_node_1);
-	info_p_2.appendChild(info_node_2);
-	info_p_3.appendChild(info_node_3);
-	info_p_4.appendChild(info_node_4);
+	info_p.appendChild(info_node_0);
+	info_p.appendChild(document.createElement("br"));
+	info_p.appendChild(info_node_1);
+	info_p.appendChild(document.createElement("br"));
+	info_p.appendChild(info_node_2);
+	info_p.appendChild(document.createElement("br"));
+	info_p.appendChild(info_node_3);
+	info_p.appendChild(document.createElement("br"));
+	info_p.appendChild(info_node_4);
 
 	var info_box_div = document.getElementById('info_box');
-	info_box_div.appendChild(info_p_0);
-	info_box_div.appendChild(info_p_1);
-	info_box_div.appendChild(info_p_2);
-	info_box_div.appendChild(info_p_3);
-	info_box_div.appendChild(info_p_4);
+	info_box_div.appendChild(info_p);		
 	
 	console.log(ledData);
 	console.log(ledData.length);
