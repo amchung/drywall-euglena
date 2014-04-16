@@ -10,6 +10,22 @@ var imageTime;
 var frameData;
 var current_frame=0;
 
+var frameTimer;
+
+function frameTimerFunc()
+{
+  if (current_frame < imageData.length) {
+    current_frame = current_frame + 1;
+    getVideo(imageData[current_frame]);
+  }else{
+    frameTimerStop();
+  }
+}
+
+function frameTimerStop()
+{
+  clearInterval(frameTimer);
+}
 
 (function() {
   'use strict';
@@ -163,10 +179,10 @@ var current_frame=0;
       this.$el.html(this.template);
     },
     reqPlay: function() {
-      console.log("PLAY");
+      frameTimer=setInterval(function(){frameTimer()},200);
     },
     reqStop: function() {
-      console.log("STOP");
+      frameTimerStop();
     },
     reqFirstFrame: function() {
       current_frame = 0;
