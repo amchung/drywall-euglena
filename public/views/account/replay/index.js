@@ -39,6 +39,21 @@ var timeline;
 	  ledTime.push(Math.round(parseInt(data[4][i*2+1])/100)*100);
 	}
 	
+	var info_p=document.createElement("p");
+	var info_node_0=document.createTextNode("Block ID: "+block_id);
+	var info_node_1=document.createTextNode("Block Start Time: "+data[0]);
+	var info_node_2=document.createTextNode("Owner : "+data[1]);
+	var info_node_3=document.createTextNode("Experiment : "+(data[2] == 0 ? "freeform" : "experiment id "+data[2]));
+	var info_node_4=document.createTextNode("Pattern : "+ (data[3] == 0 ? "not assigned" : "pattern id "+data[3]));
+	info_p.appendChild(infor_node_0);
+	info_p.appendChild(infor_node_1);
+	info_p.appendChild(infor_node_2);
+	info_p.appendChild(infor_node_3);
+	info_p.appendChild(infor_node_4);
+
+	var info_box_div = document.getElementById('info_box');
+	info_box_div.appendChild(info_p);		
+	
 	console.log(ledData);
 	console.log(ledData.length);
 	console.log(ledTime);
@@ -241,6 +256,10 @@ function drawObjects(){
 	led_L.style("opacity",arrow.int2);
 	led_D.style("opacity",arrow.int3);
 	led_R.style("opacity",arrow.int4);
+}
+
+function drawLEDArrow(arrow){
+  
 }
 
 function getVideo(frame_img_name){
