@@ -40,11 +40,11 @@ var timeline;
 	}
 	
 	var info_p=document.createElement("p");
-	var info_node_0=document.createTextNode("Block ID: "+block_id);
-	var info_node_1=document.createTextNode("Block Start Time: "+data[0]);
-	var info_node_2=document.createTextNode("Owner : "+data[1]);
-	var info_node_3=document.createTextNode("Experiment : "+(data[2] == 0 ? "freeform" : "experiment id "+data[2]));
-	var info_node_4=document.createTextNode("Pattern : "+ (data[3] == 0 ? "not assigned" : "pattern id "+data[3]));
+	var info_node_0=document.createTextNode("Block ID: "+block_id+"<br>");
+	var info_node_1=document.createTextNode("Block Start Time: "+data[0]+"<br>");
+	var info_node_2=document.createTextNode("Owner : "+data[1]+"<br>");
+	var info_node_3=document.createTextNode("Experiment : experiment id "+data[2]+"<br>");
+	var info_node_4=document.createTextNode("Pattern : "+ (data[3] == 0 ? "Freeform Experiment" : "pattern id "+data[3])+"<br>");
 	info_p.appendChild(info_node_0);
 	info_p.appendChild(info_node_1);
 	info_p.appendChild(info_node_2);
