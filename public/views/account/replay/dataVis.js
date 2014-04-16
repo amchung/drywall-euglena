@@ -30,10 +30,6 @@ function setupCanvas() { // called in init
 		.style("left", 0);
 	
 	vid_context = vid_canvas.node().getContext("2d");
-	
-	c.strokeStyle = "#ffffff";
-	c.lineWidth = 2;
-	
     
 	led_L = svg_led.append("svg:g").
 		append("svg:polygon")
