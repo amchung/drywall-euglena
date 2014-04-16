@@ -306,7 +306,7 @@ function resetCanvas(e) { // on resize events
 }
 
 
-function drawObjects(){
+function updateLEDs(arrow){
 	led_U.style("opacity",arrow.int1);
 	led_L.style("opacity",arrow.int2);
 	led_D.style("opacity",arrow.int3);
@@ -420,8 +420,8 @@ var draw = function(d3data){
 	    .style("display", function(d) {
 		    return d.lock == true ? null : "none"; 
 	    });*/
-    var currentframe_g = document.getElementsByClassName("current-frame");
-    currentframe_g.scrollIntoView(true);
+    /*var currentframe_g = document.getElementsByClassName("current-frame");
+	currentframe_g.scrollIntoView(true);*/
   }
 
 function getVideo(frame_img_name){
