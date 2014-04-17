@@ -403,10 +403,13 @@ var draw = function(d3data){
 	    .attr("x1", 4)
 	    .attr("y1", 4)
 	    .attr("x2", function (d){
-	      return d.ledarray.arrow[3]*4 - d.ledarray.arrow[1]*4;
+	      console.log(d.ledarray);
+	      //return d.ledarray.arrow[3]*4 - d.ledarray.arrow[1]*4;
+	      return 0
 	    })
 	    .attr("y2",function (d){
-	      return d.ledarray.arrow[2]*4 - d.ledarray.arrow[0]*4;
+	      //return d.ledarray.arrow[2]*4 - d.ledarray.arrow[0]*4;
+	      return 0
 	    });
 	    
     /*block.append("text")
