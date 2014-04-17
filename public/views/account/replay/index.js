@@ -109,7 +109,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	}
 	
 	setupCanvas();
-	getVideo(imageData[current_frame]);
+	//getVideo(imageData[current_frame]);
 	datavis_width = 100*datavis_x_gap+20;
 	datavis_height = Math.ceil(imageData.length/100)*datavis_y_gap+20;
 	
@@ -506,10 +506,12 @@ function getVidFrame(path, callback) {
 function loadimages(){
     imageArray = [];
 
-    for (x = 0; x <= imageData.length; x++) {
+    for (x = 0; x < imageData.length; x++) {
       var imageObj = new Image();
       imageObj.src = "http://171.65.102.132:3001/" + block_id +"/"+ imageData[x];
       imageArray.push(imageObj);
     }
     console.log(imageArray);
+    vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
+    vid_context.drawImage(imageArray[0], 20, 20, vid_width, vid_height);
 };
