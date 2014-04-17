@@ -10,6 +10,7 @@ var imageData;
 var imageTime;
 var frameData;
 var current_frame=0;
+var imageArray=[];
 
 var frameTimer;
 
@@ -17,7 +18,7 @@ function frameTimerFunc()
 {
   if (current_frame < imageData.length) {
     current_frame = current_frame + 1;
-    getVideo(imageData[current_frame]);
+    getVideo(current_frame);
     draw(frameData);
   }else{
     frameTimerStop();
@@ -108,6 +109,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	}
 	
 	setupCanvas();
+	loadimages();
 	getVideo(imageData[current_frame]);
 	datavis_width = 100*datavis_x_gap+20;
 	datavis_height = Math.ceil(imageData.length/100)*datavis_y_gap+20;
@@ -192,7 +194,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
     reqFirstFrame: function() {
       frameTimerStop();
       current_frame = 0;
-      getVideo(imageData[current_frame]);
+      getVideo(current_frame);
       draw(frameData);
     }
   });
@@ -485,11 +487,13 @@ var draw = function(d3data){
 	currentframe_g.scrollIntoView(true);*/
   }
 
-function getVideo(frame_img_name){
-	getVidFrame("http://171.65.102.132:3001/" + block_id +"/"+ frame_img_name, function(image) {
+function getVideo(i){
+	/*getVidFrame("http://171.65.102.132:3001/" + block_id +"/"+ frame_img_name, function(image) {
 		vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
 		vid_context.drawImage(image, 20, 20, vid_width, vid_height);
-	});
+	});*/
+	vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
+	vid_context.drawImage(imageArray(i), 20, 20, vid_width, vid_height);
 }
 
 function getVidFrame(path, callback) {
@@ -499,4 +503,12 @@ function getVidFrame(path, callback) {
 		callback(image);
 	    //console.log(new Date().getTime());
 	};
+}
+
+function loadimages(){
+  imageData.forEach(function(ele){
+      var imageObj = new Image();
+      imageObj.src = "http://171.65.102.132:3001/" + block_id +"/"+ele;
+      imageArray.push(imageObj);
+  });
 }
