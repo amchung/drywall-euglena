@@ -101,7 +101,8 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  led.id = i;
 	  led.time = parseInt(ledArray[i*2+1]);
 	  led.msec = led.time - imageTime[0];
-	  led.arrow = ledArray[i*2].split("^");
+	  var arr = ledArray[i*2].split("&&");
+	  led.arrow = arr[1].split("^");
 	  
 	  ledData.push(led);
 	}
@@ -403,13 +404,22 @@ var draw = function(d3data){
 	    .attr("x1", 4)
 	    .attr("y1", 4)
 	    .attr("x2", function (d){
-	      console.log(d.ledarray);
-	      //return d.ledarray.arrow[3]*4 - d.ledarray.arrow[1]*4;
-	      return 0
+	      if (d.ledarray.length>0) {
+		var x2=0;
+		
+		d.ledarray.forEach(function(ele){
+		  x2 = x2+parseInt(ele.arrow[3])*4 - parseInt(ele.arrow[1])*4
+		});
+		
+		return x2/(d.ledarray.length)
+	      }else{
+		return 4
+	      }
+	      
 	    })
 	    .attr("y2",function (d){
 	      //return d.ledarray.arrow[2]*4 - d.ledarray.arrow[0]*4;
-	      return 0
+	      return 4
 	    });
 	    
     /*block.append("text")
