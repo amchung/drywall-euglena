@@ -411,6 +411,9 @@ var draw = function(d3data){
 		  x2 = x2 + parseFloat(ele.arrow[1])*4 - parseFloat(ele.arrow[3])*4;
 		  console.log(parseFloat(ele.arrow[1])*4);
 		  console.log(parseFloat(ele.arrow[3])*4);
+		  console.log(parseFloat(ele.arrow[0])*4);
+		  console.log(parseFloat(ele.arrow[2])*4);
+		  console.log("=========")
 		});
 		
 		return x2/(d.ledarray.length)
@@ -424,9 +427,6 @@ var draw = function(d3data){
 		
 		d.ledarray.forEach(function(ele){
 		  y2 = y2 + parseFloat(ele.arrow[0])*4 - parseFloat(ele.arrow[2])*4;
-		  console.log(parseFloat(ele.arrow[2])*4);
-		  console.log(parseFloat(ele.arrow[4])*4);
-		  console.log("=========")
 		});
 		
 		return y2/(d.ledarray.length)
