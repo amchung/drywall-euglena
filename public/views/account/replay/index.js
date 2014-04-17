@@ -18,7 +18,7 @@ function frameTimerFunc()
 {
   if (current_frame < imageData.length) {
     current_frame = current_frame + 1;
-    getVideo(current_frame);
+    getVideo(imageData[current_frame]);
     draw(frameData);
   }else{
     frameTimerStop();
@@ -109,7 +109,6 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	}
 	
 	setupCanvas();
-	loadimages();
 	getVideo(imageData[current_frame]);
 	datavis_width = 100*datavis_x_gap+20;
 	datavis_height = Math.ceil(imageData.length/100)*datavis_y_gap+20;
@@ -136,6 +135,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	}
 	console.dir(frameData);
 	draw(frameData);
+	loadimages();
 	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
@@ -194,7 +194,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
     reqFirstFrame: function() {
       frameTimerStop();
       current_frame = 0;
-      getVideo(current_frame);
+      getVideo(imageData[current_frame]);
       draw(frameData);
     }
   });
@@ -487,13 +487,11 @@ var draw = function(d3data){
 	currentframe_g.scrollIntoView(true);*/
   }
 
-function getVideo(i){
-	/*getVidFrame("http://171.65.102.132:3001/" + block_id +"/"+ frame_img_name, function(image) {
+function getVideo(frame_img_name){
+	getVidFrame("http://171.65.102.132:3001/" + block_id +"/"+ frame_img_name, function(image) {
 		vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
 		vid_context.drawImage(image, 20, 20, vid_width, vid_height);
-	});*/
-	vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
-	vid_context.drawImage(imageArray(i), 20, 20, vid_width, vid_height);
+	});
 }
 
 function getVidFrame(path, callback) {
@@ -506,9 +504,15 @@ function getVidFrame(path, callback) {
 }
 
 function loadimages(){
-  imageData.forEach(function(ele){
+    imageArray = [];
+
+    canvas.width = 512;
+    canvas.height = 352;
+
+    for (x = 0; x <= 520; x++) {
       var imageObj = new Image();
-      imageObj.src = "http://171.65.102.132:3001/" + block_id +"/"+ele;
+      imageObj.src = "line_tile/t"+x+".png";
       imageArray.push(imageObj);
-  });
-}
+    }
+    console.log(imageArray);
+};
