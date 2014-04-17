@@ -408,18 +408,27 @@ var draw = function(d3data){
 		var x2=0;
 		
 		d.ledarray.forEach(function(ele){
-		  x2 = x2 + parseFloat(ele.arrow[3])*4 - parseFloat(ele.arrow[1])*4
+		  x2 = x2 + parseFloat(ele.arrow[1])*4 - parseFloat(ele.arrow[3])*4
 		});
-		console.log(x2);
 		
 		return x2/(d.ledarray.length)
 	      }else{
 		return 4
 	      }
-	      
 	    })
 	    .attr("y2",function (d){
-	      //return d.ledarray.arrow[2]*4 - d.ledarray.arrow[0]*4;
+	      if (d.ledarray.length>0) {
+		var y2=0;
+		
+		d.ledarray.forEach(function(ele){
+		  y2 = y2 + parseFloat(ele.arrow[0])*4 - parseFloat(ele.arrow[2])*4
+		});
+		
+		return y2/(d.ledarray.length)
+	      }else{
+		return 4
+	      }
+	      
 	      return 4
 	    });
 	    
