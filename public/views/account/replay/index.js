@@ -345,8 +345,8 @@ var draw = function(d3data){
 	    .attr("class", "block")
 	    .attr("transform", function (d,i) 
 	    { 
-		    var dx = i%10*datavis_gap;
-		    var dy = 20 + Math.ceil(i/10)*12;
+		    var dx = (i+1)%100*datavis_gap;
+		    var dy = 20 + Math.floor(i/100)*12;
 		    return "translate(" + dx + ","+ dy + ")"; 
 	    });
 	    //.on('mouseover', tip.show)
