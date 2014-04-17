@@ -506,9 +506,6 @@ function getVidFrame(path, callback) {
 function loadimages(){
     imageArray = [];
 
-    canvas.width = 512;
-    canvas.height = 352;
-
     for (x = 0; x <= 520; x++) {
       var imageObj = new Image();
       imageObj.src = "line_tile/t"+x+".png";
