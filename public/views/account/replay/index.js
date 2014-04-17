@@ -101,7 +101,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  led.id = i;
 	  led.time = parseInt(ledArray[i*2+1]);
 	  led.msec = led.time - imageTime[0];
-	  led.arrow = ledArray[i*2];
+	  led.arrow = ledArray[i*2].split("^");
 	  
 	  ledData.push(led);
 	}
@@ -206,6 +206,17 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
     },
     load: function(block) {
       console.log(">> loading block "+block);
+      
+      var mydiv = document.getElementById("download_box");
+      var aTag = document.createElement('a');
+      aTag.setAttribute('href',"yourlink.htm");
+      aTag.innerHTML = " Download Image Data (.zip)";
+      mydiv.appendChild(aTag);
+      var aTag2 = document.createElement('a');
+      aTag2.setAttribute('href',"yourlink.htm");
+      aTag2.innerHTML = "Download Light Stimuli Data (.csv)";
+      mydiv.appendChild(aTag2);
+      
       block_id = block;
       socket.emit('/replay/#callblock', { targetBlock: block});
     }
@@ -383,7 +394,21 @@ var draw = function(d3data){
 	    //.on('mouseover', tip.show)
 	    //.on('mouseout', tip.hide)
 	    //.on('click', mouseclick);
-    
+    frame.append("line")
+	    .attr("class", function (d,i)
+	    {
+		    var class_name = "stroke-led";
+		    return class_name;
+	    })
+	    .attr("x1", 4)
+	    .attr("y1", 4)
+	    .attr("x2", function (d){
+	      return d.ledarray.arrow[3]*4 - d.ledarray.arrow[1]*4;
+	    })
+	    .attr("y2",function (d){
+	      return d.ledarray.arrow[2]*4 - d.ledarray.arrow[0]*4;
+	    });
+	    
     /*block.append("text")
 	    .attr("class", function (d)
 	    {

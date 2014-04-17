@@ -9,7 +9,8 @@ block neck
 		.clock-bar {font-size:240%}
 		.current-frame {fill: #F41C54;}
 		.frame-no-led {fill: #333333;}
-		.frame-with-led {fill:white}
+		.frame-with-led {fill:black}
+		.stroke-led {stroke-width:1;stroke: white;}
 
 block feet
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
@@ -43,9 +44,3 @@ block body
 						i.fa.fa-play
 					button.btn.btn-default.btn-stop(type='button')
 						i.fa.fa-stop
-	
-	script(type='text/template', id='tmpl-download')
-		form
-			div.form-actions
-				h6(id='img_dl_link') Download Image Data (.zip)
-				h6(id='led_dl_link') Download Light Stimuli Data (.csv)
