@@ -109,8 +109,8 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
-	datavis_width = 200*datavis_x_gap+20;
-	datavis_height = Math.ceil(imageData.length/200)*datavis_y_gap+20;
+	datavis_width = 100*datavis_x_gap+20;
+	datavis_height = Math.ceil(imageData.length/100)*datavis_y_gap+20;
 	
 	frameData = [];
 	for (var i=0;i<=imageData.length;i++){
