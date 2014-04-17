@@ -408,8 +408,11 @@ var draw = function(d3data){
 		var x2=0;
 		
 		d.ledarray.forEach(function(ele){
-		  x2 = x2 + parseFloat(ele.arrow[1])*4 - parseFloat(ele.arrow[3])*4
+		  x2 = x2 + parseFloat(ele.arrow[1])*4 - parseFloat(ele.arrow[3])*4;
 		});
+		
+		console.log(parseFloat(ele.arrow[1])*4);
+		console.log(parseFloat(ele.arrow[1])*3);
 		
 		return x2/(d.ledarray.length)
 	      }else{
@@ -421,7 +424,7 @@ var draw = function(d3data){
 		var y2=0;
 		
 		d.ledarray.forEach(function(ele){
-		  y2 = y2 + parseFloat(ele.arrow[0])*4 - parseFloat(ele.arrow[2])*4
+		  y2 = y2 + parseFloat(ele.arrow[0])*4 - parseFloat(ele.arrow[2])*4;
 		});
 		
 		return y2/(d.ledarray.length)
