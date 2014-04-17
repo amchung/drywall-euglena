@@ -109,7 +109,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	}
 	
 	setupCanvas();
-	//getVideo(imageData[current_frame]);
+	getVideo(imageData[current_frame]);
 	datavis_width = 100*datavis_x_gap+20;
 	datavis_height = Math.ceil(imageData.length/100)*datavis_y_gap+20;
 	
@@ -135,7 +135,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	}
 	console.dir(frameData);
 	draw(frameData);
-	loadimages();
+	//loadimages();
 	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
@@ -503,7 +503,7 @@ function getVidFrame(path, callback) {
 	};
 }
 
-function loadimages(){
+/*function loadimages(){
     imageArray = [];
 
     for (x = 0; x < imageData.length; x++) {
@@ -514,4 +514,4 @@ function loadimages(){
     console.log(imageArray);
     vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
     vid_context.drawImage(imageArray[0], 20, 20, vid_width, vid_height);
-};
+};*/
