@@ -506,9 +506,9 @@ function getVidFrame(path, callback) {
 function loadimages(){
     imageArray = [];
 
-    for (x = 0; x <= 520; x++) {
+    for (x = 0; x <= imageData.length; x++) {
       var imageObj = new Image();
-      imageObj.src = "line_tile/t"+x+".png";
+      imageObj.src = "http://171.65.102.132:3001/" + block_id +"/"+ imageData[x];
       imageArray.push(imageObj);
     }
     console.log(imageArray);
