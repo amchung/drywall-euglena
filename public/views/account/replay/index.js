@@ -99,7 +99,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  
 	  var led = new Object();
 	  led.id = i;
-	  led.time = parseInt(data[4][i*2+1]);
+	  led.time = parseInt(ledArray[i*2+1]);
 	  led.msec = led.time - imageTime[0];
 	  led.arrow = data[4][i*2];
 	  
