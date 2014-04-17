@@ -4,6 +4,7 @@ var socket;
 var myname;
 var block_id;
 var blockData;
+var ledArray;
 var ledData;
 var imageData;
 var imageTime;
@@ -44,21 +45,10 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	blockData.push(data[1]); // owner
 	blockData.push(data[2]); // experiment id
 	blockData.push(data[3]); // pattern id
+	ledArray = data[4];
 	
 	// image dir = 171.65.102.132:3001/blockid/
-	
-	for (var i=0;i<data[4].length/2;i++)
-	{
-	  //ledData.push(data[4][i*2]);
-	  //ledTime.push(Math.round(parseInt(data[4][i*2+1])));
-	  
-	  var led = new Object();
-	  led.id = i;
-	  led.time = parseInt(data[4][i*2+1]);
-	  led.arrow = data[4][i*2];
-	  
-	  ledData.push(led);
-	}
+      
 	//console.dir(ledData);
 	
 	var info_p = document.createElement("p");
@@ -102,6 +92,20 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	//console.log(imageTime);
 	//console.log(imageTime.length);
 	
+	for (var i=0;i<data[4].length/2;i++)
+	{
+	  //ledData.push(data[4][i*2]);
+	  //ledTime.push(Math.round(parseInt(data[4][i*2+1])));
+	  
+	  var led = new Object();
+	  led.id = i;
+	  led.time = parseInt(data[4][i*2+1]);
+	  led.msec = led.time - imageTime[0];
+	  led.arrow = data[4][i*2];
+	  
+	  ledData.push(led);
+	}
+	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
 	datavis_width = imageData.length * datavis_gap+50;
@@ -110,7 +114,8 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	for (var i=0;i<=imageData.length;i++){
 		var frame = new Object();
 		frame.id = i;
-		frame.msec = imageTime[i];
+		frame.msec_original = imageTime[i];
+		frame.msec = imageTime[i]-imageTime[0];
 		
 		var d = new Date(0);
 		d.setTime(imageTime[i]);

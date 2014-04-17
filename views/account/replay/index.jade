@@ -28,8 +28,7 @@ block body
 			div
 				h5 Block Info
 				#info_box
-			div
-				h6 <strike>Download Data</strike>
+			#download_box
 	div.row(style='overflow: scroll')
 		h6 frames visualized (red = current frame, white = with light stimuli, grey = no stimulus)
 			#data_vis_box
@@ -44,3 +43,9 @@ block body
 						i.fa.fa-play
 					button.btn.btn-default.btn-stop(type='button')
 						i.fa.fa-stop
+	
+	script(type='text/template', id='tmpl-download')
+		form
+			div.form-actions
+				h6(id='img_dl_link') Download Image Data (.zip)
+				h6(id='led_dl_link') Download Light Stimuli Data (.csv)
