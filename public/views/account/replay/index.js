@@ -416,7 +416,7 @@ var draw = function(d3data){
 		  console.log("=========")
 		});
 		
-		return x2/(d.ledarray.length)
+		return 4 + x2/(d.ledarray.length)
 	      }else{
 		return 4
 	      }
@@ -429,7 +429,7 @@ var draw = function(d3data){
 		  y2 = y2 + parseFloat(ele.arrow[0])*4 - parseFloat(ele.arrow[2])*4;
 		});
 		
-		return y2/(d.ledarray.length)
+		return 4 + y2/(d.ledarray.length)
 	      }else{
 		return 4
 	      }
