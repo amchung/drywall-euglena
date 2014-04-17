@@ -108,8 +108,8 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
-	datavis_width = 200*datavis_x_gap+50;
-	datavis_height = Math.ceil(imageData.length/200)*datavis_y_gap+50;
+	datavis_width = 200*datavis_x_gap+20;
+	datavis_height = Math.ceil(imageData.length/200)*datavis_y_gap+20;
 	
 	frameData = [];
 	for (var i=0;i<=imageData.length;i++){
@@ -244,7 +244,7 @@ var 	vid_width = 640,
 	degrees = 180 / Math.PI,
 	datavis_width = 100,
 	datavis_height = 100,
-	datavis_x_gap = 5;
+	datavis_x_gap = 10;
 	datavis_y_gap = 16;
 
 function setupCanvas() { // called in init
@@ -371,8 +371,8 @@ var draw = function(d3data){
 		    }
 		    return class_name;
 	    })
-	    .attr("width", 2)
-	    .attr("height", 5);
+	    .attr("width", 8)
+	    .attr("height", 8);
 	    /*.attr("led", function (d){
 		    if (d.ledarray.length>0){
 			    return true;
