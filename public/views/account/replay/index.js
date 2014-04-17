@@ -507,9 +507,9 @@ function loadimages(){
     imageArray = [];
 
     for (x = 0; x < imageData.length; x++) {
-      var imageObj = new Image();
-      imageObj.src = "http://171.65.102.132:3001/" + block_id +"/"+ imageData[x];
-      imageArray.push(imageObj);
+      getVidFrame("http://171.65.102.132:3001/" + block_id +"/"+ imageData[x], function(image) {
+	imageArray.push(image);
+      });
     }
     console.log(imageArray);
     vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
