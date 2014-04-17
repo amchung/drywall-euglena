@@ -108,7 +108,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
-	datavis_width = imageData.length * datavis_gap+50;
+	datavis_width = 200*datavis_gap+50;
 	
 	frameData = [];
 	for (var i=0;i<=imageData.length;i++){
