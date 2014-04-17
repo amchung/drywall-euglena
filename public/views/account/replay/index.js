@@ -92,7 +92,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	//console.log(imageTime);
 	//console.log(imageTime.length);
 	
-	for (var i=0;i<data[4].length/2;i++)
+	for (var i=0;i<ledArray.length/2;i++)
 	{
 	  //ledData.push(data[4][i*2]);
 	  //ledTime.push(Math.round(parseInt(data[4][i*2+1])));
@@ -101,7 +101,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  led.id = i;
 	  led.time = parseInt(ledArray[i*2+1]);
 	  led.msec = led.time - imageTime[0];
-	  led.arrow = data[4][i*2];
+	  led.arrow = ledArray[i*2];
 	  
 	  ledData.push(led);
 	}
