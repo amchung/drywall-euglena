@@ -408,8 +408,7 @@ var draw = function(d3data){
 		var x2=0;
 		
 		d.ledarray.forEach(function(ele){
-		  console.log(ele);
-		  x2 = x2 + parseInt(ele.arrow[3])*4 - parseInt(ele.arrow[1])*4
+		  x2 = x2 + parseFloat(ele.arrow[3])*4 - parseFloat(ele.arrow[1])*4
 		});
 		console.log(x2);
 		
