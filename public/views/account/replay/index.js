@@ -405,11 +405,13 @@ var draw = function(d3data){
 	    .attr("y1", 4)
 	    .attr("x2", function (d){
 	      if (d.ledarray.length>0) {
+		console.log(d.ledarray.length);
 		var x2=0;
 		
 		d.ledarray.forEach(function(ele){
-		  x2 = x2+parseInt(ele.arrow[3])*4 - parseInt(ele.arrow[1])*4
+		  x2 = x2 + parseInt(ele.arrow[3])*4 - parseInt(ele.arrow[1])*4
 		});
+		console.log(x2);
 		
 		return x2/(d.ledarray.length)
 	      }else{
