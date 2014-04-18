@@ -96,7 +96,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	clock_p.setAttribute("id", "clock_p");
 	var m = parseInt(Math.floor(time/60000));
 	var s = parseInt(Math.floor(time - m*60000)/1000);
-	s=("0" + (60-s%60)%60).slice(-2);
+	s=("0" + s).slice(-2);
 	var ms = time%1000;
 	var clock_node = document.createTextNode(m+":"+s+"."+ms);
 	clock_p.appendChild(clock_node);
@@ -362,7 +362,7 @@ function updateClock(){
   clock_p.setAttribute("id", "clock_p");
   var m = parseInt(Math.floor(time/60000));
   var s = parseInt(Math.floor(time - m*60000)/1000);
-  s=("0" + (60-s%60)%60).slice(-2);
+  s=("0" + s).slice(-2);
   var ms = time%1000;
   var clock_node = document.createTextNode(m+":"+s+"."+ms);
   clock_p.appendChild(clock_node);
