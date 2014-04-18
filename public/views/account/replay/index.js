@@ -336,8 +336,8 @@ function updateLEDs(arrow){
 }
 
 var draw = function(d3data){ 
-    d3.select("svg")
-	.remove();
+    //d3.select("svg")
+	//.remove();
     
     /*var tip = d3.tip()
 	.attr('class', 'd3-tip')
