@@ -13,6 +13,7 @@ var current_frame=0;
 var imageArray=[];
 
 var frameTimer;
+var startmsec;
 
 function frameTimerFunc()
 {
@@ -69,7 +70,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	info_p.appendChild(info_node_4);
 
 	var info_box_div = document.getElementById('info_box');
-	info_box_div.appendChild(info_p);		
+	info_box_div.appendChild(info_p);	
 	
 	//console.log(ledData);
 	//console.log(ledData.length);
@@ -87,6 +88,17 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	    imageTime.push(Math.round(parseInt(res[0])/100)*100);
 	    imageData.push(filename);
 	});
+	
+	// clock setup
+	startmsec = imageTime[0];
+	var time = imageTime[current_frame]-startmsec;
+	var clock_p = document.createElement("p");
+	clock_p.setAttribute("id", "clock_p");
+	var clock_node = document.createTextNode(time);
+	clock_p.appendChild(clock_node);
+
+	var clock_box_div = document.getElementById('clock_box');
+	clock_box_div.appendChild(clock_p);
 	
 	//console.log(imageData);
 	//console.log(imageData.length);
@@ -334,6 +346,20 @@ function updateLEDs(){
 	led_L.style("opacity",arrow.int2);
 	led_D.style("opacity",arrow.int3);
 	led_R.style("opacity",arrow.int4);
+}
+
+function updateClock(){
+  var element = document.getElementById("clock_p");
+  element.parentNode.removeChild(element);
+  
+  var time = imageTime[current_frame]-startmsec;
+  var clock_p = document.createElement("p");
+  clock_p.setAttribute("id", "clock_p");
+  var clock_node = document.createTextNode(time);
+  clock_p.appendChild(clock_node);
+
+  var clock_box_div = document.getElementById('clock_box');
+  clock_box_div.appendChild(clock_p);
 }
 
 var draw = function(d3data){ 
