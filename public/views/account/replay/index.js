@@ -374,6 +374,7 @@ var draw = function(d3data){
 		return "time: "+d.time;
 	});*/
     //updateLEDs();
+    updateClock();
 
     svg_data_vis = d3.select("#data_vis_box").append("svg")
 	    .attr("width", datavis_width)
