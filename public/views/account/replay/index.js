@@ -91,10 +91,13 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	
 	// clock setup
 	startmsec = imageTime[0];
-	var time = (imageTime[current_frame]-startmsec)/1000;
+	var time = imageTime[current_frame]-startmsec;
 	var clock_p = document.createElement("p");
 	clock_p.setAttribute("id", "clock_p");
-	var clock_node = document.createTextNode(time);
+	var m = Math.floor(time/60000);
+	var s = Math.floor(time - m*60000)/1000;
+	var ms = time%1000;
+	var clock_node = document.createTextNode(m+":"+s+"."+ms);
 	clock_p.appendChild(clock_node);
 
 	var clock_box_div = document.getElementById('clock_box');
@@ -114,6 +117,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  led.id = i;
 	  led.time = parseInt(ledArray[i*2+1]);
 	  led.msec = led.time - imageTime[0];
+      
 	  var arr = ledArray[i*2].split("&&");
 	  led.arrow = arr[1].split("^");
 	  
@@ -352,7 +356,7 @@ function updateClock(){
   var element = document.getElementById("clock_p");
   element.parentNode.removeChild(element);
   
-  var time = (imageTime[current_frame]-startmsec)/1000;
+  var time = imageTime[current_frame]-startmsec;
   var clock_p = document.createElement("p");
   clock_p.setAttribute("id", "clock_p");
   var clock_node = document.createTextNode(time);
