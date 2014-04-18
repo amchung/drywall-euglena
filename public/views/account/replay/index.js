@@ -329,7 +329,7 @@ function resetCanvas(e) { // on resize events
 
 
 function updateLEDs(){
-  var arrow = ;
+  //var arrow = ;
 	led_U.style("opacity",arrow.int1);
 	led_L.style("opacity",arrow.int2);
 	led_D.style("opacity",arrow.int3);
@@ -347,7 +347,7 @@ var draw = function(d3data){
 	.html(function(d) {
 		return "time: "+d.time;
 	});*/
-    updateLEDs();
+    //updateLEDs();
 
     svg_data_vis = d3.select("#data_vis_box").append("svg")
 	    .attr("width", datavis_width)
