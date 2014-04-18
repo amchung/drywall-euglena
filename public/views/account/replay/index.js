@@ -270,7 +270,7 @@ function setupCanvas() { // called in init
 		//.style("top", 0)
 		//.style("left", 0);
 	
-	svg_led = d3.select("#canvasArea").append("svg:svg")
+	svg_led = d3.select("#canvasArea").append("svg")
 		.attr("width", vid_width+40)
 		.attr("height", vid_height+40);
 		//.style("position", "absolute")
