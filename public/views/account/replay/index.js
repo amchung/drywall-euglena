@@ -91,7 +91,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	
 	// clock setup
 	startmsec = imageTime[0];
-	var time = imageTime[current_frame]-startmsec;
+	var time = (imageTime[current_frame]-startmsec)/1000;
 	var clock_p = document.createElement("p");
 	clock_p.setAttribute("id", "clock_p");
 	var clock_node = document.createTextNode(time);
@@ -352,7 +352,7 @@ function updateClock(){
   var element = document.getElementById("clock_p");
   element.parentNode.removeChild(element);
   
-  var time = imageTime[current_frame]-startmsec;
+  var time = (imageTime[current_frame]-startmsec)/1000;
   var clock_p = document.createElement("p");
   clock_p.setAttribute("id", "clock_p");
   var clock_node = document.createTextNode(time);
