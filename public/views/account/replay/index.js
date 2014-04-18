@@ -328,7 +328,8 @@ function resetCanvas(e) { // on resize events
 }
 
 
-function updateLEDs(arrow){
+function updateLEDs(){
+  var arrow = ;
 	led_U.style("opacity",arrow.int1);
 	led_L.style("opacity",arrow.int2);
 	led_D.style("opacity",arrow.int3);
@@ -336,8 +337,8 @@ function updateLEDs(arrow){
 }
 
 var draw = function(d3data){ 
-    //d3.select("svg")
-	//.remove();
+    d3.select("#data_vis_box").selectAll("svg")
+	.remove();
     
     /*var tip = d3.tip()
 	.attr('class', 'd3-tip')
@@ -346,6 +347,7 @@ var draw = function(d3data){
 	.html(function(d) {
 		return "time: "+d.time;
 	});*/
+    updateLEDs();
 
     svg_data_vis = d3.select("#data_vis_box").append("svg")
 	    .attr("width", datavis_width)
