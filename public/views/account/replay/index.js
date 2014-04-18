@@ -97,8 +97,8 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	var m = parseInt(Math.floor(time/60000));
 	var s = parseInt(Math.floor(time - m*60000)/1000);
 	s=("0" + s).slice(-2);
-	var ms = time%1000;
-	var clock_node = document.createTextNode(m+":"+s+"."+ms);
+	var ms = time%1000/100;
+	var clock_node = document.createTextNode("[min:sec:msec] "+m+":"+s+"."+ms);
 	clock_p.appendChild(clock_node);
 
 	var clock_box_div = document.getElementById('clock_box');
@@ -363,8 +363,8 @@ function updateClock(){
   var m = parseInt(Math.floor(time/60000));
   var s = parseInt(Math.floor(time - m*60000)/1000);
   s=("0" + s).slice(-2);
-  var ms = time%1000;
-  var clock_node = document.createTextNode(m+":"+s+"."+ms);
+  var ms = time%1000/100;
+  var clock_node = document.createTextNode("[min:sec:msec] "+m+":"+s+"."+ms);
   clock_p.appendChild(clock_node);
 
   var clock_box_div = document.getElementById('clock_box');
