@@ -228,14 +228,26 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       console.log(">> loading block "+block);
       
       var mydiv = document.getElementById("download_box");
-      var aTag = document.createElement('a');
-      aTag.setAttribute('href',"yourlink.htm");
-      aTag.innerHTML = " Download Image Data (.zip)";
-      mydiv.appendChild(aTag);
-      var aTag2 = document.createElement('a');
+      var image_p = document.createElement("p");
+      var led_p = document.createElement("p");
+      
+      if (parseInt(block_id)>14935) {
+	var aTag = document.createElement('a');
+	aTag.setAttribute('href',"yourlink.htm");
+	aTag.innerHTML = " Download Image Data (.zip)";
+	image_p.appendChild(aTag);
+	mydiv.appendChild(image_p);
+      }else{
+	var text_node = document.createTextNode("zip file not available");
+	image_p.appendChild(text_node);
+	mydiv.appendChild(image_p);
+      }
+      
+      /*var aTag2 = document.createElement('a');
       aTag2.setAttribute('href',"yourlink.htm");
       aTag2.innerHTML = "Download Light Stimuli Data (.csv)";
-      mydiv.appendChild(aTag2);
+      led_p.appendChild(aTag2);
+      mydiv.appendChild(led_p);*/
       
       block_id = block;
       socket.emit('/replay/#callblock', { targetBlock: block});
@@ -477,52 +489,6 @@ var draw = function(d3data){
 	      return 4
 	    });
 	    
-    /*block.append("text")
-	    .attr("class", function (d)
-	    {
-		    var class_name;
-		    if (d.username==myname){
-			    class_name="my-block-name";
-		    }else{
-			    class_name="not-my-block-name";
-		    }
-		    return class_name;
-	    })
-	    .attr("x",10)
-	    .attr("y",14)
-	    .attr("dy", ".3em")
-	    .text(function(d) { 
-		    var h = d.time.getHours();
-		    var ampm = (h<12 ? "a":"p");
-		    //h=("0" + h%12).slice(-2);
-		    h=(h%12);
-		    if(h==0){h="12";}
-		    var m = d.time.getMinutes();
-		    m=("0" + m).slice(-2);
-		    return h+":"+m+ampm;
-	    })
-	    .on('mouseover', tip.show)
-	    .on('mouseout', tip.hide);*/
-	    
-    /*block.append('text')
-	    .attr("class", function (d){
-		    var class_name;
-		    if (d.username==myname){
-			    class_name="my-block-name";
-		    }else{
-			    class_name="not-my-block-name";
-		    }
-		    return class_name;})
-	    .attr('font-family', 'FontAwesome')
-	    .style('font-size', '150%' )
-	    .attr("x",22)
-	    .attr("y",44)
-	    .text(function(d) { return '\uf023' })
-	    .style("display", function(d) {
-		    return d.lock == true ? null : "none"; 
-	    });*/
-    /*var currentframe_g = document.getElementsByClassName("current-frame");
-	currentframe_g.scrollIntoView(true);*/
   }
 
 function getVideo(frame_img_name){
@@ -540,16 +506,3 @@ function getVidFrame(path, callback) {
 	    //console.log(new Date().getTime());
 	};
 }
-
-/*function loadimages(){
-    imageArray = [];
-
-    for (x = 0; x < imageData.length; x++) {
-      getVidFrame("http://171.65.102.132:3001/" + block_id +"/"+ imageData[x], function(image) {
-	imageArray.push(image);
-      });
-    }
-    console.log(imageArray);
-    vid_context.clearRect(20, 20, vid_width+20, vid_height+20);
-    vid_context.drawImage(imageArray[0], 20, 20, vid_width, vid_height);
-};*/
