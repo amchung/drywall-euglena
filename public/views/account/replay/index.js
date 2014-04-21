@@ -6,6 +6,7 @@ var block_id;
 var blockData;
 var ledArray;
 var ledData;
+var led_csv;
 var imageData;
 var imageTime;
 var frameData;
@@ -123,7 +124,21 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  led.arrow = arr[1].split("^");
 	  
 	  ledData.push(led);
+	  
+	  led_csv += led.id+","+led.msec+","+arr[1].toString() + "\n";
 	}
+	
+	
+	/*
+        var mydiv = document.getElementById("download_box");
+        var led_p = document.createElement("p");
+        var aTag2 = document.createElement('a');
+        
+        aTag2.setAttribute('href','data:text/csv;charset=UTF-8,' + encodeURIComponent(led_csv));
+        aTag2.innerHTML = "Download Light Stimuli Data (.csv)";
+        led_p.appendChild(aTag2);
+        mydiv.appendChild(led_p);*/
+	
 	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
@@ -229,7 +244,6 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       
       var mydiv = document.getElementById("download_box");
       var image_p = document.createElement("p");
-      var led_p = document.createElement("p");
       
       if (parseInt(block)>14935) {
 	var aTag = document.createElement('a');
@@ -242,12 +256,6 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	image_p.appendChild(text_node);
 	mydiv.appendChild(image_p);
       }
-      
-      /*var aTag2 = document.createElement('a');
-      aTag2.setAttribute('href',"yourlink.htm");
-      aTag2.innerHTML = "Download Light Stimuli Data (.csv)";
-      led_p.appendChild(aTag2);
-      mydiv.appendChild(led_p);*/
       
       block_id = block;
       socket.emit('/replay/#callblock', { targetBlock: block});
