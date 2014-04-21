@@ -128,8 +128,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  led_csv += led.id+","+led.msec+","+arr[1].toString() + "\n";
 	}
 	
-	
-	/*
+	console.log(led_csv);
         var mydiv = document.getElementById("download_box");
         var led_p = document.createElement("p");
         var aTag2 = document.createElement('a');
@@ -137,8 +136,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
         aTag2.setAttribute('href','data:text/csv;charset=UTF-8,' + encodeURIComponent(led_csv));
         aTag2.innerHTML = "Download Light Stimuli Data (.csv)";
         led_p.appendChild(aTag2);
-        mydiv.appendChild(led_p);*/
-	
+        mydiv.appendChild(led_p);
 	
 	setupCanvas();
 	getVideo(imageData[current_frame]);
