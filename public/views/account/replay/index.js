@@ -231,9 +231,9 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       var image_p = document.createElement("p");
       var led_p = document.createElement("p");
       
-      if (parseInt(block_id)>14935) {
+      if (parseInt(block)>14935) {
 	var aTag = document.createElement('a');
-	aTag.setAttribute('href',"yourlink.htm");
+	aTag.setAttribute('href',"http://171.65.102.132:3002/block_"+block+"_images.zip");
 	aTag.innerHTML = " Download Image Data (.zip)";
 	image_p.appendChild(aTag);
 	mydiv.appendChild(image_p);
