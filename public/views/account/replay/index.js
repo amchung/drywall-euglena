@@ -6,7 +6,7 @@ var block_id;
 var blockData;
 var ledArray;
 var ledData;
-var led_csv;
+var led_csv = [];
 var imageData;
 var imageTime;
 var frameData;
