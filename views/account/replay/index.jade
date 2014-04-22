@@ -11,6 +11,10 @@ block neck
 		.frame-no-led {fill: #333333;}
 		.frame-with-led {fill:black}
 		.stroke-led {stroke-width:1;stroke: white;}
+		.area {fill: steelblue; clip-path:url(#clip)}
+		.axis path,
+		.axis line{fill: none; stroke: white; shape-rendering: crispEdges;}
+		.brush .extent {stroke: gray; fill-opacity: .125; shape-rendering: crispEdges;}
 
 block feet
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")

@@ -284,8 +284,7 @@ var 	shape_bg,
 	led_D,
 	vid_canvas,
 	svg_led,
-	vid_context,
-	svg_data_vis;
+	vid_context;
 	
 var 	vid_width = 640,
 	vid_height = 480,
@@ -403,7 +402,34 @@ var draw = function(d3data){
     //updateLEDs();
     updateClock();
 
-    svg_data_vis = d3.select("#data_vis_box").append("svg")
+    
+    var svg_timeline = d3.select("#data_vis_box").append("svg")
+	    .attr("width", 960)
+	    .attr("height", 500)
+	    .append("g");
+	    
+    var x = d3.scale.linear().range([0,960]),
+	x2 = d3.scale.linear().range([0,960]),
+	y = d3.scale.linear().range([0,200]),
+	y2 = d3.scale.linear().range([0,200]);
+	
+    var xAxis = d3.svg.axis().scale(x).orient("bottom"),
+	xAxis2 = d3.svg.axis().scale(x2).orient("bottom"),
+	yAxis = d3.svg.axis().scale(y).orient("left");
+	
+    var brush = d2.svg.brush()
+	.x(x2)
+	.on("brush", brushed);
+    
+    function brushed() {
+      x.domain(brush.empty() ? x2.domain() : brush.extent());
+      focus.select(".area").attr("d", area);
+      focus.select(".x.axis").call(xAxis);
+    }
+    
+    
+    
+    var svg_data_vis = d3.select("#data_vis_box").append("svg")
 	    .attr("width", datavis_width)
 	    .attr("height", datavis_height)
 	    .append("g");
