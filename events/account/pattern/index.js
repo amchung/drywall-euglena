@@ -13,7 +13,7 @@ exports.join = function(app, socket){
   };
 };
 
-exports.callblock = function(app, socket){
+exports.callpattern = function(app, socket){
   return function(message) {
 	var redis = require("redis"),
 	 client = redis.createClient();

@@ -16,6 +16,6 @@ exports = module.exports = function(app) {
     socket.on('/replay/#join', require('./events/account/replay/index').join(app, socket));
     socket.on('/replay/#callblock', require('./events/account/replay/index').callblock(app, socket));
     socket.on('/replay/#callimglist', require('./events/account/replay/index').callimglist(app, socket));
-    socket.on('/pattern/#loadpattern', require('./events/account/pattern/index').loadpattern(app, socket));
+    socket.on('/pattern/#callpattern', require('./events/account/pattern/index').callpattern(app, socket));
   });
 };
