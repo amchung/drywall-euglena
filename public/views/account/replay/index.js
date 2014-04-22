@@ -417,7 +417,7 @@ var draw = function(d3data){
 	xAxis2 = d3.svg.axis().scale(x2).orient("bottom"),
 	yAxis = d3.svg.axis().scale(y).orient("left");
 	
-    var brush = d2.svg.brush()
+    var brush = d3.svg.brush()
 	.x(x2)
 	.on("brush", brushed);
     
