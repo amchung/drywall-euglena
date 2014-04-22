@@ -1,10 +1,10 @@
 extends ../../../layouts/account
 
 block head
-	title Euglena Data Replay
+	title Euglena Experiment Pattern Editor
 
 block neck
-	link(rel='stylesheet', href='/views/account/replay/index.min.css?#{cacheBreaker}')
+	link(rel='stylesheet', href='/views/account/pattern/index.min.css?#{cacheBreaker}')
 	style.
 		.clock-bar {font-size:240%}
 		.current-frame {fill: #F41C54;}
@@ -19,9 +19,9 @@ block neck
 block feet
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
 	script(src='/socket.io/socket.io.js')
-	script(src='/views/account/replay/index.min.js?#{cacheBreaker}')
-	script(src='/views/account/replay/Vector2.js')
-	script(src='/views/account/replay/functions.js')
+	script(src='/views/account/pattern/index.min.js?#{cacheBreaker}')
+	script(src='/views/account/pattern/Vector2.js')
+	script(src='/views/account/pattern/functions.js')
 
 block body
 	div.row
