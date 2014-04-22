@@ -1,5 +1,5 @@
 'use strict';
 
 exports.init = function(req, res){
-  res.render('account/replay/index');
+  res.render('account/pattern/index');
 };
