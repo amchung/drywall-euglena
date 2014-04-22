@@ -195,7 +195,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       confitm: ''
     },
     url: function(){
-      return '/account/replay/' + this.get('block_id') +'/';
+      return '/account/pattern/' + this.get('block_id') +'/';
     }
   });
 
@@ -231,8 +231,8 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
   
   app.Router = Backbone.Router.extend({
     routes: {
-      'account/replay/': 'default',
-      'account/replay/load/:block/': 'load'
+      'account/pattern/': 'default',
+      'account/pattern/load/:block/': 'load'
     },
     default: function(){
       console.log(" >>default view, nothing loaded");
@@ -256,7 +256,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       }
       
       block_id = block;
-      socket.emit('/replay/#callblock', { targetBlock: block});
+      //socket.emit('/pattern/#callblock', { targetBlock: block});
     }
   });
   
