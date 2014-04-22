@@ -403,6 +403,11 @@ var hour = d3.time.format("%I"),
     	window.location.replace("/account/replay/load/"+myBlock+"/");
   });
   
+  socket.on('/timeline/#viewpattern', function(myBlock){
+	console.log("going to access pattern for block" + myBlock);
+    	window.location.replace("/account/pattern/load/"+myBlock+"/");
+  });
+  
   
   app = app || {};
   
@@ -484,6 +489,7 @@ var hour = d3.time.format("%I"),
     reqSetPattern: function() {
     	console.log("Sent request: Set Pattern for " + selected_block_time);
     	//socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time,  freeform:0});
+	socket.emit('/timeline/#accesspattern', { targettime: selected_block_time});
     },
     reqDataAccess: function() {
     	console.log("Sent request: Data Access");

@@ -289,7 +289,26 @@ exports.accessblock = function(app, socket){
 	  if (err){
 		  console.log("error: "+err);
 	  }
-	  app.io.sockets.emit('/timeline/#viewdata', res);
+	  socket.emit('/timeline/#viewdata', res);
+    });
+  };
+};
+
+exports.accesspattern = function(app, socket){
+  return function(message) {
+  	var redis = require("redis"),
+	 client = redis.createClient();
+	var _ = require('underscore');
+	
+  	// convert dates and get block ids
+    console.log(message.targettime);
+    var target_id;
+    
+    client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
+	  if (err){
+		  console.log("error: "+err);
+	  }
+	  socket.emit('/timeline/#viewpattern', res);
     });
   };
 };
