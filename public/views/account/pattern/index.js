@@ -210,7 +210,7 @@ function drawVis(data){
 	return d3.svg.axis()
 	    .scale(y)
 	    .orient("left")
-	    .ticks(50)
+	    .ticks(250)
     }
 }
 	  	
