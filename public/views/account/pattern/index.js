@@ -182,7 +182,7 @@ function drawVis(data){
 	  })
 	  .attr('y', function(d){
 	      //console.log(y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000))));
-	      return  y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))
+	      return  y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))+1
 	  })
 	  .attr('width', 10)
 	  .attr('height', 10);
