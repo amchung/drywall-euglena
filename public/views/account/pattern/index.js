@@ -140,7 +140,7 @@ function cleanArray(actual){
 
 var svg_vis;
 var margin = {top: 20, right: 20, bottom: 30, left: 60},
-	width = 600 - margin.left - margin.right,
+	width = 500 - margin.left - margin.right,
 	height = 3600 - margin.top - margin.bottom;
 
 function setupVis(){
