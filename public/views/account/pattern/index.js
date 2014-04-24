@@ -190,7 +190,7 @@ function drawVis(data){
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '100%' )
 	      .attr("x",0)
-	      .attr("y",-10)
+	      .attr("y",10)
 	      .text(function(d) { return '\uf0d8' })
 	      .style("opacity", function(d) {
 		  var array = d.led.split("^");
