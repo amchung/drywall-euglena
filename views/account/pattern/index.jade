@@ -11,10 +11,11 @@ block neck
 		.frame-no-led {fill: #333333;}
 		.frame-with-led {fill:black}
 		.stroke-led {stroke-width:1;stroke: white;}
-		.area {fill: steelblue; clip-path:url(#clip)}
-		.axis path,
-		.axis line{fill: none; stroke: white; shape-rendering: crispEdges;}
-		.brush .extent {stroke: gray; fill-opacity: .125; shape-rendering: crispEdges;}
+		.axis path {fill: none; stroke: #000; shape-rendering: crispEdges;}
+		.axis line {fill: none; stroke: #000; shape-rendering: crispEdges;}
+		.dot {stroke: #000;}
+		.grid .tick {stroke: lightgrey;opacity: 0.7;}
+		.grid path {stroke-width: 0;}
 
 block feet
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
