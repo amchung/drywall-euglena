@@ -51,7 +51,8 @@ var block_id;
       this.$el.html(this.template);
     },
     reqCheck: function() {
-      var input = document.getElementById("pattern_input").value;
+      var input = document.getElementById("pattern_input").value.split(/\n/);
+      
       console.log(input);
     },
     reqSubmit: function() {
