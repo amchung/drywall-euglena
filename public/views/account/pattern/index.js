@@ -199,7 +199,7 @@ function drawVis(data){
 	      
     svg_vis.append("g")         
         .attr("class", "grid")
-        .attr("transform", "translate(0," + height + ")")
+        //.attr("transform", "translate(0," + height + ")")
         .call(make_y_axis()
             .tickSize(-width, 0, 0)
             .tickFormat("")
