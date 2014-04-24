@@ -137,7 +137,7 @@ function cleanArray(actual){
 var svg_vis;
 var margin = {top: 20, right: 20, bottom: 30, left: 60},
 	width = 300 - margin.left - margin.right,
-	height = 900 - margin.top - margin.bottom;
+	height = 1600 - margin.top - margin.bottom;
 
 function setupVis(){
     d3.select("#pattern_vis").selectAll("svg")
