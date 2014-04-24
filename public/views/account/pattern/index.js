@@ -68,8 +68,6 @@ var pattern_string;
       
       pattern_string = input.join("&&");
       console.log(pattern_string);
-      
-      drawVis(pattern_array);
     },
     reqEdit: function() {
       document.getElementById("btn_check").disabled = false;
@@ -105,6 +103,7 @@ var pattern_string;
       document.getElementById("btn_submit").disabled = true;
       document.getElementById("btn_edit").disabled = true; 
       //socket.emit('/replay/#callblock', { targetBlock: block});
+      setupVis();
     }
   });
   
@@ -133,7 +132,7 @@ function cleanArray(actual){
 
 var 	svg_led;
 
-function drawVis(data){
+function setupVis(){
     d3.select("#pattern_vis").selectAll("svg")
 	.remove();
   
@@ -142,7 +141,7 @@ function drawVis(data){
 	.attr("height", 900)
 	.append("g");
 	//.attr("transform", "translate(4, 4)");
-
+}
 	
  /*   var frame = svg_data_vis.selectAll(".frame")
 	    .data(d3data)
