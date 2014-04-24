@@ -172,21 +172,20 @@ function drawVis(data){
       .attr("class", "y axis")
       .call(yAxis);
       
-    var plot = svg_vis.selectAll('.plot')
+    var pattern = svg_vis.selectAll('.plot')
 	  .data(data)
-      .enter().append('rect')
-	  .attr('class', 'spot')
-	  .attr('x', function(d){
-	      //console.log(d.msec-Math.floor(d.msec/5000)*5000);
-	      return (d.msec-Math.floor(d.msec/1000)*1000)/2
-	  })
-	  .attr('y', function(d){
-	      //console.log(y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000))));
-	      return  y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))+1
-	  })
+      .enter().append("g")
+	  .attr("class", "spot")
+	  .attr("transform", function (d,i) 
+		{ 
+			var dx = (d.msec-Math.floor(d.msec/1000)*1000)/2;
+			var dy = y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))+1;
+			return "translate(" + dx + ","+ dy + ")"; 
+		});
+      pattern.append('rect')
 	  .attr('width', 48)
 	  .attr('height', 10);
-      plot.append('text')
+      pattern.append('text')
 	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '100%' )
