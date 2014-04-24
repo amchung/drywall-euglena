@@ -3,7 +3,7 @@
 var socket;
 var myname;
 var block_id;
-var pattern_array;
+var pattern_array = [];
 var pattern_string;
 
 (function() {
@@ -69,6 +69,7 @@ var pattern_string;
       pattern_string = input.join("&&");
       console.log(pattern_string);
       
+      drawVis(pattern_array);
     },
     reqEdit: function() {
       document.getElementById("btn_check").disabled = false;
@@ -132,15 +133,15 @@ function cleanArray(actual){
 
 var 	svg_led;
 
-var drawVis = function(d3data){
+function drawVis(data){
     d3.select("#pattern_vis").selectAll("svg")
 	.remove();
   
     svg_vis = d3.select("#pattern_vis").append("svg")
-		.attr("width", 300)
-		.attr("height", 900)
-		.append("g");
-		//.attr("transform", "translate(4, 4)");
+	.attr("width", 300)
+	.attr("height", 900)
+	.append("g");
+	//.attr("transform", "translate(4, 4)");
 
 	
  /*   var frame = svg_data_vis.selectAll(".frame")
