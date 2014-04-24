@@ -171,7 +171,14 @@ function drawVis(data){
     svg_vis.append("g")
       .attr("class", "y axis")
       .call(yAxis);
-      
+    
+    svg_vis.append("g")         
+        .attr("class", "grid")
+        .attr("transform", "translate(1,0)")
+        .call(make_y_axis()
+            .tickSize(-width, 0, 0)
+            .tickFormat(""));
+	
     var pattern = svg_vis.selectAll('.plot')
 	  .data(data)
       .enter().append("g")
@@ -182,28 +189,34 @@ function drawVis(data){
 			var dy = y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))+1;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
+	  
       pattern.append('rect')
 	  .attr('width', 48)
 	  .attr('height', 10);
+	  
       pattern.append('text')
-	  .attr('class', 'arrow')
+	  .attr('class', 'arrow-up')
 	  .attr('font-family', 'FontAwesome')
-	      .style('font-size', '100%' )
-	      .attr("x",0)
+	      .style('font-size', '150%' )
+	      .attr("x",2)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d8' })
 	      .style("opacity", function(d) {
 		  var array = d.led.split("^");
 	          return parseFloat(array[0])
 	      });
-	      
-    svg_vis.append("g")         
-        .attr("class", "grid")
-        .attr("transform", "translate(1,0)")
-        .call(make_y_axis()
-            .tickSize(-width, 0, 0)
-            .tickFormat("")
-        )
+      
+      pattern.append('text')
+	  .attr('class', 'arrow-left')
+	  .attr('font-family', 'FontAwesome')
+	      .style('font-size', '150%' )
+	      .attr("x",10)
+	      .attr("y",10)
+	      .text(function(d) { return '\uf0d9' })
+	      .style("opacity", function(d) {
+		  var array = d.led.split("^");
+	          return parseFloat(array[1])
+	      });
 	
     
     function make_y_axis() {        
