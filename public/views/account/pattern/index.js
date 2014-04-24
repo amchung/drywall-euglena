@@ -63,7 +63,11 @@ var pattern_string;
       
       input.forEach(function(line){
 	    var res = line.split(",");
-	    pattern_array.push(res);
+	    var pattern = new Object();
+	    pattern.id = res[0];
+	    pattern.msec = res[1];
+	    pattern.led = res[2];
+	    pattern_array.push(pattern);
       });
       console.log(pattern_array);
       
@@ -150,7 +154,7 @@ function setupVis(){
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 }
 
-function drawVis(){
+function drawVis(data){
     var format = d3.time.format("%M:%S");
     var y = d3.time.scale()
 	.domain([d3.time.minute.offset(new Date(0), 5), new Date(0)])
@@ -167,8 +171,29 @@ function drawVis(){
     svg_vis.append("g")
       .attr("class", "y axis")
       .call(yAxis);
+      
+    var plot = svg_vis.selectAll('.plot')
+	  .data(data)
+      .enter().append('rect')
+	  .attr('class', 'arrow')
+	  .attr('x', function(d){
+	      return d.msec-Math.floor(d.msec/1000)
+	  })
+	  .attr('y', function(d){
+	      return  margin.top + y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))
+	  })
+	  .attr('width', 10)
+	  .attr('height', 10)
+	  .attr('font-family', 'FontAwesome')
+	      .style('font-size', '150%' )
+	      .attr("x",0)
+	      .attr("y",0)
+	      .text(function(d) { return '\uf023' })
+	      .style("display", function(d) {
+	          return d.lock == true ? null : "none"; 
+	      });
 }
-	
+	  	
  /*   var frame = svg_data_vis.selectAll(".frame")
 	    .data(d3data)
     .enter().append("g")
