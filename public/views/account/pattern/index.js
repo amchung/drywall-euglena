@@ -210,6 +210,7 @@ function drawVis(data){
 	  .attr('class', 'arrow-left')
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '150%' )
+	      .style('color', 'white')
 	      .attr("x",10)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d9' })
