@@ -177,6 +177,7 @@ function drawVis(data){
       .enter().append('rect')
 	  .attr('class', 'arrow')
 	  .attr('x', function(d){
+	    console.log(d.msec);
 	      return d.msec-Math.floor(d.msec/1000)
 	  })
 	  .attr('y', function(d){
@@ -185,13 +186,13 @@ function drawVis(data){
 	  .attr('width', 10)
 	  .attr('height', 10)
 	  .attr('font-family', 'FontAwesome')
-	      .style('font-size', '150%' )
+	      .style('font-size', '100%' )
 	      .attr("x",0)
 	      .attr("y",0)
-	      .text(function(d) { return '\uf023' })
-	      .style("display", function(d) {
-	          return d.lock == true ? null : "none"; 
-	      });
+	      .text(function(d) { return '\uf023' });
+	      //.style("display", function(d) {
+	          //return d.lock == true ? null : "none"; 
+	      //});
 }
 	  	
  /*   var frame = svg_data_vis.selectAll(".frame")
