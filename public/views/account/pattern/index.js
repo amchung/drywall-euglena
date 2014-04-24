@@ -40,6 +40,7 @@ var block_id;
     template: _.template( $('#tmpl-pattern_menu').html() ),
     events: {
       'click .btn-check': 'reqCheck',
+      'click .btn-edit': 'reqEdit',
       'click .btn-submit': 'reqSubmit'
     },
     initialize: function() {
@@ -51,11 +52,23 @@ var block_id;
       this.$el.html(this.template);
     },
     reqCheck: function() {
+      document.getElementById("btn_check").disabled = true;
+      document.getElementById("btn_submit").disabled = false;
+      document.getElementById("btn_edit").disabled = false; 
       var input = document.getElementById("pattern_input").value.split(/\n/);
+      input = cleanArray(input);
       var input_string = input.join("&&");
       console.log(input_string);
     },
+    reqEdit: function() {
+      document.getElementById("btn_check").disabled = false;
+      document.getElementById("btn_submit").disabled = true;
+      document.getElementById("btn_edit").disabled = true; 
+    },
     reqSubmit: function() {
+      document.getElementById("btn_check").disabled = true;
+      document.getElementById("btn_submit").disabled = true;
+      document.getElementById("btn_edit").disabled = true; 
       console.log("Submit");
     }
   });
@@ -90,3 +103,14 @@ var block_id;
     Backbone.history.start({ pushState: true });
   });
 }());
+
+
+function cleanArray(actual){
+  var newArray = new Array();
+  for(var i = 0; i<actual.length; i++){
+      if (actual[i]){
+        newArray.push(actual[i]);
+    }
+  }
+  return newArray;
+}
