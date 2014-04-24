@@ -175,17 +175,19 @@ function drawVis(data){
     var plot = svg_vis.selectAll('.plot')
 	  .data(data)
       .enter().append('rect')
-	  .attr('class', 'arrow')
+	  .attr('class', 'spot')
 	  .attr('x', function(d){
 	      console.log(d.msec-Math.floor(d.msec/5000)*5000);
-	      return (d.msec-Math.floor(d.msec/5000)*5000)
+	      return d.msec-Math.floor(d.msec/5000)*5000
 	  })
 	  .attr('y', function(d){
 	      console.log(y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000))));
-	      return  (margin.top + y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000))))
+	      return  margin.top + y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))
 	  })
 	  .attr('width', 10)
-	  .attr('height', 10)
+	  .attr('height', 10);
+      plot.append('text')
+	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '100%' )
 	      .attr("x",0)
