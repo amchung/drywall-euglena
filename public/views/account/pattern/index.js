@@ -185,13 +185,13 @@ function drawVis(data){
 	  .attr("class", "spot")
 	  .attr("transform", function (d,i) 
 		{ 
-			var dx = (d.msec-Math.floor(d.msec/1000)*1000)/2;
+			var dx = (d.msec-Math.floor(d.msec/1000)*1000)/2.5;
 			var dy = y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))+1;
 			return "translate(" + dx + ","+ dy + ")"; 
 		});
 	  
       pattern.append('rect')
-	  .attr('width', 48)
+	  .attr('width', 38)
 	  .attr('height', 10);
 	  
       pattern.append('text')
@@ -210,7 +210,7 @@ function drawVis(data){
 	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '100%' )
-	      .attr("x",10)
+	      .attr("x",12)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d9' })
 	      .style("opacity", function(d) {
@@ -222,7 +222,7 @@ function drawVis(data){
 	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '100%' )
-	      .attr("x",18)
+	      .attr("x",20)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d7' })
 	      .style("opacity", function(d) {
@@ -234,7 +234,7 @@ function drawVis(data){
 	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '100%' )
-	      .attr("x",26)
+	      .attr("x",30)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0da' })
 	      .style("opacity", function(d) {
