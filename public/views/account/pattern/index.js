@@ -134,7 +134,7 @@ function cleanArray(actual){
 // Canvas setup functions
 /////////////////////////////
 
-var 	svg_vis;
+var svg_vis;
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
 	width = 300 - margin.left - margin.right,
 	height = 900 - margin.top - margin.bottom;
@@ -144,28 +144,34 @@ function setupVis(){
 	.remove();
   
     svg_vis = d3.select("#pattern_vis").append("svg")
-	.attr("width", 300)
-	.attr("height", 900)
-	.append("g");
-	//.attr("transform", "translate(4, 4)");
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+     .append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 }
 
 function drawVis(){
-    var x = d3.scale.linear()
-	.range([0, width]);
-    
     var y = d3.scale.linear()
+	.domain([0, 300000])
 	.range([height, 0]);
     
     var color = d3.scale.category10();
     
-    var xAxis = d3.svg.axis()
-	.scale(x)
-	.orient("bottom");
-    
     var yAxis = d3.svg.axis()
 	.scale(y)
-	.orient("left");
+	.orient("left")
+	.ticks(30);
+      
+    svg_vis.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Sepal Length (cm)");
 }
 	
  /*   var frame = svg_data_vis.selectAll(".frame")
