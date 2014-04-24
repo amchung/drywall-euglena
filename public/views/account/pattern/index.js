@@ -178,10 +178,10 @@ function drawVis(data){
 	  .attr('class', 'spot')
 	  .attr('x', function(d){
 	      //console.log(d.msec-Math.floor(d.msec/5000)*5000);
-	      return (d.msec-Math.floor(d.msec/5000)*5000)/2
+	      return (d.msec-Math.floor(d.msec/1000)*1000)/2
 	  })
 	  .attr('y', function(d){
-	      console.log(y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000))));
+	      //console.log(y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000))));
 	      return  y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))
 	  })
 	  .attr('width', 10)
