@@ -195,9 +195,9 @@ function drawVis(data){
 	  .attr('height', 10);
 	  
       pattern.append('text')
-	  .attr('class', 'arrow-up')
+	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
-	      .style('font-size', '150%' )
+	      .style('font-size', '100%' )
 	      .attr("x",2)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d8' })
@@ -207,9 +207,9 @@ function drawVis(data){
 	      });
       
       pattern.append('text')
-	  .attr('class', 'arrow-left')
+	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
-	      .style('font-size', '150%' )
+	      .style('font-size', '100%' )
 	      .attr("x",10)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d9' })
@@ -218,6 +218,29 @@ function drawVis(data){
 	          return parseFloat(array[1])
 	      });
 	
+      pattern.append('text')
+	  .attr('class', 'arrow')
+	  .attr('font-family', 'FontAwesome')
+	      .style('font-size', '100%' )
+	      .attr("x",18)
+	      .attr("y",10)
+	      .text(function(d) { return '\uf0d7' })
+	      .style("opacity", function(d) {
+		  var array = d.led.split("^");
+	          return parseFloat(array[2])
+	      });
+      
+      pattern.append('text')
+	  .attr('class', 'arrow')
+	  .attr('font-family', 'FontAwesome')
+	      .style('font-size', '100%' )
+	      .attr("x",26)
+	      .attr("y",10)
+	      .text(function(d) { return '\uf0da' })
+	      .style("opacity", function(d) {
+		  var array = d.led.split("^");
+	          return parseFloat(array[3])
+	      });
     
     function make_y_axis() {        
 	return d3.svg.axis()
