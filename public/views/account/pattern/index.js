@@ -153,7 +153,7 @@ function setupVis(){
 function drawVis(){
     var format = d3.time.format("%M:%S");
     var y = d3.time.scale()
-	.domain([new Date(0), d3.time.minute.offset(new Date(0), 5)])
+	.domain([d3.time.minute.offset(new Date(0), 5), new Date(0)])
 	.range([height, 0]);
     
     var color = d3.scale.category10();
@@ -166,14 +166,7 @@ function drawVis(){
       
     svg_vis.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("class", "label")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Sepal Length (cm)");
+      .call(yAxis);
 }
 	
  /*   var frame = svg_data_vis.selectAll(".frame")
