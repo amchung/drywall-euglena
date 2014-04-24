@@ -196,6 +196,22 @@ function drawVis(data){
 	      //.style("display", function(d) {
 	          //return d.lock == true ? null : "none"; 
 	      //});
+	      
+    svg.append("g")         
+        .attr("class", "grid")
+        .attr("transform", "translate(0," + height + ")")
+        .call(make_y_axis()
+            .tickSize(-width, 0, 0)
+            .tickFormat("")
+        )
+	
+    
+    function make_y_axis() {        
+	return d3.svg.axis()
+	    .scale(y)
+	    .orient("left")
+	    .ticks(5)
+    }
 }
 	  	
  /*   var frame = svg_data_vis.selectAll(".frame")
