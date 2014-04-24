@@ -69,6 +69,15 @@ var block_id;
     load: function(block) {
       console.log(">> loading block "+block);
       block_id = block;
+      var info_div = document.getElementById("info_box");
+      var block_text = document.createElement("h6");
+      var block_node = document.createTextNode("Pattern for block "+block_id);
+      var pattern_text = document.createElement("h6");
+      var pattern_node = document.createTextNode("Pattern ID : ");
+	block_text.appendChild(block_node);
+	pattern_text.appendChild(pattern_node);
+	info_div.appendChild(block_text);
+	info_div.appendChild(pattern_text);
       //socket.emit('/replay/#callblock', { targetBlock: block});
     }
   });
