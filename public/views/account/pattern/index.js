@@ -57,7 +57,7 @@ var pattern_string;
       document.getElementById("btn_check").disabled = true;
       document.getElementById("btn_submit").disabled = false;
       document.getElementById("btn_edit").disabled = false;
-      document.getElementById("pattern_input").disabled = false; 
+      document.getElementById("pattern_input").disabled = true; 
       var input = document.getElementById("pattern_input").value.split(/\n/);
       input = cleanArray(input);
       
@@ -74,7 +74,7 @@ var pattern_string;
       document.getElementById("btn_check").disabled = false;
       document.getElementById("btn_submit").disabled = true;
       document.getElementById("btn_edit").disabled = true;
-      document.getElementById("pattern_input").disabled = true; 
+      document.getElementById("pattern_input").disabled = false; 
     },
     reqSubmit: function() {
       document.getElementById("btn_check").disabled = true;
