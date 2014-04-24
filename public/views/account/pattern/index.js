@@ -52,8 +52,8 @@ var block_id;
     },
     reqCheck: function() {
       var input = document.getElementById("pattern_input").value.split(/\n/);
-      
-      console.log(input);
+      var input_string = input.join("&&");
+      console.log(input_string);
     },
     reqSubmit: function() {
       console.log("Submit");
