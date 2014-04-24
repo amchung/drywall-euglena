@@ -56,6 +56,7 @@ var block_id;
       document.getElementById("btn_submit").disabled = false;
       document.getElementById("btn_edit").disabled = false; 
       var input = document.getElementById("pattern_input").value.split(/\n/);
+      console.log(input);
       input = cleanArray(input);
       var input_string = input.join("&&");
       console.log(input_string);
