@@ -210,13 +210,12 @@ function drawVis(data){
 	  .attr('class', 'arrow-left')
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '150%' )
-	      .style('color', 'white')
 	      .attr("x",10)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d9' })
-	      .style("opacity", function(d) {
+	      .style('color', function(d) {
 		  var array = d.led.split("^");
-	          return parseFloat(array[1])
+	          return "rgba(0, 0, 0, " + array[1] +")"
 	      });
 	
     
