@@ -109,7 +109,7 @@ var block_id;
 function cleanArray(actual){
   var newArray = new Array();
   for(var i = 0; i<actual.length; i++){
-      if (actual[i]){
+      if (actual[i].length > 0){
         newArray.push(actual[i]);
     }
   }
