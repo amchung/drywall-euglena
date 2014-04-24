@@ -69,6 +69,8 @@ var pattern_string;
       
       pattern_string = input.join("&&");
       console.log(pattern_string);
+      
+      drawVis();
     },
     reqEdit: function() {
       document.getElementById("btn_check").disabled = false;
@@ -132,7 +134,10 @@ function cleanArray(actual){
 // Canvas setup functions
 /////////////////////////////
 
-var 	svg_led;
+var 	svg_vis;
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+	width = 300 - margin.left - margin.right,
+	height = 900 - margin.top - margin.bottom;
 
 function setupVis(){
     d3.select("#pattern_vis").selectAll("svg")
@@ -143,6 +148,24 @@ function setupVis(){
 	.attr("height", 900)
 	.append("g");
 	//.attr("transform", "translate(4, 4)");
+}
+
+function drawVis(){
+    var x = d3.scale.linear()
+	.range([0, width]);
+    
+    var y = d3.scale.linear()
+	.range([height, 0]);
+    
+    var color = d3.scale.category10();
+    
+    var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient("bottom");
+    
+    var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient("left");
 }
 	
  /*   var frame = svg_data_vis.selectAll(".frame")
