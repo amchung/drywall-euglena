@@ -197,7 +197,7 @@ function drawVis(data){
 	          //return d.lock == true ? null : "none"; 
 	      //});
 	      
-    svg.append("g")         
+    svg_vis.append("g")         
         .attr("class", "grid")
         .attr("transform", "translate(0," + height + ")")
         .call(make_y_axis()
