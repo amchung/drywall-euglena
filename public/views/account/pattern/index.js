@@ -140,7 +140,7 @@ function cleanArray(actual){
 
 var svg_vis;
 var margin = {top: 20, right: 20, bottom: 30, left: 60},
-	width = 300 - margin.left - margin.right,
+	width = 500 - margin.left - margin.right,
 	height = 3000 - margin.top - margin.bottom;
 
 function setupVis(){
@@ -178,7 +178,7 @@ function drawVis(data){
 	  .attr('class', 'spot')
 	  .attr('x', function(d){
 	      //console.log(d.msec-Math.floor(d.msec/5000)*5000);
-	      return (d.msec-Math.floor(d.msec/5000)*5000)/10
+	      return (d.msec-Math.floor(d.msec/5000)*5000)/2
 	  })
 	  .attr('y', function(d){
 	      console.log(y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000))));
