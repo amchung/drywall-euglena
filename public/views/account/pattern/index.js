@@ -190,11 +190,12 @@ function drawVis(data){
 	  .attr('font-family', 'FontAwesome')
 	      .style('font-size', '100%' )
 	      .attr("x",0)
-	      .attr("y",0)
-	      .text(function(d) { return '\uf023' });
-	      //.style("display", function(d) {
-	          //return d.lock == true ? null : "none"; 
-	      //});
+	      .attr("y",-10)
+	      .text(function(d) { return '\uf0d8' })
+	      .style("opacity", function(d) {
+		  var array = d.led.split("^");
+	          return parseFloat(array[0])
+	      });
 	      
     svg_vis.append("g")         
         .attr("class", "grid")
