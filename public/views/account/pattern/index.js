@@ -152,8 +152,8 @@ function setupVis(){
 
 function drawVis(){
     var format = d3.time.format("%M:%S");
-    var y = d3.scale.linear()
-	.domain([0, 300000])
+    var y = d3.time.scale()
+	.domain([new Date(0), d3.time.minute.offset(new Date(0), 5)])
 	.range([height, 0]);
     
     var color = d3.scale.category10();
@@ -161,7 +161,8 @@ function drawVis(){
     var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left")
-	.ticks(10);
+	.ticks(d3.time.seconds, 30)
+	.tickFormat(format);
       
     svg_vis.append("g")
       .attr("class", "y axis")
