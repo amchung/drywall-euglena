@@ -3,6 +3,8 @@
 var socket;
 var myname;
 var block_id;
+var pattern_array;
+var pattern_string;
 
 (function() {
   'use strict';
@@ -56,10 +58,17 @@ var block_id;
       document.getElementById("btn_submit").disabled = false;
       document.getElementById("btn_edit").disabled = false; 
       var input = document.getElementById("pattern_input").value.split(/\n/);
-      console.log(input);
       input = cleanArray(input);
-      var input_string = input.join("&&");
-      console.log(input_string);
+      
+      input.forEach(function(line){
+	    var res = line.split(",");
+	    pattern_array.push(res);
+      });
+      console.log(pattern_array);
+      
+      pattern_string = input.join("&&");
+      console.log(pattern_string);
+      
     },
     reqEdit: function() {
       document.getElementById("btn_check").disabled = false;
@@ -115,3 +124,102 @@ function cleanArray(actual){
   }
   return newArray;
 }
+
+
+/////////////////////////////
+// Canvas setup functions
+/////////////////////////////
+
+var 	svg_led;
+
+var drawVis = function(d3data){
+    d3.select("#pattern_vis").selectAll("svg")
+	.remove();
+  
+    svg_vis = d3.select("#pattern_vis").append("svg")
+		.attr("width", 300)
+		.attr("height", 900)
+		.append("g");
+		//.attr("transform", "translate(4, 4)");
+
+	
+ /*   var frame = svg_data_vis.selectAll(".frame")
+	    .data(d3data)
+    .enter().append("g")
+	    .attr("class", "block")
+	    .attr("transform", function (d,i) 
+	    { 
+		    var dx = (i+1)%100*datavis_x_gap;
+		    var dy = 20 + Math.floor((i+1)/100)*datavis_y_gap;
+		    return "translate(" + dx + ","+ dy + ")"; 
+	    });
+	    //.on('mouseover', tip.show)
+	    //.on('mouseout', tip.hide);
+	    
+    frame.append("rect")
+	    .attr("class", function (d,i)
+	    {
+		    var class_name;
+		    if(i==current_frame){
+		      class_name="current-frame";
+		    }
+		    else{
+		      if (d.ledarray.length>0){
+			    class_name="frame-with-led";
+		      }else{
+			    class_name="frame-no-led";
+		      }
+		      
+		    }
+		    return class_name;
+	    })
+	    .attr("width", 8)
+	    .attr("height", 8);*/
+	    /*.attr("led", function (d){
+		    if (d.ledarray.length>0){
+			    return true;
+		    }else{
+			    return false
+		    }
+	    });*/
+	    //.on('mouseover', tip.show)
+	    //.on('mouseout', tip.hide)
+	    //.on('click', mouseclick);
+    /*frame.append("line")
+	    .attr("class", function (d,i)
+	    {
+		    var class_name = "stroke-led";
+		    return class_name;
+	    })
+	    .attr("x1", 4)
+	    .attr("y1", 4)
+	    .attr("x2", function (d){
+	      if (d.ledarray.length>0) {
+		var x2=0;
+		
+		d.ledarray.forEach(function(ele){
+		  x2 = x2 + parseFloat(ele.arrow[1])*8 - parseFloat(ele.arrow[3])*8;
+		});
+		
+		return 4 + x2/(d.ledarray.length)
+	      }else{
+		return 4
+	      }
+	    })
+	    .attr("y2",function (d){
+	      if (d.ledarray.length>0) {
+		var y2=0;
+		
+		d.ledarray.forEach(function(ele){
+		  y2 = y2 + parseFloat(ele.arrow[0])*8 - parseFloat(ele.arrow[2])*8;
+		});
+		
+		return 4 + y2/(d.ledarray.length)
+	      }else{
+		return 4
+	      }
+	      
+	      return 4
+	    });
+	    */
+  }
