@@ -213,9 +213,9 @@ function drawVis(data){
 	      .attr("x",10)
 	      .attr("y",10)
 	      .text(function(d) { return '\uf0d9' })
-	      .style('color', function(d) {
+	      .style("opacity", function(d) {
 		  var array = d.led.split("^");
-	          return "rgba(0, 0, 0, " + array[1] +")"
+	          return parseFloat(array[1])
 	      });
 	
     
