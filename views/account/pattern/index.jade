@@ -26,12 +26,13 @@ block feet
 block body
 	div.row
 		div.col-sm-7(style='height: 500px')
+			#pattern_edit
 			textarea#pattern_input(class="form-control", rows="20", cols="60")
 		div.col-sm-5
 			div
 				#pattern_menu
 		
-	script(type='text/template', id='tmpl-pattern_nav')
+	script(type='text/template', id='tmpl-pattern_menu')
 		form
 			div.form-actions
 				div.btn-group.btn-group-sm
