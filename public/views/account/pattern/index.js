@@ -74,7 +74,7 @@ var pattern_string;
       pattern_string = input.join("&&");
       console.log(pattern_string);
       
-      drawVis();
+      drawVis(pattern_array);
     },
     reqEdit: function() {
       document.getElementById("btn_check").disabled = false;
