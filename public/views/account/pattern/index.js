@@ -222,4 +222,3 @@ function setupVis(){
 	      return 4
 	    });
 	    */
-  }
