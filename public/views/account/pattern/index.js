@@ -76,6 +76,7 @@ var block_id;
 	info_text.appendChild(block_node);
 	info_text.appendChild(pattern_node);
 	info_div.appendChild(info_text);
+      document.getElementById("btn_submit").disabled = true; 
       //socket.emit('/replay/#callblock', { targetBlock: block});
     }
   });
