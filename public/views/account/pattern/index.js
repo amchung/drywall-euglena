@@ -177,8 +177,7 @@ function drawVis(data){
       .enter().append('rect')
 	  .attr('class', 'arrow')
 	  .attr('x', function(d){
-	    console.log(d.msec);
-	      return d.msec-Math.floor(d.msec/1000)
+	      return d.msec-Math.floor(d.msec/5000)*5000
 	  })
 	  .attr('y', function(d){
 	      return  margin.top + y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))
