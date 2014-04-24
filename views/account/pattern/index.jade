@@ -26,20 +26,22 @@ block feet
 block body
 	div.row
 		h4 Pattern Editor
-		div.col-sm-5(style='height: 500px')
+	div.row
+		div.col-sm-6
+			#info_box
+		div.col-sm-6
+			#pattern_menu
+	div.row
+		div.col-sm-6(style='height: 500px')
 			#pattern_edit
 				h6 Paste in your pattern
 				textarea#pattern_input(class="form-control", rows="20", cols="60")
-		div.col-sm-5
-		div.col-sm-2
-			div
-				#info_box
-				#pattern_menu
+		div.col-sm-6
 		
 	script(type='text/template', id='tmpl-pattern_menu')
 		form
 			div.form-actions
-				div.btn-group-vertical
+				div.btn-group
 					button.btn.btn-default.btn-check(type='button') check pattern 
 						i.fa.fa-check
 					button.btn.btn-default.btn-submit(type='button') submit pattern 
