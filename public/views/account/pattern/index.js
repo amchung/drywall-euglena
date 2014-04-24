@@ -185,7 +185,7 @@ function drawVis(data){
 	      return  y(d3.time.second.offset(new Date(0), Math.floor(d.msec/1000)))+1
 	  })
 	  .attr('width', 10)
-	  .attr('height', 10);
+	  .attr('height', 48);
       plot.append('text')
 	  .attr('class', 'arrow')
 	  .attr('font-family', 'FontAwesome')
