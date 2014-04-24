@@ -135,7 +135,7 @@ function cleanArray(actual){
 /////////////////////////////
 
 var svg_vis;
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
+var margin = {top: 20, right: 20, bottom: 30, left: 60},
 	width = 300 - margin.left - margin.right,
 	height = 900 - margin.top - margin.bottom;
 
@@ -151,6 +151,7 @@ function setupVis(){
 }
 
 function drawVis(){
+    var format = d3.time.format("%M:%S");
     var y = d3.scale.linear()
 	.domain([0, 300000])
 	.range([height, 0]);
@@ -160,7 +161,7 @@ function drawVis(){
     var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left")
-	.ticks(30);
+	.ticks(30000);
       
     svg_vis.append("g")
       .attr("class", "y axis")
