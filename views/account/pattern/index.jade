@@ -31,13 +31,13 @@ block body
 			#info_box
 		div.col-sm-6
 			#pattern_menu
-	div.row(style='height: 500px')
+	div.row
 		div.col-sm-6
 			#pattern_edit
 				h6 Paste in your pattern
 				textarea#pattern_input(class="form-control", rows="20", cols="60")
 		div.col-sm-6
-			#pattern_vis(style="overflow:scroll;")
+			#pattern_vis(style="height: 500px;overflow:scroll;")
 		
 	script(type='text/template', id='tmpl-pattern_menu')
 		form

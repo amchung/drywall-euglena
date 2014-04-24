@@ -137,7 +137,7 @@ function cleanArray(actual){
 var svg_vis;
 var margin = {top: 20, right: 20, bottom: 30, left: 60},
 	width = 300 - margin.left - margin.right,
-	height = 1600 - margin.top - margin.bottom;
+	height = 3000 - margin.top - margin.bottom;
 
 function setupVis(){
     d3.select("#pattern_vis").selectAll("svg")
@@ -161,7 +161,7 @@ function drawVis(){
     var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left")
-	.ticks(d3.time.seconds, 30)
+	.ticks(d3.time.seconds, 5)
 	.tickFormat(format);
       
     svg_vis.append("g")
