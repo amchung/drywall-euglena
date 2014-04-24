@@ -2,6 +2,7 @@
 
 var socket;
 var myname;
+var block_id;
 
 (function() {
   'use strict';
