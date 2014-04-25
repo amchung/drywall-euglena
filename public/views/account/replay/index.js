@@ -124,7 +124,10 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  
 	  if (block_id > 16122) {
 	    var arr_arrow = arr[1].split("#");
+	    console.log(arr[1]);
+	    console.log(arr_arrow);
 	    led.arrow = arr_arrow[1].split("^");
+	    console.log(led.arrow);
 	  }else{
 	    led.arrow = arr[1].split("^");
 	  }
