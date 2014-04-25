@@ -9,18 +9,22 @@ var pattern_string;
 (function() {
   'use strict';
 
-  /*socket = io.connect();
+  socket = io.connect();
   socket.on('connect', function(){
-  	socket.emit('/replay/#join');
+  	socket.emit('/pattern/#join');
   });
   
   socket.on('message', function (message) {
       console.log(message);
   });
   
+  socket.on('/pattern/#patternsaved', function(message){
+      console.log(message);
+  });
+  
   socket.on('disconnect', function() {
       console.log('>>> DB disconnected');
-  });*/
+  });
   
   app = app || {};
   
@@ -61,6 +65,9 @@ var pattern_string;
       var input = document.getElementById("pattern_input").value.split(/\n/);
       input = cleanArray(input);
       
+      var str_time;
+      var str_led;
+      
       input.forEach(function(line){
 	    var res = line.split(",");
 	    var pattern = new Object();
@@ -68,10 +75,12 @@ var pattern_string;
 	    pattern.msec = res[1];
 	    pattern.led = res[2];
 	    pattern_array.push(pattern);
+	    str_time = str_time + pattern.msec +"$$";
+	    str_led = str_led + "0&&" + pattern.led + "$$";
       });
       console.log(pattern_array);
       
-      pattern_string = input.join("&&");
+      pattern_string = str_time + "%%" + str_led;
       console.log(pattern_string);
       
       drawVis(pattern_array);
@@ -86,7 +95,8 @@ var pattern_string;
       document.getElementById("btn_check").disabled = true;
       document.getElementById("btn_submit").disabled = true;
       document.getElementById("btn_edit").disabled = true; 
-      console.log("Submit");
+      
+      socket.emit('/pattern/#setpattern', { targetBlock: block, pattern:pattern_string});
     }
   });
   
