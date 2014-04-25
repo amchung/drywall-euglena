@@ -4,7 +4,7 @@ var socket;
 var myname;
 var block_id;
 var pattern_array = [];
-var pattern_string;
+var pattern_string = null;
 
 (function() {
   'use strict';
@@ -65,8 +65,8 @@ var pattern_string;
       var input = document.getElementById("pattern_input").value.split(/\n/);
       input = cleanArray(input);
       
-      var str_time;
-      var str_led;
+      var str_time = null;
+      var str_led = null;
       
       input.forEach(function(line){
 	    var res = line.split(",");
@@ -78,6 +78,8 @@ var pattern_string;
 	    str_time = str_time + pattern.msec +"$$";
 	    str_led = str_led + "0&&" + pattern.led + "$$";
       });
+      console.log(str_led);
+      console.log(str_time);
       console.log(pattern_array);
       
       pattern_string = str_time + "%%" + str_led;
