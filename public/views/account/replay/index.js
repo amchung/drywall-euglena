@@ -124,15 +124,13 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       
 	  var arr = ledArray[i*2].split("&&");
 	  
-	  if (block_id > 16122) {
+	  /*if (block_id > 16122) {
 	    var arr_arrow = arr[1].split("#");
 	    console.log(arr[1]);
 	    console.log(arr_arrow);
 	    led.arrow = arr_arrow[1].split("^");
-	    console.log(led.arrow);
-	  }else{
+	    console.log(led.arrow);*/
 	    led.arrow = arr[1].split("^");
-	  }
 	  
 	  ledData.push(led);
 	  
