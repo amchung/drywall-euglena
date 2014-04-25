@@ -265,6 +265,9 @@ var hour = d3.time.format("%I"),
 				document.getElementById("btn_cancel").disabled = false; 
 				document.getElementById("btn_enter").style.display="block";
 				document.getElementById("btn_cancel").style.display="block";
+				if (data.pattern_id>0) {
+				    document.getElementById("btn_enter").disabled = true;
+				}
 			}else{
 				document.getElementById("btn_pattern").disabled = false; 
 				document.getElementById("btn_cancel").disabled = false; 
@@ -324,6 +327,12 @@ var hour = d3.time.format("%I"),
 			}else{
 				strInfo = concatNewline(strInfo,"owner: "+data.username);
 			}
+		}
+		if (data.exp_id>0) {
+		    strInfo = concatNewline(strInfo,"exp id: "+data.exp_id); 
+		}
+		if (data.pattern_id>0) {
+		    strInfo = concatNewline(strInfo,"pattern id: "+data.pattern_id); 
 		}
 		infobox.html(strInfo);
     }
