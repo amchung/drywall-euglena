@@ -121,7 +121,13 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	  led.msec = led.time - imageTime[0];
       
 	  var arr = ledArray[i*2].split("&&");
-	  led.arrow = arr[1].split("^");
+	  
+	  if (block_id > 16122) {
+	    var arr_arrow = arr[1].split("#");
+	    led.arrow = arr_arrow[1].split("^");
+	  }else{
+	    led.arrow = arr[1].split("^");
+	  }
 	  
 	  ledData.push(led);
 	  
