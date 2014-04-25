@@ -50,6 +50,8 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	blockData.push(data[3]); // pattern id
 	ledArray = data[4];
 	
+	console.log(ledArray);
+	
 	// image dir = 171.65.102.132:3001/blockid/
       
 	//console.dir(ledData);
