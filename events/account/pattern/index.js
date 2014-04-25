@@ -34,7 +34,7 @@ exports.setpattern = function(app, socket){
 			    if (err){
 				    console.log("error: "+err);
 			    }else{
-				    client.set("pattern_id:"+target_pattern_id, massage.pattern, function(err){
+				    client.set("pattern_id:"+target_pattern_id, message.pattern, function(err){
 					if (err){
 						console.log("error: "+err);
 					}else{
