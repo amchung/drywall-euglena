@@ -94,9 +94,11 @@ var pattern_string;
     reqSubmit: function() {
       document.getElementById("btn_check").disabled = true;
       document.getElementById("btn_submit").disabled = true;
-      document.getElementById("btn_edit").disabled = true; 
+      document.getElementById("btn_edit").disabled = true;
       
-      socket.emit('/pattern/#setpattern', { targetBlock: block, pattern:pattern_string});
+      console.log(block_id + "  :  "+ pattern_string)
+      
+      socket.emit('/pattern/#setpattern', { targetBlock: block_id, pattern:pattern_string});
     }
   });
   
