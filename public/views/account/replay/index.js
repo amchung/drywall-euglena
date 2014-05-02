@@ -101,7 +101,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	var s = parseInt(Math.floor(time - m*60000)/1000);
 	s=("0" + s).slice(-2);
 	var ms = time%1000/100;
-	var clock_node = document.createTextNode("[min:sec:msec] "+m+":"+s+"."+ms);
+	var clock_node = document.createTextNode("[min:sec] "+m+":"+s+"."+ms);
 	clock_p.appendChild(clock_node);
 
 	var clock_box_div = document.getElementById('clock_box');
@@ -252,17 +252,17 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
       var mydiv = document.getElementById("download_box");
       var image_p = document.createElement("p");
       
-      if (parseInt(block)>14935) {
+      //if (parseInt(block)>14935) {
 	var aTag = document.createElement('a');
 	aTag.setAttribute('href',"http://171.65.102.132:3002/block_"+block+"_images.zip");
 	aTag.innerHTML = " Download Image Data (.zip)";
 	image_p.appendChild(aTag);
 	mydiv.appendChild(image_p);
-      }else{
+      /*}else{
 	var text_node = document.createTextNode("zip file not available");
 	image_p.appendChild(text_node);
 	mydiv.appendChild(image_p);
-      }
+      }*/
       
       block_id = block;
       socket.emit('/replay/#callblock', { targetBlock: block});
