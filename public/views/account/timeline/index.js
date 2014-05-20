@@ -277,10 +277,15 @@ var hour = d3.time.format("%I"),
 			}
 		}
 	}else{
-		if(this.getAttribute("locked")=="true"){
-			console.log("this is locked block");
+		if(this.getAttribute("past")=="true"){
+			document.getElementById("btn_access").disabled = false; 
+			document.getElementById("btn_access").style.display="block";
 		}else{
-			document.getElementById("btn_reserve").disabled = false;
+		    if(this.getAttribute("locked")=="true"){
+		  	console.log("this is locked block");
+		    }else{
+		  	document.getElementById("btn_reserve").disabled = false;
+		    }
 		}
 	}
 	
