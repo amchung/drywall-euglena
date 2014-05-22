@@ -80,7 +80,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 			+"Block Start Time"+","+data[0]+","
 			+"User"+","+data[1]+","
 			+"Experiment ID"+","+data[2]+","
-			+"Pattern"+","+data[3]
+			+"Pattern"+","+data[3]+","
 			+ "\n";
 	//console.log(ledData);
 	//console.log(ledData.length);

@@ -4,7 +4,76 @@ block head
 	title Timeline
 
 block neck
-	link(rel='stylesheet', href='/views/account/timeline/example-styles.css')
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
-	script(src="/views/account/timeline/socket_io.js")
 	script(src="/views/account/timeline/d3.tips.js")
+	script(src="/views/account/timeline/socket_io.js")
+	style.
+		.clock-bar {font-size:240%}
+		.not-my-block{fill:white;}
+		.not-my-block:hover{fill: #F41C54;}
+		.my-block{fill:#19C2DE;}
+		.my-block:hover{fill: #F41C54;}
+		.block-past{stroke-width:4;stroke: #DCDDD8;}
+		.block-current{stroke-width:4;stroke: #F41C54;}
+		.block-future{stroke-width:4;stroke: #1E2125;}
+		.has-no-exp{stroke-dasharray:5,5;}
+		.my-block-name{fill:white;font-size:85%}
+		.not-my-block-name{fill:#1E2125;font-size:85%}
+		.d3-tip{line-height: 1;font-weight: bold;padding: 12px;background: rgba(0, 0, 0, 0.8);color: #fff;border-radius: 2px;pointer-events: none;}
+		.d3-tip:after{box-sizing: border-box;display: inline;font-size: 10px;width: 100%;line-height: 1;color: rgba(0, 0, 0, 0.8);position: absolute;pointer-events: none;}
+		.d3-tip.n:after{content: "\25BC";margin: -1px 0 0 0;top: 100%;left: 0;text-align: center;}
+		.d3-tip.e:after {content: "\25C0";margin: -4px 0 0 0;top: 50%;left: -8px;}
+		.d3-tip.s:after {content: "\25B2";margin: 0 0 1px 0;top: -8px;left: 0;text-align: center;}
+		.d3-tip.w:after {content: "\25B6";margin: -4px 0 0 -1px;top: 50%;left: 100%;}
+
+block feet
+	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
+
+block body
+	div.container
+		div.row
+			div.col-sm-3
+				h6 Hour Navigation
+				div#blocks_nav
+			div.col-sm-9.panel.panel-default
+				div.panel-body
+					div#date_picker
+						h6 Logged in as #{user.username}
+		div.row
+			#d3Area
+			
+
+	div.navbar.navbar-default.navbar-fixed-bottom
+		div.container
+			div.row
+				div.col-sm-2.panel.panel-default
+					div.panel-body
+						h6 Time left for the current block
+						div#clock_bar.clock-bar
+				div.col-sm-6.panel.panel-default
+						div.panel-body
+							div#info_menu
+							div#info_box
+				div.col-sm-4
+					button#btn_close.btn.btn-default.btn-xs(type='button')
+						i.fa.fa-times
+					div#preview_box.preview-box
+
+	script(type='text/template', id='tmpl-blocks_nav')
+		form
+			div.form-actions
+				div.btn-group.btn-group-sm
+					button.btn.btn-default.btn-prev(type='button') Prev
+					button.btn.btn-default.btn-now(type='button') Now
+					button.btn.btn-default.btn-next(type='button') Next
+					
+	script(type='text/template', id='tmpl-info_menu')
+		form
+			div.form-actions
+				div.btn-group.btn-group-sm
+					button#btn_reserve.btn.btn-default.btn-reserve(type='button') Reserve
+				div.btn-group.btn-group-sm
+					button#btn_enter.btn.btn-default.btn-enter(type='button') Enter
+					button#btn_access.btn.btn-default.btn-access(type='button') Access
+					button#btn_pattern.btn.btn-default.btn-pattern(type='button') Set Pattern
+					button#btn_cancel.btn.btn-default.btn-cancel(type='button') Cancel

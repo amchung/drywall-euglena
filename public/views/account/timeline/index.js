@@ -127,6 +127,9 @@ var hour = d3.time.format("%I"),
 					class_name=class_name+" block-future"
 				}
 			}
+			if(d.exp_id<0){
+				class_name=class_name+" has-no-exp";
+			}
 			
 			return class_name;
 		})
@@ -155,6 +158,13 @@ var hour = d3.time.format("%I"),
 		})
 		.attr("current", function (d){
 			if (d.current=="1"){
+				return true;
+			}else{
+				return false
+			}
+		})
+		.attr("exp", function (d){
+			if (d.exp_id>-1){
 				return true;
 			}else{
 				return false
@@ -277,7 +287,7 @@ var hour = d3.time.format("%I"),
 			}
 		}
 	}else{
-		if(this.getAttribute("past")=="true"){
+		if(this.getAttribute("exp")=="true"){
 			document.getElementById("btn_access").disabled = false; 
 			document.getElementById("btn_access").style.display="block";
 		}else{
