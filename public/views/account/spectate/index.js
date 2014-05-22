@@ -18,7 +18,7 @@ var myname;
   	callBlocks(currenttime);
   	console.log('>>> timeline connected');
   });callBlocks(currenttime);
-  });
+  //});
   
   socket.on('message', function (message) {
   	console.log(message);

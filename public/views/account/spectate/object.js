@@ -175,18 +175,18 @@ function setupD3() {
 	window.setInterval(getVideo, 1000/20);
 		
 	function getVideo(){
-        getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
-            context.clearRect(0, 0, vid_width, vid_height);
-            context.drawImage(image, 0, 0, vid_width, vid_height);
-        });
+	    getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
+	        context.clearRect(0, 0, vid_width, vid_height);
+	        context.drawImage(image, 0, 0, vid_width, vid_height);
+	    });
         
-    	function getVidFrame(path, callback) {
-            var image = new Image;
-            image.src = path;
-            image.onload = function() {
-                callback(image);
+	    function getVidFrame(path, callback) {
+	        var image = new Image;
+	        image.src = path;
+	        image.onload = function() {
+	            callback(image);
 				//console.log(new Date().getTime());
-            };
-        }
-    }
+	        };
+	    }
+	}
 }
