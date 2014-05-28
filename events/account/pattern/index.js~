@@ -47,7 +47,7 @@ exports.setpattern = function(app, socket){
 								console.log("error: "+err);
 							}else{
 								client.incr("global:next_pattern_id");
-								client.set("pattern_id:"+target_pattern_id+":pattern", message.pattern, function(err){
+								client.set("pattern_id:"+target_pattern_id, message.pattern, function(err){
 								    if (err){
 									    console.log("error: "+err);
 								    }else{

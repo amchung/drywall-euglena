@@ -59,4 +59,4 @@ block body
 						i.fa.fa-arrow-right
 			div.form-group
 				label.control-label Tags for the pattern:
-				input#input_tags.input-tags.form-control(type='text', name='tags', value=null, placeholder="Use comma to seperate tags")
+				input.input-tags.form-control(type='text', name='tags', value=null, placeholder="Use comma to seperate tags")

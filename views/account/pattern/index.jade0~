@@ -21,7 +21,6 @@ block neck
 block feet
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
 	script(src='/socket.io/socket.io.js')
-	script(src='/socket.io/socket.io.js')
 	script(src='/views/account/pattern/index.min.js?#{cacheBreaker}')
 	script(src='/views/account/pattern/Vector2.js')
 	script(src='/views/account/pattern/functions.js')
@@ -59,4 +58,6 @@ block body
 						i.fa.fa-arrow-right
 			div.form-group
 				label.control-label Tags for the pattern:
-				input#input_tags.input-tags.form-control(type='text', name='tags', value=null, placeholder="Use comma to seperate tags")
+				select(multiple, data-role="tagsinput")
+					option(value="Euglena")Euglena
+
