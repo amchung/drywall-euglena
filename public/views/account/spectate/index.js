@@ -73,11 +73,11 @@ var myname;
 
     context = canvas.node().getContext("2d");  
 
-	d3.timer(function() {
+	/*d3.timer(function() {
   		//drawObjects();
-	});
+	});*/
 
-	window.setInterval(getVideo, 1000/20);
+	setInterval(getVideo, 1000/20);
 		
 	function getVideo(){
 	    getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
