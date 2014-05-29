@@ -1,20 +1,19 @@
 'use strict';
 
-exports.showaccess = function(app, socket){
+exports.join = function(app, socket){
   return function() {
-   	console.log("//////////// enter the spectator mode //////////////");
-   	socket.visitor = 'guest';
+    socket.visitor = 'guest';
     if (socket.handshake.user) {
-      socket.visitor = socket.handshake.user.id;
-      socket.username = socket.handshake.user.username;
-    	//console.log(socket.username);
+      socket.visitor = socket.handshake.user.username;
     }
-	/*if(){
-		socket.emit('/lab/#welcome');
-	}else{
-		console.log(":( kick out the bystander");
-		socket.emit('/lab/#kickout');
-	}*/
+
+    socket.join('/spectate/');
+    socket.broadcast.to('/speactate/').emit('/spectate/#newVisitor', socket.visitor);
   };
 };
 
+exports.send = function(app, socket){
+  return function(message) {
+    socket.broadcast.to('/spectate/').emit('/spectate/#incoming', socket.visitor, message);
+  };
+};

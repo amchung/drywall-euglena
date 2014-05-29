@@ -20,7 +20,7 @@ var myname;
   });callBlocks(currenttime);
   //});
   
-  socket.on('message', function (message) {
+  socket.on('/spectate/#incoming', function (message) {
   	console.log(message);
   });
   
