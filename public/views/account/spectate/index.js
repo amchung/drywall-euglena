@@ -29,116 +29,71 @@ var myname;
   });
   
   
-  app = app || {};
   
-  app.Blocks = Backbone.Model.extend({
-    url: '/account/spectate/',
-    defaults: {
-      userid: '',
-      timestamp: ''
-    }
-  });
+  var obj_canvas,
+    obj_c,
+    cp_canvas = null;
 
-  app.BlocksView = Backbone.View.extend({
-    el: '#blocks_nav',
-    template: _.template( $('#tmpl-blocks_nav').html() ),
-    events: {
-      'click .btn-prev': 'reqPrev',
-      'click .btn-now': 'reqNow',
-      'click .btn-next': 'reqNext'
-    },
-    initialize: function() {
-      this.model = new app.Blocks();
-      this.listenTo(this.model, 'sync', this.render);
-      this.render();
-    },
-    render: function() {
-      this.$el.html(this.template( this.model.attributes));
-    },
-    reqPrev: function() {
-      currenttime.setHours(currenttime.getHours() - 1);
-      callBlocks(currenttime);
-    },
-    reqNow: function() {
-      currenttime = new Date();
-      callBlocks(currenttime);
-    },
-    reqNext: function() {
-      currenttime.setHours(currenttime.getHours() + 1);
-      callBlocks(currenttime);
-    }
-  });
-  
-  app.MenuView = Backbone.View.extend({
-    el: '#info_menu',
-    template: _.template( $('#tmpl-info_menu').html() ),
-    events: {
-      'click .btn-reserve': 'reqReserve',
-      'click .btn-pattern': 'reqSetPattern',
-      'click .btn-enter': 'reqEnterFreeform',
-      'click .btn-access': 'reqDataAccess',
-      'click .btn-cancel': 'reqCancel'
-    },
-    initialize: function() {
-      this.model = new app.Blocks();
-      this.listenTo(this.model, 'sync', this.render);
-      this.render();
-      
-      document.getElementById("btn_enter").disabled = true; 
-      document.getElementById("btn_access").disabled = true; 
-      document.getElementById("btn_reserve").disabled = true; 
-      document.getElementById("btn_pattern").disabled = true; 
-      document.getElementById("btn_cancel").disabled = true; 
-      
-      document.getElementById("btn_enter").style.display="none";
-      document.getElementById("btn_access").style.display="none";
-      document.getElementById("btn_pattern").style.display="none";
-      document.getElementById("btn_cancel").style.display="none";
-      
-      infobox = $('#info_box');
-      previewbox = $('#preview_box');
-    },
-    render: function() {
-      this.$el.html(this.template( this.model.attributes));
-    },
-    reqReserve: function() {
-    	console.log("Sent request: Reserve a Block "+selected_block_time);
-    	// >>>>>> socket: reserve block
-    	socket.emit('/timeline/#reserveblock', { targettime: selected_block_time});
-    },
-    reqSetPattern: function() {
-    	console.log("Sent request: Set Pattern for " + selected_block_time);
-    	//socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time,  freeform:0});
-	socket.emit('/timeline/#accesspattern', { targettime: selected_block_time});
-    },
-    reqDataAccess: function() {
-    	console.log("Sent request: Data Access");
-	// >>>>>> socket: access block data
-    	socket.emit('/timeline/#accessblock', { targettime: selected_block_time});
-    },
-    reqEnterFreeform: function() {
-    	console.log("Sent request: Enter " + selected_block_time);
-    	socket.emit('/timeline/#setfreeform', {username:myname, targettime: selected_block_time, freeform:1});
-    },
-    reqCancel: function() {
-    	console.log("Sent request: Cancel Block Reservation");
-    	// >>>>>> socket: cancel reserve block
-    	socket.emit('/timeline/#cancelblock', {targettime:selected_block_time});
-    }
-  });
-  
-  $(document).ready(function() {
-    app.blocksView = new app.BlocksView();
-    app.menuView = new app.MenuView();
-  });
+  var canvas
+  var video_canvas,
+  vid_c;
 
-  $('#d3Area').scroll(function() { 
-    $('#blockArea').css('top', $(this).scrollTop());
-  });
-  
-  $('#btn_close').click(function(){
-    $('#img_preview').css('display','none');
-    document.getElementById("btn_close").style.display="none";
-  });
-    
+  var brown_const=0;
+
+  var vid_width = 640;
+  var vid_height = 480;
+
+  var svg_led;
+  var context;
+
+  var l = 80,
+	n = 4,
+	v = 1/4;
+	
+  var n_max = 20;
+
+  var arrow = new VectorLED(0, 0, 0, 0);	// vector for LED direction
+
+  var touches; // collections of pointers
+
+  var LEDloopON = false;
+
+  document.addEventListener("DOMContentLoaded", init);
+
+
+  function init() {
+    setupD3();
+  }
+
+
+  function setupD3() {
+    canvas = d3.select("#canvasArea").append("canvas")
+        .attr("width", vid_width)
+        .attr("height", vid_height);
+
+    context = canvas.node().getContext("2d");  
+
+	d3.timer(function() {
+  		//drawObjects();
+	});
+
+	window.setInterval(getVideo, 1000/20);
+		
+	function getVideo(){
+	    getVidFrame("http://171.65.102.132:8080/?action=snapshot?t=" + new Date().getTime(), function(image) {
+	        context.clearRect(0, 0, vid_width, vid_height);
+	        context.drawImage(image, 0, 0, vid_width, vid_height);
+	    });
+        
+	    function getVidFrame(path, callback) {
+	        var image = new Image;
+	        image.src = path;
+	        image.onload = function() {
+	            callback(image);
+				//console.log(new Date().getTime());
+	        };
+	    }
+	}
+  }
+
 }());
