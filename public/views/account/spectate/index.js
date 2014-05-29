@@ -17,8 +17,7 @@ var myname;
     currenttime = new Date();
   	callBlocks(currenttime);
   	console.log('>>> timeline connected');
-  });callBlocks(currenttime);
-  //});
+  });
   
   socket.on('/spectate/#incoming', function (message) {
   	console.log(message);
