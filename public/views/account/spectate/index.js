@@ -73,9 +73,9 @@ var myname;
 
     context = canvas.node().getContext("2d");  
 
-	/*d3.timer(function() {
+	d3.timer(function() {
   		//drawObjects();
-	});*/
+	});
 
 	setInterval(getVideo, 1000/20);
 		
