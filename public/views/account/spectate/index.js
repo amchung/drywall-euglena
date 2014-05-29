@@ -58,12 +58,12 @@ var myname;
 
   var LEDloopON = false;
 
-  document.addEventListener("DOMContentLoaded", init);
+  //document.addEventListener("DOMContentLoaded", init);
 
 
-  function init() {
+  //function init() {
     setupD3();
-  }
+  //}
 
 
   function setupD3() {
