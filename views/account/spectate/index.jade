@@ -19,20 +19,12 @@ block feet
 	
 block body
 	div.row
-		div.col-sm-12
-			#canvasArea(style="padding: 10px; width=640px; height: 480px;")
-	div.row
-		h4 Euglena live webcam
-		div.row
-			div.col-sm-6
-				#ledArea(align="center", style="width:300px;height:300px;padding:4px;")
-	div.row
-		div.col-sm-4
-			#username(style="padding:4px;")
-				h6 What's your name?
-					input(type="text", name="usernameTxt")
-					input(type="button", name="setUsername", value="Enter")
-			h5 TOP 5 SCORES
-			#board
 		div.col-sm-8
-			#chat(style="padding: 6px; min-width:600px; max-height:300px; overflow-y:scroll;")
+			#canvasArea(style="padding: 10px; width=640px; height: 480px;")
+		div.col-sm-4
+			h4 Euglena live webcam
+			#username(style="padding:4px;")
+			#chat(style="padding: 6px; height:480px; overflow-y:scroll;")
+			h6 Chat
+				input(type="text", name="chatTxt")
+			
