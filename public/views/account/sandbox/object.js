@@ -169,7 +169,7 @@ function setupD3() {
 
 
 	d3.timer(function() {
-  		drawObjects();
+  		//drawObjects();
 	});
 
 	window.setInterval(getVideo, 1000/20);
