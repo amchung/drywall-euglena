@@ -17,12 +17,14 @@ var myname;
     var txt = '>>> '+ user +' entered the room !';
     var div = document.getElementById('chat_display');
     div.innerHTML = div.innerHTML + "<br />" +txt;
+    div.scrollTop = div.scrollHeight;
   });
   
   socket.on('/spectate/#incoming', function (message) {
     var txt = message;
     var div = document.getElementById('chat_display');
     div.innerHTML = div.innerHTML + "<br />" +txt;
+    div.scrollTop = div.scrollHeight;
   });
   
   socket.on('disconnect', function() {
