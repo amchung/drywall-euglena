@@ -146,9 +146,9 @@ var objects = d3.range(n_max).map(function() {
     init();
 });*/
 
-/*window.addEventListener('resize', function(event){ // resize when you resize the browser
+window.addEventListener('resize', function(event){ // resize when you resize the browser
 	resetCanvas();
-});*/
+});
 
 //////////////////////////////
 
