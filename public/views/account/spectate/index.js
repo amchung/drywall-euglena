@@ -94,5 +94,10 @@ var myname;
 	    }
 	}
   }
+  
+  $('#btn_send').click(function(){
+    var text = document.getElementById('chatTxt').value;
+    socket.emit('/spectate/#send',text);
+  });
 
 }());
