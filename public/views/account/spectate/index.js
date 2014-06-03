@@ -9,6 +9,7 @@ var myname;
 
   socket = io.connect();
   socket.on('connect', function(){
+	console.log(">> emit join");
   	socket.emit('/spectate/#join');
   });
   
