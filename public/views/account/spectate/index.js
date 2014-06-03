@@ -216,15 +216,4 @@ function setupCanvas() {
 		.attr("points", "310,494 340,454 370,494")
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
-		    
-	svg = d3.select("#canvasArea").append("svg:svg")
-		.attr("class", "display-svg")
-		.attr("width", vid_width)
-		.attr("height", vid_height);
-	
-	g = svg.selectAll("g")
-		.data(objects)
-		.enter().append("svg:g");
-
-	var box = g.append("svg:rect");
 }
