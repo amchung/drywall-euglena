@@ -99,11 +99,14 @@ var myname;
 	}
   }
   
-  $('#btn_send').click(function(){
-    
-    var text = document.getElementById('chatTxt').value;
-    console.log(text);
-    socket.emit('/spectate/#send',{ user:myname, msg: text });
+  $('#chatTxt').keydown(function(){
+    if (characterCode == 13) {
+      var text = document.getElementById('chatTxt').value;
+      document.getElementById('chatTxt').value = "";
+      console.log(text);
+      socket.emit('/spectate/#send',{ user:myname, msg: text });
+      
+    }
   });
 
 }());
