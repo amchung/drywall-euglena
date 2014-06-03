@@ -16,7 +16,7 @@ var myname;
     myname=user;
     currenttime = new Date();
   	callBlocks(currenttime);
-  	console.log('>>> timeline connected');
+  	console.log('>>> Hi, '+myname+"!");
   });
   
   socket.on('/spectate/#incoming', function (message) {
@@ -99,7 +99,7 @@ var myname;
     
     var text = document.getElementById('chatTxt').value;
     console.log(text);
-    socket.emit('/spectate/#send',text);
+    socket.emit('/spectate/#send',{ user:myname, msg: text });
   });
 
 }());
