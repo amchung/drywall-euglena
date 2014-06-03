@@ -154,6 +154,7 @@ window.addEventListener('resize', function(event){ // resize when you resize the
 
 function init() {
 	touches = new Collection();
+	console.log(touches)
     // chats and score postings        
 	/*arduino_socket = new io.connect('http://171.65.102.132:3006');
 
