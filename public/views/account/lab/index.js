@@ -42,11 +42,16 @@ var currenttime;
   	socket.emit('/lab/#access');
   });
   
+  socket.on('/lab/#welcome', function(){
+  	init();
+  });
+  
+  
   socket.on('/lab/#enterAsSpectator', function(){
   	window.location.replace("/account/spectate/");
   });
     
-}());
+
 
 //////////////////////////////////// for the joystick
 var control_canvas,
@@ -91,9 +96,9 @@ var n_max = 20;
 
 //document.addEventListener("DOMContentLoaded", init);
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     init();
-});
+});*/
 
 window.addEventListener('resize', function(event){ // resize when you resize the browser
 	resetCanvas();
@@ -454,4 +459,4 @@ function getVidFrame(path, callback) {
 	};
 }
 
-
+}());
