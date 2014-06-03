@@ -4,6 +4,47 @@ var myname;
 var clock_socket;
 var currenttime;
 
+//////////////////////////////////// for the joystick
+var control_canvas,
+	c, // context 2D
+	halfWidth,
+	halfHeight,
+	rect_joy,
+	leftPointerID = -1,	// variable for mouse left button cursor interactions
+	leftPointerPos = new Vector2(0, 0),
+	leftPointerStartPos = new Vector2(0, 0),
+	leftVector = new Vector2(0, 0);
+	arrow = new VectorLED(0, 0, 0, 0);	// vector for LED direction
+	joy_arrow = new VectorLED(0, 0, 0, 0);	// vector used for direction calculations
+	
+var last = 0,
+    t = .5;
+
+var touches; // collections of pointers
+
+var username = "noname";			// for socket.io
+var arduino_socket;					// for socket.io
+
+var obj_canvas,
+obj_c,
+cp_canvas = null;
+
+var vid_canvas,
+vid_context;
+
+var brown_const=0;
+
+var vid_width = 640;
+var vid_height = 480;
+
+var svg_led;
+
+var l = 80,
+	n = 4,
+	v = 1/4;
+	
+var n_max = 20;
+
 (function() {
   'use strict';
 
@@ -51,48 +92,6 @@ var currenttime;
   	window.location.replace("/account/spectate/");
   });
     
-
-
-//////////////////////////////////// for the joystick
-var control_canvas,
-	c, // context 2D
-	halfWidth,
-	halfHeight,
-	rect_joy,
-	leftPointerID = -1,	// variable for mouse left button cursor interactions
-	leftPointerPos = new Vector2(0, 0),
-	leftPointerStartPos = new Vector2(0, 0),
-	leftVector = new Vector2(0, 0);
-	arrow = new VectorLED(0, 0, 0, 0);	// vector for LED direction
-	joy_arrow = new VectorLED(0, 0, 0, 0);	// vector used for direction calculations
-	
-var last = 0,
-    t = .5;
-
-var touches; // collections of pointers
-
-var username = "noname";			// for socket.io
-var arduino_socket;					// for socket.io
-
-var obj_canvas,
-obj_c,
-cp_canvas = null;
-
-var vid_canvas,
-vid_context;
-
-var brown_const=0;
-
-var vid_width = 640;
-var vid_height = 480;
-
-var svg_led;
-
-var l = 80,
-	n = 4,
-	v = 1/4;
-	
-var n_max = 20;
 
 //document.addEventListener("DOMContentLoaded", init);
 
