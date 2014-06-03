@@ -15,11 +15,15 @@ var myname;
   
   socket.on('/spectate/#newUser', function(user) {
     myname = user;
-    console.log('>>> Hi, '+ myname +"!");
+    var txt = '>>> '+ myname +' entered the room !';
+    var div = document.getElementById('chat_display');
+    div.innerHTML = div.innerHTML + txt;
   });
   
   socket.on('/spectate/#incoming', function (message) {
-  	console.log(message);
+    var txt = message;
+    var div = document.getElementById('chat_display');
+    div.innerHTML = div.innerHTML + txt;
   });
   
   socket.on('disconnect', function() {
