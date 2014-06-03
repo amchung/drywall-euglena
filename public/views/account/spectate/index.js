@@ -99,8 +99,8 @@ var myname;
 	}
   }
   
-  $('#chatTxt').keydown(function(){
-    if (characterCode == 13) {
+  $('#chatTxt').keydown(function(e){
+    if (e.which == 13) {
       var text = document.getElementById('chatTxt').value;
       document.getElementById('chatTxt').value = "";
       console.log(text);
