@@ -182,6 +182,8 @@ var 	shape_bg,
 	led_R,
 	led_U,
 	led_D;
+	
+var svg_led;
 
 function setupCanvas() { 
 	svg_led = d3.select("#canvasArea").append("svg:svg")
