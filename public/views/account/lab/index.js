@@ -100,8 +100,25 @@ var objects = d3.range(n_max).map(function() {
   });
 
   clock_socket.on('connect', function() {
-	console.log("Clock connected!");
+	console.log("Arduino-Clock connected!");
+	setupCanvas();
 	myClock=setInterval(function(){myTimer()},500);
+  });
+  
+  clock_socket.on('client-msg', function(message){
+	console.log(message);
+		var str = message.split("&&");
+		if (Number(str[0]))
+		{
+			chat.append(str[1] + '<br />');
+			console.log(str[1]);
+		}else{
+			var ledArray = str[1].split("^");
+			arrow.int1 = ledArray[0];
+			arrow.int2 = ledArray[1];
+			arrow.int3 = ledArray[2];
+			arrow.int4 = ledArray[3];
+		}
   });
 
   clock_socket.on('disconnect', function() {
@@ -136,12 +153,9 @@ var objects = d3.range(n_max).map(function() {
 //////////////////////////////
 
 function init() {
-    console.log("init")
 	touches = new Collection();
     // chats and score postings        
-	arduino_socket = new io.connect('http://171.65.102.132:3006');
-	var chat = $('#chat');
-	var board = $('#board');
+	/*arduino_socket = new io.connect('http://171.65.102.132:3006');
 
 	arduino_socket.on('connect', function() {
 		console.log("Connected!");
@@ -167,7 +181,7 @@ function init() {
 	arduino_socket.on('disconnect', function() {
 			console.log('disconnected');
 			chat.html("<b>Disconnected!</b>");
-	});
+	});*/
 
 	$('input[name=triggerButton]').click(function(){
 		var msg = {type:'sendvalvetrigger'};
