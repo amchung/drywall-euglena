@@ -4,6 +4,7 @@ block head
 	title Timeline
 
 block neck
+	link(rel='stylesheet', href='/views/account/timeline/datepicker.css')
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
 	script(src="/views/account/timeline/d3.tips.js")
 	script(src="/views/account/timeline/bootstrap-datepicker.js")
@@ -37,9 +38,8 @@ block body
 				h6 Hour Navigation
 				div#blocks_nav
 			div.col-sm-9
-				h6 Jump To:
-				div#datepicker.input-append.date(data-date="06-01-2014", data-date-format="dd-mm-yyyy")
-					input.span2(size="16",type="text",value="06-01-2014",readonly)
+				div
+					input#datepicker(size="12",type="text",placeholder="click to show datepicker")
 					span.add-on
 						i.fa.fa-calendar
 		div.row
