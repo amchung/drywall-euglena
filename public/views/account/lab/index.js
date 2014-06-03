@@ -45,10 +45,7 @@ var currenttime;
   socket.on('/lab/#enterAsSpectator', function(){
   	window.location.replace("/account/spectate/");
   });
-  
-  socket.on('/lab/#welcome', function(){
-  	//render page?
-  });
+
   
   /*app = app || {};
   

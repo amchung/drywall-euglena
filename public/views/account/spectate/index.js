@@ -27,8 +27,15 @@ var myname;
     div.scrollTop = div.scrollHeight;
   });
   
+  socket.on('/spectate/#update', function (message) {
+    console.log(message);
+  });
+  
   socket.on('disconnect', function() {
-	console.log('>>> timeline disconnected');
+    var txt = '>>> disconnected from the server';
+    var div = document.getElementById('chat_display');
+    div.innerHTML = div.innerHTML + "<br />" +txt;
+    div.scrollTop = div.scrollHeight;
   });
   
   

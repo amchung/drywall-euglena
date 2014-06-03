@@ -261,12 +261,16 @@ function changeLED(LEDon) { // on joystick inputs
 	var msg = 
 	{type:'/arduino/#sendLEDarrow', user:username, led1:joy_arrow.int1, led2:joy_arrow.int2, led3:joy_arrow.int3, led4:joy_arrow.int4};
     	arduino_socket.json.send(msg);
+	var obj = "0"+"="+msg.led1+"^"+"1"+"="+msg.led2+"^"+"2"+"="+msg.led3+"^"+"3"+"="+msg.led3;
+	socket.emit('/lab/#broadcast',obj);
     }
     else
     {
 	var msg = 
 	{type:'/arduino/#sendLEDarrow', user:username, led1:0, led2:0, led3:0, led4:0};
     	arduino_socket.json.send(msg);
+	var obj = "0"+"="+msg.led1+"^"+"1"+"="+msg.led2+"^"+"2"+"="+msg.led3+"^"+"3"+"="+msg.led3;
+	socket.emit('/lab/#broadcast',obj);
     }
 }
 

@@ -40,3 +40,8 @@ exports.labaccess = function(app, socket){
   };
 };
 
+exports.broadcast = function(app, socket){
+  return function(message) {
+    app.io.sockets.in('/spectate/').emit('/spectate/#update', message);
+  };
+};
