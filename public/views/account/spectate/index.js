@@ -14,16 +14,15 @@ var myname;
   });
   
   socket.on('/spectate/#newUser', function(user) {
-    myname = user;
-    var txt = '>>> '+ myname +' entered the room !';
+    var txt = '>>> '+ user +' entered the room !';
     var div = document.getElementById('chat_display');
-    div.innerHTML = div.innerHTML + txt;
+    div.innerHTML = div.innerHTML + "<br />" +txt;
   });
   
   socket.on('/spectate/#incoming', function (message) {
     var txt = message;
     var div = document.getElementById('chat_display');
-    div.innerHTML = div.innerHTML + txt;
+    div.innerHTML = div.innerHTML + "<br />" +txt;
   });
   
   socket.on('disconnect', function() {
