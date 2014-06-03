@@ -45,6 +45,36 @@ var l = 80,
 	
 var n_max = 20;
 
+var 	shape_bg,
+	shape_stage,
+	g_ledL,
+	g_ledR,
+	g_ledU,
+	g_ledD,
+	led_L,
+	led_R,
+	led_U,
+	led_D;
+	
+var 	w = 640,
+	h = 480,
+	m = 20,
+	radius = l/2+10,
+	degrees = 180 / Math.PI;
+
+var objects = d3.range(n_max).map(function() {
+	var x = 40 + Math.random() * (w-40), y = 40 + Math.random() * (h-40);
+	return {
+	vx: 0,
+	vy: 0,
+	path: d3.range(m).map(function() { return [x, y]; }),
+	count: 0,
+	active: 0,
+	size: l,
+	color: "#FA6600"
+	};
+});
+
 (function() {
   'use strict';
 
@@ -84,6 +114,7 @@ var n_max = 20;
   });
   
   socket.on('/lab/#welcome', function(){
+	console.log("welcome");
   	init();
   });
   
@@ -99,9 +130,9 @@ var n_max = 20;
     init();
 });*/
 
-window.addEventListener('resize', function(event){ // resize when you resize the browser
+/*window.addEventListener('resize', function(event){ // resize when you resize the browser
 	resetCanvas();
-});
+});*/
 
 //////////////////////////////
 
@@ -310,17 +341,6 @@ function changeLED(LEDon) { // on joystick inputs
 // Canvas setup functions
 /////////////////////////////
 
-var 	shape_bg,
-	shape_stage,
-	g_ledL,
-	g_ledR,
-	g_ledU,
-	g_ledD,
-	led_L,
-	led_R,
-	led_U,
-	led_D;
-
 function setupCanvas() { // called in init
 	control_canvas = document.getElementById('controlCanvas');
 	c = control_canvas.getContext('2d');
@@ -414,26 +434,6 @@ function resetCanvas(e) { // on resize events
     // make sure we scroll to the top left. 
     window.scrollTo(0, 0);
 }
-
-var 	w = 640,
-	h = 480,
-	m = 20,
-	radius = l/2+10,
-	degrees = 180 / Math.PI;
-
-var objects = d3.range(n_max).map(function() {
-	var x = 40 + Math.random() * (w-40), y = 40 + Math.random() * (h-40);
-	return {
-	vx: 0,
-	vy: 0,
-	path: d3.range(m).map(function() { return [x, y]; }),
-	count: 0,
-	active: 0,
-	size: l,
-	color: "#FA6600"
-	};
-});
-
 
 function drawObjects(){
 	led_U.style("opacity",arrow.int1);
