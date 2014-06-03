@@ -113,7 +113,7 @@ var myname;
 		.style("fill", "#ffffff")
 		.style("opacity", "0");
 		    
-    svg = d3.select("#canvasArea").append("svg:svg")
+    /*svg = d3.select("#canvasArea").append("svg:svg")
 		.attr("class", "display-svg")
 		.attr("width", vid_width)
 		.attr("height", vid_height);
@@ -122,7 +122,7 @@ var myname;
 		.data(objects)
 		.enter().append("svg:g");
 
-    var box = g.append("svg:rect");
+    var box = g.append("svg:rect");*/
 
     context = canvas.node().getContext("2d");  
 
