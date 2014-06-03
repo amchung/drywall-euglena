@@ -11,12 +11,14 @@ exports.join = function(app, socket){
     //socket.emit('/spectate/#newUser', socket.username);
 
     socket.join('/spectate/');
-    socket.broadcast.to('/spectate/').emit('/spectate/#newUser', socket.username);
+    //socket.broadcast.to('/spectate/').emit('/spectate/#newUser', socket.username);
+    io.sockets.in('/spectate/').emit('/spectate/#newUser', socket.username);
   };
 };
 
 exports.send = function(app, socket){
   return function(message) {
-    socket.broadcast.to('/spectate/').emit('/spectate/#incoming', socket.visitor +" : "+ message.msg);
+    //socket.broadcast.to('/spectate/').emit('/spectate/#incoming', socket.visitor +" : "+ message.msg);
+    io.sockets.in('/spectate/').emit('/spectate/#incoming', socket.visitor +" : "+ message.msg);
   };
 };
