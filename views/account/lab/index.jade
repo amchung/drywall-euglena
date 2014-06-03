@@ -6,6 +6,7 @@ block head
 block neck
 	link(rel='stylesheet', href='/views/account/lab/index.min.css?#{cacheBreaker}')
 	link(rel='stylesheet', href='/views/account/lab/jquery-ui.css')
+	script(src='/views/account/lab/index.min.js?#{cacheBreaker}')
 	script(src="/views/account/lab/jq.js")
 	script(src="/views/account/lab/jquery-ui.js")
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
@@ -18,9 +19,6 @@ block neck
 		.clock-bar {font-size:240%}
 		.display-canvas {position: inherit}
 		.display-svg {position: inherit}
-
-block feet
-	script(src='/views/account/lab/index.min.js?#{cacheBreaker}')
 
 block body
 	div.row
