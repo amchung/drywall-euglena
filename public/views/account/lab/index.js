@@ -342,6 +342,7 @@ function changeLED(LEDon) { // on joystick inputs
 /////////////////////////////
 
 function setupCanvas() { // called in init
+	console.log("setupCanvas");
 	control_canvas = document.getElementById('controlCanvas');
 	c = control_canvas.getContext('2d');
 	
