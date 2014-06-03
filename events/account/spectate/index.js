@@ -8,10 +8,10 @@ exports.join = function(app, socket){
       socket.username = socket.handshake.user.username;
     }
     
-    socket.emit('/spectate/#newUser', socket.username);
+    //socket.emit('/spectate/#newUser', socket.username);
 
-    //socket.join('/spectate/');
-    //socket.broadcast.to('/spectate/').emit('/spectate/#newUser', socket.username);
+    socket.join('/spectate/');
+    socket.broadcast.to('/spectate/').emit('/spectate/#newUser', socket.username);
   };
 };
 
