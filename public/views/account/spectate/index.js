@@ -28,7 +28,7 @@ var myname;
   });
   
   socket.on('/spectate/#update', function (message) {
-    console.log(message);
+    drawObjects(message);
   });
   
   socket.on('disconnect', function() {
@@ -80,6 +80,48 @@ var myname;
     canvas = d3.select("#canvasArea").append("canvas")
         .attr("width", vid_width)
         .attr("height", vid_height);
+	
+    svg_led = d3.select("#canvasArea").append("svg:svg")
+		.attr("width", vid_width+40)
+		.attr("height", vid_height+40)
+		.style("position", "absolute")
+		.style("top", 0)
+		.style("left", 0);
+
+    led_L = svg_led.append("svg:g").
+		append("svg:polygon")
+		.attr("points", "26,230 66,260 26,290")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+	
+    led_R = svg_led.append("svg:g")
+		.append("svg:polygon")
+		.attr("points", "654,230 654,290 614,260")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+						
+    led_U = svg_led.append("svg:g")
+		.append("svg:polygon")
+		.attr("points", "310,26 370,26 340,66")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+						
+    led_D = svg_led.append("svg:g")
+		.append("svg:polygon")
+		.attr("points", "310,494 340,454 370,494")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+		    
+    svg = d3.select("#canvasArea").append("svg:svg")
+		.attr("class", "display-svg")
+		.attr("width", vid_width)
+		.attr("height", vid_height);
+	
+    g = svg.selectAll("g")
+		.data(objects)
+		.enter().append("svg:g");
+
+    var box = g.append("svg:rect");
 
     context = canvas.node().getContext("2d");  
 
@@ -117,3 +159,70 @@ var myname;
   });
 
 }());
+
+function drawObjects(msg){
+  var data = msg.split("^");
+  led_U.style("opacity",data[0].split("=")[1]);
+  led_L.style("opacity",data[1].split("=")[1]);
+  led_D.style("opacity",data[2].split("=")[1]);
+  led_R.style("opacity",data[3].split("=")[1]);
+}
+
+/////////////////////////////
+// Canvas setup functions
+/////////////////////////////
+
+var 	shape_bg,
+	shape_stage,
+	g_ledL,
+	g_ledR,
+	g_ledU,
+	g_ledD,
+	led_L,
+	led_R,
+	led_U,
+	led_D;
+
+function setupCanvas() { 
+	svg_led = d3.select("#canvasArea").append("svg:svg")
+		.attr("width", vid_width+40)
+		.attr("height", vid_height+40)
+		.style("position", "absolute")
+		.style("top", 0)
+		.style("left", 0);
+
+	led_L = svg_led.append("svg:g").
+		append("svg:polygon")
+		.attr("points", "26,230 66,260 26,290")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+	
+	led_R = svg_led.append("svg:g")
+		.append("svg:polygon")
+		.attr("points", "654,230 654,290 614,260")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+						
+	led_U = svg_led.append("svg:g")
+		.append("svg:polygon")
+		.attr("points", "310,26 370,26 340,66")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+						
+	led_D = svg_led.append("svg:g")
+		.append("svg:polygon")
+		.attr("points", "310,494 340,454 370,494")
+		.style("fill", "#ffffff")
+		.style("opacity", "0");
+		    
+	svg = d3.select("#canvasArea").append("svg:svg")
+		.attr("class", "display-svg")
+		.attr("width", vid_width)
+		.attr("height", vid_height);
+	
+	g = svg.selectAll("g")
+		.data(objects)
+		.enter().append("svg:g");
+
+	var box = g.append("svg:rect");
+}
