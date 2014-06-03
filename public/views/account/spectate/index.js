@@ -96,7 +96,9 @@ var myname;
   }
   
   $('#btn_send').click(function(){
+    
     var text = document.getElementById('chatTxt').value;
+    console.log(text);
     socket.emit('/spectate/#send',text);
   });
 
