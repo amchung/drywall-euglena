@@ -9,16 +9,17 @@ block neck
 	script(src="/views/account/lab/jq.js")
 	script(src="/views/account/lab/jquery-ui.js")
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
-	script(src="/views/account/lab/Vector2.js")
 	script(src="/views/account/lab/hand.minified-1.3.4.js")
 	script(src="/views/account/lab/functions.js")
-	script(src="/views/account/lab/socket_io.js")
+	
 	style.
 		.clock-bar {font-size:240%}
 		.display-canvas {position: inherit}
 		.display-svg {position: inherit}
 		
 block feet
+	script(src="/views/account/lab/Vector2.js")
+	script(src="/views/account/lab/socket_io.js")
 	script(src='/views/account/lab/index.min.js?#{cacheBreaker}')
 
 block body
