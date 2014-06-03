@@ -37,7 +37,7 @@ var brown_const=0;
 var vid_width = 640;
 var vid_height = 480;
 
-var svg, svg_led;
+var svg, g, svg_led;
 
 var l = 80,
 	n = 4,
