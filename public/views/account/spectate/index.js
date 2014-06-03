@@ -14,10 +14,10 @@ var myname;
   });
   
   socket.on('/spectate/#newUser', function(user) {
-    myname=user;
+    myname = user;
     currenttime = new Date();
   	callBlocks(currenttime);
-  	console.log('>>> Hi, '+myname+"!");
+  	console.log('>>> Hi, '+ myname +"!");
   });
   
   socket.on('/spectate/#incoming', function (message) {
