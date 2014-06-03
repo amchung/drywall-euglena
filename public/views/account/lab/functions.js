@@ -1,4 +1,4 @@
-function drawCircles(xCenter,yCenter)
+function drawCircles(xCenter,yCenter,max_val)
 {
         var needle = new Vector2(max_val, 0);
         for(var i=0;i<24*3;i++)

@@ -216,7 +216,7 @@ function joystick_draw() {
 	c.lineTo(halfWidth-4, halfHeight);
 	c.stroke();
 	
-	drawCircles(halfWidth, halfHeight);
+	drawCircles(halfWidth, halfHeight, max_val);
 	
 	//// mouse event loop
 	touches.forEach(function (touch) {
