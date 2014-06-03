@@ -8,6 +8,7 @@ exports.join = function(app, socket){
     }
 
     socket.join('/spectate/');
+    console.log("joined spectate channel");
     socket.broadcast.to('/speactate/').emit('/spectate/#newUser', socket.visitor);
   };
 };
