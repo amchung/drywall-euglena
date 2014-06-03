@@ -11,6 +11,7 @@ var myname;
   socket.on('connect', function(){
 	console.log(">> emit join");
   	socket.emit('/spectate/#join');
+	setupD3();
   });
   
   socket.on('/spectate/#newUser', function(user) {
@@ -72,7 +73,7 @@ var myname;
 
 
   //function init() {
-    setupD3();
+    //setupD3();
   //}
 
 
@@ -184,36 +185,3 @@ var 	shape_bg,
 	led_D;
 	
 var svg_led;
-
-function setupCanvas() { 
-	svg_led = d3.select("#canvasArea").append("svg:svg")
-		.attr("width", vid_width+40)
-		.attr("height", vid_height+40)
-		.style("position", "absolute")
-		.style("top", 0)
-		.style("left", 0);
-
-	led_L = svg_led.append("svg:g").
-		append("svg:polygon")
-		.attr("points", "26,230 66,260 26,290")
-		.style("fill", "#ffffff")
-		.style("opacity", "0");
-	
-	led_R = svg_led.append("svg:g")
-		.append("svg:polygon")
-		.attr("points", "654,230 654,290 614,260")
-		.style("fill", "#ffffff")
-		.style("opacity", "0");
-						
-	led_U = svg_led.append("svg:g")
-		.append("svg:polygon")
-		.attr("points", "310,26 370,26 340,66")
-		.style("fill", "#ffffff")
-		.style("opacity", "0");
-						
-	led_D = svg_led.append("svg:g")
-		.append("svg:polygon")
-		.attr("points", "310,494 340,454 370,494")
-		.style("fill", "#ffffff")
-		.style("opacity", "0");
-}
