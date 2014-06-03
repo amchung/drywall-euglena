@@ -6,6 +6,7 @@ block head
 block neck
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
 	script(src="/views/account/timeline/d3.tips.js")
+	script(src="/views/account/timeline/bootstrap-datepicker.js")
 	script(src="/views/account/timeline/socket_io.js")
 	style.
 		.clock-bar {font-size:240%}
@@ -31,14 +32,16 @@ block feet
 
 block body
 	div.container
-		div.row
+		div.row.panel.panel-default
 			div.col-sm-3
 				h6 Hour Navigation
 				div#blocks_nav
-			div.col-sm-9.panel.panel-default
-				div.panel-body
-					div#date_picker
-						h6 Logged in as #{user.username}
+			div.col-sm-9
+				h6 Jump To:
+				div#datepicker.input-append.date(data-date="06-01-2014", data-date-format="dd-mm-yyyy")
+					input.span2(size="16",type="text",value="06-01-2014",readonly)
+					span.add-on
+						i.fa.fa-calendar
 		div.row
 			#d3Area
 			

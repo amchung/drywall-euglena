@@ -545,5 +545,7 @@ var hour = d3.time.format("%I"),
     $('#img_preview').css('display','none');
     document.getElementById("btn_close").style.display="none";
   });
+  
+  $('#datepicker').datepicker();
     
 }());

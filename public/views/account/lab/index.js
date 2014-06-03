@@ -137,13 +137,7 @@ var objects = d3.range(n_max).map(function() {
   socket.on('/lab/#enterAsSpectator', function(){
   	window.location.replace("/account/spectate/");
   });
-    
 
-//document.addEventListener("DOMContentLoaded", init);
-
-/*$(document).ready(function() {
-    init();
-});*/
 
 window.addEventListener('resize', function(event){ // resize when you resize the browser
 	resetCanvas();
