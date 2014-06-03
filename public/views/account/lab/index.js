@@ -101,7 +101,6 @@ var objects = d3.range(n_max).map(function() {
 
   clock_socket.on('connect', function() {
 	console.log("Arduino-Clock connected!");
-	setupCanvas();
 	myClock=setInterval(function(){myTimer()},500);
   });
   
@@ -154,6 +153,7 @@ window.addEventListener('resize', function(event){ // resize when you resize the
 
 function init() {
 	touches = new Collection();
+	setupCanvas();
 	console.log(touches)
     // chats and score postings        
 	/*arduino_socket = new io.connect('http://171.65.102.132:3006');
