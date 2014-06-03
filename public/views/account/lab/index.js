@@ -23,7 +23,7 @@ var last = 0,
 var touches; // collections of pointers
 
 var username = "noname";			// for socket.io
-var arduino_socket;					// for socket.io
+var arduino_socket;				// for socket.io
 
 var obj_canvas,
 obj_c,
@@ -114,7 +114,6 @@ var objects = d3.range(n_max).map(function() {
   });
   
   socket.on('/lab/#welcome', function(){
-	console.log("welcome");
   	init();
   });
   
@@ -137,6 +136,7 @@ var objects = d3.range(n_max).map(function() {
 //////////////////////////////
 
 function init() {
+    console.log("init")
 	touches = new Collection();
     // chats and score postings        
 	arduino_socket = new io.connect('http://171.65.102.132:3006');
