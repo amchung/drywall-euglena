@@ -535,7 +535,6 @@ var hour = d3.time.format("%I"),
   $(document).ready(function() {
     app.blocksView = new app.BlocksView();
     app.menuView = new app.MenuView();
-    $('#datepicker').datepicker({format:"dd/mm/yyyy"});
   });
 
   $('#d3Area').scroll(function() { 
@@ -546,6 +545,8 @@ var hour = d3.time.format("%I"),
     $('#img_preview').css('display','none');
     document.getElementById("btn_close").style.display="none";
   });
+  
+  $('#datepicker').datepicker({format:"dd/mm/yyyy"});
   
   var nowTemp = new Date();
   var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
