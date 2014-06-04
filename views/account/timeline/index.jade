@@ -4,10 +4,9 @@ block head
 	title Timeline
 
 block neck
-	link(rel='stylesheet', href='/views/account/timeline/bootstrap-datetimepicker.min.css')
+	link(rel='stylesheet', href='/views/account/timeline/bootstrap-datetimepicker.css')
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
 	script(src="/views/account/timeline/d3.tips.js")
-	script(src="/views/account/timeline/bootstrap-datetimepicker.min.js")
 	script(src="/views/account/timeline/socket_io.js")
 	style.
 		.clock-bar {font-size:240%}
@@ -30,6 +29,7 @@ block neck
 
 block feet
 	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
+	script(src="/views/account/timeline/bootstrap-datetimepicker.js")
 
 block body
 	div.container
