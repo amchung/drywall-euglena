@@ -28,8 +28,8 @@ block neck
 		.d3-tip.w:after {content: "\25B6";margin: -4px 0 0 -1px;top: 50%;left: 100%;}
 
 block feet
-	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
 	script(src="/views/account/timeline/bootstrap-datetimepicker.js")
+	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
 
 block body
 	div.container
@@ -38,7 +38,7 @@ block body
 				h6 Hour Navigation
 				div#blocks_nav
 			div.col-sm-9
-				div#datetimepicker.input-append
+				div#datetime.input-append
 					input(data-format="MM/dd/yyyy HH:mm:ss PP", type="text")
 					span.add-on
 						fa.fa-calendar

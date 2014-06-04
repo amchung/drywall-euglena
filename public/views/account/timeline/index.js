@@ -546,7 +546,7 @@ var hour = d3.time.format("%I"),
     document.getElementById("btn_close").style.display="none";
   });
   
-  $('#datetimepicker').datetimepicker({language:'en',pick12HourFormat:true});
+  $('#datetime').datetimepicker({language:'en',pick12HourFormat:true});
   
   var nowTemp = new Date();
   var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
