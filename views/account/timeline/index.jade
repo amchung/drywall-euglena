@@ -7,6 +7,7 @@ block neck
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
 	script(src="/views/account/timeline/d3.tips.js")
 	script(src="/views/account/timeline/socket_io.js")
+	script(src="/views/account/timeline/bootstrap-datetimepicker.js")
 	style.
 		.clock-bar {font-size:240%}
 		.not-my-block{fill:white;}
@@ -66,7 +67,6 @@ block neck
 		.bootstrap-datetimepicker-widget.left-oriented:after{left:auto;right:7px}
 
 block feet
-	script(src="/views/account/timeline/bootstrap-datetimepicker.js")
 	script(src='/views/account/timeline/index.min.js?#{cacheBreaker}')
 
 block body
