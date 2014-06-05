@@ -67,12 +67,12 @@
         icon = this.component.find('i');
       }
       if (this.pickTime) {
-        if (icon && icon.length) this.timeIcon = icon.data('time-icon');
+        if (icon && icon.length) this.timeIcon = icon.data('fa fa-clock-o');
         if (!this.timeIcon) this.timeIcon = 'icon-time';
         icon.addClass(this.timeIcon);
       }
       if (this.pickDate) {
-        if (icon && icon.length) this.dateIcon = icon.data('date-icon');
+        if (icon && icon.length) this.dateIcon = icon.data('fa fa-calendar');
         if (!this.dateIcon) this.dateIcon = 'icon-calendar';
         icon.removeClass(this.timeIcon);
         icon.addClass(this.dateIcon);
