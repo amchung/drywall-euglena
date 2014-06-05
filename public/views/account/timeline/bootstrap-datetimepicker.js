@@ -973,9 +973,8 @@
             if (collapseData && collapseData.transitioning) return;
             expanded.collapse('hide');
             closed.collapse('show')
-            console.log('toggle');
-            //$this.find('i').toggleClass(self.timeIcon + ' ' + self.dateIcon);
-            //self.$element.find('.add-on i').toggleClass(self.timeIcon + ' ' + self.dateIcon);
+            $this.find('i').toggleClass(self.timeIcon + ' ' + self.dateIcon);
+            self.$element.find('.add-on i').toggleClass(self.timeIcon + ' ' + self.dateIcon);
           }
         });
       }
