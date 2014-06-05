@@ -552,7 +552,7 @@ var hour = d3.time.format("%I"),
   var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
   
   $("#datetime").on("dp.change",function (e) {
-    console.log(e.date);
+    console.log(e.date._d);
     console.log(currenttime);
     console.log("=========")
     //currenttime.setHours(currenttime.getHours() - 1);
