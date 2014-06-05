@@ -553,6 +553,8 @@ var hour = d3.time.format("%I"),
   
   $("#datetime").on("dp.change",function (e) {
     console.log(e.date);
+    console.log(currenttime);
+    console.log("=========")
     //currenttime.setHours(currenttime.getHours() - 1);
     //callBlocks(currenttime);
     
