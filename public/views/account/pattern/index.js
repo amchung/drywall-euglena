@@ -22,6 +22,10 @@ var pattern_string = [];
       console.log(message);
   });
   
+  socket.on('/pattern/#listblocks', function(message){
+      console.log(message);
+  });
+  
   socket.on('disconnect', function() {
       console.log('>>> DB disconnected');
   });
@@ -107,7 +111,7 @@ var pattern_string = [];
       
       console.log(block_id + "  :  "+ pattern_string)
       
-      socket.emit('/pattern/#setpattern', { targetBlock: block_id, pattern:pattern_string});
+      socket.emit('/pattern/#savepattern', { targetBlock: block_id, pattern:pattern_string});
     }
   });
   

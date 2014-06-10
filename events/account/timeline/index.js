@@ -119,7 +119,7 @@ exports.reserveblock = function(app, socket){
 		//console.log('>>>> '+ socket.visitor +' : '+target_id);
 		//console.log(socket.visitor);
 		
-		client.zadd("user_id:"+socket.visitor+":exp_id",target_id,target_id, function(err) {
+		client.zadd("user_id:"+socket.visitor+":tb_id",target_id,target_id, function(err) {
 			if (err) {
 				console.error("error: zadd");
 			} else {
@@ -180,7 +180,7 @@ exports.cancelblock = function(app, socket){
 			}
 			block_owner = res;
 			if (block_owner==socket.visitor){
-				client.zrem("user_id:"+socket.visitor+":exp_id",target_id, function(err) {
+				client.zrem("user_id:"+socket.visitor+":tb_id",target_id, function(err) {
 					if (err) {
 						console.error("error: zadd");
 					} else {
@@ -234,44 +234,44 @@ exports.setfreeform = function(app, socket){
     var target_pattern_id;
     
     client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
-		if (err){
-			console.log("error: "+err);
-		}else{
-			target_id = res;
-			console.log('>>>> '+ socket.username +' : '+target_id);
-			
-			client.get("global:next_exp_id", function(err,res){
-				if (err){
-					console.log("error: "+err);
-				}else{
-					target_exp_id = res;
-					console.log("current next_exp_id: "+target_exp_id);
-					client.set("tb_id:"+target_id+":exp_id",target_exp_id, function(err){
-						if (err){
-							console.log("error: "+err);
-						}else{
-							client.incr("global:next_exp_id");
-							// pattern_id == 0 for freeform exps 
-							client.set("tb_id:"+target_id+":pattern_id",0, function(err) {
-								if (err) {
-								   console.error("error");
-								} else {
-									client.get("tb_id:"+target_id+":pattern_id", function(err, value) {
-										 if (err) {
-											 console.error("error");
-										 } else {
-											 console.log(">>>> >> block "+target_id+" pattern_id : "+ value);
-											 socket.emit('/timeline/#mayenter');
-										 }
-									});
-								}
-							});
-						}
-					});
-				}
-			});
-		}
+      if (err){
+	console.log("error: "+err);
+      }else{
+	target_id = res;
+	console.log('>>>> '+ socket.username +' : '+target_id);
+	client.get("global:next_exp_id", function(err,res){
+	  if (err){
+	    console.log("error: "+err);
+	  }else{
+	    target_exp_id = res;
+	    console.log("current next_exp_id: "+target_exp_id);
+	    client.set("tb_id:"+target_id+":exp_id",target_exp_id, function(err){
+	      if (err){
+		console.log("error: "+err);
+	      }else{
+		client.incr("global:next_exp_id");
+		client.set("tb_id:"+target_id+":pattern_id",0, function(err) {
+		  if (err) {
+		    console.error("error");
+		  } else {
+		    client.zadd("pattern_id:0:exp_id", new Date().getTime(), target_exp_id, function(err,value){
+		      client.get("tb_id:"+target_id+":pattern_id", function(err, value) {
+			if (err) {
+			  console.error("error");
+			} else {
+			  console.log(">>>> >> block "+target_id+" pattern_id : "+ value);
+			  socket.emit('/timeline/#mayenter');
+			}
+		      });  
+		    });
+		  }
+		});
+	      }
+	    });
+	  }
 	});
+      }
+    });
   };
 };
 
@@ -312,85 +312,4 @@ exports.accesspattern = function(app, socket){
     });
   };
 };
-
-
-/*exports.setexp = function(app, socket){
-  return function(message) {
-  	var redis = require("redis"),
-	 client = redis.createClient();
-	var _ = require('underscore');
-	
-  	// convert dates and get block ids
-    console.log(message.targettime + " : " + socket.username+" : is it freeform? --- "+message.freeform);
-    var target_id;
-    var target_exp_id;
-    var target_pattern_id;
-    
-    client.get("tb_time:"+message.targettime+":tb_id", function(err,res){
-		if (err){
-			console.log("error: "+err);
-		}else{
-			target_id = res;
-			console.log('>>>> '+ socket.username +' : '+target_id);
-			
-			client.get("global:next_exp_id", function(err,res){
-				if (err){
-					console.log("error: "+err);
-				}else{
-					target_exp_id = res;
-					console.log("current next_exp_id: "+target_exp_id);
-					client.set("tb_id:"+target_id+":exp_id",target_exp_id, function(err){
-						if (err){
-							console.log("error: "+err);
-						}else{
-							client.incr("global:next_exp_id");
-							if(message.freeform==1){
-								// pattern_id == 0 for freeform exps 
-								client.set("tb_id:"+target_id+":pattern_id",0, function(err) {
-									if (err) {
-									   console.error("error");
-									} else {
-										client.get("tb_id:"+target_id+":pattern_id", function(err, value) {
-											 if (err) {
-												 console.error("error");
-											 } else {
-												 console.log(">>>> >> block "+target_id+" pattern_id : "+ value);
-												 socket.emit('/timeline/#mayenter');
-											 }
-										});
-									}
-								});
-							}else{
-								// get new pattern_id, set the block with it
-								client.get("global:next_pattern_id", function(err,res){
-									if (err){
-										console.log("error: "+err);
-									}else{
-										console.log("current next_pattern_id: "+res);
-										client.incr("global:next_pattern_id");
-										client.set("tb_id:"+target_id+":pattern_id",res, function(err) {
-											if (err) {
-											   console.error("error");
-											} else {
-												client.get("tb_id:"+target_id+":pattern_id", function(err, value) {
-													 if (err) {
-														 console.error("error");
-													 } else {
-														 console.log(">>>> >> block "+target_id+" pattern_id : "+ value);
-														 app.io.sockets.emit('/timeline/#doneRequest', ">>>> >> block "+target_id+" pattern_id : "+ value);
-													 }
-												});
-											}
-										});
-									}
-								});
-							}
-						}
-					});
-				}
-			});
-		}
-	});
-  };
-};*/
 
