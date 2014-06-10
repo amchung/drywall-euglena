@@ -123,7 +123,7 @@ exports.listblocks = function(app,socket){
     var _ = require("underscore");
     
     client.zrange("user_id:"+socket.username+":tb_id",0,-1, function(err,res){
-	socket.emit('/pattern/#postblocks',  _.toArray(res) );
+	socket.emit('/pattern/#postblocks',  res );
     });
   }
 }
