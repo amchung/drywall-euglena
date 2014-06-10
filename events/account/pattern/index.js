@@ -117,6 +117,11 @@ exports.loadpattern = function(app,socket){
 }
 
 exports.listblocks = function(app,socket){
+  socket.visitor = 'guest';
+    if (socket.handshake.user) {
+      socket.visitor = socket.handshake.user.id;
+      socket.username = socket.handshake.user.username;
+    }
   return function(message){
     var redis = require("redis"),
 	client = redis.createClient();
