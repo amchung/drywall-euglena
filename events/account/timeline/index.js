@@ -119,7 +119,7 @@ exports.reserveblock = function(app, socket){
 		//console.log('>>>> '+ socket.visitor +' : '+target_id);
 		//console.log(socket.visitor);
 		
-		client.zadd("user_id:"+socket.visitor+":tb_id",target_id,target_id, function(err) {
+		client.zadd("user_id:"+socket.username+":tb_id",target_id,target_id, function(err) {
 			if (err) {
 				console.error("error: zadd");
 			} else {
@@ -180,7 +180,7 @@ exports.cancelblock = function(app, socket){
 			}
 			block_owner = res;
 			if (block_owner==socket.visitor){
-				client.zrem("user_id:"+socket.visitor+":tb_id",target_id, function(err) {
+				client.zrem("user_id:"+socket.username+":tb_id",target_id, function(err) {
 					if (err) {
 						console.error("error: zadd");
 					} else {
