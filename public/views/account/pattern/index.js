@@ -22,7 +22,7 @@ var pattern_string = [];
       console.log(message);
   });
   
-  socket.on('/pattern/#listblocks', function(message){
+  socket.on('/pattern/#postblocks', function(message){
       console.log(message);
   });
   
