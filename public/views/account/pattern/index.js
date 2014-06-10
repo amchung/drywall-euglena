@@ -61,6 +61,7 @@ var pattern_string = [];
     },
     render: function() {
       this.$el.html(this.template);
+      socket.emit('/pattern/#listblocks');
     },
     createTag: function(e) {
       if(e.which == 188){
