@@ -194,6 +194,7 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
   socket.on('/replay/#404_err', function(){
     var info_p = document.createElement("p");
 	var info_node_0 = document.createTextNode("This block is missing data. Try other blocks.");
+	info_node_0.style.color = "red";
 	info_p.appendChild(info_node_0);
 
 	var info_box_div = document.getElementById('info_box');
