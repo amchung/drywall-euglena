@@ -221,6 +221,7 @@ function setupVis(){
 }
 
 function drawVis(data){
+    svg_vis.selectAll("*").remove();
     setupVis();
     var format = d3.time.format("%M:%S");
     var y = d3.time.scale()
