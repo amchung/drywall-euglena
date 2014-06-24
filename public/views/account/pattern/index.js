@@ -221,6 +221,7 @@ function setupVis(){
 }
 
 function drawVis(data){
+    setupVis();
     var format = d3.time.format("%M:%S");
     var y = d3.time.scale()
 	.domain([d3.time.minute.offset(new Date(0), 5), new Date(0)])
