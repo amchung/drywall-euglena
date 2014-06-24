@@ -204,23 +204,16 @@ function redis_zadd(key,z,value){
 // Canvas setup functions
 /////////////////////////////
 
-var svg_vis;
 var margin = {top: 20, right: 20, bottom: 30, left: 60},
 	width = 500 - margin.left - margin.right,
 	height = 3600 - margin.top - margin.bottom;
 
 function setupVis(){
     d3.select("#pattern_vis").selectAll("*").remove();
-  
-    svg_vis = d3.select("#pattern_vis").append("svg")
-	.attr("width", width + margin.left + margin.right)
-	.attr("height", height + margin.top + margin.bottom)
-     .append("g")
-	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 }
 
 function drawVis(data){
-    setupVis();
+  setupVis();
     var format = d3.time.format("%M:%S");
     var y = d3.time.scale()
 	.domain([d3.time.minute.offset(new Date(0), 5), new Date(0)])
@@ -233,7 +226,13 @@ function drawVis(data){
 	.orient("left")
 	.ticks(d3.time.seconds, 5)
 	.tickFormat(format);
-      
+	
+    var svg_vis = d3.select("#pattern_vis").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
     svg_vis.append("g")
       .attr("class", "y axis")
       .call(yAxis);
