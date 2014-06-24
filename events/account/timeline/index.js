@@ -313,7 +313,7 @@ exports.accessblock = function(app, socket){
   };
 };*/
 
-exports.listpatterns = function(app,socket){
+exports.getpatterns = function(app,socket){
   socket.visitor = 'guest';
     if (socket.handshake.user) {
       socket.visitor = socket.handshake.user.id;
