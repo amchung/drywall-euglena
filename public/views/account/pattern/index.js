@@ -26,7 +26,7 @@ var pattern_string = [];
       var block_node = document.createTextNode("Editing pattern id # : "+message);
 	info_text.appendChild(block_node);
 	info_div.appendChild(info_text);
-	document.getElementById('input_title').value = message;
+	document.getElementById('input_title').value = 'id_' + message;
   });
   
   socket.on('/pattern/#patternsaved', function(message){
