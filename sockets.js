@@ -11,7 +11,8 @@ exports = module.exports = function(app) {
     socket.on('/timeline/#reserveblock', require('./events/account/timeline/index').reserveblock(app, socket));
     socket.on('/timeline/#cancelblock', require('./events/account/timeline/index').cancelblock(app, socket));
     socket.on('/timeline/#setfreeform', require('./events/account/timeline/index').setfreeform(app, socket));
-    socket.on('/timeline/#accesspattern', require('./events/account/timeline/index').accesspattern(app, socket));
+    socket.on('/timeline/#getpatterns', require('./events/account/timeline/index').getpatterns(app, socket));
+    socket.on('/timeline/#setpattern', require('./events/account/timeline/index').setpattern(app, socket));
     socket.on('/timeline/#accessblock', require('./events/account/timeline/index').accessblock(app, socket));
     socket.on('/lab/#access', require('./events/account/lab/index').labaccess(app,socket));
     socket.on('/lab/#broadcast', require('./events/account/lab/index').broadcast(app, socket));

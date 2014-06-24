@@ -302,35 +302,30 @@ var hour = d3.time.format("%I"),
 	preloader();
 
     // preloading for block preview
-    function preloader() 
-	{
-		if(data.image<0){
-			document.getElementById("btn_close").style.display="none";
-			previewbox.html("[no preview]");
-			writeInfo();
-		}
-		else 
-		{
-			getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
-            	previewbox.html(image);
-            	writeInfo();
-            });
-        }
-        
-    	function getPreview(path, callback) {
-    		document.getElementById("btn_close").style.display="block"; 
-            var image = new Image;
+    function preloader() {
+      if(data.image<0){
+	document.getElementById("btn_close").style.display="none";
+	previewbox.html("[no preview]");
+	writeInfo();
+      }else {
+	getPreview("http://171.65.102.132:3001/"+data.image, function(image) {
+        previewbox.html(image);
+        writeInfo();
+        });
+      }
+    
+      function getPreview(path, callback) {
+    	document.getElementById("btn_close").style.display="block"; 
+        var image = new Image;
             image.id = "img_preview";
             image.src = path;
             image.setAttribute("class","img-responsive img-thumbnail");
             image.setAttribute("alt","Responsive image");
-            image.onload = function() {
-                callback(image);
-            };
-        }
-	}
+            image.onload = function() { callback(image); };
+      }
+    }
 	
-	// write block info to infobox
+    // write block info to infobox
     function writeInfo(){
 		var strInfo;
 		strInfo = "<b>"+data.time+"</b>";
@@ -397,6 +392,17 @@ var hour = d3.time.format("%I"),
 	blockdata.length = blockdata.length-2; 
 	//console.dir(blockdata);
 	draw(blockdata);
+  });
+  
+  socket.on('/timeline/#postpatterns', function(data){
+    console.log(data);
+    /*if(data<0){
+      document.getElementById("btn_close").style.display="none";
+      previewbox.html("[no preview]");
+      writeInfo();
+    }else {
+      //
+    }*/
   });
   
   socket.on('/timeline/#newUser', function(user) {
@@ -479,7 +485,7 @@ var hour = d3.time.format("%I"),
     template: _.template( $('#tmpl-info_menu').html() ),
     events: {
       'click .btn-reserve': 'reqReserve',
-      'click .btn-pattern': 'reqSetPattern',
+      'click .btn-pattern': 'reqGetPattern',
       'click .btn-enter': 'reqEnterFreeform',
       'click .btn-access': 'reqDataAccess',
       'click .btn-cancel': 'reqCancel'
@@ -511,10 +517,11 @@ var hour = d3.time.format("%I"),
     	// >>>>>> socket: reserve block
     	socket.emit('/timeline/#reserveblock', { targettime: selected_block_time});
     },
-    reqSetPattern: function() {
-    	console.log("Sent request: Set Pattern for " + selected_block_time);
-    	//socket.emit('/timeline/#setexp', {username:myname, targettime: selected_block_time,  freeform:0});
-	socket.emit('/timeline/#accesspattern', { targettime: selected_block_time});
+    reqGetPattern: function() {
+    	//console.log("Sent request: Set Pattern for " + selected_block_time);
+	//socket.emit('/timeline/#accesspattern', { targettime: selected_block_time});
+	console.log("Sent request: Get Patterns for " + selected_block_time);
+	socket.emit('/timeline/#getpatterns', {targettime: selected_block_time});
     },
     reqDataAccess: function() {
     	console.log("Sent request: Data Access");
