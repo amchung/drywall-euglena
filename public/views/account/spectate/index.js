@@ -18,10 +18,10 @@ var clock_socket;
   clock_socket.on('server_clock', function(data){
   	var str = data.split(":");
   	if(str[1]=='00'){
-  	  callBlocks(currenttime);
+  	  //callBlocks(currenttime);
   	}
 	if ((str[0]=="0")&&(str[1]=='10')) {
-	  callBlocks(currenttime);
+	  //callBlocks(currenttime);
 	}
   	if((str[0]=="0")&&(parseInt(str[1]))<10){
   		clockbar.html("<b><font color='red'>"+data+"</font><b>");
