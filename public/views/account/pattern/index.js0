@@ -32,7 +32,7 @@ var pattern_string = [];
   
   app = app || {};
   
-  /*app.Reset = Backbone.Model.extend({
+  app.Reset = Backbone.Model.extend({
     defaults: {
       success: false,
       errors: [],
@@ -42,14 +42,6 @@ var pattern_string = [];
     },
     url: function(){
       return '/account/pattern/' + this.get('block_id') +'/';
-    }
-  });*/
-  
-  app.Patterns = Backbone.Model.extend({
-    url: '/account/pattern/',
-    defaults: {
-      userid: '',
-      timestamp: ''
     }
   });
 
@@ -63,14 +55,9 @@ var pattern_string = [];
       'keydown .input-tags': 'createTag'
     },
     initialize: function() {
-      this.model = new app.Patterns();
-      this.listenTo(this.model, 'sync', this.render);
+      //this.model = new app.Blocks();
+      //this.listenTo(this.model, 'sync', this.render);
       this.render();
-      
-      document.getElementById("btn_submit").disabled = true;
-      document.getElementById("btn_edit").disabled = true; 
-      setupVis();
-      socket.emit('/pattern/#listblocks');
     },
     render: function() {
       this.$el.html(this.template);
@@ -128,7 +115,7 @@ var pattern_string = [];
     }
   });
   
-  /*app.Router = Backbone.Router.extend({
+  app.Router = Backbone.Router.extend({
     routes: {
       'account/pattern/': 'default',
       'account/pattern/load/:block/': 'load'
@@ -151,13 +138,12 @@ var pattern_string = [];
       setupVis();
       socket.emit('/pattern/#listblocks');
     }
-  });*/
+  });
   
   $(document).ready(function() {
     app.patternView = new app.PatternView();
-    //app.router = new app.Router();
-    
-    //Backbone.history.start({ pushState: true });
+    app.router = new app.Router();
+    Backbone.history.start({ pushState: true });
   });
 }());
 
