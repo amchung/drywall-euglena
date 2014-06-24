@@ -21,6 +21,12 @@ var pattern_string = [];
 
   socket.on('/pattern/#nextpattern', function(message){
       console.log(message);
+      var info_div = document.getElementById("info_box");
+      var info_text = document.createElement("h6");
+      var block_node = document.createTextNode("Editing pattern id # : "+message);
+	info_text.appendChild(block_node);
+	info_div.appendChild(info_text);
+	document.getElementById('input_title').value = massage.toString;
   });
   
   socket.on('/pattern/#patternsaved', function(message){
