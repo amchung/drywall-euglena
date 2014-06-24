@@ -134,7 +134,7 @@ var pattern_string = [];
       document.getElementById("btn_edit").disabled = true;
       
       console.log(block_id + "  :  "+ pattern_string)
-      var title_val = document.getElementById("input_title").value;
+      var title_value = document.getElementById("input_title").value;
       socket.emit('/pattern/#savepattern', { title: title_value, pattern:pattern_string});
     }
   });
@@ -210,8 +210,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 60},
 	height = 3600 - margin.top - margin.bottom;
 
 function setupVis(){
-    d3.select("#pattern_vis").selectAll("svg")
-	.remove();
+    d3.select("#pattern_vis").selectAll("*").remove();
   
     svg_vis = d3.select("#pattern_vis").append("svg")
 	.attr("width", width + margin.left + margin.right)
@@ -221,7 +220,6 @@ function setupVis(){
 }
 
 function drawVis(data){
-    svg_vis.selectAll("*").remove();
     setupVis();
     var format = d3.time.format("%M:%S");
     var y = d3.time.scale()
