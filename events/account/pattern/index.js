@@ -12,6 +12,25 @@ exports.join = function(app, socket){
   };
 };
 
+exports.getnextid = function(app,socket){
+  return function(message) {
+  	var redis = require("redis"),
+	 client = redis.createClient();
+	
+    // convert dates and get block ids
+    console.log("Get next pattern #");
+    			
+    client.get("global:next_pattern_id", function(err,res){
+      if (err){
+	console.log("error: "+err);
+      }else{
+	console.log("current next_pattern_id: "+res);
+	socket.emit('/pattern/#nextpattern',res)
+      }
+    });
+  }
+}
+
 exports.savepattern = function(app, socket){
   return function(message) {
   	var redis = require("redis"),

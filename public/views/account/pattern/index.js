@@ -12,9 +12,14 @@ var pattern_string = [];
   socket = io.connect();
   socket.on('connect', function(){
   	socket.emit('/pattern/#join');
+	socket.emit('/pattern/#getnextid');
   });
   
   socket.on('message', function (message) {
+      console.log(message);
+  });
+
+  socket.on('/pattern/#nextpattern', function(message){
       console.log(message);
   });
   
