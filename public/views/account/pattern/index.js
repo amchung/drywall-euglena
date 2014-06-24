@@ -134,8 +134,8 @@ var pattern_string = [];
       document.getElementById("btn_edit").disabled = true;
       
       console.log(block_id + "  :  "+ pattern_string)
-      
-      socket.emit('/pattern/#savepattern', { targetBlock: block_id, pattern:pattern_string});
+      var title_val = document.getElementById("input_title").value;
+      socket.emit('/pattern/#savepattern', { title: title_value, pattern:pattern_string});
     }
   });
   

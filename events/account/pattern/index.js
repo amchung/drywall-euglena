@@ -33,15 +33,21 @@ exports.getnextid = function(app,socket){
 
 exports.savepattern = function(app, socket){
   return function(message) {
-  	var redis = require("redis"),
-	 client = redis.createClient();
-	var _ = require('underscore');
+    var redis = require("redis"),
+	client = redis.createClient();
+    var _ = require('underscore');
+    
+    if (socket.handshake.user) {
+      socket.visitor = socket.handshake.user.id;
+      socket.username = socket.handshake.user.username;
+    }
+    
+    var target_pattern_id;
+    var target_pattern = message.pattern;
+    var target_title = message.title;
 	
   	// convert dates and get block ids
-    console.log("Block "+ message.targetBlock + " : set pattern");
-    var target_id = message.targetBlock;
-    var target_exp_id;
-    var target_pattern_id;
+    console.log("User "+ socket.username + " : save a pattern");
     			
     client.get("global:next_pattern_id", function(err,res){
 	    if (err){
@@ -49,7 +55,7 @@ exports.savepattern = function(app, socket){
 	    }else{
 		    target_pattern_id = res;
 		    console.log("current next_pattern_id: "+target_pattern_id);
-		    client.set("pattern_id:"+target_pattern_id+":pattern", message.pattern, function(err){
+		    client.set("pattern_id:"+target_pattern_id+":pattern", target_pattern, function(err){
 			if (err){
 			    console.log("error: "+err);
 			}else{
@@ -62,13 +68,19 @@ exports.savepattern = function(app, socket){
 				      if (err) {
 					  console.log("error: "+err);
 				      }else{
-					  client.zadd("user_id:"+message.user_id+":pattern_id", new Date().getTime(), target_pattern_id, function(err){
+					client.zadd("pattern_id:"+target_pattern_id+":title", new Date().getTime(), target_title, function(err){
+					  if (err) {
+					    console.log("error: "+err);
+					  }else{
+					    client.zadd("user_id:"+message.user_id+":pattern_id", new Date().getTime(), target_pattern_id, function(err){
 					      if (err) {
 					          console.log("error: "+err);
 					      }else{
 					          socket.emit('/pattern/#patternsaved',"pattern saved as pattern # "+target_pattern_id + " for block # " + target_id);
 					      }
-					  });
+					    });
+					  }
+					});
 				      }
 				  });
 			      }
