@@ -61,11 +61,15 @@ exports.callimglist = function(app, socket){
 	
 	fs.readdir(path, function (err, files) {
 	  var imagelist = [];
-	  if(err) throw err;
-	  files.forEach(function(file) {
-	    imagelist.push(file);
-	  });
-	  socket.emit('/replay/#postimglist',  imagelist );
+	  if(err) {
+	    socket.emit('/replay/#404_err')
+	  }
+	  else{
+	    files.forEach(function(file) {
+	      imagelist.push(file);
+	    });
+	    socket.emit('/replay/#postimglist',  imagelist );
+	  }
 	});
   };
 };

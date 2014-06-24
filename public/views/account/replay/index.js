@@ -191,6 +191,15 @@ function frameTimerStop() {  clearInterval(frameTimer);  }
 	//var path = '../../Dropbox/live-gallery/'+targetBlock;
   });
   
+  socket.on('/replay/#404_err', function(){
+    var info_p = document.createElement("p");
+	var info_node_0 = document.createTextNode("This block is missing data. Try other blocks.");
+	info_p.appendChild(info_node_0);
+
+	var info_box_div = document.getElementById('info_box');
+	info_box_div.appendChild(info_p);	
+  });
+  
   socket.on('/replay/#newUser', function(user) {
       myname = user;
       console.log('>>> DB connected' + block_id);
