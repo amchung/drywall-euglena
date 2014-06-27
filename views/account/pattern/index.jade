@@ -17,6 +17,7 @@ block neck
 		.dot {stroke: lightgray;}
 		.grid .tick {stroke: #FAFAFA;}
 		.grid path {stroke-width: 0;}
+		.div_spacer {height:300px;}
 
 block feet
 	script(src="http://d3js.org/d3.v3.min.js" charset="utf-8")
@@ -47,6 +48,8 @@ block body
 					textarea#pattern_input(class="form-control", rows="20", cols="60")
 			div.col-sm-8
 				#pattern_vis(style="height: 500px;overflow:scroll;")
+		div.row
+			#div_spacer.div_spacer
 				
 	div.navbar.navbar-default.navbar-fixed-bottom
 		div.container
