@@ -90,6 +90,7 @@ var pattern_string = [];
       var str_time = [];
       var str_led = [];
       
+      pattern_array = [];
       input.forEach(function(line){
 	    var res = line.split(",");
 	    var pattern = new Object();
