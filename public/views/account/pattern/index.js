@@ -212,6 +212,7 @@ function setupVis(){
 }
 
 function drawVis(data){
+    console.log(svg_vis.selectAll('.spot'))
     svg_vis.selectAll('.spot').remove();
     
     var pattern = svg_vis.selectAll('.plot')
