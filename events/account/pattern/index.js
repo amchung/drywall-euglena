@@ -72,7 +72,7 @@ exports.savepattern = function(app, socket){
 					  if (err) {
 					    console.log("error: "+err);
 					  }else{
-					    client.zadd("user_id:"+message.user_id+":pattern_id", new Date().getTime(), target_pattern_id, function(err){
+					    client.zadd("user_id:"+socket.username+":pattern_id", new Date().getTime(), target_pattern_id, function(err){
 					      if (err) {
 					          console.log("error: "+err);
 					      }else{
