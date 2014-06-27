@@ -27,26 +27,34 @@ block feet
 	script(src='/views/account/pattern/functions.js')
 
 block body
-	div.row
-		h4 Pattern Editor
-	div.row
-		div.col-sm-7
-			#info_box
-			h6 format: (index number), (time the pattern will be executed in msec), (LED up)^(LED left)^(LED down)^(LED right)
-			h6 ex) turn on and off LED left twice for an interval of a second with intensity 50% at 1:00
-			h6 0, 60000, 0^0.5^0^0
-			h6 1, 61000, 0^0^0^0
-			h6 2, 62000, 0^0.5^0^0
-			h6 3, 63000, 0^0^0^0
-		div.col-sm-5
-			#pattern_menu
-	div.row
-		div.col-sm-4
-			#pattern_edit
-				textarea#pattern_input(class="form-control", rows="20", cols="60")
-		div.col-sm-8
-			#pattern_vis(style="height: 500px;overflow:scroll;")
-		
+	div.container
+		div.row
+			h4 Pattern Editor
+		div.row
+			div.col-sm-7
+				#info_box
+				h6 format: (index number), (time the pattern will be executed in msec), (LED up)^(LED left)^(LED down)^(LED right)
+				h6 ex) turn on and off LED left twice for an interval of a second with intensity 50% at 1:00
+				h6 0, 60000, 0^0.5^0^0
+				h6 1, 61000, 0^0^0^0
+				h6 2, 62000, 0^0.5^0^0
+				h6 3, 63000, 0^0^0^0
+			div.col-sm-5
+				h6 My Patterns
+		div.row
+			div.col-sm-4
+				#pattern_edit
+					textarea#pattern_input(class="form-control", rows="20", cols="60")
+			div.col-sm-8
+				#pattern_vis(style="height: 500px;overflow:scroll;")
+				
+	div.navbar.navbar-default.navbar-fixed-bottom
+		div.container
+			div.row
+				div.col-sm-5.panel.panel-default
+					div.panel-body
+						#pattern_menu
+					
 	script(type='text/template', id='tmpl-pattern_menu')
 		form
 			div.form-actions
