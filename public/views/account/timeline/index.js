@@ -520,8 +520,8 @@ var hour = d3.time.format("%I"),
     reqGetPattern: function() {
     	//console.log("Sent request: Set Pattern for " + selected_block_time);
 	//socket.emit('/timeline/#accesspattern', { targettime: selected_block_time});
-	//console.log("Sent request: Get Patterns for " + selected_block_time);
-	//socket.emit('/timeline/#getpatterns', {targettime: selected_block_time});
+	console.log("Sent request: Get Patterns for " + selected_block_time);
+	socket.emit('/timeline/#getpatterns', {targettime: selected_block_time});
     },
     reqDataAccess: function() {
     	console.log("Sent request: Data Access");

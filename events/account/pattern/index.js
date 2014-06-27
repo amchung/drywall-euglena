@@ -76,7 +76,7 @@ exports.savepattern = function(app, socket){
 					      if (err) {
 					          console.log("error: "+err);
 					      }else{
-					          socket.emit('/pattern/#patternsaved',"pattern saved as pattern # "+target_pattern_id + " for block # " + target_id);
+					          socket.emit('/pattern/#patternsaved',"pattern saved as pattern # "+target_pattern_id );
 					      }
 					    });
 					  }
