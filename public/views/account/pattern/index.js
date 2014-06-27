@@ -172,8 +172,6 @@ var format = d3.time.format("%M:%S");
 var y, color, yAxis, svg_vis;
 
 function setupVis(){
-    d3.select("#pattern_vis").selectAll("*").remove();
-    
     y = d3.time.scale()
 	.domain([d3.time.minute.offset(new Date(0), 5), new Date(0)])
 	.range([height, 0]);
@@ -212,7 +210,7 @@ function setupVis(){
 }
 
 function drawVis(data){
-    d3.selectAll('g.spot').remove();
+    svg_vis.selectAll('g.spot').remove();
     
     var pattern = svg_vis.selectAll('.plot')
 	  .data(data)
