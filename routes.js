@@ -143,7 +143,6 @@ exports = module.exports = function(app, passport) {
   app.get('/account/replay/', require('./views/account/replay/index').init);
   app.get('/account/replay/load/:block/', require('./views/account/replay/index').init);
   app.get('/account/pattern/', require('./views/account/pattern/index').init);
-  app.get('/account/pattern/load/:block/', require('./views/account/pattern/index').init);
 
   //account > verification
   app.get('/account/verification/', require('./views/account/verification/index').init);
