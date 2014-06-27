@@ -212,6 +212,8 @@ function setupVis(){
 }
 
 function drawVis(data){
+    svg_vis.selectAll('.plot').enter().selectAll().remove();
+    
     var pattern = svg_vis.selectAll('.plot')
 	  .data(data)
       .enter().append("g")
