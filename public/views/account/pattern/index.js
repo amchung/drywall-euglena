@@ -43,19 +43,6 @@ var pattern_string = [];
   
   app = app || {};
   
-  /*app.Reset = Backbone.Model.extend({
-    defaults: {
-      success: false,
-      errors: [],
-      errfor: {},
-      blockid: undefined,
-      confitm: ''
-    },
-    url: function(){
-      return '/account/pattern/' + this.get('block_id') +'/';
-    }
-  });*/
-  
   app.Patterns = Backbone.Model.extend({
     url: '/account/pattern/',
     defaults: {
@@ -139,37 +126,10 @@ var pattern_string = [];
     }
   });
   
-  /*app.Router = Backbone.Router.extend({
-    routes: {
-      'account/pattern/': 'default',
-      'account/pattern/load/:block/': 'load'
-    },
-    default: function(){
-      console.log(" >>default view, nothing loaded");
-    },
-    load: function(block) {
-      console.log(">> loading block "+block);
-      block_id = block;
-      var info_div = document.getElementById("info_box");
-      var info_text = document.createElement("h6");
-      var block_node = document.createTextNode("Pattern for [ block # "+block_id+" ]");
-      var pattern_node = document.createTextNode(" -  [ pattern # "+" ]");
-	info_text.appendChild(block_node);
-	info_text.appendChild(pattern_node);
-	info_div.appendChild(info_text);
-      document.getElementById("btn_submit").disabled = true;
-      document.getElementById("btn_edit").disabled = true; 
-      setupVis();
-      socket.emit('/pattern/#listblocks');
-    }
-  });*/
-  
   $(document).ready(function() {
     app.patternView = new app.PatternView();
-    //app.router = new app.Router();
-    
-    //Backbone.history.start({ pushState: true });
   });
+  
 }());
 
 
@@ -208,26 +168,25 @@ var margin = {top: 20, right: 20, bottom: 30, left: 60},
 	width = 500 - margin.left - margin.right,
 	height = 3600 - margin.top - margin.bottom;
 
+var format = d3.time.format("%M:%S");
+var y, color, yAxis, svg_vis;
+
 function setupVis(){
     d3.select("#pattern_vis").selectAll("*").remove();
-}
-
-function drawVis(data){
-  setupVis();
-    var format = d3.time.format("%M:%S");
-    var y = d3.time.scale()
+    
+    y = d3.time.scale()
 	.domain([d3.time.minute.offset(new Date(0), 5), new Date(0)])
 	.range([height, 0]);
     
-    var color = d3.scale.category10();
+    color = d3.scale.category10();
     
-    var yAxis = d3.svg.axis()
+    yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left")
 	.ticks(d3.time.seconds, 5)
 	.tickFormat(format);
 	
-    var svg_vis = d3.select("#pattern_vis").append("svg")
+    svg_vis = d3.select("#pattern_vis").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -244,6 +203,15 @@ function drawVis(data){
             .tickSize(-width, 0, 0)
             .tickFormat(""));
 	
+    function make_y_axis() {        
+	return d3.svg.axis()
+	    .scale(y)
+	    .orient("left")
+	    .ticks(250);
+    }
+}
+
+function drawVis(data){
     var pattern = svg_vis.selectAll('.plot')
 	  .data(data)
       .enter().append("g")
@@ -306,14 +274,4 @@ function drawVis(data){
 		  var array = d.led.split("^");
 	          return parseFloat(array[3])
 	      });
-    
-    function make_y_axis() {        
-	return d3.svg.axis()
-	    .scale(y)
-	    .orient("left")
-	    .ticks(250)
-    }
 }
-	  	
-
-
