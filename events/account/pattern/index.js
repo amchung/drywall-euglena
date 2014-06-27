@@ -68,11 +68,11 @@ exports.savepattern = function(app, socket){
 				      if (err) {
 					  console.log("error: "+err);
 				      }else{
-					client.zadd("pattern_id:"+target_pattern_id+":title", new Date().getTime(), target_title, function(err){
+					client.set("pattern_id:"+target_pattern_id+":title", target_title, function(err){
 					  if (err) {
 					    console.log("error: "+err);
 					  }else{
-					    client.zadd("user_id:"+socket.username+":pattern_id", new Date().getTime(), target_pattern_id, function(err){
+					    client.zadd("user_id:"+socket.username+":pattern_id", target_pattern_id, target_title, function(err){
 					      if (err) {
 					          console.log("error: "+err);
 					      }else{
