@@ -21,12 +21,13 @@ var current_title= "new pattern";
   });
   
   socket.on('/pattern/#newUser', function(user){
+      myname = user;
       socket.emit('/pattern/#getnextid');
   });
 
   socket.on('/pattern/#nextpattern', function(message){
       next_pattern_id = message;
-      current_title = "new_" + user + "_" + next_pattern_id
+      current_title = "new_" + myname + "_" + next_pattern_id
       var info_div = document.getElementById("info_box");
       var info_text = document.createElement("h6");
       var block_node = document.createTextNode("Editing pattern : "+ current_title);
