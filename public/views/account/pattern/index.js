@@ -58,7 +58,7 @@ var current_title= "new pattern";
       option_select.appendChild(option_default);
       
       if (message.length>0) {
-	  for(i=0;i<message.length;i++){
+	  for(var i=0;i<message.length;i++){
 	      var option = document.createElement("option");
 	      option.label = message[i];
 	      option.value = i;
