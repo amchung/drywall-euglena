@@ -175,7 +175,7 @@ exports.listpatterns = function(app,socket){
 	client = redis.createClient();
     var _ = require("underscore");
     
-    client.zrange("user_id:"+socket.username+":pattern",0,-1, function (err,res){
+    client.zrange("user_id:"+socket.username+":pattern_id",0,-1, function (err,res){
 	socket.emit('/pattern/#postpatterns', res); 
     });
   }
