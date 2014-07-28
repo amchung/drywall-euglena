@@ -21,6 +21,7 @@ exports = module.exports = function(app) {
     socket.on('/replay/#callimglist', require('./events/account/replay/index').callimglist(app, socket));
     socket.on('/pattern/#savepattern', require('./events/account/pattern/index').savepattern(app, socket));
     socket.on('/pattern/#listblocks', require('./events/account/pattern/index').listblocks(app, socket));
+    socket.on('/pattern/#listpatterns', require('./events/account/pattern/index').listpatterns(app, socket));
     socket.on('/pattern/#getnextid', require('./events/account/pattern/index').getnextid(app, socket));
   });
 };

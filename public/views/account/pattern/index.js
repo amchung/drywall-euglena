@@ -72,7 +72,7 @@ var pattern_string = [];
       document.getElementById("btn_submit").disabled = true;
       document.getElementById("btn_edit").disabled = true; 
       setupVis();
-      socket.emit('/pattern/#listblocks');
+      socket.emit('/pattern/#listpatterns');
     },
     render: function() {
       this.$el.html(this.template);
