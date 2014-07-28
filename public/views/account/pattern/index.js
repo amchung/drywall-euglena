@@ -5,6 +5,7 @@ var myname;
 var block_id;
 var pattern_array = [];
 var pattern_string = [];
+var next_pattern_id;
 
 (function() {
   'use strict';
@@ -20,13 +21,14 @@ var pattern_string = [];
   });
 
   socket.on('/pattern/#nextpattern', function(message){
-      console.log(message);
+      console.log("next pattern id = "+message);
+      next_pattern_id = message;
       var info_div = document.getElementById("info_box");
       var info_text = document.createElement("h6");
-      var block_node = document.createTextNode("Editing pattern id # : "+message);
+      var block_node = document.createTextNode("Editing pattern id # : "+ next_pattern_id);
 	info_text.appendChild(block_node);
 	info_div.appendChild(info_text);
-	document.getElementById('input_title').value = 'pattern_id_' + message;
+	document.getElementById('input_title').value = 'pattern_id_' + next_pattern_id;
   });
   
   socket.on('/pattern/#patternsaved', function(message){
@@ -39,6 +41,18 @@ var pattern_string = [];
   
   socket.on('/pattern/#postpatterns', function(message){
       console.log(message.length);
+      var option_select = document.getElementById("pattern-options");
+      
+      var option_default = document.createElement("option");
+      option_default.label = "default : " + next_pattern_id;
+      option_default.value = next_pattern_id;
+      option_default.selected = "selected";
+      
+      option_select.appendChild(option_default);
+      
+      if (message.length>0) {
+	  console.log(message);
+      }
   });
   
   socket.on('disconnect', function() {
