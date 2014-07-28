@@ -58,7 +58,12 @@ var current_title= "new pattern";
       option_select.appendChild(option_default);
       
       if (message.length>0) {
-	  console.log(message.length);
+	  for(i=0;i<message.length;i++){
+	      var option = document.createElement("option");
+	      option.label = message[i];
+	      option.value = i;
+	      option_select.appendChild(option);
+	  }
       }
   });
   
