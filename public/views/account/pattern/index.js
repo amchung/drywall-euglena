@@ -38,7 +38,7 @@ var pattern_string = [];
   });
   
   socket.on('/pattern/#postpatterns', function(message){
-      console.log(message);
+      console.log(message.length);
   });
   
   socket.on('disconnect', function() {
