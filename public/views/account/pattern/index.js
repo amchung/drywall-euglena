@@ -37,6 +37,10 @@ var pattern_string = [];
       console.log(message);
   });
   
+  socket.on('/pattern/#postpatterns', function(message){
+      console.log(message);
+  });
+  
   socket.on('disconnect', function() {
       console.log('>>> DB disconnected');
   });

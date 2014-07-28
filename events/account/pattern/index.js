@@ -148,7 +148,7 @@ exports.loadpattern = function(app,socket){
 }
 
 exports.listblocks = function(app,socket){
-  socket.visitor = 'guest';
+  //socket.visitor = 'guest';
     if (socket.handshake.user) {
       socket.visitor = socket.handshake.user.id;
       socket.username = socket.handshake.user.username;
@@ -166,10 +166,18 @@ exports.listblocks = function(app,socket){
 }
 
 exports.listpatterns = function(app,socket){
+  if (socket.handshake.user) {
+      socket.visitor = socket.handshake.user.id;
+      socket.username = socket.handshake.user.username;
+  }
   return function(message){
     var redis = require("redis"),
 	client = redis.createClient();
     var _ = require("underscore");
+    
+    client.zrange("user_id:"+socket.username+":pattern",0,-1, function (err,res){
+	socket.emit('/pattern/#postpatterns', res); 
+    });
   }
 }
 
