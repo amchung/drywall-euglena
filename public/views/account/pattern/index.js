@@ -6,6 +6,7 @@ var block_id;
 var pattern_array = [];
 var pattern_string = [];
 var next_pattern_id;
+var current_title= "new pattern";
 
 (function() {
   'use strict';
@@ -13,22 +14,27 @@ var next_pattern_id;
   socket = io.connect();
   socket.on('connect', function(){
   	socket.emit('/pattern/#join');
-	socket.emit('/pattern/#getnextid');
   });
   
   socket.on('message', function (message) {
       console.log(message);
   });
+  
+  socket.on('/pattern/#newUser', function(user){
+      current_title = "new_" + user + "_" + next_pattern_id
+      socket.emit('/pattern/#getnextid');
+  });
 
   socket.on('/pattern/#nextpattern', function(message){
-      console.log("next pattern id = "+message);
       next_pattern_id = message;
       var info_div = document.getElementById("info_box");
       var info_text = document.createElement("h6");
-      var block_node = document.createTextNode("Editing pattern id # : "+ next_pattern_id);
+      var block_node = document.createTextNode("Editing pattern : "+ current_title);
 	info_text.appendChild(block_node);
 	info_div.appendChild(info_text);
-	document.getElementById('input_title').value = 'pattern_id_' + next_pattern_id;
+	document.getElementById('input_title').value = current_title;
+	
+	socket.emit('/pattern/#listpatterns');
   });
   
   socket.on('/pattern/#patternsaved', function(message){
@@ -44,14 +50,14 @@ var next_pattern_id;
       var option_select = document.getElementById("pattern-options");
       
       var option_default = document.createElement("option");
-      option_default.label = "default : " + next_pattern_id;
+      option_default.label = current_title;
       option_default.value = next_pattern_id;
       option_default.selected = "selected";
       
       option_select.appendChild(option_default);
       
       if (message.length>0) {
-	  console.log(message);
+	  console.log(message.length);
       }
   });
   
@@ -86,7 +92,6 @@ var next_pattern_id;
       document.getElementById("btn_submit").disabled = true;
       document.getElementById("btn_edit").disabled = true; 
       setupVis();
-      socket.emit('/pattern/#listpatterns');
     },
     render: function() {
       this.$el.html(this.template);
