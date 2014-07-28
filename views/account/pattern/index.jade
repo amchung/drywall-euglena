@@ -35,6 +35,11 @@ block body
 			div.col-sm-5
 				#info_box
 				div#dropdown_pattern.dropdown
+					ul.dropdown-menu(role="menu")
+						li(role="presentation")
+							a(href="#", role="menuitem", tabindex="-1") Regular link
+						li.disabled(role="presentation")
+							a(href="#", role="menuitem", tabindex="-1") Disabled link
 			div.col-sm-7
 				p(style='white-space:pre;font-size:80%;')
 					| (index number), (time the pattern will be executed in msec), (LED up)^(LED left)^(LED down)^(LED right)
