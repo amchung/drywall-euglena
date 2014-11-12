@@ -193,7 +193,7 @@ function init() {
 		var msg = {type:'sendvalveflush'};
 		console.log("valve: flush");
 		var msg = 
-		{type:'/arduino/#sendvalvetrigger', user:username, delay: 5000};
+		{type:'/arduino/#sendvalvetrigger', user:username, delay: 3000};
 		clock_socket.json.send(msg);
 		var obj = "Valve flushed by "+username;
 		socket.emit('/lab/#broadcast',obj);

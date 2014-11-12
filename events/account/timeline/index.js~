@@ -370,7 +370,7 @@ exports.setpattern = function(app, socket){
 			  console.error("error");
 			} else {
 			  console.log(">>>> >> block "+target_id+" pattern_id : "+ value);
-			  socket.emit('/timeline/#donePatternRequest', value)
+			  socket.emit('/timeline/#doneRequest', "output")
 			}
 		      });  
 		    });

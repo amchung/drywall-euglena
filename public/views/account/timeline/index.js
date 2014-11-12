@@ -63,15 +63,17 @@ var hour = d3.time.format("%I"),
   var blockdata = [];
   var infobox;
   var previewbox;
+  var patternbox;
+  var strPattern;
   
   var callBlocks = function(ticket){
-	// +- 1 hour blocks range
-	var beginT = d3.time.hour.floor(ticket);
-	beginT = d3.time.hour.offset(beginT, -1);
-	var endT = d3.time.hour.offset(beginT, 3);
-	console.log(beginT);
-	console.log(endT);
-	socket.emit('/timeline/#callblocks', { begintime: beginT, endtime: endT});
+		// +- 1 hour blocks range
+		var beginT = d3.time.hour.floor(ticket);
+		beginT = d3.time.hour.offset(beginT, -1);
+		var endT = d3.time.hour.offset(beginT, 3);
+		console.log(beginT);
+		console.log(endT);
+		socket.emit('/timeline/#callblocks', { begintime: beginT, endtime: endT});
 	}
   
   var draw = function(blockdata){
@@ -223,6 +225,8 @@ var hour = d3.time.format("%I"),
   }
   
   function mouseclick(d,i){
+    document.getElementById("pattern_select").disabled = true; 
+
     document.getElementById("btn_enter").disabled = true; 
     document.getElementById("btn_access").disabled = true; 
     document.getElementById("btn_reserve").disabled = true; 
@@ -280,10 +284,11 @@ var hour = d3.time.format("%I"),
 				    document.getElementById("btn_enter").disabled = true;
 				}
 			}else{
-				document.getElementById("btn_pattern").disabled = false; 
+				//document.getElementById("btn_pattern").disabled = false; 
 				document.getElementById("btn_cancel").disabled = false; 
-				document.getElementById("btn_pattern").style.display="block";
+				//document.getElementById("btn_pattern").style.display="block";
 				document.getElementById("btn_cancel").style.display="block";
+			        document.getElementById("pattern_select").disabled = false; 
 			}
 		}
 	}else{
@@ -323,6 +328,7 @@ var hour = d3.time.format("%I"),
             image.setAttribute("alt","Responsive image");
             image.onload = function() { callback(image); };
       }
+	socket.emit('/timeline/#getpatterns', {targettime: selected_block_time});
     }
 	
     // write block info to infobox
@@ -343,8 +349,9 @@ var hour = d3.time.format("%I"),
 		    strInfo = concatNewline(strInfo,"exp id: "+data.exp_id); 
 		}
 		if (data.pattern_id>0) {
-		    strInfo = concatNewline(strInfo,"pattern id: "+data.pattern_id); 
-		}
+		    strPattern = "pattern id: " + data.pattern_id;
+		    socket.emit('/timeline/#callpatterninfo', { targetid: data.pattern_id });
+		}else{patternbox.html('no pattern is assigned to this block!');}
 		infobox.html(strInfo);
     }
     selected_block_time = data.blocktime;
@@ -395,14 +402,23 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('/timeline/#postpatterns', function(data){
-    console.log(data);
-    /*if(data<0){
+    if(data.length>0){
       document.getElementById("btn_close").style.display="none";
-      previewbox.html("[no preview]");
-      writeInfo();
-    }else {
-      //
-    }*/
+      var pattern_select = document.getElementById('pattern_select');
+	pattern_select.innerHTML = '';
+      var opt = document.createElement('option');
+      	pattern_select.appendChild(opt);
+	opt.innerHTML=opt.innerHTML + 'no pattern';
+	opt.setAttribute("value", 'no pattern');
+	opt.setAttribute("id", 0);
+      for (var i=0; i<(data.length/2); i++){
+	var opt = document.createElement('option');
+      	pattern_select.appendChild(opt);
+	opt.innerHTML=opt.innerHTML + data[2*i];
+	opt.setAttribute("value", data[2*i]);
+	opt.setAttribute("id", data[2*i+1]);
+      }
+    }
   });
   
   socket.on('/timeline/#newUser', function(user) {
@@ -413,7 +429,28 @@ var hour = d3.time.format("%I"),
   });
   
   socket.on('/timeline/#doneRequest', function(msg) {
-  	console.log(msg);
+    document.getElementById("pattern_select").disabled = true; 
+
+    document.getElementById("btn_enter").disabled = true; 
+    document.getElementById("btn_access").disabled = true; 
+    document.getElementById("btn_reserve").disabled = true; 
+    document.getElementById("btn_pattern").disabled = true; 
+    document.getElementById("btn_cancel").disabled = true;
+  
+	callBlocks(currenttime);
+  });
+
+  socket.on('/timeline/#donePatternRequest', function(msg) {
+    document.getElementById("pattern_select").disabled = true; 
+
+    document.getElementById("btn_enter").disabled = true; 
+    document.getElementById("btn_access").disabled = true; 
+    document.getElementById("btn_reserve").disabled = true; 
+    document.getElementById("btn_pattern").disabled = true; 
+    document.getElementById("btn_cancel").disabled = true;
+
+	strPattern = "pattern id: " + msg;
+	socket.emit('/timeline/#callpatterninfo', { targetid: msg });
   	callBlocks(currenttime);
   });
   
@@ -434,9 +471,9 @@ var hour = d3.time.format("%I"),
     	window.location.replace("/account/replay/load/"+myBlock+"/");
   });
   
-  socket.on('/timeline/#viewpattern', function(myBlock){
-	console.log("going to access pattern for block" + myBlock);
-    	window.location.replace("/account/pattern/load/"+myBlock+"/");
+  socket.on('/timeline/#viewpatterninfo', function(data){
+	strPattern = concatNewline(strPattern,"pattern title: "+data);
+	patternbox.html(strPattern);
   });
   
   
@@ -508,6 +545,7 @@ var hour = d3.time.format("%I"),
       
       infobox = $('#info_box');
       previewbox = $('#preview_box');
+      patternbox = $('#pattern_str');
     },
     render: function() {
       this.$el.html(this.template( this.model.attributes));
@@ -521,7 +559,7 @@ var hour = d3.time.format("%I"),
     	//console.log("Sent request: Set Pattern for " + selected_block_time);
 	//socket.emit('/timeline/#accesspattern', { targettime: selected_block_time});
 	console.log("Sent request: Get Patterns for " + selected_block_time);
-	socket.emit('/timeline/#getpatterns', {targettime: selected_block_time});
+	//socket.emit('/timeline/#getpatterns', {targettime: selected_block_time});
     },
     reqDataAccess: function() {
     	console.log("Sent request: Data Access");
@@ -563,5 +601,14 @@ var hour = d3.time.format("%I"),
     callBlocks(currenttime);
     
   });
+  // to set pattern for the block 
+  $( "select" ).change(function () {
+	var str = "";
+	console.log(this[this.selectedIndex].value);
+	console.log(this[this.selectedIndex].id);
+	var pat_id = this[this.selectedIndex].id;
+	socket.emit('/timeline/#setpattern', { target_pattern_id:pat_id, targettime: selected_block_time});
+  }).change();
+
   
 }());

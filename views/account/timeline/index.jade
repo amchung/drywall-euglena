@@ -25,6 +25,7 @@ block neck
 		.d3-tip.e:after {content: "\25C0";margin: -4px 0 0 0;top: 50%;left: -8px;}
 		.d3-tip.s:after {content: "\25B2";margin: 0 0 1px 0;top: -8px;left: 0;text-align: center;}
 		.d3-tip.w:after {content: "\25B6";margin: -4px 0 0 -1px;top: 50%;left: 100%;}
+		.scrollable-menu {height: auto;max-height: 200px;overflow-x: hidden;}
 
 block feet
 	script(src="/views/account/timeline/bootstrap-datetimepicker.js")
@@ -54,15 +55,18 @@ block body
 					div.panel-body
 						h6 Time left for the current block
 						div#clock_bar.clock-bar
-				div.col-sm-5.panel.panel-default
-						div.panel-body
-							div#info_menu
-							div#info_box
-				div.col-sm-5
+				div.col-sm-3.panel.panel-default
+					div.panel-body
+						div#info_menu
+						div#info_box
+				div#pattern_box.col-sm-3.panel.panel-default
+					div.panel-body
+						div#pattern_str
+						select#pattern_select(disabled='true')
+				div.col-sm-3
 					button#btn_close.btn.btn-default.btn-xs(type='button')
 						i.fa.fa-times
 					div#preview_box.preview-box
-
 	script(type='text/template', id='tmpl-blocks_nav')
 		form
 			div.form-actions
